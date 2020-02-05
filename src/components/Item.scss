@@ -1,0 +1,79 @@
+.pokeball-animation {
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: pokeball-play 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pokeball-play {
+  0% {
+    background-position: -20px;
+    background: url('../assets/overworlds/ball_00_open.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  50% {
+    background: url('../assets/overworlds/ball_00.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(0deg);
+  }
+  60% {
+    background: url('../assets/overworlds/ball_00.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(30deg);
+  }
+  70% {
+    transform: rotate(0deg);
+    background: url('../assets/overworlds/ball_00.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  80% {
+    transform: rotate(-30deg);
+    background: url('../assets/overworlds/ball_00.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  100% {
+    background-position: -20px;
+    background: url('../assets/overworlds/ball_00.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.task-item {
+  ion-checkbox {
+    --size: 32px;
+  }
+
+  .change-background-color.item {
+    --ion-background-color: #B8B8B8 !important;
+  }
+
+  .nes-checkbox + span::before {
+    width: 4px;
+    height: 4px;
+    color: #212529;
+    box-shadow: 4px 4px, 8px 4px, 12px 4px, 16px 4px, 20px 4px, 24px 4px, 28px 4px, 32px 4px, 4px 8px, 32px 8px, 4px 12px, 32px 12px, 4px 16px, 32px 16px, 4px 20px, 32px 20px, 4px 24px, 32px 24px, 4px 28px, 32px 28px, 4px 32px, 8px 32px, 12px 32px, 16px 32px, 20px 32px, 24px 32px, 28px 32px, 32px 32px;
+  }
+
+  .nes-checkbox:checked + span::before {
+    width: 4px;
+    height: 4px;
+    color: #212529;
+    box-shadow: 4px 4px, 8px 4px, 12px 4px, 16px 4px, 20px 4px, 24px 4px, 28px 4px, 36px 4px, 40px 4px, 4px 8px, 32px 8px, 36px 8px, 40px 8px, 4px 12px, 28px 12px, 32px 12px, 4px 16px, 8px 16px, 24px 16px, 28px 16px, 4px 20px, 8px 20px, 12px 20px, 20px 20px, 24px 20px, 32px 20px, 4px 24px, 12px 24px, 16px 24px, 20px 24px, 32px 24px, 4px 28px, 16px 28px, 32px 28px, 4px 32px, 8px 32px, 12px 32px, 16px 32px, 20px 32px, 24px 32px, 28px 32px, 32px 32px;
+  }
+
+  .nes-checkbox-label-2x {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+

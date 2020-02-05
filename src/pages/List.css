@@ -1,0 +1,104 @@
+.sprite {
+    height: 64px;
+    width: 64px;
+}
+
+.clipwrapper {
+    height: 256px;
+    width: 256px;
+    position: relative;
+}
+
+.clip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: play-front 1s steps(1) infinite;
+}
+
+.pos-1-front {
+    clip: rect(0 64px 64px 0px);
+}
+
+.pos-2-front {
+    clip: rect(0 128px 64px 64px);
+    left: -64px;
+}
+
+.pos-3-front {
+    clip: rect(0 192px 64px 128px);
+    left: -128px;
+}
+
+.pos-4-front {
+    clip: rect(0 256px 64px 192px);
+    left: -192px;
+}
+
+.pos-1-left {
+    clip: rect(64px 64px 128px 0);
+    top: -64px;
+}
+
+.pos-1-right {
+    clip: rect(128px 64px 192px 0);
+    top: -128px;
+}
+
+.pos-1-back {
+    clip: rect(192px 64px 256px 0);
+    top: -192px;
+}
+
+/*.pos-3 {*/
+/*    clip: rect(64px 64px 128px 0);*/
+/*    top: -64px;*/
+/*}*/
+
+/*.pos-4 {*/
+/*    clip: rect(64px 128px 128px 64px);*/
+/*    top: -64px;*/
+/*    left: -64px;*/
+/*}*/
+
+
+@keyframes play-front {
+    0% {
+        clip: rect(0 64px 64px 0px);
+    }
+
+    25% {
+        clip: rect(0 128px 64px 64px);
+        left: -64px;
+    }
+
+    50% {
+        clip: rect(0 192px 64px 128px);
+        left: -128px;
+    }
+
+    75% {
+        clip: rect(0 256px 64px 192px);
+        left: -192px;
+    }
+}
+
+@keyframes play-left {
+    0% {
+        clip: rect(0 64px 64px 0px);
+    }
+    25% {
+        clip: rect(0 128px 64px 64px);
+        left: -64px;
+    }
+    50% {
+        clip: rect(0 192px 64px 128px);
+        left: -128px;
+    }
+    100% {
+        clip: rect(0 256px 64px 192px);
+        left: -192px;
+    }
+}
+
+
