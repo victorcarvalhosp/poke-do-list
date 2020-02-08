@@ -6,6 +6,7 @@ import HomePage from "../pages/Home";
 import {IonRouterOutlet} from "@ionic/react";
 import SigninPage from "../pages/Signin/Signin";
 import SignupPage from "../pages/Signup/Signup";
+import SelectCharPage from "../pages/SelectChar/SelectChar";
 
 
 export enum Routes {
@@ -14,6 +15,8 @@ export enum Routes {
     SIGNUP = '/signup',
     RECOVER_PASSWORD = '/recover-password',
     HOME = '/home',
+    SELECT_CHAR = '/select-char',
+
 }
 
 const Router: React.FC = () => {
@@ -26,6 +29,7 @@ const Router: React.FC = () => {
             <Route path={Routes.SIGNUP} component={SignupPage} exact={true}/>
             <Route path={Routes.SIGNIN_SIGNUP} component={SigninOrSignupPage} exact={true}/>
             <PrivateRoute path={Routes.HOME} component={HomePage}  exact={true}/>
+            <PrivateRoute path={Routes.SELECT_CHAR} component={SelectCharPage}  exact={true}/>
         </IonRouterOutlet>
     )
 };

@@ -1,0 +1,27 @@
+.intro-background{
+  --ion-background-color: #C8E0D8;
+  background-color: #C8E0D8;
+}
+
+#signup-page{
+
+  :host{
+    background-color: #000;
+  }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
+
+  .responsive-sprite{
+    zoom: 0.5;
+  }
+
+  .professor{
+    zoom: 2;
+  }
+
+}

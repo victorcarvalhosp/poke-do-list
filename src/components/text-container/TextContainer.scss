@@ -1,0 +1,49 @@
+@import "src/theme/variables";
+
+.text-container {
+  padding: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  .nes-container {
+    height: 120px;
+    background-color: white;
+  }
+
+  .advance-button{
+    position: absolute;
+    font-size: 12px;
+    bottom: 20px;
+    right: 20px;
+    //padding: 20px;
+  }
+
+  @media only screen and (min-width: $md) {
+    .nes-container {
+      height: 220px;
+    }
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  .text-container {
+    padding: 4px;
+
+    .nes-container {
+      font-size: 12px;
+      padding: 4px;
+    }
+    .nes-container.is-rounded{
+      padding: 0.5rem 0.6rem;
+    }
+
+    .advance-button{
+      bottom: 4px;
+      right: 4px;
+    }
+  }
+}
+
+

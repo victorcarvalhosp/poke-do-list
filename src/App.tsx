@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import {Redirect, Route, withRouter} from 'react-router-dom';
+import { IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonHeader, IonToolbar, IonTitle } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { AppPage } from './declarations';
 
@@ -8,12 +8,11 @@ import Menu from './components/Menu';
 import Home from './pages/Home';
 import List from './pages/List';
 import { home, list } from 'ionicons/icons';
-
+import './globals.scss';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
-
 /* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
+// import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
@@ -26,17 +25,31 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /* Theme variables */
-import './theme/variables.css';
+import './theme/variables.scss';
 import Router from "./router/Router";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "./firebase";
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "./stores/StoreContext";
+import {RouteComponentProps} from "react-router";
 
 
 
 const App: React.FC = () => {
   const [user, initialising, error] = useAuthState(auth);
+
+    const appPages: AppPage[] = [
+        {
+            title: 'Home',
+            url: '/home',
+            icon: home
+        },
+        {
+            title: 'List',
+            url: '/home/list',
+            icon: list
+        }
+    ];
 
   if (initialising) {
     return (
@@ -55,11 +68,16 @@ const App: React.FC = () => {
   }
 
   return(
-  <IonApp>
-    <IonReactRouter>
+      <>
+  {/*<IonApp id="ion-app-root">*/}
+  <IonReactRouter>
+  {/*<IonSplitPane contentId="main">*/}
+       {/*    <Menu appPages={appPages}/>*/}
         <Router />
-    </IonReactRouter>
-  </IonApp>
+      {/*</IonSplitPane>*/}
+     </IonReactRouter>
+   {/*</IonApp>*/}
+          </>
 )};
 
 

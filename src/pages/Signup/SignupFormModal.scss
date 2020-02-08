@@ -1,0 +1,27 @@
+.signup-form-modal{
+  .arrow-down{
+    display: block;
+    transform: rotateZ(90deg);
+    margin: 0px 0 0 42px;
+    padding: 0;
+    width: 0px;
+    height: 0;
+  }
+}
+/* HIDE RADIO */
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 32px;
+  height: 32px;
+}
+
+/* IMAGE STYLES */
+[type=radio] + fa-icon {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked {
+  outline: 2px solid #f00;
+}

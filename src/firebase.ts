@@ -10,14 +10,14 @@ import 'firebase/functions';
 
 firebase.initializeApp({
     /* add your config object from the Firebase console */
-    apiKey: "AIzaSyCnbymWzGiu1WJD4MuNp4ffCMIJtoSvpQo",
-    authDomain: "poke-do.firebaseapp.com",
-    databaseURL: "https://poke-do.firebaseio.com",
-    projectId: "poke-do",
-    storageBucket: "poke-do.appspot.com",
-    messagingSenderId: "599356139956",
-    appId: "1:599356139956:web:0e96f8500405c7bad86ae1",
-    measurementId: "G-BC43CFXC3E"
+    apiKey: "AIzaSyATBenIrSGYIl722anLxNF4Q1aKSoG16Nw",
+    authDomain: "poke-do-list.firebaseapp.com",
+    databaseURL: "https://poke-do-list.firebaseio.com",
+    projectId: "poke-do-list",
+    storageBucket: "poke-do-list.appspot.com",
+    messagingSenderId: "55233007709",
+    appId: "1:55233007709:web:749addc59f4f6947ddfdb4",
+    measurementId: "G-Y9VDW23221"
 });
 
 export default firebase;
