@@ -2,18 +2,21 @@ import { observable, action, computed } from 'mobx'
 import {RootStore} from "./RootStore";
 import {IUser} from "../models/User";
 import {FirebaseApi} from "../apis/FirebaseApi";
+import {IPokemon} from "../models/Pokemon";
 
 export interface IUserStore {
     user: IUser;
     loadingUser: boolean;
 
     setUser(id: string): void;
+
+    updatePartner(pokemon: IPokemon): void;
 }
 export class UserStore implements  IUserStore{
     constructor(public root: RootStore) {
     }
 
-    @observable user: IUser = {uid: '', email: '', name: ''};
+    @observable user: IUser = {uid: '', email: '', name: '', character: ''};
     @observable loadingUser = true;
 
     @action
@@ -30,6 +33,11 @@ export class UserStore implements  IUserStore{
                 this.loadingUser = false;
             });
         }
+    }
+
+    @action
+    async updatePartner(pokemon: IPokemon){
+        await FirebaseApi.setPokemonAsPartner(this.user.uid, pokemon);
     }
 
 }

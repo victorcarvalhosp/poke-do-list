@@ -6,21 +6,9 @@ import {home, list} from "ionicons/icons";
 import {IonReactRouter} from "@ionic/react-router";
 
 const PageWithSideMenu: React.FC = ({children}) => {
-    const appPages: AppPage[] = [
-        {
-            title: 'Home',
-            url: '/home',
-            icon: home
-        },
-        {
-            title: 'List',
-            url: '/home/list',
-            icon: list
-        }
-    ];
     return (
         <IonSplitPane contentId="main">
-            <Menu appPages={appPages}/>
+            <Menu />
             {children}
         </IonSplitPane>
     );

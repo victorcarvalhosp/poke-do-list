@@ -34,10 +34,10 @@ const SigninOrSignupPage: React.FC<RouteComponentProps> = ({history}) => {
         history.push(Routes.SIGNUP)
     }
 
-    const openModalConfirmationNewAccount = () => {
-      const modalEl: any = document.getElementById('dialog-default');
-      modalEl.showModal()
-    }
+    // const openModalConfirmationNewAccount = () => {
+    //   const modalEl: any = document.getElementById('dialog-default');
+    //   modalEl.showModal()
+    // }
 
     return (
         <IonPage id="signin-or-signup-page">
@@ -45,7 +45,7 @@ const SigninOrSignupPage: React.FC<RouteComponentProps> = ({history}) => {
             </IonHeader>
             <IonContent className="ion-padding">
                 <div className="nes-container is-rounded">
-                    <a onClick={openModalConfirmationNewAccount}>New Account</a><br/>
+                    <a onClick={goToSignup}>New Account</a><br/>
                     <a onClick={goToSignin}>Continue</a>
                 </div>
               <NesDialog id="dialog-default" >

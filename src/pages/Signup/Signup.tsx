@@ -20,8 +20,7 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const {userStore} = useRootStore();
 
     const FINAL_STEP = 12;
-    // const OPEN_SIGNUP_STEP = 10;
-    const OPEN_SIGNUP_STEP = 2;
+    const OPEN_SIGNUP_STEP = 10;
 
     const goToSignin = () => {
         history.push(Routes.SIGNIN)
@@ -29,6 +28,7 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     const onCloseModal = () => {
         setOpenModal(false);
+        setStep(0);
         history.push(Routes.SIGNIN_SIGNUP);
     }
 
@@ -36,18 +36,18 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
         setOpenModal(false);
         let nextStep = step + 1;
         setStep(nextStep);
-        // history.push(Routes.SIGNIN_SIGNUP);
     }
 
     useEffect(() => {
         // playAudio();
+        setStep(0);
     }, []);
 
     const onClickContinue = async () => {
         console.log('GO TO NEXT' + step);
         if (step === FINAL_STEP) {
             await stopAudio();
-            history.push(Routes.HOME);
+            history.push(Routes.SIGNUP_SELECT_POKEMON);
         } else if (step == OPEN_SIGNUP_STEP) {
             setOpenModal(true);
         } else {

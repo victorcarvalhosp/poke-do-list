@@ -1,13 +1,16 @@
 import React from 'react';
 import {Redirect, Route, withRouter} from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonHeader, IonToolbar, IonTitle } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { AppPage } from './declarations';
+import {IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonHeader, IonToolbar, IonTitle} from '@ionic/react';
+import {IonReactRouter} from '@ionic/react-router';
+import {AppPage} from './declarations';
+import DayjsUtils from '@date-io/dayjs';
+import {MuiPickersUtilsProvider} from '@material-ui/pickers';
+
 
 import Menu from './components/Menu';
 import Home from './pages/Home';
 import List from './pages/List';
-import { home, list } from 'ionicons/icons';
+import {home, list} from 'ionicons/icons';
 import './globals.scss';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -34,51 +37,42 @@ import {useRootStore} from "./stores/StoreContext";
 import {RouteComponentProps} from "react-router";
 
 
-
 const App: React.FC = () => {
-  const [user, initialising, error] = useAuthState(auth);
+    const [user, initialising, error] = useAuthState(auth);
+    const {userStore} = useRootStore();
+    userStore.setUser(user ? user.uid : '0');
 
-    const appPages: AppPage[] = [
-        {
-            title: 'Home',
-            url: '/home',
-            icon: home
-        },
-        {
-            title: 'List',
-            url: '/home/list',
-            icon: list
-        }
-    ];
+    if (initialising) {
+        return (
+            <div>
+                Initialising...
+            </div>
+        );
+    }
 
-  if (initialising) {
+    if (error) {
+        return (
+            <div>
+                <p>Error: {error}</p>
+            </div>
+        )
+    }
+
     return (
-        <div>
-          Initialising...
-        </div>
-    );
-  }
-
-  if (error) {
-    return (
-        <div>
-          <p>Error: {error}</p>
-        </div>
+        <>
+            {/*<IonApp id="ion-app-root">*/}
+            <MuiPickersUtilsProvider utils={DayjsUtils}>
+                <IonReactRouter>
+                    {/*<IonSplitPane contentId="main">*/}
+                    <Menu/>
+                    <Router/>
+                    {/*</IonSplitPane>*/}
+                </IonReactRouter>
+            </MuiPickersUtilsProvider>
+            {/*</IonApp>*/}
+        </>
     )
-  }
-
-  return(
-      <>
-  {/*<IonApp id="ion-app-root">*/}
-  <IonReactRouter>
-  {/*<IonSplitPane contentId="main">*/}
-       {/*    <Menu appPages={appPages}/>*/}
-        <Router />
-      {/*</IonSplitPane>*/}
-     </IonReactRouter>
-   {/*</IonApp>*/}
-          </>
-)};
+};
 
 
 export const Counter = observer(() => {

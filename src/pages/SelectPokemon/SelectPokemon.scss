@@ -1,0 +1,196 @@
+#select-pokemon-page {
+  --pixel-size: 4; /* Try playing with this value! */
+
+  .more-details {
+    text-align: center;
+
+    p {
+      padding-top: 16px;
+      color: #607d8b;
+    }
+
+  }
+
+  .choose-button {
+    position: sticky;
+    bottom: 0;
+  }
+
+  .Character_sprite-sheet {
+    display: none; /* For the sake of this demo, JS will control which character spritesheet is visible */
+  }
+
+  .Character {
+    width: calc(var(--pixel-size) * 32px);
+    height: calc(var(--pixel-size) * 32px);
+    overflow: hidden;
+    position: relative;
+    margin: calc(var(--pixel-size) * 6px) auto;
+  }
+
+  .Character_sprite-sheet.active {
+    display: block;
+  }
+
+  /* Demo UI Stuff ------------------------------------------------- */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(180deg, #5DCBE4 0%, #47BCE4 100%);
+    height: 100%;
+    min-height: 100vh;
+    padding-top: calc(var(--pixel-size) * 18px);
+    font-family: 'Dosis', sans-serif;
+  }
+
+  .Container {
+    h2 {
+      text-align: center;
+    }
+
+    max-width: calc(var(--pixel-size) * 100px);
+    margin: 0 auto;
+  }
+
+  .TitleImage {
+    width: calc(var(--pixel-size) * 95px);
+    display: block;
+    margin: 0 auto;
+  }
+
+  .NavigationBubble {
+    -webkit-appearance: none;
+    width: calc(var(--pixel-size) * 3px);
+    height: calc(var(--pixel-size) * 3px);
+    background: #C8C8CC;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    box-sizing: content-box;
+  }
+
+  .NavigationBubble:hover:not(.active) {
+    opacity: 0.9;
+  }
+
+  .NavigationBubble.active {
+    background: #e76e55;
+  }
+
+  .NextSpritesheetButton {
+    -webkit-appearance: none;
+    border: 0;
+    background: none;
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+  }
+
+  .NextSpritesheetButton--prev {
+    left: 0;
+  }
+
+  .NextSpritesheetButton--next {
+    right: 0;
+  }
+
+  .NextSpritesheetButton:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .NextSpritesheetButton:focus {
+    outline: none;
+  }
+
+  .NextSpritesheetButton svg {
+    display: block;
+    width: calc(var(--pixel-size) * 4px);
+  }
+
+  .DirectionArrow {
+    background: none;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .DirectionArrow svg {
+    display: block;
+    width: calc(var(--pixel-size) * 13px);
+  }
+
+  .DirectionArrow--active .Arrow_outline-top {
+    stroke: #5268ec;
+  }
+
+  .DirectionArrow--active .Arrow_surface {
+    stroke: #639bff;
+  }
+
+  .DirectionArrow--active .Arrow_outline-bottom {
+    stroke: #164496;
+  }
+
+  .DirectionArrow--active .Arrow_edge {
+    stroke: #7baaff;
+  }
+
+  .DirectionArrow--active .Arrow_front {
+    stroke: #4c8bfd
+  }
+
+  .DirectionArrow--active .Arrow_arrow-inset {
+    stroke: #fff;
+  }
+
+  .DirectionArrow--active .Arrow_arrow-body {
+    stroke: #fff;
+  }
+
+  .SpritesheetSlider {
+    position: relative;
+    margin-bottom: calc(var(--pixel-size) * 10px);
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  footer {
+    margin-top: calc(var(--pixel-size) * 20px);
+  }
+
+  @media (min-height: 515px) {
+    footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  footer p {
+    color: #fff;
+    text-align: center;
+    padding: 0.8em;
+    font-size: 18px;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.4)
+  }
+
+  footer a {
+    font-weight: bold;
+    font-size: 18px;
+    color: #164496;
+  }
+
+}

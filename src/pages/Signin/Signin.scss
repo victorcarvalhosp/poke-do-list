@@ -1,0 +1,47 @@
+@import "src/theme/variables";
+
+#signin-page{
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 25rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+  }
+
+  h2{
+    font-size: 20px;
+    padding-bottom: 24px;
+    text-align: center;
+  }
+
+  .btn-right-div{
+    text-align: right;
+  }
+
+  .pokeball-div{
+    text-align: center;
+  }
+
+  .extra-links{
+    margin: 24px 0;
+    text-align: center;
+    a{
+      display: block;
+      margin: 24px 0;
+      color: #209cee;
+    }
+  }
+
+  @media only screen and (max-width: $sm) {
+    .nes-container {
+      max-width: 100%;
+    }
+  }
+
+}

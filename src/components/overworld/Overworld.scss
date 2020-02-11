@@ -80,12 +80,19 @@ EX: if an asset is designed as a 10px by 10px square, we can multiply by pixel s
 .Character--walk-down .Character_sprite-sheet {
   top: 0;
 }
-.Character--walk-right .Character_sprite-sheet {
+.Character--walk-left .Character_sprite-sheet {
   top: calc(var(--pixel-size) * -32px);
 }
-.Character--walk-up .Character_sprite-sheet {
+.Character--walk-right .Character_sprite-sheet {
   top: calc(var(--pixel-size) * -64px);
 }
-.Character--walk-left .Character_sprite-sheet {
+.Character--walk-up .Character_sprite-sheet {
   top: calc(var(--pixel-size) * -96px);
+}
+
+
+.Character{
+  &.level-up-animation{
+    filter: brightness(1.5);
+  }
 }

@@ -34,8 +34,9 @@ const TextContainer: React.FC<IComponentProps> = ({message, onClickContinue}) =>
                 </Typing>
             </div>
             {showContinueButton && (
-                <button type="button" className="nes-btn is-primary advance-button" onClick={onClick}>Continue
-                </button>)}
+                    <button autoFocus={true} type="button" className="nes-btn is-primary advance-button" onClick={onClick}>Continue
+                    </button>
+                )}
         </div>
     );
 }

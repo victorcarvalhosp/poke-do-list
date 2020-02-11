@@ -38,8 +38,9 @@ type FormData = {
 const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, afterSaveAction}) => {
 
     const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
-    // console.log(watch('character'));
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formSubmitErrorMessage, setFormSubmitErrorMessage] = useState("");
+
 
     // const [toggleAudio, playAudio] = useAudio("/audio/sounds/sfx_menu_move3.wav");
     const [selected, setSelected] = useState("0");
@@ -67,11 +68,11 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
         }
         console.log(data);
         setIsSubmitting(true);
-        const {name, email, password} = data;
+        const {name, email, password, character} = data;
         try {
             const res = await auth.createUserWithEmailAndPassword(email, password);
             if (res && res.user) {
-                const user = {uid: res.user.uid, name: name, email: res.user.email, creationDate: new Date()};
+                const user = {uid: res.user.uid, name: name, email: res.user.email, creationDate: new Date(), character: character};
                 await firestore.doc(`users/${res.user.uid}`).set(user);
                 await userStore.setUser(user.uid)
             }
@@ -82,7 +83,7 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
         } catch (e) {
             setIsSubmitting(false);
             console.log(e);
-            // setFormSubmitErrorMessage(e.message);
+            setFormSubmitErrorMessage(e.message);
         }
     })
 
@@ -116,6 +117,7 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
             </IonHeader>
             <IonContent className="ion-padding">
                 <form id="formSignup" noValidate onSubmit={onSubmit}>
+                    {formSubmitErrorMessage && (<div className="nes-field"><label className="error">{formSubmitErrorMessage}</label></div>)}
                     <div className="nes-field">
                         <label htmlFor="name">Your name:</label>
                         <input type="text" id="name" name="name"

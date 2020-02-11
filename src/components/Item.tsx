@@ -1,34 +1,10 @@
-import {
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonList,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar,
-    IonCheckbox
-} from '@ionic/react';
-import {
-    americanFootball,
-    basketball,
-    beer,
-    bluetooth,
-    boat,
-    build,
-    flask,
-    football,
-    paperPlane,
-    wifi
-} from 'ionicons/icons';
+import {IonItem} from '@ionic/react';
 import React, {useState} from 'react';
-import sprite from '../assets/overworlds/pokemon/486.png';
 import '../pages/List.css'
 import {ITask} from "../models/Task";
 import './Item.scss';
-import {delay} from "../utils/delay";
+import Overworld from "./overworld/Overworld";
+import {useRootStore} from "../stores/StoreContext";
 
 interface IProps {
     item: ITask;
@@ -38,15 +14,16 @@ const Item: React.FC<IProps> = ({item}) => {
 
     const [pokebalAnimation, setPokebalAnimation] = useState(false);
     const [pokebalAnimationFinished, setPokebalAnimationFinished] = useState(false);
+    const {taskStore} = useRootStore();
 
     const finishTask = async (e: any) => {
-        console.log(e.target.value);
         setPokebalAnimation(true);
-        console.log('FINISH TASK', item);
+        await taskStore.completeTask(item);
+        // setPokebalAnimationFinished(true);
         // await delay(20000);
         setTimeout(() => {
             setPokebalAnimationFinished(true);
-        }, 1600);
+        }, 1000);
     }
 
     if (pokebalAnimationFinished) {
@@ -61,13 +38,8 @@ const Item: React.FC<IProps> = ({item}) => {
             </div>
                 {item.title}
                 <div slot="end">
-                    <div className="sprite">
-                        <div className="clipwrapper">
-                            {!pokebalAnimation && (<img className="clip"
-                                                        src={`/assets/overworlds/pokemon/${item.pokemon.nationalDexNumber}.png`}/>)}
+                            {!pokebalAnimation && item.pokemon && (<Overworld direction="down" animationActive={true} spriteUrl={`/assets/overworlds/pokemon/${item.pokemon?.variety}.png`} />)}
                             {pokebalAnimation && (<div className="pokeball-animation"></div>)}
-                        </div>
-                    </div>
                 </div>
         </IonItem>
     }

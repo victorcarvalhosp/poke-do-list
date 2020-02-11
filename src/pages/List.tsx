@@ -9,7 +9,9 @@ import {
     IonPage,
     IonTitle,
     IonToolbar,
-    IonCheckbox
+    IonCheckbox,
+    IonFab,
+    IonFabButton
 } from '@ionic/react';
 import {
     americanFootball,
@@ -21,68 +23,64 @@ import {
     flask,
     football,
     paperPlane,
-    wifi
+    wifi,
+    add
 } from 'ionicons/icons';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import sprite from '../assets/overworlds/pokemon/486.png';
 import './List.css'
 import Item from "../components/Item";
 import {IPokemon} from "../models/Pokemon";
+import {useRootStore} from "../stores/StoreContext";
+import {ITask} from "../models/Task";
+import {observer} from "mobx-react-lite";
+import TaskModal from "../components/task-modal/TaskModal";
+import DayjsUtils from "@date-io/dayjs";
+import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+import Overworld from "../components/overworld/Overworld";
+import PkmnHeader from "../components/pkmn-header/PkmnHeader";
 
-const ListPage: React.FC = () => {
+const ListPage: React.FC = observer(() => {
+
+    const {taskStore, userStore} = useRootStore();
+
+    const openModalNewTask = () => {
+        taskStore.openModal();
+    }
+
+    const openModal = (task: ITask) => {
+        //select here;
+        taskStore.openModal();
+    }
+    const [selectedDate, handleDateChange] = useState(new Date());
+
+
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonButtons slot="start">
-                        <IonMenuButton/>
-                    </IonButtons>
-                    <IonTitle>Poké-do List</IonTitle>
-                </IonToolbar>
-            </IonHeader>
+           <PkmnHeader />
 
             <IonContent>
                 <ListItems/>
                 {/*<button type="button" className="nes-btn is-primary">Primary</button>*/}
+                <IonFab vertical="bottom" horizontal="end" slot="fixed">
+                    <IonFabButton color="light" onClick={e => openModalNewTask()}>
+                        <IonIcon icon={add}/>
+                    </IonFabButton>
+                </IonFab>
+                <TaskModal/>
             </IonContent>
         </IonPage>
     );
-};
+});
 
-const ListItems = () => {
-    const icons = [
-        flask,
-        wifi,
-        beer,
-        football,
-        basketball,
-        paperPlane,
-        americanFootball,
-        boat,
-        bluetooth,
-        build
-    ];
+const ListItems = observer(() => {
 
-    const [items2, setItems2] = useState([
-        {
-            id: '12dqwe',
-            title: 'Task 1',
-            pokemon: {id: '123', name: 'Bulbasaur', nationalDexNumber: '001'},
-            complete: false
-        },
-        {
-            id: '12dqwe',
-            title: 'Task 2',
-            pokemon: {id: '123', name: 'Bulbasaur', nationalDexNumber: '201'},
-            complete: false
-        },
-        {
-            id: '12dqwe',
-            title: 'Task 3',
-            pokemon: {id: '123', name: 'Bulbasaur', nationalDexNumber: '486'},
-            complete: false
-        },
-    ]);
+    const {taskStore} = useRootStore();
+
+    useEffect(() => {
+        console.log('LOAD LIST EFFECT');
+        taskStore.loadList();
+    }, [])
 
     const finishTask = (x: any) => {
         console.log(x);
@@ -90,10 +88,10 @@ const ListItems = () => {
 
 
     return <IonList>
-        {items2.map(x => (
-                <Item item={x}/>
+        {taskStore.list.map(x => (
+                <Item key={x.id} item={x}/>
             )
         )}</IonList>;
-};
+});
 
 export default ListPage;

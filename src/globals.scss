@@ -31,3 +31,8 @@ img {
     padding-top: 4px;
   }
 }
+
+/*Quick and dirty fix to the date picker issue that was not working with ionic modals*/
+.MuiDialog-root{
+  z-index: 99999 !important;
+}

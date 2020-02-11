@@ -1,4 +1,6 @@
 import {firestore} from "../firebase";
+import {ITask} from "../models/Task";
+import {IPokemon} from "../models/Pokemon";
 
 export class FirebaseApi {
 
@@ -6,9 +8,14 @@ export class FirebaseApi {
         return firestore.doc(`users/${userId}`);
     }
 
-    // static async getTestSets(userId: string) {
-    //     return firestore.collection(`users/${userId}/test-sets`).orderBy('name');
-    // }
+    static async getTasks(userId: string) {
+        return firestore.collection(`users/${userId}/tasks`).where('complete', '==', false).orderBy('title');
+    }
+
+    static async getPokemons(userId: string) {
+        return firestore.collection(`users/${userId}/pokemon`).orderBy('variety');
+    }
+
     //
     //
     // static async getResultCompleteAnswer(userId: string, testSetId: string, resultId: string) {
@@ -19,15 +26,37 @@ export class FirebaseApi {
     //     return firestore.doc(`users/${userId}/test-sets/${id}`);
     // }
     //
-    // static async saveTestSet(userId: string, testSet: ITestSet) {
-    //     if (testSet.id) {
-    //         return firestore.collection(`users/${userId}/test-sets`).doc(testSet.id).update(testSet);
-    //     } else {
-    //         const newId = firestore.collection(`users/${userId}/test-sets`).doc().id;
-    //         testSet.id = newId;
-    //         return firestore.collection(`users/${userId}/test-sets`).doc(newId).set(testSet);
-    //     }
-    // }
+    static async saveTask(userId: string, task: ITask) {
+        const dbPath = `users/${userId}/tasks`;
+        if (task.id) {
+            return firestore.collection(dbPath).doc(task.id).update(task);
+        } else {
+            const newId = firestore.collection(dbPath).doc().id;
+            task.id = newId;
+            return firestore.collection(dbPath).doc(newId).set(task);
+        }
+    }
+
+    static async completeTask(userId: string, taskId: string) {
+        const dbPath = `users/${userId}/tasks`;
+        return firestore.collection(dbPath).doc(taskId).update({complete: true});
+    }
+
+    static async caughtPokemon(userId: string, pokemon: IPokemon) {
+        const dbPath = `users/${userId}/pokemon`;
+        return firestore.collection(dbPath).doc(pokemon.id).set(pokemon);
+    }
+
+    static async setPokemonAsPartner(userId: string, pokemon: IPokemon) {
+        const dbPath = `users/${userId}/`;
+        return firestore.doc(dbPath).update({partnerPokemon: pokemon});
+    }
+
+    static async updatePokemon(userId: string, pkmn: IPokemon) {
+        const dbPath = `users/${userId}/pokemon`;
+        return firestore.collection(dbPath).doc(pkmn.id).update(pkmn);
+    }
+
     //
     // static async removeTestSet(userId: string, testSetId: string) {
     //         return firestore.collection(`users/${userId}/test-sets`).doc(testSetId).delete();

@@ -2,11 +2,12 @@ import {Route} from "react-router-dom";
 import React from "react";
 import PrivateRoute from "./PrivateRoute";
 import SigninOrSignupPage from "../pages/SigninOrSignup/SigninOrSignup";
-import HomePage from "../pages/Home";
 import {IonRouterOutlet} from "@ionic/react";
 import SigninPage from "../pages/Signin/Signin";
 import SignupPage from "../pages/Signup/Signup";
-import SelectCharPage from "../pages/SelectChar/SelectChar";
+import ListPage from "../pages/List";
+import PokemonPage from "../pages/Pokemon/Pokemon";
+import SelectPokemonPage from "../pages/SelectPokemon/SelectPokemon";
 
 
 export enum Routes {
@@ -14,8 +15,9 @@ export enum Routes {
     SIGNIN = '/signin',
     SIGNUP = '/signup',
     RECOVER_PASSWORD = '/recover-password',
+    SIGNUP_SELECT_POKEMON = '/signup/select-pokemon',
     HOME = '/home',
-    SELECT_CHAR = '/select-char',
+    POKEMON = '/pokemon',
 
 }
 
@@ -28,8 +30,9 @@ const Router: React.FC = () => {
             <Route path={Routes.SIGNIN} component={SigninPage} exact={true}/>
             <Route path={Routes.SIGNUP} component={SignupPage} exact={true}/>
             <Route path={Routes.SIGNIN_SIGNUP} component={SigninOrSignupPage} exact={true}/>
-            <PrivateRoute path={Routes.HOME} component={HomePage}  exact={true}/>
-            <PrivateRoute path={Routes.SELECT_CHAR} component={SelectCharPage}  exact={true}/>
+            <PrivateRoute path={Routes.HOME} component={ListPage}  exact={true}/>
+            <PrivateRoute path={Routes.SIGNUP_SELECT_POKEMON} component={SelectPokemonPage}  exact={true}/>
+            <PrivateRoute path={Routes.POKEMON} component={PokemonPage}  exact={true}/>
         </IonRouterOutlet>
     )
 };
