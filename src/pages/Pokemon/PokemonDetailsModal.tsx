@@ -12,7 +12,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import {close} from "ionicons/icons";
+import {close, people} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {Routes} from "../../router/Router";
 import {IPokemon} from "../../models/Pokemon";
@@ -44,7 +44,7 @@ type FormData = {
 const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, afterSaveAction, pokemon}) => {
 
     // console.log(watch('email')) // watch input value by passing the name of it
-    const {pokemonStore} = useRootStore();
+    const {pokemonStore, userStore} = useRootStore();
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
     const [pokemonSpecie, setPokemonSpecie] = useState<IPokemonSpecie>(pokemonSpecies[pokemonVariety.specie]);
 
@@ -55,6 +55,10 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
 
     const closeModal = () => {
         onClickClose();
+    }
+
+    const changePartner = () => {
+        userStore.updatePartner(pokemon);
     }
 
 
@@ -73,6 +77,12 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                             <IonIcon icon={close}/>
                         </IonButton>
                     </IonButtons>
+
+                    <IonButtons slot="end">
+                    <IonButton color="dark" onClick={(e) => changePartner()} fill="clear">
+                        <IonIcon icon={people}/>
+                    </IonButton>
+                </IonButtons>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">

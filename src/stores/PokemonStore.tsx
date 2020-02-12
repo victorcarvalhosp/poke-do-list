@@ -54,6 +54,7 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     async loadList() {
+        console.log('CALLED LOAD LIST POKEMON');
         this.loadingList = true;
         const result = await FirebaseApi.getPokemons(this.root.userStore.user.uid);
         result.onSnapshot(snapshot => {
@@ -62,7 +63,6 @@ export class PokemonStore implements IPokemonStore {
                 list.push(doc.data() as IPokemon);
             });
             this.list = list;
-            console.log(list);
             this.loadingList = false;
             this.loadingListErrorMessage = '';
         }, err => {
