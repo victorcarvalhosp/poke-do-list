@@ -35,6 +35,7 @@ import {auth} from "./firebase";
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "./stores/StoreContext";
 import {RouteComponentProps} from "react-router";
+import ProjectModal from "./components/project-modal/ProjectModal";
 
 
 const App: React.FC = () => {
@@ -66,6 +67,7 @@ const App: React.FC = () => {
                     {/*<IonSplitPane contentId="main">*/}
                     <Menu/>
                     <Router/>
+                    <ProjectModal/>
                     {/*</IonSplitPane>*/}
                 </IonReactRouter>
             </MuiPickersUtilsProvider>

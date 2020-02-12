@@ -1,11 +1,16 @@
 import {firestore} from "../firebase";
 import {ITask} from "../models/Task";
 import {IPokemon} from "../models/Pokemon";
+import {IProject} from "../models/Project";
 
 export class FirebaseApi {
 
     static async getUser(userId: string) {
         return firestore.doc(`users/${userId}`);
+    }
+
+    static async getProjects(userId: string) {
+        return firestore.collection(`users/${userId}/projects`).orderBy('name');
     }
 
     static async getTasks(userId: string) {
@@ -34,6 +39,17 @@ export class FirebaseApi {
             const newId = firestore.collection(dbPath).doc().id;
             task.id = newId;
             return firestore.collection(dbPath).doc(newId).set(task);
+        }
+    }
+
+    static async saveProject(userId: string, project: IProject) {
+        const dbPath = `users/${userId}/projects`;
+        if (project.id) {
+            return firestore.collection(dbPath).doc(project.id).update(project);
+        } else {
+            const newId = firestore.collection(dbPath).doc().id;
+            project.id = newId;
+            return firestore.collection(dbPath).doc(newId).set(project);
         }
     }
 

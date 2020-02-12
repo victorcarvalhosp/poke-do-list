@@ -1,4 +1,5 @@
 import {
+    IonButton,
     IonContent,
     IonHeader,
     IonIcon,
@@ -6,57 +7,29 @@ import {
     IonLabel,
     IonList,
     IonMenu,
-    IonMenuToggle,
+    IonMenuToggle, IonRouterOutlet,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
 import React from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {AppPage} from '../declarations';
-import {home, list} from "ionicons/icons";
+import {addOutline, folderOpenOutline} from "ionicons/icons";
+import {Routes} from "../router/Router";
+import {useRootStore} from "../stores/StoreContext";
+import ProjectsAccordionMenu from "./projects-accordion-menu/ProjectsAccordionMenu";
+import ProjectModal from "./project-modal/ProjectModal";
+
 
 interface MenuProps extends RouteComponentProps {
 }
 
 const Menu: React.FunctionComponent<MenuProps> = () => {
 
-    const appPages: AppPage[] = [
-        {
-            title: 'My To-do',
-            url: '/home',
-            icon: {md: home, ios: home}
-        },
-        // {
-        //   title: 'Today',
-        //   url: '/home',
-        //   icon: home
-        // },
-        // {
-        //   title: 'Next 7 days',
-        //   url: '/home',
-        //   icon: home
-        // },
-        // {
-        //   title: 'Projects',
-        //   url: '/home/list',
-        //   icon: list
-        // },
-        {
-            title: 'My Pokémon',
-            url: '/pokemon',
-            icon: {md: list, ios: list}
-        },
-        {
-            title: 'Pokédex',
-            url: '/pokemon',
-            icon: {md: list, ios: list}
-        },
-        // {
-        //   title: 'Settings',
-        //   url: '/home/list',
-        //   icon: list
-        // }
-    ];
+    const {projectStore} = useRootStore();
+
+    const openModalNewProject = () => {
+        console.log('OPEN IT');
+    }
 
     return (
         <IonMenu contentId="main" type="overlay">
@@ -67,16 +40,29 @@ const Menu: React.FunctionComponent<MenuProps> = () => {
             </IonHeader>
             <IonContent>
                 <IonList>
-                    {appPages.map((appPage, index) => {
-                        return (
-                            <IonMenuToggle key={index} autoHide={false}>
-                                <IonItem routerLink={appPage.url} routerDirection="none">
-                                    <IonIcon slot="start" ios={appPage.icon.ios} md={appPage.icon.md}/>
-                                    <IonLabel>{appPage.title}</IonLabel>
-                                </IonItem>
-                            </IonMenuToggle>
-                        );
-                    })}
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={Routes.HOME} routerDirection="none">
+                            <IonIcon slot="start" icon={folderOpenOutline}/>
+                            <IonLabel>Inbox</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={Routes.POKEMON} routerDirection="none">
+                            <IonLabel>My Pokémon</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
+                    <IonItem>
+                        <IonLabel>Projects</IonLabel>
+                        <div slot="end" >
+
+                        <IonButton fill="clear"> <IonIcon slot="icon-only" icon={folderOpenOutline}/>
+                        </IonButton>
+
+                        <IonButton  fill="clear"> <IonIcon slot="icon-only" icon={addOutline}/>
+                        </IonButton>
+                        </div>
+                    </IonItem>
+                        <ProjectsAccordionMenu />
                 </IonList>
             </IonContent>
         </IonMenu>

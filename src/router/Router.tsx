@@ -8,6 +8,7 @@ import SignupPage from "../pages/Signup/Signup";
 import ListPage from "../pages/List";
 import PokemonPage from "../pages/Pokemon/Pokemon";
 import SelectPokemonPage from "../pages/SelectPokemon/SelectPokemon";
+import ProjectModal from "../components/project-modal/ProjectModal";
 
 
 export enum Routes {
@@ -18,7 +19,6 @@ export enum Routes {
     SIGNUP_SELECT_POKEMON = '/signup/select-pokemon',
     HOME = '/home',
     POKEMON = '/pokemon',
-
 }
 
 const Router: React.FC = () => {
