@@ -1,0 +1,61 @@
+.pokemon-detail-modal {
+  --pixel-size: 4; /* Try playing with this value! */
+  .top-area {
+    .pkmn-types {
+      text-align: center;
+    }
+
+    p, h2 {
+      text-align: center;
+
+      &.level {
+        color: #607d8b;
+      }
+    }
+
+    .Character {
+      margin: 0 auto 10px auto;
+    }
+  }
+
+  .caught-when {
+    margin-top: 32px;
+
+    h3 {
+      font-size: 0.8rem;
+    }
+
+    p {
+      text-align: left;
+      color: #607d8b;
+      font-size: 0.6rem;
+    }
+  }
+
+
+  .evolutions-area {
+    margin-top: 24px;
+    .evolution {
+      --pixel-size: 1;
+      text-align: center;
+      margin: 0 auto;
+      background-color: #C8C8CC;
+      border-radius: 12px;
+      padding-bottom: 5px;
+      .nes-btn {
+        padding: 0px 12px;
+        float: right;
+      }
+      span {
+        font-size: 12px;
+        color: #607d8b;
+      }
+
+      .Character {
+        text-align: left;
+        margin: 0px;
+        display: inline-block;
+      }
+    }
+  }
+}

@@ -38,6 +38,7 @@ export class UserStore implements  IUserStore{
     @action
     async updatePartner(pokemon: IPokemon){
         await FirebaseApi.setPokemonAsPartner(this.user.uid, pokemon);
+        this.user.partnerPokemon = pokemon;
     }
 
 }

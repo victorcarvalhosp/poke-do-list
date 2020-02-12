@@ -67,7 +67,7 @@ export class TaskStore implements ITaskStore {
         try {
             console.log('SERVICE', task);
             this.loadingSave = true;
-            task.pokemon = this.root.pokemonStore.generateRandomPokemon();
+            task.pokemon = this.root.pokemonStore.generateRandomPokemon(task.title);
             await FirebaseApi.saveTask(this.root.userStore.user.uid, task);
             this.selected = new Task();
             // this.root.uiStore.showToast('Account saved');

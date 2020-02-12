@@ -20,38 +20,43 @@ interface MenuProps extends RouteComponentProps {
 
 const Menu: React.FunctionComponent<MenuProps> = () => {
 
-  const appPages: AppPage[] = [
-    {
-      title: 'My To-do',
-      url: '/home',
-      icon: home
-    },
-    // {
-    //   title: 'Today',
-    //   url: '/home',
-    //   icon: home
-    // },
-    // {
-    //   title: 'Next 7 days',
-    //   url: '/home',
-    //   icon: home
-    // },
-    // {
-    //   title: 'Projects',
-    //   url: '/home/list',
-    //   icon: list
-    // },
-    {
-      title: 'My Pokémon',
-      url: '/pokemon',
-      icon: list
-    },
-    // {
-    //   title: 'Settings',
-    //   url: '/home/list',
-    //   icon: list
-    // }
-  ];
+    const appPages: AppPage[] = [
+        {
+            title: 'My To-do',
+            url: '/home',
+            icon: {md: home, ios: home}
+        },
+        // {
+        //   title: 'Today',
+        //   url: '/home',
+        //   icon: home
+        // },
+        // {
+        //   title: 'Next 7 days',
+        //   url: '/home',
+        //   icon: home
+        // },
+        // {
+        //   title: 'Projects',
+        //   url: '/home/list',
+        //   icon: list
+        // },
+        {
+            title: 'My Pokémon',
+            url: '/pokemon',
+            icon: {md: list, ios: list}
+        },
+        {
+            title: 'Pokédex',
+            url: '/pokemon',
+            icon: {md: list, ios: list}
+        },
+        // {
+        //   title: 'Settings',
+        //   url: '/home/list',
+        //   icon: list
+        // }
+    ];
 
     return (
         <IonMenu contentId="main" type="overlay">
@@ -66,7 +71,7 @@ const Menu: React.FunctionComponent<MenuProps> = () => {
                         return (
                             <IonMenuToggle key={index} autoHide={false}>
                                 <IonItem routerLink={appPage.url} routerDirection="none">
-                                    <IonIcon slot="start" icon={appPage.icon}/>
+                                    <IonIcon slot="start" ios={appPage.icon.ios} md={appPage.icon.md}/>
                                     <IonLabel>{appPage.title}</IonLabel>
                                 </IonItem>
                             </IonMenuToggle>

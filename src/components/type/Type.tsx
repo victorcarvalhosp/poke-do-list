@@ -9,11 +9,12 @@ interface IProps {
 
 const Type: React.FC<IProps> = observer(({type1, type2}) => {
 
-    return <div>
-        <img src={`assets/images/types/${type1}.png`}/>
-        {type2 && <img src={`assets/images/types/${type2}.png`}/>
-        }
-    </div>
+    return (
+        <div className="pkmn-types">
+            <img src={`assets/images/types/${type1}.png`}/>
+            {type2 && <img src={`assets/images/types/${type2}.png`}/>}
+        </div>
+    )
 });
 
 export default Type;

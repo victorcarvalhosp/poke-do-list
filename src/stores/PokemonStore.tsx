@@ -7,7 +7,8 @@ import {getRandomInt, makeid} from "../utils/utils";
 import {IPokemonVariety} from "../models/PokemonVariety";
 import {pokemonVarieties} from "../data/pokemon-varieties";
 import {pokemonSpecies} from "../data/pokemon-species";
-
+import firebase from "firebase";
+import {IEvolution} from "../models/Evolution";
 
 export interface IPokemonStore {
     modalOpen: boolean;
@@ -29,11 +30,13 @@ export interface IPokemonStore {
 
     caughtPokemon(pokemon: IPokemon): void;
 
-    generateRandomPokemon(): IPokemon;
+    generateRandomPokemon(task: string): IPokemon;
 
-    generatePokemonWithRandomAttributes(pokemonVarietyId: number): IPokemon
+    generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon
 
     levelUpPartner(): void;
+
+    evolvePokemon(pokemon: IPokemon, evolution: IEvolution): void;
 }
 
 export class PokemonStore implements IPokemonStore {
@@ -70,8 +73,20 @@ export class PokemonStore implements IPokemonStore {
     }
 
     @action
+    async evolvePokemon(pokemon: IPokemon, evolution: IEvolution){
+        const evolveTo = pokemonVarieties[evolution.to];
+        pokemon.name = evolveTo.name;
+        pokemon.variety = evolveTo.id;
+        await FirebaseApi.updatePokemon(this.root.userStore.user.uid, pokemon);
+        if(pokemon.id === this.root.userStore.user.partnerPokemon?.id){
+            await this.root.userStore.updatePartner(pokemon);
+        }
+    }
+
+
+    @action
     async selectInitialPokemon(selectedPokemon: IPokemonVariety) {
-        const initialPkmn = this.generatePokemonWithRandomAttributes(selectedPokemon.id);
+        const initialPkmn = this.generatePokemonWithRandomAttributes(selectedPokemon.id, "Initial Pokémon");
         this.caughtPokemon(initialPkmn);
         this.setPokemonAsPartner(initialPkmn);
         await this.root.userStore.setUser(this.root.userStore.user.uid);
@@ -85,6 +100,7 @@ export class PokemonStore implements IPokemonStore {
     @action
     async caughtPokemon(pokemon: IPokemon) {
         const myPokemon = pokemon;
+        myPokemon.date = firebase.firestore.Timestamp.fromDate(new Date());
         //Add some random properties for attack, height...
         await FirebaseApi.caughtPokemon(this.root.userStore.user.uid, myPokemon);
         await this.levelUpPartner();
@@ -103,17 +119,17 @@ export class PokemonStore implements IPokemonStore {
     }
 
     @action
-    generatePokemonWithRandomAttributes(pokemonVarietyId: number): IPokemon {
+    generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon {
         const variety: IPokemonVariety = pokemonVarieties[pokemonVarietyId];
         //TODO Generate random attributes as id, gender, stats, level
-        return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1};
+        return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1, task: task, date: firebase.firestore.Timestamp.fromDate(new Date())};
     }
 
     @action
-    generateRandomPokemon(): IPokemon {
-        const randomId: number = getRandomInt(1, 3);
+    generateRandomPokemon(task: string): IPokemon {
+        const randomId: number = getRandomInt(1, 9);
         const variety: IPokemonVariety = pokemonVarieties[randomId];
-        return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1};
+        return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1, task: task};
     }
 
     @action
