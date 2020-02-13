@@ -9,6 +9,7 @@ import ListPage from "../pages/List";
 import PokemonPage from "../pages/Pokemon/Pokemon";
 import SelectPokemonPage from "../pages/SelectPokemon/SelectPokemon";
 import ProjectModal from "../components/project-modal/ProjectModal";
+import ProjectDetailsPage from "../pages/ProjectDetails/ProjectDetails";
 
 
 export enum Routes {
@@ -19,6 +20,7 @@ export enum Routes {
     SIGNUP_SELECT_POKEMON = '/signup/select-pokemon',
     HOME = '/home',
     POKEMON = '/pokemon',
+    PROJECT_DETAILS = '/project',
 }
 
 const Router: React.FC = () => {
@@ -30,9 +32,10 @@ const Router: React.FC = () => {
             <Route path={Routes.SIGNIN} component={SigninPage} exact={true}/>
             <Route path={Routes.SIGNUP} component={SignupPage} exact={true}/>
             <Route path={Routes.SIGNIN_SIGNUP} component={SigninOrSignupPage} exact={true}/>
-            <PrivateRoute path={Routes.HOME} component={ListPage}  exact={true}/>
+            <PrivateRoute path={Routes.HOME+'/:filter'} component={ListPage}  exact={true}/>
             <PrivateRoute path={Routes.SIGNUP_SELECT_POKEMON} component={SelectPokemonPage}  exact={true}/>
             <PrivateRoute path={Routes.POKEMON} component={PokemonPage}  exact={true}/>
+            <PrivateRoute path={Routes.PROJECT_DETAILS+'/:id'} component={ProjectDetailsPage}  exact={true}/>
         </IonRouterOutlet>
     )
 };

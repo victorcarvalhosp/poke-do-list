@@ -41,9 +41,21 @@ const Menu: React.FunctionComponent<MenuProps> = () => {
             <IonContent>
                 <IonList>
                     <IonMenuToggle autoHide={false}>
-                        <IonItem routerLink={Routes.HOME} routerDirection="none">
+                        <IonItem routerLink={`${Routes.HOME}/inbox`} routerDirection="none">
                             <IonIcon slot="start" icon={folderOpenOutline}/>
                             <IonLabel>Inbox</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={`${Routes.HOME}/today`} routerDirection="none">
+                            <IonIcon slot="start" icon={folderOpenOutline}/>
+                            <IonLabel>Today</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={`${Routes.HOME}/week`} routerDirection="none">
+                            <IonIcon slot="start" icon={folderOpenOutline}/>
+                            <IonLabel>7 days</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
@@ -51,18 +63,7 @@ const Menu: React.FunctionComponent<MenuProps> = () => {
                             <IonLabel>My Pokémon</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
-                    <IonItem>
-                        <IonLabel>Projects</IonLabel>
-                        <div slot="end" >
-
-                        <IonButton fill="clear"> <IonIcon slot="icon-only" icon={folderOpenOutline}/>
-                        </IonButton>
-
-                        <IonButton  fill="clear"> <IonIcon slot="icon-only" icon={addOutline}/>
-                        </IonButton>
-                        </div>
-                    </IonItem>
-                        <ProjectsAccordionMenu />
+                    <ProjectsAccordionMenu/>
                 </IonList>
             </IonContent>
         </IonMenu>

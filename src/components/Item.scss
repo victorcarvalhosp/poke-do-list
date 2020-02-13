@@ -1,3 +1,5 @@
+@import "src/theme/variables";
+
 .pokeball-animation {
   width: 64px;
   height: 64px;
@@ -132,6 +134,10 @@
 }
 
 .task-item {
+
+  @media only screen and (max-width: $sm) {
+    font-size: 12px;
+  }
   ion-checkbox {
     --size: 32px;
   }
@@ -157,6 +163,15 @@
   .nes-checkbox-label-2x {
     width: 32px;
     height: 32px;
+  }
+
+  .details {
+    display: block;
+    font-size: 9px;
+  }
+  .date{
+    font-size: 9px;
+    color: #607d8b;
   }
 }
 

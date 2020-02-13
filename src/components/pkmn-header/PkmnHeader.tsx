@@ -7,9 +7,10 @@ import {useRootStore} from "../../stores/StoreContext";
 import {arrowUp} from "ionicons/icons";
 
 interface IProps {
+    title: string;
 }
 
-const PkmnHeader: React.FC<IProps> = observer(({}) => {
+const PkmnHeader: React.FC<IProps> = observer(({title}) => {
 
     const {taskStore, userStore, pokemonStore} = useRootStore();
     const [direction, setDirection] = useState<"up" | "down" | "left" | "right">("down");
@@ -31,7 +32,7 @@ const PkmnHeader: React.FC<IProps> = observer(({}) => {
             <IonButtons slot="start">
                 <IonMenuButton/>
             </IonButtons>
-            <IonTitle>To-do</IonTitle>
+            <IonTitle>{title}</IonTitle>
             <IonButtons slot="end" onClick={changeDirection}>
                 {pokemonStore.showLevelUpAnimation && <div className="level-up"><IonIcon icon={arrowUp} ></IonIcon></div>}
                 <Overworld type="human" spriteUrl={userStore.user.character + ".png"} direction={direction}

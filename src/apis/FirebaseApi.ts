@@ -2,6 +2,7 @@ import {firestore} from "../firebase";
 import {ITask} from "../models/Task";
 import {IPokemon} from "../models/Pokemon";
 import {IProject} from "../models/Project";
+import firebase from "firebase";
 
 export class FirebaseApi {
 
@@ -13,12 +14,24 @@ export class FirebaseApi {
         return firestore.collection(`users/${userId}/projects`).orderBy('name');
     }
 
-    static async getTasks(userId: string) {
-        return firestore.collection(`users/${userId}/tasks`).where('complete', '==', false).orderBy('title');
+    static async getOpenTasksByProject(userId: string, projectId: string) {
+        return firestore.collection(`users/${userId}/tasks`).where('complete', '==', false).where("project.id", "==", projectId).orderBy('title');
+    }
+
+    static async getOpenTasksUntilDate(userId: string, date: firebase.firestore.Timestamp) {
+        return firestore.collection(`users/${userId}/tasks`).where('complete', '==', false).where("date", "<=", date).orderBy('date');
+    }
+
+    static async getInboxTasks(userId: string) {
+        return firestore.collection(`users/${userId}/tasks`).where("project", "==", null).where('complete', '==', false).orderBy('title');
     }
 
     static async getPokemons(userId: string) {
         return firestore.collection(`users/${userId}/pokemon`).orderBy('variety');
+    }
+
+    static async getProject(userId: string, projectId: string) {
+        return firestore.doc(`users/${userId}/projects/${projectId}`);
     }
 
     //

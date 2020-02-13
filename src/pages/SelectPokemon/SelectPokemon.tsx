@@ -102,7 +102,7 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
 
     const selectPokemon = async () => {
         await pokemonStore.selectInitialPokemon(selectedPokemon);
-        history.push(Routes.HOME);
+        history.push(Routes.HOME+'/inbox');
     }
 
     function setPreviousActive() {
@@ -132,7 +132,7 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
     }
 
     if (userStore.user.partnerPokemon) {
-        return <Redirect to={Routes.HOME}/>;
+        return <Redirect to={Routes.HOME+'/week'}/>;
     }
 
     return (

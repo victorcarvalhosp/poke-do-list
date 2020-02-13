@@ -1,7 +1,7 @@
 import {action, observable, reaction} from 'mobx'
 import {RootStore} from "./RootStore";
 import {ITask, Task} from "../models/Task";
-import {IProject} from "../models/Project";
+import {IProject, Project} from "../models/Project";
 import {FirebaseApi} from "../apis/FirebaseApi";
 
 export interface IProjectStore {
@@ -10,9 +10,12 @@ export interface IProjectStore {
     loadingList: boolean;
     loadingListErrorMessage: string;
     loadingSave: boolean;
+    selected: IProject;
 
     loadList(): void;
     save(project: IProject): void;
+    selectById(id: string): void;
+    setSelected(project: IProject): void;
 
     openModal(): void;
     closeModal(): void;
@@ -24,8 +27,7 @@ export class ProjectStore implements IProjectStore {
     @observable loadingList: boolean = true;
     @observable loadingListErrorMessage: string = '';
     @observable loadingSave: boolean = false;
-
-
+    @observable selected: IProject = new Project();
 
     constructor(public root: RootStore) {
         reaction(() =>this.root.userStore.user.uid, () => {
@@ -68,6 +70,22 @@ export class ProjectStore implements IProjectStore {
             this.loadingSave = false;
             // this.root.uiStore.showToast('Some error happened when saving, please try again.');
         }
+    }
+
+    @action
+    async selectById(projectId: string) {
+        console.log('select BY ID')
+        const result = await FirebaseApi.getProject(this.root.userStore.user.uid, projectId);
+        await result.get().then(async value => {
+            this.selected = await value.data() as IProject;
+        }, (err: Error) => {
+            console.log(err);
+        });
+    }
+
+    @action
+    async setSelected(project: IProject) {
+        this.selected = project;
     }
 
     @action

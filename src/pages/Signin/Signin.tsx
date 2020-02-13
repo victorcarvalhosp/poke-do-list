@@ -45,7 +45,7 @@ const SigninPage: React.FC<RouteComponentProps> = ({history}) => {
         try {
             await auth.signInWithEmailAndPassword(email, password);
             setIsSubmitting(false);
-            history.push("/home");
+            history.push(Routes.HOME+'/week');
         } catch (e) {
             setIsSubmitting(false);
             console.log(e);

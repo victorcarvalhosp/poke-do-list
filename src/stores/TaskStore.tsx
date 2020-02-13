@@ -1,4 +1,4 @@
-import {action, observable} from 'mobx'
+import {action, computed, observable, reaction} from 'mobx'
 import {RootStore} from "./RootStore";
 import {ITask, Task} from "../models/Task";
 import {FirebaseApi} from "../apis/FirebaseApi";
@@ -7,6 +7,9 @@ import {getRandomInt, makeid} from "../utils/utils";
 import {IPokemonVariety} from "../models/PokemonVariety";
 import {pokemonVarieties} from "../data/pokemon-varieties";
 import {pokemonSpecies} from "../data/pokemon-species";
+import {ITaskFilters, TaskFilters} from "../models/TaskFilters";
+import dayjs from "dayjs";
+import firebase from "firebase";
 
 
 export interface ITaskStore {
@@ -17,7 +20,7 @@ export interface ITaskStore {
     selected: ITask;
     loadingSave: boolean;
 
-    openModal(): void;
+    openModal(task: ITask): void;
 
     closeModal(): void;
 
@@ -26,11 +29,24 @@ export interface ITaskStore {
     save(task: ITask): void;
 
     completeTask(task: ITask): void;
+
+    filters: ITaskFilters;
+
+    loadListByProject(projectId: string): void;
+    loadListInbox(): void;
+    loadListToday(): void;
+    loadListWeek(): void;
+
+
 }
 
 export class TaskStore implements ITaskStore {
 
     constructor(public root: RootStore) {
+        // reaction(() => this.filters, () => {
+        //     this.loadList();
+        //     console.log('REACTION');
+        // });
     }
 
     @observable modalOpen = false;
@@ -40,11 +56,50 @@ export class TaskStore implements ITaskStore {
     @observable loadingListErrorMessage: string = '';
     @observable selected: ITask = new Task();
     @observable loadingSave: boolean = false;
+    @observable filters: ITaskFilters = new TaskFilters();
+
+    @action
+    async loadListByProject(projectId: string){
+        this.filters = new TaskFilters();
+        this.filters.projectId = projectId;
+        this.loadList();
+    }
+
+    @action
+    async loadListToday(){
+        this.filters = new TaskFilters();
+        this.filters.periodFilter = "today";
+        this.loadList();
+    }
+
+    @action
+    async loadListWeek(){
+        this.filters = new TaskFilters();
+        this.filters.periodFilter = "week";
+        this.loadList();
+    }
+
+    @action
+    async loadListInbox(){
+        this.filters = new TaskFilters();
+        this.loadList();
+    }
 
     @action
     async loadList() {
         this.loadingList = true;
-        const result = await FirebaseApi.getTasks(this.root.userStore.user.uid);
+        let result;
+        if(this.filters.projectId){
+            console.log('LOAD BY PROJECT');
+            result = await FirebaseApi.getOpenTasksByProject(this.root.userStore.user.uid, this.filters.projectId);
+        } else if(this.filters.periodFilter === "today") {
+            result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().endOf('day').toDate()));
+        } else if(this.filters.periodFilter === "week") {
+            result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().add(7, 'day').endOf('day').toDate()));
+        } else {
+            console.log('LOAD INBOX');
+            result = await FirebaseApi.getInboxTasks(this.root.userStore.user.uid);
+        }
         result.onSnapshot(snapshot => {
             const list: ITask[] = [];
             snapshot.forEach(doc => {
@@ -91,12 +146,14 @@ export class TaskStore implements ITaskStore {
     }
 
     @action
-    openModal() {
+    openModal(task: ITask) {
+        this.selected = task;
         this.modalOpen = true;
     }
 
     @action
     closeModal() {
+        this.selected = new Task();
         this.modalOpen = false;
     }
 

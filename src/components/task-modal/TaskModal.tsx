@@ -30,18 +30,20 @@ import {ModalDatePicker} from "../date-picker-modal/ModalDatePicker";
 import DayjsUtils from "@date-io/dayjs";
 import {ITask} from "../../models/Task";
 import firebase from 'firebase';
+import {IProject, Project} from "../../models/Project";
 
 interface IComponentProps {
 }
 
 type FormData = {
     title: string;
+    project: string;
 }
 
 const TaskModal: React.FC<IComponentProps> = observer(() => {
 
     const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
-    const {taskStore} = useRootStore();
+    const {taskStore, projectStore} = useRootStore();
     const [isDateSelectOpen, setIsDateSelectOpen] = useState(false);
 
 
@@ -52,14 +54,19 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     }, [])
 
     const handleDateChange = (e: any) => {
-        console.log(e);
         setSelectedDate(e);
         setValue("date", e);
     }
 
     const ionModalDidPresent = () => {
         /*Need to reset form in order for it to work properly!*/
-        reset({title: ''});
+        setSelectedDate(null);
+        reset({title: '', project: ""});
+        setValue("title", taskStore.selected.title);
+        if(taskStore.selected.project){
+            console.log(taskStore.selected.project)
+            setValue("project", JSON.stringify(taskStore.selected.project));
+        }
     }
 
     const closeModal = () => {
@@ -67,7 +74,8 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     }
 
     const onSubmit = handleSubmit(async (data: any) => {
-        const taskSave: ITask = {title: data.title, complete: false};
+        console.log(data);
+        const taskSave: ITask = {title: data.title, complete: false, project: data.project ? JSON.parse(data.project) : null};
         if(selectedDate) {
             taskSave.date = firebase.firestore.Timestamp.fromDate(new Date(selectedDate));
         }
@@ -108,6 +116,18 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                     </div>
 
                     {/*<ModalDatePicker label="Example" onChange={handleDateChange} />*/}
+                    <div className="nes-field">
+                        <label htmlFor="color">Project:</label>
+                        <div className={errors && errors.project ? 'nes-select is-error' : 'nes-select'}>
+                            <select  id="project" name="project" required ref={register}>
+                                <option value="">Inbox</option>
+                                {projectStore.list.map(project => (
+                                    <option key={project.id} value={JSON.stringify(project)} style={{color: project.color}}>{project.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
                     <div className="nes-field">
                         <button form="formTask" type="button" className="btn-fill-clear" onClick={() => setIsDateSelectOpen(true)}>
                             {selectedDate ? dayjs(selectedDate).format('MM/DD') : 'Select Date'}

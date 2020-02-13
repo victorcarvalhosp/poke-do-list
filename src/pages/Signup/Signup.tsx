@@ -4,6 +4,10 @@ import './Signup.scss';
 import {RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
 import professorOak from "../../assets/images/professor.png";
+import pokeball from "../../assets/images/pokeball_intro.png";
+import marill from "../../assets/images/marill.png";
+
+
 import TextContainer from "../../components/text-container/TextContainer";
 import useAudio from "../../hooks/useAudio";
 import SignupFormModal from "./SignupFormModal";
@@ -18,9 +22,12 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const [name, setName] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const {userStore} = useRootStore();
+    const [appearPokemon, setAppearPokemon] = useState(false);
 
     const FINAL_STEP = 12;
     const OPEN_SIGNUP_STEP = 10;
+    const POKEMON_APPEAR_STEP = 3;
+
 
     const goToSignin = () => {
         history.push(Routes.SIGNIN)
@@ -41,6 +48,7 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     useEffect(() => {
         // playAudio();
         setStep(0);
+        setAppearPokemon(false);
     }, []);
 
     const onClickContinue = async () => {
@@ -50,6 +58,10 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
             history.push(Routes.SIGNUP_SELECT_POKEMON);
         } else if (step == OPEN_SIGNUP_STEP) {
             setOpenModal(true);
+        } else if (step == POKEMON_APPEAR_STEP) {
+            setAppearPokemon(true);
+            let nextStep = step + 1;
+            await setStep(nextStep);
         } else {
             let nextStep = step + 1;
             await setStep(nextStep);
@@ -161,6 +173,11 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
             <IonContent className="ion-padding">
                 <div className="centered">
                     <img className="responsive-sprite professor" src={professorOak}/>
+                    {!appearPokemon && <img className="responsive-sprite pokeball" src={pokeball}/>
+                    }
+
+                    {appearPokemon && <img className="responsive-sprite marill" src={marill}/>
+                    }
                 </div>
                 {getStep(step)}
                 <SignupFormModal open={openModal} onClickClose={onCloseModal} afterSaveAction={afterSignup}/>
