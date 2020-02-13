@@ -25,8 +25,8 @@ export interface ITaskStore {
     closeModal(): void;
 
     loadList(): void;
-
     save(task: ITask): void;
+    remove(taskId: string): void
 
     completeTask(task: ITask): void;
 
@@ -80,6 +80,13 @@ export class TaskStore implements ITaskStore {
     }
 
     @action
+    async loadListMonth(){
+        this.filters = new TaskFilters();
+        this.filters.periodFilter = "month";
+        this.loadList();
+    }
+
+    @action
     async loadListInbox(){
         this.filters = new TaskFilters();
         this.loadList();
@@ -96,7 +103,10 @@ export class TaskStore implements ITaskStore {
             result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().endOf('day').toDate()));
         } else if(this.filters.periodFilter === "week") {
             result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().add(7, 'day').endOf('day').toDate()));
-        } else {
+        } else if(this.filters.periodFilter === "month") {
+            result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().add(31, 'day').endOf('day').toDate()));
+        }
+        else {
             console.log('LOAD INBOX');
             result = await FirebaseApi.getInboxTasks(this.root.userStore.user.uid);
         }
@@ -109,7 +119,7 @@ export class TaskStore implements ITaskStore {
             console.log(list);
             this.loadingList = false;
             // this.accountsLoaded = true;
-            // this.loadingListErrorMessage = '';
+            this.loadingListErrorMessage = '';
         }, err => {
             console.log(err);
             // this.loadingListErrorMessage = 'Something went wrong';
@@ -120,18 +130,32 @@ export class TaskStore implements ITaskStore {
     @action
     async save(task: ITask) {
         try {
-            console.log('SERVICE', task);
             this.loadingSave = true;
             task.pokemon = this.root.pokemonStore.generateRandomPokemon(task.title);
             await FirebaseApi.saveTask(this.root.userStore.user.uid, task);
             this.selected = new Task();
-            // this.root.uiStore.showToast('Account saved');
+            this.root.uiStore.showToast('Task saved');
             this.closeModal();
             this.loadingSave = false;
         } catch (e) {
             console.log(e);
             this.loadingSave = false;
-            // this.root.uiStore.showToast('Some error happened when saving, please try again.');
+            this.root.uiStore.showToast('Some error happened when saving, please try again.', "danger");
+        }
+    }
+
+    @action
+    async remove(taskId: string) {
+        try {
+            this.loadingSave = true;
+            await FirebaseApi.removeTask(this.root.userStore.user.uid, taskId);
+            this.selected = new Task();
+            this.root.uiStore.showToast('Task removed');
+            this.closeModal();
+            this.loadingSave = false;
+        } catch (e) {
+            this.loadingSave = false;
+            this.root.uiStore.showToast('Some error happened when removing, please try again.');
         }
     }
 
@@ -139,6 +163,8 @@ export class TaskStore implements ITaskStore {
     async completeTask(task: ITask) {
         if (task.pokemon) {
             await this.root.pokemonStore.caughtPokemon(task.pokemon);
+            const pkmnName = task.pokemon.name
+            this.root.uiStore.showToast(`${pkmnName} caught!`);
         }
         if(task.id){
             await FirebaseApi.completeTask(this.root.userStore.user.uid, task.id);

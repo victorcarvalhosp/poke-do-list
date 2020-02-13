@@ -1,30 +1,36 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './ProjectModal.scss'
-import {IonContent, IonSpinner} from "@ionic/react";
+import {IonAlert, IonButton, IonContent, IonIcon, IonSpinner} from "@ionic/react";
 import {useRootStore} from "../../stores/StoreContext";
 import {useForm} from "react-hook-form";
 import {observer} from "mobx-react-lite";
-import {DatePicker,} from '@material-ui/pickers';
-import dayjs from "dayjs";
 import DefaultModal from "../default-modal/DefaultModal";
 import {IProject} from "../../models/Project";
+import {trash} from "ionicons/icons";
+import {RouteComponentProps, withRouter} from "react-router";
+import {Routes} from "../../router/Router";
 
-interface IComponentProps {
+interface IComponentProps extends RouteComponentProps {
 }
 
 type FormData = {
     name: string;
-    color: string;
+    theme: "" |"red" | "blue" | "yellow" | "gold" | "silver" | "crystal";
 }
 
-const ProjectModal: React.FC<IComponentProps> = observer(() => {
+const ProjectModal: React.FC<IComponentProps> = observer(({history}) => {
 
     const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
     const {projectStore} = useRootStore();
+    const [showAlert, setShowAlert] = useState(false);
 
     const ionModalDidPresent = () => {
         /*Need to reset form in order for it to work properly!*/
-        reset({name: '', color: ''});
+        reset({name: '', theme: ''});
+        if (projectStore.selected.id) {
+            setValue("name", projectStore.selected.name);
+            setValue("theme", projectStore.selected.theme);
+        }
     }
 
     const onClickCloseModal = () => {
@@ -32,20 +38,32 @@ const ProjectModal: React.FC<IComponentProps> = observer(() => {
     }
 
     const onSubmit = handleSubmit(async (data: FormData) => {
-        console.log(data);
-        const projectSave: IProject = {name: data.name, color: data.color};
-        await projectStore.save(projectSave);
+        const projectSave: IProject = {...projectStore.selected, name: data.name, theme: data.theme};
+        console.log(projectSave);
+        await projectStore.save(projectSave, true);
     })
+
+    const handleRemove = () => {
+        if (projectStore.selected.id) {
+            const projectRemove = projectStore.selected.id;
+            projectStore.remove(projectRemove);
+            history.push(`${Routes.HOME}/week`)
+        }
+    }
 
     // @ts-ignore
     return (
-        <DefaultModal open={projectStore.modalOpen} onClickClose={onClickCloseModal} title="Project" onModalDidPresent={ionModalDidPresent}>
-            {{headerEndArea: (
-                <button form="formProject" type="submit" className="btn-fill-clear" disabled={projectStore.loadingSave}>
-                    {!projectStore.loadingSave ? (
-                        <>SAVE</>
-                    ) : (<IonSpinner/>)}
-                </button>),
+        <span id="project-modal">
+        <DefaultModal open={projectStore.modalOpen} onClickClose={onClickCloseModal} title="Project"
+                      onModalDidPresent={ionModalDidPresent}>
+            {{
+                headerEndArea: (
+                    <button form="formProject" type="submit" className="btn-fill-clear"
+                            disabled={projectStore.loadingSave}>
+                        {!projectStore.loadingSave ? (
+                            <>SAVE</>
+                        ) : (<IonSpinner/>)}
+                    </button>),
                 content: (<IonContent className="ion-padding">
                     <form id="formProject" noValidate onSubmit={onSubmit}>
                         <div className="nes-field">
@@ -57,25 +75,54 @@ const ProjectModal: React.FC<IComponentProps> = observer(() => {
                         </div>
 
                         <div className="nes-field">
-                            <label htmlFor="color">Project theme:</label>
-                            <div className={errors && errors.color ? 'nes-select is-error' : 'nes-select'}>
-                                <select  id="color" name="color" required ref={register({required: "required"})}>
+                            <label htmlFor="theme">Project theme:</label>
+                            <div className={errors && errors.theme ? 'nes-select is-error' : 'nes-select'}>
+                                <select id="theme" name="theme" required ref={register({required: "required"})}>
                                     <option value="" hidden>Select...</option>
-                                    <option value="#ce372b" style={{color: '#ce372b'}}>Red</option>
-                                    <option value="#108de0" style={{color: '#108de0'}}>Blue</option>
-                                    <option value="#f2c409" style={{color: '#f2c409'}}>Yellow</option>
-                                    <option value="#9E8C55" style={{color: '#9E8C55'}}>Gold</option>
-                                    <option value="#878A90" style={{color: '#878A90'}}>Silver</option>
-                                    <option value="#7C8EC4" style={{color: '#7C8EC4'}}>Crystal</option>
+                                    <option value="red" className="theme-red">Red</option>
+                                    <option value="blue" className="theme-blue">Blue</option>
+                                    <option value="yellow" className="theme-yellow">Yellow</option>
+                                    <option value="gold" className="theme-gold">Gold</option>
+                                    <option value="silver" className="theme-silver">Silver</option>
+                                    <option value="crystal" className="theme-crystal">Crystal</option>
                                 </select>
-                                {errors && errors.color && (<label className="error">Theme is required</label>)}
+                                {errors && errors.theme && (<label className="error">Theme is required</label>)}
                             </div>
                         </div>
+
+                        {projectStore.selected.id && (
+                            <IonButton onClick={(e) => setShowAlert(true)} fill="clear">
+                                <IonIcon slot="icon-only" icon={trash}/>
+                            </IonButton>
+                        )}
                     </form>
                 </IonContent>)
             }}
         </DefaultModal>
+            <IonAlert
+                isOpen={showAlert}
+                onDidDismiss={() => setShowAlert(false)}
+                header={'Are you sure?'}
+                message={`Are you sure you want to remove ${projectStore.selected.name} and all it's tasks?`}
+                buttons={[
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: blah => {
+                            console.log('Confirm Cancel: blah');
+                        }
+                    },
+                    {
+                        text: 'Yes, remove',
+                        handler: () => {
+                            handleRemove();
+                        }
+                    }
+                ]}
+            />
+            </span>
     );
 })
 
-export default ProjectModal;
+export default withRouter(ProjectModal);

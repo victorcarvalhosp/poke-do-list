@@ -1,43 +1,10 @@
-import {
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonList,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar,
-    IonCheckbox,
-    IonFab,
-    IonFabButton, useIonViewDidEnter, useIonViewWillEnter
-} from '@ionic/react';
-import {
-    americanFootball,
-    basketball,
-    beer,
-    bluetooth,
-    boat,
-    build,
-    flask,
-    football,
-    paperPlane,
-    wifi,
-    add
-} from 'ionicons/icons';
+import {IonContent, IonFab, IonFabButton, IonIcon, IonPage} from '@ionic/react';
+import {add} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
-import sprite from '../assets/overworlds/pokemon/486.png';
 import './List.css'
-import Item from "../components/Item";
-import {IPokemon} from "../models/Pokemon";
 import {useRootStore} from "../stores/StoreContext";
 import {ITask, Task} from "../models/Task";
 import {observer} from "mobx-react-lite";
-import TaskModal from "../components/task-modal/TaskModal";
-import DayjsUtils from "@date-io/dayjs";
-import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import Overworld from "../components/overworld/Overworld";
 import PkmnHeader from "../components/pkmn-header/PkmnHeader";
 import ListItems from "../components/list-items/ListItems";
 import {RouteComponentProps} from "react-router";
@@ -69,17 +36,6 @@ const ListPage: React.FC<ComponentProps> = observer(({match}) => {
         }
     }, [filter]);
 
-    // useIonViewWillEnter(() => {
-    //     console.log('useIonViewWillEnter event fired');
-    //     if (filter === 'today') {
-    //         taskStore.loadListToday();
-    //     } else if (filter === 'week') {
-    //         taskStore.loadListWeek();
-    //     } else {
-    //         taskStore.loadListInbox();
-    //     }
-    // });
-
     const openModalNewTask = () => {
         taskStore.openModal(new Task());
     }
@@ -88,6 +44,7 @@ const ListPage: React.FC<ComponentProps> = observer(({match}) => {
         //select here;
         taskStore.openModal(task);
     }
+
     const [selectedDate, handleDateChange] = useState(new Date());
 
     return (
@@ -102,7 +59,6 @@ const ListPage: React.FC<ComponentProps> = observer(({match}) => {
                         <IonIcon icon={add}/>
                     </IonFabButton>
                 </IonFab>
-                <TaskModal/>
             </IonContent>
         </IonPage>
     );

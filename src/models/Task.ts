@@ -8,7 +8,7 @@ export interface ITask {
   complete: boolean;
   project?: IProject;
   pokemon?: IPokemon;
-  date?: firebase.firestore.Timestamp;
+  date?: firebase.firestore.Timestamp | null;
 }
 
 export class Task implements  ITask{

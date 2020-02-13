@@ -9,6 +9,7 @@ import {pokemonVarieties} from "../data/pokemon-varieties";
 import {pokemonSpecies} from "../data/pokemon-species";
 import firebase from "firebase";
 import {IEvolution} from "../models/Evolution";
+import {Project} from "../models/Project";
 
 export interface IPokemonStore {
     modalOpen: boolean;
@@ -17,6 +18,8 @@ export interface IPokemonStore {
     loadingListErrorMessage: string;
     selected: IPokemon;
     showLevelUpAnimation: boolean;
+    loadingSave: boolean;
+
 
     openModal(): void;
 
@@ -37,6 +40,8 @@ export interface IPokemonStore {
     levelUpPartner(): void;
 
     evolvePokemon(pokemon: IPokemon, evolution: IEvolution): void;
+
+    transferPokemon(pokemon: IPokemon): void;
 }
 
 export class PokemonStore implements IPokemonStore {
@@ -51,6 +56,7 @@ export class PokemonStore implements IPokemonStore {
     @observable loadingListErrorMessage: string = '';
     @observable selected: IPokemon = new Pokemon();
     @observable showLevelUpAnimation: boolean = false;
+    @observable loadingSave: boolean = true;
 
     @action
     async loadList() {
@@ -73,13 +79,30 @@ export class PokemonStore implements IPokemonStore {
     }
 
     @action
-    async evolvePokemon(pokemon: IPokemon, evolution: IEvolution){
+    async evolvePokemon(pokemon: IPokemon, evolution: IEvolution) {
         const evolveTo = pokemonVarieties[evolution.to];
         pokemon.name = evolveTo.name;
         pokemon.variety = evolveTo.id;
         await FirebaseApi.updatePokemon(this.root.userStore.user.uid, pokemon);
-        if(pokemon.id === this.root.userStore.user.partnerPokemon?.id){
+        if (pokemon.id === this.root.userStore.user.partnerPokemon?.id) {
             await this.root.userStore.updatePartner(pokemon);
+        }
+    }
+
+    @action
+    async transferPokemon(pokemon: IPokemon) {
+        try {
+            this.loadingSave = true;
+            if (pokemon.id) {
+                await FirebaseApi.removePokemon(this.root.userStore.user.uid, pokemon.id);
+            }
+            this.root.uiStore.showToast('Pokémon transfered');
+            this.levelUpPartner();
+            this.closeModal();
+            this.loadingSave = false;
+        } catch (e) {
+            this.loadingSave = false;
+            this.root.uiStore.showToast('Some error happened when removing, please try again.');
         }
     }
 
@@ -122,7 +145,14 @@ export class PokemonStore implements IPokemonStore {
     generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon {
         const variety: IPokemonVariety = pokemonVarieties[pokemonVarietyId];
         //TODO Generate random attributes as id, gender, stats, level
-        return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1, task: task, date: firebase.firestore.Timestamp.fromDate(new Date())};
+        return {
+            id: makeid(),
+            name: pokemonSpecies[variety.specie].name,
+            variety: variety.id,
+            level: 1,
+            task: task,
+            date: firebase.firestore.Timestamp.fromDate(new Date())
+        };
     }
 
     @action

@@ -1,23 +1,6 @@
+@import "src/theme/variables";
+
 .pokemon-detail-modal {
-  --pixel-size: 4; /* Try playing with this value! */
-  .top-area {
-    .pkmn-types {
-      text-align: center;
-    }
-
-    p, h2 {
-      text-align: center;
-
-      &.level {
-        color: #607d8b;
-      }
-    }
-
-    .Character {
-      margin: 0 auto 10px auto;
-    }
-  }
-
   .caught-when {
     margin-top: 32px;
 
@@ -39,7 +22,7 @@
       --pixel-size: 1;
       text-align: center;
       margin: 0 auto;
-      background-color: #C8C8CC;
+      background-color: var(--ion-color-light);
       border-radius: 12px;
       padding-bottom: 5px;
       .nes-btn {
@@ -57,5 +40,9 @@
         display: inline-block;
       }
     }
+  }
+
+  .more-details{
+    margin-top: 24px;
   }
 }

@@ -13,11 +13,12 @@ export interface IProjectStore {
     selected: IProject;
 
     loadList(): void;
-    save(project: IProject): void;
+    save(project: IProject, keepSelected?: boolean): void;
+    remove(projectId: string): void;
     selectById(id: string): void;
     setSelected(project: IProject): void;
 
-    openModal(): void;
+    openModal(project: IProject): void;
     closeModal(): void;
 }
 
@@ -57,18 +58,38 @@ export class ProjectStore implements IProjectStore {
     }
 
     @action
-    async save(project: IProject) {
+    async save(project: IProject, keepSelected?: boolean) {
         try {
             console.log('SERVICE', project);
             this.loadingSave = true;
             await FirebaseApi.saveProject(this.root.userStore.user.uid, project);
-            // this.root.uiStore.showToast('Account saved');
+            this.root.uiStore.showToast('Project saved');
+            if(keepSelected){
+                this.selected = project;
+            } else {
+                this.selected = new Project();
+            }
             this.closeModal();
             this.loadingSave = false;
         } catch (e) {
             console.log(e);
             this.loadingSave = false;
             // this.root.uiStore.showToast('Some error happened when saving, please try again.');
+        }
+    }
+
+    @action
+    async remove(projectId: string) {
+        try {
+            this.loadingSave = true;
+            await FirebaseApi.removeProject(this.root.userStore.user.uid, projectId);
+            this.selected = new Project();
+            this.root.uiStore.showToast('Project removed');
+            this.closeModal();
+            this.loadingSave = false;
+        } catch (e) {
+            this.loadingSave = false;
+            this.root.uiStore.showToast('Some error happened when removing, please try again.');
         }
     }
 
@@ -89,8 +110,8 @@ export class ProjectStore implements IProjectStore {
     }
 
     @action
-    openModal() {
-        console.log('open modal store!');
+    openModal(project: IProject) {
+        this.selected = project;
         this.modalOpen = true;
     }
 

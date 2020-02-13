@@ -1,6 +1,6 @@
 import React, {ReactChild, ReactNode} from 'react';
 import './DefaultModal.scss'
-import {IonButton, IonButtons, IonHeader, IonIcon, IonModal, IonTitle, IonToolbar} from "@ionic/react";
+import {IonButton, IonButtons, IonHeader, IonIcon, IonModal, IonTitle, IonToolbar, IonContent} from "@ionic/react";
 import {observer} from "mobx-react-lite";
 import {close} from "ionicons/icons";
 import {isObject} from "../../utils/utils";
@@ -44,7 +44,7 @@ const DefaultModal: React.FC<IComponentProps> = observer(({open, title, onClickC
                 <IonToolbar color="transparent">
                     <IonButtons slot="start">
                         <IonButton color="dark" onClick={(e) => closeModal()} fill="clear">
-                            <IonIcon icon={close}/>
+                            <IonIcon slot="icon-only" icon={close}/>
                         </IonButton>
                     </IonButtons>
                     <IonTitle>{title}</IonTitle>
@@ -53,7 +53,9 @@ const DefaultModal: React.FC<IComponentProps> = observer(({open, title, onClickC
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>
+            <IonContent>
             {content}
+            </IonContent>
         </IonModal>)
 })
 

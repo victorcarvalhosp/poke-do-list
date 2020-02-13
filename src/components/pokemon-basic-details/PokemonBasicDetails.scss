@@ -1,0 +1,18 @@
+.pokemon-basic-details {
+  --pixel-size: 4; /* Try playing with this value! */
+    .pkmn-types {
+      text-align: center;
+    }
+
+    p, h2 {
+      text-align: center;
+
+      &.level {
+        color: #607d8b;
+      }
+    }
+
+    .Character {
+      margin: 0 auto 10px auto;
+    }
+}

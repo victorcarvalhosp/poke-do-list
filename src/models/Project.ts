@@ -4,17 +4,17 @@ import firebase from "firebase";
 export interface IProject {
   id?: string;
   name: string;
-  color: string;
+  theme: "" |"red" | "blue" | "yellow" | "gold" | "silver" | "crystal";
 }
 
 export class Project implements  IProject{
   id?: string;
   name: string;
-  color: string;
+  theme: "" |"red" | "blue" | "yellow" | "gold" | "silver" | "crystal";
 
   constructor() {
     this.name = '';
-    this.color = '';
+    this.theme = "";
   }
 
 }

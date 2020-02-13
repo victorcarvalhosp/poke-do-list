@@ -1,5 +1,5 @@
-import {IonContent, IonFab, IonFabButton, IonIcon, IonPage, useIonViewDidEnter} from '@ionic/react';
-import {add} from 'ionicons/icons';
+import {IonContent, IonFab, IonFabButton, IonIcon, IonPage, useIonViewDidEnter, IonFabList, IonButton} from '@ionic/react';
+import {add, pencil, pencilOutline} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
 import './ProjectDetails.scss'
 import {observer} from "mobx-react-lite";
@@ -8,7 +8,7 @@ import PkmnHeader from '../../components/pkmn-header/PkmnHeader';
 import TaskModal from "../../components/task-modal/TaskModal";
 import {RouteComponentProps} from "react-router";
 import ListItems from "../../components/list-items/ListItems";
-import {Task} from "../../models/Task";
+import {ITask, Task} from "../../models/Task";
 
 interface RouteInfo {
     id: string;
@@ -35,6 +35,12 @@ const ProjectDetailsPage: React.FC<ComponentProps> = observer(({match}) => {
         await taskStore.loadListByProject(projectId);
     }
 
+    const openModalEditProject = () => {
+        if(projectStore.selected){
+            projectStore.openModal(projectStore.selected);
+        }
+    }
+
     const openModalNewTask = () => {
         const task = new Task();
         task.project = projectStore.selected;
@@ -43,15 +49,18 @@ const ProjectDetailsPage: React.FC<ComponentProps> = observer(({match}) => {
 
     return (
         <IonPage>
-           <PkmnHeader title={projectStore.selected.name} />
+           <PkmnHeader title={projectStore.selected.name} >
+               <IonButton onClick={e => openModalEditProject()}>
+                   <IonIcon slot="icon-only" icon={pencilOutline} />
+               </IonButton>
+           </PkmnHeader>
             <IonContent>
                 <IonFab vertical="bottom" horizontal="end" slot="fixed">
-                    <IonFabButton color="light" onClick={e => openModalNewTask()}>
-                        <IonIcon icon={add}/>
+                    <IonFabButton color="light">
+                        <IonIcon icon={add} onClick={e => openModalNewTask()}/>
                     </IonFabButton>
                 </IonFab>
                 <ListItems list={taskStore.list} loading={taskStore.loadingList}/>
-                <TaskModal/>
             </IonContent>
         </IonPage>
     );

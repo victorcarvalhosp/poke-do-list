@@ -20,7 +20,6 @@ EX: if an asset is designed as a 10px by 10px square, we can multiply by pixel s
   image-rendering: crisp-edges;
 }
 
-
 /*
 	This is the square crop of the character, each frame designed at natural size 32x32.
 	Multiplied by dynamic pixel size.
@@ -32,6 +31,7 @@ EX: if an asset is designed as a 10px by 10px square, we can multiply by pixel s
   position: relative;
   //margin: calc(var(--pixel-size) * 6px) auto;
 }
+
 .Character_shadow {
   width: calc(var(--pixel-size) * 32px);
   height: calc(var(--pixel-size) * 32px);
@@ -42,10 +42,10 @@ EX: if an asset is designed as a 10px by 10px square, we can multiply by pixel s
 /* Set up a CSS Animation to move our spritesheet to the LEFT. */
 @keyframes walkAnimation {
   from {
-    transform: translate3d(0%,0%,0);
+    transform: translate3d(0%, 0%, 0);
   }
   to {
-    transform: translate3d(-100%,0%,0);
+    transform: translate3d(-100%, 0%, 0);
   }
 }
 
@@ -57,9 +57,10 @@ EX: if an asset is designed as a 10px by 10px square, we can multiply by pixel s
 .Character_sprite-sheet {
   width: calc(var(--pixel-size) * 128px);
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 }
+
 .Character_sprite-sheet.active {
   display: block;
   animation: walkAnimation 0.6s steps(4) infinite;
@@ -80,19 +81,30 @@ EX: if an asset is designed as a 10px by 10px square, we can multiply by pixel s
 .Character--walk-down .Character_sprite-sheet {
   top: 0;
 }
+
 .Character--walk-left .Character_sprite-sheet {
   top: calc(var(--pixel-size) * -32px);
 }
+
 .Character--walk-right .Character_sprite-sheet {
   top: calc(var(--pixel-size) * -64px);
 }
+
 .Character--walk-up .Character_sprite-sheet {
   top: calc(var(--pixel-size) * -96px);
 }
 
 
-.Character{
-  &.level-up-animation{
+.Character {
+  &.level-up-animation {
     filter: brightness(1.5);
   }
+}
+
+.grass-wild-pokemon {
+  width: calc(var(--pixel-size) * 16px);
+  margin: 0 auto;
+  position: absolute;
+  bottom: calc(var(--pixel-size) * -1px);
+  left: calc(var(--pixel-size) * 8px);
 }

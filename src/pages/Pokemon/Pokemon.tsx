@@ -21,7 +21,7 @@ import {
     IonRow,
     IonCol
 } from '@ionic/react';
-import {book, build, colorFill, grid} from 'ionicons/icons';
+import {book, build, colorFill, grid, people, person, star} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
 import './Pokemon.scss';
 import {RouteComponentProps, withRouter} from "react-router";
@@ -34,12 +34,13 @@ import {useRootStore} from "../../stores/StoreContext";
 import Item from "../../components/Item";
 import Overworld from "../../components/overworld/Overworld";
 import {observer} from "mobx-react-lite";
-import PokemonDetailsModal from "./PokemonDetailsModal";
+import PokemonDetailsModal from "../../components/pokemon-details-modal/PokemonDetailsModal";
+import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
 
 
 const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
-    const {pokemonStore} = useRootStore();
+    const {pokemonStore, userStore} = useRootStore();
     const [modalDetailsOpen, setModalDetailsOpen] = useState<boolean>(false);
     const [selectedPokemon, setSelectedPokemon] = useState<IPokemon>(new Pokemon());
 
@@ -60,14 +61,7 @@ const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     return (
         <IonPage id="pokemon-page">
-            <IonHeader class="transparent-header">
-                <IonToolbar>
-                    <IonButtons slot="start">
-                        <IonMenuButton/>
-                    </IonButtons>
-                    <IonTitle>My Pokémon</IonTitle>
-                </IonToolbar>
-            </IonHeader>
+            <PkmnHeader title="My Pokémon" />
             <IonContent className="ion-padding">
                 <IonGrid>
                     <IonRow className="pkmn-grid">
@@ -76,7 +70,7 @@ const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
                                     <Overworld direction="down" animationActive={true}
                                                spriteUrl={`/assets/overworlds/pokemon/${pkmn.variety}.png`}/>
                                     <p>{pkmn.name}</p>
-                                    <p className="level">Lv.{pkmn.level}</p>
+                                    <p className="level">Lv.{pkmn.level} {userStore.user.partnerPokemon?.id === pkmn.id ? <IonIcon icon={star} /> : <></>}</p>
                                 </IonCol>
                             )
                         )}

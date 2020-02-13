@@ -10,7 +10,7 @@ interface IProps {
     title: string;
 }
 
-const PkmnHeader: React.FC<IProps> = observer(({title}) => {
+const PkmnHeader: React.FC<IProps> = observer(({title, children}) => {
 
     const {taskStore, userStore, pokemonStore} = useRootStore();
     const [direction, setDirection] = useState<"up" | "down" | "left" | "right">("down");
@@ -33,12 +33,15 @@ const PkmnHeader: React.FC<IProps> = observer(({title}) => {
                 <IonMenuButton/>
             </IonButtons>
             <IonTitle>{title}</IonTitle>
-            <IonButtons slot="end" onClick={changeDirection}>
+            <IonButtons slot="end" >
                 {pokemonStore.showLevelUpAnimation && <div className="level-up"><IonIcon icon={arrowUp} ></IonIcon></div>}
+                <span onClick={changeDirection}>
                 <Overworld type="human" spriteUrl={userStore.user.character + ".png"} direction={direction}
                            animationActive={true} className="header-human" />
                 <Overworld type="pokemon" spriteUrl={userStore.user.partnerPokemon?.variety + ".png"} direction={direction}
                            animationActive={true} className={`header-pkmn ${pokemonStore.showLevelUpAnimation ? 'level-up-animation' : ''}`}/>
+                </span>
+                {children}
             </IonButtons>
         </IonToolbar>
     </IonHeader>)

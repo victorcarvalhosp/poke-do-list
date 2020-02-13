@@ -10,9 +10,11 @@ import {
     IonModal,
     IonSpinner,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    IonList,
+    IonItem, IonAlert
 } from '@ionic/react';
-import {close, people} from "ionicons/icons";
+import {close, people, star, starOutline, swapHorizontalOutline} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {Routes} from "../../router/Router";
 import {IPokemon} from "../../models/Pokemon";
@@ -24,6 +26,8 @@ import {IPokemonSpecie} from "../../models/PokemonSpecie";
 import {pokemonSpecies} from "../../data/pokemon-species";
 import {IEvolution} from "../../models/Evolution";
 import {useRootStore} from "../../stores/StoreContext";
+import useDirection from "../../hooks/useDirection";
+import PokemonBasicDetails from "../../components/pokemon-basic-details/PokemonBasicDetails";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -47,6 +51,10 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
     const {pokemonStore, userStore} = useRootStore();
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
     const [pokemonSpecie, setPokemonSpecie] = useState<IPokemonSpecie>(pokemonSpecies[pokemonVariety.specie]);
+    const {actualDirection, changeDirection} = useDirection("down");
+    const [showTransferAlert, setShowTransferAlert] = useState(false);
+
+
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);
@@ -61,11 +69,15 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
         userStore.updatePartner(pokemon);
     }
 
-
-    const evolvePokemon = async (evolution: IEvolution) =>  {
+    const evolvePokemon = async (evolution: IEvolution) => {
         await pokemonStore.evolvePokemon(pokemon, evolution);
         setPokemonVariety(pokemonVarieties[evolution.to]);
         setPokemonSpecie(pokemonSpecies[pokemonVariety.specie]);
+    }
+
+    const handleTransfer = async () => {
+        await pokemonStore.transferPokemon(pokemon);
+        closeModal();
     }
 
     return (
@@ -79,30 +91,24 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                     </IonButtons>
 
                     <IonButtons slot="end">
-                    <IonButton color="dark" onClick={(e) => changePartner()} fill="clear">
-                        <IonIcon icon={people}/>
-                    </IonButton>
-                </IonButtons>
+                    </IonButtons>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                <div className="top-area">
-                    <Overworld spriteUrl={`${pokemon?.variety}.png`} direction="down" animationActive={true}
-                               type="pokemon"/>
-                    <h2>{pokemon?.name}</h2>
-                    <p className="level">Lv.{pokemon?.level}</p>
-                    <Type type1={pokemonVariety.type1}
-                          type2={pokemonVariety.type2}/>
-
+                <div className="top-area" >
+                    <PokemonBasicDetails pokemon={pokemon} />
 
                     {pokemonVariety.evolutions.length > 0 &&
                     <div className="evolutions-area">
                         {pokemonVariety.evolutions.map((evolution, i) => (
-                            <div className="evolution" key={evolution.to+i}>
+                            <div className="evolution" key={evolution.to + i}>
                                 <Overworld spriteUrl={`${evolution.to}.png`} direction="down" animationActive={false}
                                            type="pokemon"/>
                                 <span>{`Lv.${evolution.level}`}</span>
-                                <button type="button" className={`nes-btn ${pokemon.level < evolution.level ? 'is-disabled' : 'is-primary'} `} disabled={pokemon.level < evolution.level} onClick={e => evolvePokemon(evolution)}>
+                                <button type="button"
+                                        className={`nes-btn ${pokemon.level < evolution.level ? 'is-disabled' : 'is-primary'} `}
+                                        disabled={pokemon.level < evolution.level}
+                                        onClick={e => evolvePokemon(evolution)}>
                                     evolve
                                 </button>
                             </div>
@@ -110,10 +116,22 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                     </div>
                     }
 
+                    <IonList className="more-details">
+                        {pokemon.id === userStore.user.partnerPokemon?.id ?
+                            (
+                                <IonItem color="light"><IonIcon slot="start" icon={star} color="warning" />This is you actual partner</IonItem>
+                            ) :
+                            (
+                                <>
+                                <IonItem onClick={changePartner}><IonIcon slot="start" icon={starOutline} />Set as Partner</IonItem>
+                                    <IonItem onClick={e => setShowTransferAlert(true)}><IonIcon slot="start" icon={swapHorizontalOutline} />Transfer</IonItem>
 
+                                </>
+                            )
+                        }
+                    </IonList>
 
                     <div className="caught-when">
-                        <hr/>
                         <h3>{pokemon.task}</h3>
                         <p className="level">Caught on {pokemon.date ? new Intl.DateTimeFormat('en-us', {
                             year: 'numeric',
@@ -125,6 +143,28 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                     </div>
                 </div>
             </IonContent>
+            <IonAlert
+                isOpen={showTransferAlert}
+                onDidDismiss={() => setShowTransferAlert(false)}
+                header={'Are you sure?'}
+                message={`Are you sure you want to transfer ${pokemon.name}? This action can't be undone!`}
+                buttons={[
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: blah => {
+                            console.log('Confirm Cancel: blah');
+                        }
+                    },
+                    {
+                        text: 'Yes, remove',
+                        handler: () => {
+                            handleTransfer();
+                        }
+                    }
+                ]}
+            />
         </IonModal>
     );
 })

@@ -7,3 +7,17 @@ export interface IUser {
   character: string;
   partnerPokemon?: IPokemon;
 }
+
+export class User implements IUser{
+  character: string;
+  email: string;
+  name: string;
+  uid: string;
+  constructor() {
+    this.character = '';
+    this.email = '';
+    this.name = '';
+    this.uid = '0';
+  }
+
+}

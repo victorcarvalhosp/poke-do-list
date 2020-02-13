@@ -1,16 +1,17 @@
 import { observable, action, computed } from 'mobx'
 import {RootStore} from "./RootStore";
-import {IUser} from "../models/User";
+import {IUser, User} from "../models/User";
 import {FirebaseApi} from "../apis/FirebaseApi";
 import {IPokemon} from "../models/Pokemon";
+import {auth} from "../firebase";
 
 export interface IUserStore {
     user: IUser;
     loadingUser: boolean;
 
     setUser(id: string): void;
-
     updatePartner(pokemon: IPokemon): void;
+    logOut(): void;
 }
 export class UserStore implements  IUserStore{
     constructor(public root: RootStore) {
@@ -32,6 +33,8 @@ export class UserStore implements  IUserStore{
                 console.log(err);
                 this.loadingUser = false;
             });
+        } else {
+            this.user = new User();
         }
     }
 
@@ -39,6 +42,11 @@ export class UserStore implements  IUserStore{
     async updatePartner(pokemon: IPokemon){
         await FirebaseApi.setPokemonAsPartner(this.user.uid, pokemon);
         this.user.partnerPokemon = pokemon;
+    }
+
+    @action
+    async logOut(){
+        await auth.signOut();
     }
 
 }

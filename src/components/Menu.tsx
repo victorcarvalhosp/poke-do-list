@@ -13,22 +13,36 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {addOutline, folderOpenOutline} from "ionicons/icons";
+import {
+    addOutline,
+    bookmarkOutline,
+    calendar,
+    calendarOutline,
+    calendarSharp,
+    folderOpenOutline,
+    power
+} from "ionicons/icons";
 import {Routes} from "../router/Router";
 import {useRootStore} from "../stores/StoreContext";
 import ProjectsAccordionMenu from "./projects-accordion-menu/ProjectsAccordionMenu";
 import ProjectModal from "./project-modal/ProjectModal";
+import {auth} from "../firebase";
 
 
 interface MenuProps extends RouteComponentProps {
 }
 
-const Menu: React.FunctionComponent<MenuProps> = () => {
+const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
 
-    const {projectStore} = useRootStore();
+    const {userStore} = useRootStore();
 
     const openModalNewProject = () => {
         console.log('OPEN IT');
+    }
+
+    const logOut = async () => {
+        await userStore.logOut();
+        history.push(Routes.SIGNIN_SIGNUP);
     }
 
     return (
@@ -48,22 +62,35 @@ const Menu: React.FunctionComponent<MenuProps> = () => {
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.HOME}/today`} routerDirection="none">
-                            <IonIcon slot="start" icon={folderOpenOutline}/>
+                            <IonIcon slot="start" icon={calendar}/>
                             <IonLabel>Today</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.HOME}/week`} routerDirection="none">
-                            <IonIcon slot="start" icon={folderOpenOutline}/>
+                            <IonIcon slot="start" icon={calendarOutline}/>
                             <IonLabel>7 days</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
+                    {/*<IonMenuToggle autoHide={false}>*/}
+                    {/*    <IonItem routerLink={`${Routes.HOME}/month`} routerDirection="none">*/}
+                    {/*        <IonIcon slot="start" icon={calendarSharp}/>*/}
+                    {/*        <IonLabel>31 days</IonLabel>*/}
+                    {/*    </IonItem>*/}
+                    {/*</IonMenuToggle>*/}
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={Routes.POKEMON} routerDirection="none">
+                            <IonIcon slot="start" icon={bookmarkOutline}/>
                             <IonLabel>My Pokémon</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <ProjectsAccordionMenu/>
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem onClick={logOut} routerDirection="none">
+                            <IonIcon slot="start" icon={power}/>
+                            <IonLabel>Log out</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
                 </IonList>
             </IonContent>
         </IonMenu>

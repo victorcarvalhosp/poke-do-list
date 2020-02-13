@@ -55,6 +55,11 @@ export class FirebaseApi {
         }
     }
 
+    static async removeTask(userId: string, taskId: string) {
+        return firebase
+            .firestore().collection(`users/${userId}/tasks`).doc(taskId).delete();
+    }
+
     static async saveProject(userId: string, project: IProject) {
         const dbPath = `users/${userId}/projects`;
         if (project.id) {
@@ -64,6 +69,16 @@ export class FirebaseApi {
             project.id = newId;
             return firestore.collection(dbPath).doc(newId).set(project);
         }
+    }
+
+    static async removeProject(userId: string, projectId: string) {
+        return firebase
+            .firestore().collection(`users/${userId}/projects`).doc(projectId).delete();
+    }
+
+    static async removePokemon(userId: string, pokemonId: string) {
+        return firebase
+            .firestore().collection(`users/${userId}/pokemon`).doc(pokemonId).delete();
     }
 
     static async completeTask(userId: string, taskId: string) {

@@ -1,14 +1,17 @@
-.pkmn-header{
+.pkmn-header {
+  span {
+    display: inline-flex;
+  }
 
-  .header-human{
+  .header-human {
     margin-right: -32px;
     z-index: 999;
   }
 
-  .level-up{
-    position: absolute;
-    right: 24px;
-    top: 6px;
+  .level-up {
+    position: fixed;
+    left: 55px;
+    top: 0px;
     font-size: 16px;
   }
 

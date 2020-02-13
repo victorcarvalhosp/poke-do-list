@@ -13,10 +13,16 @@ interface IProps {
 }
 
 const AccordionItem: React.FC<IProps> = observer(({title, onClickAdd, children}) => {
-    const [setActive, setActiveState] = useState("");
-    const [setHeight, setHeightState] = useState("0px");
-    const [setRotate, setRotateState] = useState("accordion__icon");
     const content = useRef(null);
+    let scrollHeight = '';
+    // @ts-ignore
+    if (content && content.current && content.current.scrollHeight) {
+        // @ts-ignore
+        scrollHeight = content.current.scrollHeight;
+    }
+    const [setActive, setActiveState] = useState("active");
+    const [setHeight, setHeightState] = useState(`${scrollHeight}px`);
+    const [setRotate, setRotateState] = useState("accordion__icon rotate");
 
     const onClickAddButton = () => {
         closeAccordion()
@@ -31,12 +37,7 @@ const AccordionItem: React.FC<IProps> = observer(({title, onClickAdd, children})
 
     function toggleAccordion() {
         setActiveState(setActive === "" ? "active" : "");
-        let scrollHeight = '';
-        // @ts-ignore
-        if (content && content.current && content.current.scrollHeight) {
-            // @ts-ignore
-            scrollHeight = content.current.scrollHeight;
-        }
+
         setHeightState(
             setActive === "active" ? "0px" : `${scrollHeight}px`
         );
@@ -47,11 +48,11 @@ const AccordionItem: React.FC<IProps> = observer(({title, onClickAdd, children})
 
     return (<span id="accordion-item">
         <IonItem button className="accordion__section">
-            <IonLabel onClick={toggleAccordion}>{title}
-            </IonLabel>
             <IonNote onClick={toggleAccordion} slot="start">
                 <Chevron className={`${setRotate}`} width={10} fill={"#777"}/>
             </IonNote>
+            <IonLabel onClick={toggleAccordion}>{title}
+            </IonLabel>
             <IonButton fill="clear" slot="end" onClick={onClickAddButton}>
                 <IonIcon slot="icon-only" icon={addOutline}/>
             </IonButton>

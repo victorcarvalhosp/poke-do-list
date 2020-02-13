@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
 import './ProjectsAccordionMenu.scss';
-import {IonItem, IonList} from '@ionic/react';
+import {IonIcon, IonItem, IonList} from '@ionic/react';
 import {observer} from "mobx-react-lite";
 import AccordionItem from "../accordion-item/AccordionItem";
 import {useRootStore} from "../../stores/StoreContext";
 import { menuController } from '@ionic/core';
-import {IProject} from "../../models/Project";
+import {IProject, Project} from "../../models/Project";
 import {RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
+import {Task} from "../../models/Task";
+import {ellipse} from "ionicons/icons";
 
 interface IProps extends RouteComponentProps {
 }
@@ -18,7 +20,7 @@ const ProjectsAccordionMenu: React.FC<IProps> = observer(({history}) => {
 
     const onClickAdd = () => {
         menuController.close();
-        projectStore.openModal();
+        projectStore.openModal(new Project());
         console.log('add')
     }
 
@@ -30,13 +32,11 @@ const ProjectsAccordionMenu: React.FC<IProps> = observer(({history}) => {
 
     return (<span id="projects-menu">
         <AccordionItem title="Projects" onClickAdd={onClickAdd}>
-            <IonList>
                 {projectStore.list.map(project => (
                     <IonItem key={project.id} button onClick={e => goToProject(project)}>
-                        {project.name}
+                        <IonIcon className={`theme-${project.theme}`} slot="start" icon={ellipse} />{project.name}
                     </IonItem>
                 ))}
-            </IonList>
         </AccordionItem>
     </span>)
 });
