@@ -51,7 +51,7 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
     const {pokemonStore, userStore} = useRootStore();
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
     const [pokemonSpecie, setPokemonSpecie] = useState<IPokemonSpecie>(pokemonSpecies[pokemonVariety.specie]);
-    const {actualDirection, changeDirection} = useDirection("down");
+    const [actualDirection, changeDirection] = useDirection("down");
     const [showTransferAlert, setShowTransferAlert] = useState(false);
 
 

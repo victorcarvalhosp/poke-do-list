@@ -18,7 +18,7 @@ interface IProps {
 const PokemonBasicDetails: React.FC<IProps> = observer(({pokemon, wild}) => {
 
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
-    const {actualDirection, changeDirection} = useDirection("down");
+    const [actualDirection, changeDirection] = useDirection("down");
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);

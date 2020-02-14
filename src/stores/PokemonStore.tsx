@@ -10,6 +10,7 @@ import {pokemonSpecies} from "../data/pokemon-species";
 import firebase from "firebase";
 import {IEvolution} from "../models/Evolution";
 import {Project} from "../models/Project";
+import {IPokedexStatus} from "../models/PokedexStatus";
 
 export interface IPokemonStore {
     modalOpen: boolean;
@@ -126,7 +127,20 @@ export class PokemonStore implements IPokemonStore {
         myPokemon.date = firebase.firestore.Timestamp.fromDate(new Date());
         //Add some random properties for attack, height...
         await FirebaseApi.caughtPokemon(this.root.userStore.user.uid, myPokemon);
+        await this.registerPokedex(pokemon.variety);
         await this.levelUpPartner();
+    }
+
+    private async registerPokedex(varietyId: number) {
+        const pokedexRegister: Record<number, IPokedexStatus> = this.root.userStore.user.pokedex;
+        if (!pokedexRegister[pokemonVarieties[varietyId].specie] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId]) {
+            pokedexRegister[pokemonVarieties[varietyId].specie] = {
+                caught: true,
+                specieId: pokemonVarieties[varietyId].specie,
+                varieties: {...pokedexRegister[pokemonVarieties[varietyId].specie].varieties, [varietyId]: {caught: true, varietyId: varietyId}}
+            };
+            await FirebaseApi.updatePokedex(this.root.userStore.user.uid, pokedexRegister);
+        }
     }
 
     @action
@@ -157,8 +171,8 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     generateRandomPokemon(task: string): IPokemon {
-        const randomId: number = getRandomInt(1, 9);
-        const variety: IPokemonVariety = pokemonVarieties[randomId];
+        // const randomId: number = getRandomInt(1, 9);
+        const variety: IPokemonVariety = pokemonVarieties[37];
         return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1, task: task};
     }
 

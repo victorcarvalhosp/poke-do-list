@@ -1,4 +1,6 @@
 import {IPokemon} from "./Pokemon";
+import {IPokedexStatus} from "./PokedexStatus";
+import {IPokemonVariety} from "./PokemonVariety";
 
 export interface IUser {
   uid: string;
@@ -6,6 +8,7 @@ export interface IUser {
   email: string;
   character: string;
   partnerPokemon?: IPokemon;
+  pokedex: Record<number, IPokedexStatus>;
 }
 
 export class User implements IUser{
@@ -13,11 +16,14 @@ export class User implements IUser{
   email: string;
   name: string;
   uid: string;
+  pokedex: Record<number, IPokedexStatus>;
+
   constructor() {
     this.character = '';
     this.email = '';
     this.name = '';
     this.uid = '0';
+    this.pokedex = {};
   }
 
 }

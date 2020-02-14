@@ -17,7 +17,7 @@ export class UserStore implements  IUserStore{
     constructor(public root: RootStore) {
     }
 
-    @observable user: IUser = {uid: '', email: '', name: '', character: ''};
+    @observable user: IUser = new User();
     @observable loadingUser = true;
 
     @action

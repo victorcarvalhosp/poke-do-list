@@ -1,6 +1,14 @@
 import {IPokemonSpecie} from "../models/PokemonSpecie";
 
 export const pokemonSpecies: Record<number, IPokemonSpecie> = {
+    0: {
+        id: 0,
+        name: "",
+        description: "",
+        varieties: [
+            0
+        ]
+    },
     1: {
         id: 1,
         name: "Bulbasaur",
@@ -71,6 +79,14 @@ export const pokemonSpecies: Record<number, IPokemonSpecie> = {
         description: "Blastoise has water spouts that protrude from its shell. The water spouts are very accurate. They can shoot bullets of water with enough accuracy to strike empty cans from a distance of over 160 feet.",
         varieties: [
             9, 10036
+        ]
+    },
+    37: {
+        id: 37,
+        name: "Vulpix",
+        description: "Its beautiful tails have made it very popular. However, if it’s not brushed diligently, it will be a mass of tangles before you know it.",
+        varieties: [
+            37, 10103
         ]
     }
 }

@@ -96,4 +96,20 @@ export const pokemonVarieties: Record<number, IPokemonVariety> =
             type1: "water",
             evolutions:[]
         },
+        37: {
+            id: 37,
+            name: "vulpix",
+            specie: 37,
+            is_default: true,
+            type1: "fire",
+            evolutions:[]
+        },
+        10103: {
+            id: 10103,
+            name: "vulpix-alola",
+            specie: 37,
+            is_default: false,
+            type1: "ice",
+            evolutions:[]
+        },
     }

@@ -14,10 +14,10 @@ export class PokemonSpecie implements IPokemonSpecie{
   description: string;
   varieties?: number[];
 
-  constructor(id: number, name: string, description: string) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
+  constructor() {
+    this.id = 0;
+    this.name = '';
+    this.description = '';
   }
 
 }

@@ -5,6 +5,7 @@ import {IonButtons, IonHeader, IonIcon, IonMenuButton, IonTitle, IonToolbar} fro
 import Overworld from "../overworld/Overworld";
 import {useRootStore} from "../../stores/StoreContext";
 import {arrowUp} from "ionicons/icons";
+import useDirection from "../../hooks/useDirection";
 
 interface IProps {
     title: string;
@@ -13,19 +14,8 @@ interface IProps {
 const PkmnHeader: React.FC<IProps> = observer(({title, children}) => {
 
     const {taskStore, userStore, pokemonStore} = useRootStore();
-    const [direction, setDirection] = useState<"up" | "down" | "left" | "right">("down");
+    const [actualDirection, changeDirection] = useDirection("down");
 
-    const changeDirection = () => {
-        if(direction === "down") {
-            setDirection("left");
-        } else if(direction === "left"){
-            setDirection("up");
-        } else if (direction === "up") {
-            setDirection("right");
-        } else {
-            setDirection("down");
-        }
-    }
 
     return (<IonHeader className="pkmn-header">
         <IonToolbar>
@@ -36,9 +26,9 @@ const PkmnHeader: React.FC<IProps> = observer(({title, children}) => {
             <IonButtons slot="end" >
                 {pokemonStore.showLevelUpAnimation && <div className="level-up"><IonIcon icon={arrowUp} ></IonIcon></div>}
                 <span onClick={changeDirection}>
-                <Overworld type="human" spriteUrl={userStore.user.character + ".png"} direction={direction}
+                <Overworld type="human" spriteUrl={userStore.user.character + ".png"} direction={actualDirection}
                            animationActive={true} className="header-human" />
-                <Overworld type="pokemon" spriteUrl={userStore.user.partnerPokemon?.variety + ".png"} direction={direction}
+                <Overworld type="pokemon" spriteUrl={userStore.user.partnerPokemon?.variety + ".png"} direction={actualDirection}
                            animationActive={true} className={`header-pkmn ${pokemonStore.showLevelUpAnimation ? 'level-up-animation' : ''}`}/>
                 </span>
                 {children}

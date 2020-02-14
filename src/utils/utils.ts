@@ -21,5 +21,15 @@ export function makeid() {
     return result;
 }
 
+export function threeHousesNumberPipe(number: number) {
+    if(number <= 9) {
+        return `00${number}`;
+    } else if( number <= 99) {
+        return `0${number}`;
+    } else {
+        return number+'';
+    }
+}
+
 export const isObject = <T extends object>(value: any): value is T => typeof value === 'object' && typeof value !== 'function' && value != undefined;
 

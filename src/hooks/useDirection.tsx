@@ -1,21 +1,25 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
-export default function useDirection(direction?: "up" | "down" | "left" | "right") {
+export interface INextDirection {
+    down: "up" | "down" | "left" | "right";
+    left: "up" | "down" | "left" | "right";
+    right: "up" | "down" | "left" | "right";
+    up: "up" | "down" | "left" | "right";
+}
+
+const nextDirection: INextDirection = {
+    down: "left",
+    left: "up",
+    up: "right",
+    right: "down"
+}
+
+export default function useDirection(direction?: "up" | "down" | "left" | "right") : ["up" | "down" | "left" | "right", () => void] {
     const [actualDirection, setActualDirection] = useState(direction ? direction : 'down');
-    const [playing, setPlaying] = useState(false);
 
     const changeDirection = () => {
-        console.log()
-        if(actualDirection === "down") {
-            setActualDirection("left");
-        } else if(actualDirection === "left"){
-            setActualDirection("up");
-        } else if (actualDirection === "up") {
-            setActualDirection("right");
-        } else {
-            setActualDirection("down");
-        }
+        setActualDirection(nextDirection[actualDirection || "down"]);
     }
-    return {actualDirection, changeDirection};
-};
 
+    return [actualDirection, changeDirection];
+};

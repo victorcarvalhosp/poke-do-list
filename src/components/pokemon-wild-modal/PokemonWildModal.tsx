@@ -50,7 +50,7 @@ const PokemonWildModal: React.FC<IComponentProps> = observer(({history, open, on
     const {pokemonStore, userStore} = useRootStore();
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
     const [pokemonSpecie, setPokemonSpecie] = useState<IPokemonSpecie>(pokemonSpecies[pokemonVariety.specie]);
-    const {actualDirection, changeDirection} = useDirection("down");
+    const [actualDirection, changeDirection] = useDirection("down");
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);

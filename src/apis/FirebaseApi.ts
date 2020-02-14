@@ -3,6 +3,7 @@ import {ITask} from "../models/Task";
 import {IPokemon} from "../models/Pokemon";
 import {IProject} from "../models/Project";
 import firebase from "firebase";
+import {IPokedexStatus} from "../models/PokedexStatus";
 
 export class FirebaseApi {
 
@@ -99,6 +100,11 @@ export class FirebaseApi {
     static async updatePokemon(userId: string, pkmn: IPokemon) {
         const dbPath = `users/${userId}/pokemon`;
         return firestore.collection(dbPath).doc(pkmn.id).update(pkmn);
+    }
+
+    static async updatePokedex(userId: string, pokedex: Record<number, IPokedexStatus>) {
+        const dbPath = `users/${userId}/`;
+        return firestore.doc(dbPath).update({pokedex: pokedex});
     }
 
     //
