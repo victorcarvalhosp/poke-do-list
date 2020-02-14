@@ -127,17 +127,17 @@ export class PokemonStore implements IPokemonStore {
         myPokemon.date = firebase.firestore.Timestamp.fromDate(new Date());
         //Add some random properties for attack, height...
         await FirebaseApi.caughtPokemon(this.root.userStore.user.uid, myPokemon);
-        await this.registerPokedex(pokemon.variety);
+        await this.registerPokedex(pokemon.variety, true);
         await this.levelUpPartner();
     }
 
-    private async registerPokedex(varietyId: number) {
+    private async registerPokedex(varietyId: number, caught: boolean) {
         const pokedexRegister: Record<number, IPokedexStatus> = this.root.userStore.user.pokedex;
-        if (!pokedexRegister[pokemonVarieties[varietyId].specie] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId]) {
+        if (!pokedexRegister[pokemonVarieties[varietyId].specie] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId].caught) {
             pokedexRegister[pokemonVarieties[varietyId].specie] = {
-                caught: true,
+                caught: caught,
                 specieId: pokemonVarieties[varietyId].specie,
-                varieties: {...pokedexRegister[pokemonVarieties[varietyId].specie].varieties, [varietyId]: {caught: true, varietyId: varietyId}}
+                varieties: {...pokedexRegister[pokemonVarieties[varietyId].specie]?.varieties, [varietyId]: {caught: caught, varietyId: varietyId}}
             };
             await FirebaseApi.updatePokedex(this.root.userStore.user.uid, pokedexRegister);
         }
@@ -171,8 +171,10 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     generateRandomPokemon(task: string): IPokemon {
-        // const randomId: number = getRandomInt(1, 9);
-        const variety: IPokemonVariety = pokemonVarieties[37];
+        debugger;
+        const randomId: number = getRandomInt(1, 9);
+        const variety: IPokemonVariety = pokemonVarieties[randomId];
+        this.registerPokedex(variety.id, false);
         return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1, task: task};
     }
 

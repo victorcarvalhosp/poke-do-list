@@ -10,13 +10,14 @@ import {pokemonSpecies} from "../../data/pokemon-species";
 import {threeHousesNumberPipe} from "../../utils/utils";
 import {IPokemonSpecie, PokemonSpecie} from "../../models/PokemonSpecie";
 import PokedexDetailsModal from "../../components/pokedex-details-modal/PokedexDetailsModal";
+import {IPokedexStatus, PokedexStatus} from "../../models/PokedexStatus";
 
 
 const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     const {userStore} = useRootStore();
     const [modalDetailsOpen, setModalDetailsOpen] = useState<boolean>(false);
-    const [selectedSpecie, setSelectedSpecie] = useState<IPokemonSpecie>(new PokemonSpecie());
+    const [selectedPokedexItem, setSelectedPokedexItem] = useState<IPokedexStatus>(new PokedexStatus());
 
     var allPokemonPokedex = [];
     for (var i = 1; i <= 251; i++) {
@@ -29,7 +30,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
     }
 
     const openModalDetails = (specieId: number) => {
-        setSelectedSpecie(pokemonSpecies[specieId]);
+        setSelectedPokedexItem(userStore.user.pokedex[specieId]);
         setModalDetailsOpen(true);
     }
 
@@ -58,7 +59,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
                         )}
                     </IonRow>
                 </IonGrid>
-                <PokedexDetailsModal open={modalDetailsOpen} onClickClose={onCloseModal} specie={selectedSpecie}/>
+                <PokedexDetailsModal open={modalDetailsOpen} onClickClose={onCloseModal} pokedexItem={selectedPokedexItem}/>
             </IonContent>
         </IonPage>
     );
