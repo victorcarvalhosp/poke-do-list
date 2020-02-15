@@ -11,7 +11,7 @@ interface IComponentProps {
 
 const TextContainer: React.FC<IComponentProps> = ({message, onClickContinue}) => {
 
-    const [toggleAudio, playAudio] = useAudio("/audio/sounds/sfx_menu_move3.wav");
+    // const [toggleAudio, playAudio] = useAudio("/audio/sounds/sfx_menu_move3.wav");
     const [showContinueButton, setShowContinueButton] = useState(false);
 
     const finishedTyping = () => {
@@ -21,7 +21,7 @@ const TextContainer: React.FC<IComponentProps> = ({message, onClickContinue}) =>
     }
 
     const onClick = async () => {
-        await playAudio();
+        // await playAudio();
         setShowContinueButton(false);
         onClickContinue();
     }

@@ -40,65 +40,10 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
     const {pokemonStore, userStore} = useRootStore();
     const [direction, setDirection] = useState<"down" | "up" | "right" | "left">   ("down");
 
-    // var characterElement = document.querySelector(".Character");
-
-    // @ts-ignore
-    // characterElement.insertAdjacentHTML( 'beforeend', spritesheetElements );
-
-    // @ts-ignore
-    // document.querySelector(".Navigation").insertAdjacentHTML( 'beforeend', navigationElements );
-
     function setActive(index: number) {
         setActiveIndex(index);
         setSelectedPokemon(pokemonVarieties[initialPokemons[index]]);
-        // document.querySelectorAll(`.active`).forEach(node => {
-        //     node.classList.remove("active")
-        // })
-        // document.querySelectorAll(`.index-${index}`).forEach(node => {
-        //     node.classList.add("active")
-        // })
     }
-
-    // function setDirection(direction: string) {
-    //     [
-    //         "Character--walk-down",
-    //         "Character--walk-right",
-    //         "Character--walk-up",
-    //         "Character--walk-left"
-    //     ].forEach(className => {
-    //         // @ts-ignore
-    //         characterElement.classList.remove(className)
-    //     })
-
-
-    // @ts-ignore
-    //     document.querySelector(".DirectionArrow--active").classList.remove("DirectionArrow--active")
-    //
-    //     var directionClass = "Character--walk-down";
-    //     if (direction === "DOWN") {
-    //         // @ts-ignore
-    //         document.querySelector(".DirectionArrow-down").classList.add("DirectionArrow--active")
-    //     }
-    //
-    //     if (direction === "LEFT") {
-    //         directionClass = "Character--walk-left"
-    //         // @ts-ignore
-    //         document.querySelector(".DirectionArrow-left").classList.add("DirectionArrow--active")
-    //     }
-    //     if (direction === "RIGHT") {
-    //         directionClass = "Character--walk-right"
-    //         // @ts-ignore
-    //         document.querySelector(".DirectionArrow-right").classList.add("DirectionArrow--active")
-    //     }
-    //     if (direction === "UP") {
-    //         directionClass = "Character--walk-up"
-    //         // @ts-ignore
-    //         document.querySelector(".DirectionArrow-up").classList.add("DirectionArrow--active")
-    //     }
-    //
-    //     // @ts-ignore
-    //     characterElement.classList.add(directionClass)
-    // }
 
     const selectPokemon = async () => {
         await pokemonStore.selectInitialPokemon(selectedPokemon);

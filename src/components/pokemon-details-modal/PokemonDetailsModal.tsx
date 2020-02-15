@@ -104,10 +104,10 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                             <div className="evolution" key={evolution.to + i}>
                                 <Overworld spriteUrl={`${evolution.to}.png`} direction="down" animationActive={false}
                                            type="pokemon"/>
-                                <span>{`Lv.${evolution.level}`}</span>
+                                <span>{`Lv.${evolution.minLevel}`}</span>
                                 <button type="button"
-                                        className={`nes-btn ${pokemon.level < evolution.level ? 'is-disabled' : 'is-primary'} `}
-                                        disabled={pokemon.level < evolution.level}
+                                        className={`nes-btn ${pokemon.level < evolution.minLevel ? 'is-disabled' : 'is-primary'} `}
+                                        disabled={pokemon.level < evolution.minLevel}
                                         onClick={e => evolvePokemon(evolution)}>
                                     evolve
                                 </button>

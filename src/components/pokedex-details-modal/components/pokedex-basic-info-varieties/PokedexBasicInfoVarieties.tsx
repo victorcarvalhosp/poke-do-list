@@ -20,11 +20,11 @@ const PokedexBasicInfoVarieties: React.FC<IComponentProps> = observer(({varietie
 
     return (<div className="pokedex-basic-info-varieties">
             <PokedexBasicInfo pokemonVariety={activeVariety}/>
-            {varieties?.length > 1 && varieties?.map(variety => (<>
-            <IonButton fill="clear" onClick={() => setActiveVariety(pokemonVarieties[variety])} color={activeVariety.id === variety ? 'primary': 'medium'} disabled={!pokedexItem.varieties[variety]}>
+            {varieties?.length > 1 && varieties?.map(variety => (
+            <IonButton key={variety} fill="clear" onClick={() => setActiveVariety(pokemonVarieties[variety])} color={activeVariety.id === variety ? 'primary': 'medium'} disabled={!pokedexItem.varieties[variety]}>
                 <IonIcon slot="icon-only" icon={ellipse}  />
-            </IonButton></>))}
-            <p>{pokemonSpecies[activeVariety.specie].description}</p>
+            </IonButton>))}
+            {pokedexItem.caught && <p>{pokemonSpecies[activeVariety.specie].description}</p>}
         </div>
     );
 })

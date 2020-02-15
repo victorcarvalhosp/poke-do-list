@@ -67,8 +67,8 @@ const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
                     <IonRow className="pkmn-grid">
                         {pokemonStore.list.map(pkmn => (
                                 <IonCol key={pkmn.id} className="pkmn-grid-item" sizeXl="1" sizeLg="2" sizeMd="2" sizeSm="3" sizeXs="4" onClick={e => openModalDetails(pkmn)}>
-                                    <Overworld direction="down" animationActive={true}
-                                               spriteUrl={`/assets/overworlds/pokemon/${pkmn.variety}.png`}/>
+                                    <Overworld direction="down" animationActive={true} type="pokemon"
+                                               spriteUrl={`${pkmn.variety}.png`}/>
                                     <p>{pkmn.name}</p>
                                     <p className="level">Lv.{pkmn.level} {userStore.user.partnerPokemon?.id === pkmn.id ? <IonIcon icon={star} /> : <></>}</p>
                                 </IonCol>

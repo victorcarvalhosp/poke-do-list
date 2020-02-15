@@ -8,6 +8,7 @@ export interface IUser {
   email: string;
   character: string;
   partnerPokemon?: IPokemon;
+  creationDate: Date;
   pokedex: Record<number, IPokedexStatus>;
 }
 
@@ -16,6 +17,7 @@ export class User implements IUser{
   email: string;
   name: string;
   uid: string;
+  creationDate: Date;
   pokedex: Record<number, IPokedexStatus>;
 
   constructor() {
@@ -24,6 +26,7 @@ export class User implements IUser{
     this.name = '';
     this.uid = '0';
     this.pokedex = {};
+    this.creationDate = new Date();
   }
 
 }

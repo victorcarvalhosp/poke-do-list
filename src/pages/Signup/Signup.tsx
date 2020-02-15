@@ -17,7 +17,6 @@ import {observer} from "mobx-react-lite";
 const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
 
-    const [toggleAudio, playAudio, stopAudio] = useAudio("/audio/musics/introduction.mp3");
     const [step, setStep] = useState(0);
     const [name, setName] = useState("");
     const [openModal, setOpenModal] = useState(false);
@@ -27,11 +26,6 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const FINAL_STEP = 12;
     const OPEN_SIGNUP_STEP = 10;
     const POKEMON_APPEAR_STEP = 3;
-
-
-    const goToSignin = () => {
-        history.push(Routes.SIGNIN)
-    }
 
     const onCloseModal = () => {
         setOpenModal(false);
@@ -46,7 +40,6 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     }
 
     useEffect(() => {
-        // playAudio();
         setStep(0);
         setAppearPokemon(false);
     }, []);
@@ -54,7 +47,7 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const onClickContinue = async () => {
         console.log('GO TO NEXT' + step);
         if (step === FINAL_STEP) {
-            await stopAudio();
+            // await stopAudio();
             history.push(Routes.SIGNUP_SELECT_POKEMON);
         } else if (step == OPEN_SIGNUP_STEP) {
             setOpenModal(true);

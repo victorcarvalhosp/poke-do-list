@@ -20,6 +20,7 @@ import {useRootStore} from "../../stores/StoreContext";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {Routes} from "../../router/Router";
 import {observer} from "mobx-react-lite";
+import {IUser} from "../../models/User";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -72,7 +73,7 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
         try {
             const res = await auth.createUserWithEmailAndPassword(email, password);
             if (res && res.user) {
-                const user = {uid: res.user.uid, name: name, email: res.user.email, creationDate: new Date(), character: character};
+                const user: IUser = {uid: res.user.uid, name: name, email: email, creationDate: new Date(), character: character, pokedex: {}};
                 await firestore.doc(`users/${res.user.uid}`).set(user);
                 await userStore.setUser(user.uid)
             }

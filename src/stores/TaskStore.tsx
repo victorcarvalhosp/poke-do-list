@@ -25,7 +25,9 @@ export interface ITaskStore {
     closeModal(): void;
 
     loadList(): void;
+
     save(task: ITask): void;
+
     remove(taskId: string): void
 
     completeTask(task: ITask): void;
@@ -33,8 +35,11 @@ export interface ITaskStore {
     filters: ITaskFilters;
 
     loadListByProject(projectId: string): void;
+
     loadListInbox(): void;
+
     loadListToday(): void;
+
     loadListWeek(): void;
 
 
@@ -59,54 +64,54 @@ export class TaskStore implements ITaskStore {
     @observable filters: ITaskFilters = new TaskFilters();
 
     @action
-    async loadListByProject(projectId: string){
+    async loadListByProject(projectId: string) {
         this.filters = new TaskFilters();
         this.filters.projectId = projectId;
         this.loadList();
     }
 
     @action
-    async loadListToday(){
+    async loadListToday() {
         this.filters = new TaskFilters();
         this.filters.periodFilter = "today";
         this.loadList();
     }
 
     @action
-    async loadListWeek(){
+    async loadListWeek() {
         this.filters = new TaskFilters();
         this.filters.periodFilter = "week";
         this.loadList();
     }
 
     @action
-    async loadListMonth(){
+    async loadListMonth() {
         this.filters = new TaskFilters();
         this.filters.periodFilter = "month";
         this.loadList();
     }
 
     @action
-    async loadListInbox(){
+    async loadListInbox() {
         this.filters = new TaskFilters();
         this.loadList();
     }
 
     @action
     async loadList() {
+        console.log('CALLED LOAD LIST');
         this.loadingList = true;
         let result;
-        if(this.filters.projectId){
+        if (this.filters.projectId) {
             console.log('LOAD BY PROJECT');
             result = await FirebaseApi.getOpenTasksByProject(this.root.userStore.user.uid, this.filters.projectId);
-        } else if(this.filters.periodFilter === "today") {
+        } else if (this.filters.periodFilter === "today") {
             result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().endOf('day').toDate()));
-        } else if(this.filters.periodFilter === "week") {
+        } else if (this.filters.periodFilter === "week") {
             result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().add(7, 'day').endOf('day').toDate()));
-        } else if(this.filters.periodFilter === "month") {
+        } else if (this.filters.periodFilter === "month") {
             result = await FirebaseApi.getOpenTasksUntilDate(this.root.userStore.user.uid, firebase.firestore.Timestamp.fromDate(dayjs().add(31, 'day').endOf('day').toDate()));
-        }
-        else {
+        } else {
             console.log('LOAD INBOX');
             result = await FirebaseApi.getInboxTasks(this.root.userStore.user.uid);
         }
@@ -131,7 +136,9 @@ export class TaskStore implements ITaskStore {
     async save(task: ITask) {
         try {
             this.loadingSave = true;
-            task.pokemon = this.root.pokemonStore.generateRandomPokemon(task.title);
+            if (!task.id) {
+                task.pokemon = this.root.pokemonStore.generateRandomPokemon(task);
+            }
             await FirebaseApi.saveTask(this.root.userStore.user.uid, task);
             this.selected = new Task();
             this.root.uiStore.showToast('Task saved');
@@ -166,7 +173,7 @@ export class TaskStore implements ITaskStore {
             const pkmnName = task.pokemon.name
             this.root.uiStore.showToast(`${pkmnName} caught!`);
         }
-        if(task.id){
+        if (task.id) {
             await FirebaseApi.completeTask(this.root.userStore.user.uid, task.id);
         }
     }

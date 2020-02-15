@@ -51,8 +51,8 @@ const Item: React.FC<IProps> = ({item, onClickItem}) => {
                 </span>
             </IonLabel>
             <div slot="end" onClick={() => onClickItem(item)}>
-                {!pokebalAnimation && item.pokemon && (<Overworld direction="down" animationActive={true} wild={true}
-                                                                  spriteUrl={`/assets/overworlds/pokemon/${item.pokemon?.variety}.png`}/>)}
+                {!pokebalAnimation && item.pokemon && (<Overworld direction="down" animationActive={true} wild={true} type="pokemon"
+                                                                  spriteUrl={`${item.pokemon?.variety}.png`}/>)}
                 {pokebalAnimation && (<div className="pokeball-animation"></div>)}
             </div>
         </IonItem>

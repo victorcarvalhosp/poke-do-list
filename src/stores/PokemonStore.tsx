@@ -11,6 +11,7 @@ import firebase from "firebase";
 import {IEvolution} from "../models/Evolution";
 import {Project} from "../models/Project";
 import {IPokedexStatus} from "../models/PokedexStatus";
+import {pokemonEncounters} from "../data/pokemon-encounters";
 
 export interface IPokemonStore {
     modalOpen: boolean;
@@ -34,7 +35,7 @@ export interface IPokemonStore {
 
     caughtPokemon(pokemon: IPokemon): void;
 
-    generateRandomPokemon(task: string): IPokemon;
+    generateRandomPokemon(task: ITask): IPokemon;
 
     generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon
 
@@ -110,6 +111,7 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     async selectInitialPokemon(selectedPokemon: IPokemonVariety) {
+        debugger;
         const initialPkmn = this.generatePokemonWithRandomAttributes(selectedPokemon.id, "Initial Pokémon");
         this.caughtPokemon(initialPkmn);
         this.setPokemonAsPartner(initialPkmn);
@@ -123,6 +125,7 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     async caughtPokemon(pokemon: IPokemon) {
+        debugger;
         const myPokemon = pokemon;
         myPokemon.date = firebase.firestore.Timestamp.fromDate(new Date());
         //Add some random properties for attack, height...
@@ -132,12 +135,16 @@ export class PokemonStore implements IPokemonStore {
     }
 
     private async registerPokedex(varietyId: number, caught: boolean) {
+        debugger;
         const pokedexRegister: Record<number, IPokedexStatus> = this.root.userStore.user.pokedex;
         if (!pokedexRegister[pokemonVarieties[varietyId].specie] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId].caught) {
             pokedexRegister[pokemonVarieties[varietyId].specie] = {
                 caught: caught,
                 specieId: pokemonVarieties[varietyId].specie,
-                varieties: {...pokedexRegister[pokemonVarieties[varietyId].specie]?.varieties, [varietyId]: {caught: caught, varietyId: varietyId}}
+                varieties: {
+                    ...pokedexRegister[pokemonVarieties[varietyId].specie]?.varieties,
+                    [varietyId]: {caught: caught, varietyId: varietyId}
+                }
             };
             await FirebaseApi.updatePokedex(this.root.userStore.user.uid, pokedexRegister);
         }
@@ -170,12 +177,47 @@ export class PokemonStore implements IPokemonStore {
     }
 
     @action
-    generateRandomPokemon(task: string): IPokemon {
-        debugger;
-        const randomId: number = getRandomInt(1, 9);
-        const variety: IPokemonVariety = pokemonVarieties[randomId];
+    generateRandomPokemon(task: ITask): IPokemon {
+        // let allVarieties = "";
+        // for (let i = 1; i <= 251; i++){
+        //     allVarieties += `{varietyId: ${i}},`
+        // }
+        // console.log(allVarieties);
+        const tier = this.calculateTierPokemonEncounter();
+        console.log(task.project?.theme || "inbox " + tier);
+        // @ts-ignore
+        const selectedTier = pokemonEncounters[task.project?.theme || "inbox"][tier];
+        // @ts-ignore
+        const randomPosition: number = getRandomInt(0, selectedTier.length-1);
+        console.log(randomPosition);
+        // @ts-ignore
+        console.log(selectedTier[randomPosition]);
+        // @ts-ignore
+        const variety: IPokemonVariety = pokemonVarieties[selectedTier[randomPosition].varietyId];
         this.registerPokedex(variety.id, false);
-        return {id: makeid(), name: pokemonSpecies[variety.specie].name, variety: variety.id, level: 1, task: task};
+        return {
+            id: makeid(),
+            name: pokemonSpecies[variety.specie].name,
+            variety: variety.id,
+            level: 1,
+            task: task.title
+        };
+    }
+
+    private calculateTierPokemonEncounter(): string {
+        let tiers = ["tier1", "tier2", "tier3", "tier4", "tier5"];
+        const tiersweight = [5.4, 3, 1, 0.5, 0.1]; //weight of each element above
+        const totalweight = eval(tiersweight.join("+")) //get total weight (in this case, 10)
+        const weighedTiers = new Array() //new array to hold "weighted" tiers
+        let currentTier = 0
+
+        while (currentTier < tiers.length) { //step through each fruit[] element
+            for (let i = 0; i < tiersweight[currentTier]; i++)
+                weighedTiers[weighedTiers.length] = tiers[currentTier]
+            currentTier++
+        }
+        let randomnumber = Math.floor(Math.random() * totalweight)
+        return weighedTiers[randomnumber];
     }
 
     @action
