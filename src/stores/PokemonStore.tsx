@@ -135,7 +135,6 @@ export class PokemonStore implements IPokemonStore {
     }
 
     private async registerPokedex(varietyId: number, caught: boolean) {
-        debugger;
         const pokedexRegister: Record<number, IPokedexStatus> = this.root.userStore.user.pokedex;
         if (!pokedexRegister[pokemonVarieties[varietyId].specie] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId].caught) {
             pokedexRegister[pokemonVarieties[varietyId].specie] = {
@@ -165,14 +164,23 @@ export class PokemonStore implements IPokemonStore {
     @action
     generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon {
         const variety: IPokemonVariety = pokemonVarieties[pokemonVarietyId];
-        //TODO Generate random attributes as id, gender, stats, level
+        //TODO Generate random attributes as id, gender, stats, level, iv
         return {
             id: makeid(),
             name: pokemonSpecies[variety.specie].name,
             variety: variety.id,
             level: 1,
             task: task,
-            date: firebase.firestore.Timestamp.fromDate(new Date())
+            date: firebase.firestore.Timestamp.fromDate(new Date()),
+            actualHp: variety.baseHp,
+            hp: variety.baseHp,
+            atk: variety.baseAtk,
+            def: variety.baseDef,
+            speed: variety.baseDef,
+            ivAtk: 15,
+            ivDef: 15,
+            ivHp: 15,
+            ivSpeed: 15
         };
     }
 
@@ -200,7 +208,16 @@ export class PokemonStore implements IPokemonStore {
             name: pokemonSpecies[variety.specie].name,
             variety: variety.id,
             level: 1,
-            task: task.title
+            task: task.title,
+            actualHp: variety.baseHp,
+            hp: variety.baseHp,
+            atk: variety.baseAtk,
+            def: variety.baseDef,
+            speed: variety.baseDef,
+            ivAtk: 15,
+            ivDef: 15,
+            ivHp: 15,
+            ivSpeed: 15
         };
     }
 

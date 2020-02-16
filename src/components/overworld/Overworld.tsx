@@ -13,12 +13,18 @@ interface IComponentProps {
     type?: "pokemon"| "human" | "item";
     className?: string
     wild?: boolean;
+    onClick?(): void
 }
 
-const Overworld: React.FC<IComponentProps> = ({spriteUrl, direction,animationActive, type, className, wild}) => {
+const Overworld: React.FC<IComponentProps> = ({spriteUrl, direction,animationActive, type, className, wild, onClick}) => {
+    const handleClick = () => {
+        if(onClick) {
+            onClick();
+        }
+    }
     const path = type && type === "human" ? '../../assets/overworlds/humans/' : type && type === "pokemon" ? `${CLOUDINARY_URL_POKEMON_OVERWORLD}` : type && type === "item" ? '../../assets/overworlds/items/': '';
     return (
-            <div className={`Character Character--walk-${direction ? direction: 'down'} ` + (className ? className : '')}>
+            <div className={`Character Character--walk-${direction ? direction: 'down'} ` + (className ? className : '')} onClick={handleClick}>
                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/WalkingDemo-Shadow.png"
                      className="Character_shadow PixelArtImage"/>
                 <img src={`${path}${spriteUrl}`}

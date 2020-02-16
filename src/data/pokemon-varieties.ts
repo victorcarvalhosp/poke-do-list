@@ -9,7 +9,12 @@ export const pokemonVarieties: Record<number, IPokemonVariety> =
             "specie": 0,
             "is_default": true,
             "type1": "unknown",
-            evolutions: []
+            evolutions: [],
+            baseHp: 0,
+            baseAtk: 0,
+            baseDef: 0,
+            baseSpeed: 0,
+            moves: [0]
         },
         1: {
             id: 1,
@@ -18,734 +23,1633 @@ export const pokemonVarieties: Record<number, IPokemonVariety> =
             is_default: true,
             type1: "grass",
             type2: "poison",
-            evolutions: [{to: 2, method: "level_up", minLevel: 16},]
-        },
-        2: {
+            evolutions: [{to: 2, method: "level_up", minLevel: 16},],
+            baseHp: 45,
+            baseAtk: 57,
+            baseDef: 57,
+            baseSpeed: 45,
+            moves: [0, 13, 15, 20, 22, 29, 33, 34, 36, 38, 70, 72, 75, 76, 80, 99, 124, 130, 173, 188, 189, 202, 210, 237, 249, 263, 282, 290, 331, 345, 402, 412, 437, 438, 474, 496, 497, 520]
+        }, 2: {
             id: 2,
             name: "ivysaur",
             specie: 2,
             is_default: true,
             type1: "grass",
             type2: "poison",
-            evolutions: [{to: 3, method: "level_up", minLevel: 32},]
-        },
-        3: {id: 3, name: "venusaur", specie: 3, is_default: true, type1: "grass", type2: "poison", evolutions: []},
-        4: {
+            evolutions: [{to: 3, method: "level_up", minLevel: 32},],
+            baseHp: 60,
+            baseAtk: 71,
+            baseDef: 72,
+            baseSpeed: 60,
+            moves: [0, 15, 20, 22, 29, 33, 34, 36, 38, 70, 72, 75, 76, 99, 173, 188, 189, 202, 210, 237, 249, 263, 282, 290, 331, 402, 412, 474, 496, 497, 520]
+        }, 3: {
+            id: 3,
+            name: "venusaur",
+            specie: 3,
+            is_default: true,
+            type1: "grass",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 91,
+            baseDef: 92,
+            baseSpeed: 80,
+            moves: [0, 15, 20, 22, 29, 33, 34, 36, 38, 63, 70, 72, 75, 76, 80, 89, 99, 173, 188, 189, 200, 202, 210, 237, 249, 263, 282, 290, 331, 338, 402, 412, 416, 431, 474, 496, 497, 520, 523, 572]
+        }, 4: {
             id: 4,
             name: "charmander",
             specie: 4,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 5, method: "level_up", minLevel: 16},]
-        },
-        5: {
+            evolutions: [{to: 5, method: "level_up", minLevel: 16},],
+            baseHp: 39,
+            baseAtk: 56,
+            baseDef: 47,
+            baseSpeed: 65,
+            moves: [0, 5, 7, 9, 10, 15, 25, 29, 34, 36, 38, 44, 52, 53, 66, 70, 83, 91, 99, 126, 129, 130, 157, 163, 173, 189, 200, 210, 223, 225, 231, 232, 237, 242, 246, 249, 257, 263, 264, 280, 290, 314, 315, 317, 332, 337, 394, 406, 407, 421, 424, 481, 488, 496, 497, 510, 517, 519, 612]
+        }, 5: {
             id: 5,
             name: "charmeleon",
             specie: 5,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 6, method: "level_up", minLevel: 36},]
-        },
-        6: {id: 6, name: "charizard", specie: 6, is_default: true, type1: "fire", type2: "flying", evolutions: []},
-        7: {
+            evolutions: [{to: 6, method: "level_up", minLevel: 36},],
+            baseHp: 58,
+            baseAtk: 72,
+            baseDef: 62,
+            baseSpeed: 80,
+            moves: [0, 5, 7, 9, 10, 15, 25, 29, 34, 36, 38, 52, 53, 66, 70, 83, 91, 99, 126, 129, 130, 157, 163, 173, 189, 200, 210, 223, 225, 231, 232, 237, 249, 257, 263, 264, 280, 290, 315, 317, 332, 337, 406, 421, 424, 481, 488, 496, 497, 510, 517, 519, 612]
+        }, 6: {
+            id: 6,
+            name: "charizard",
+            specie: 6,
+            is_default: true,
+            type1: "fire",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 78,
+            baseAtk: 97,
+            baseDef: 82,
+            baseSpeed: 100,
+            moves: [0, 5, 7, 9, 10, 15, 17, 19, 25, 29, 34, 36, 38, 52, 53, 63, 66, 70, 76, 83, 89, 91, 99, 126, 129, 130, 157, 163, 173, 189, 200, 210, 211, 223, 225, 231, 232, 237, 239, 249, 257, 263, 264, 280, 290, 307, 314, 315, 317, 332, 337, 394, 403, 406, 411, 416, 421, 424, 466, 481, 488, 496, 497, 507, 510, 517, 519, 523, 525, 612, 693]
+        }, 7: {
             id: 7,
             name: "squirtle",
             specie: 7,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 8, method: "level_up", minLevel: 16},]
-        },
-        8: {
+            evolutions: [{to: 8, method: "level_up", minLevel: 16},],
+            baseHp: 44,
+            baseAtk: 49,
+            baseDef: 65,
+            baseSpeed: 43,
+            moves: [0, 5, 8, 25, 29, 33, 34, 36, 38, 44, 55, 56, 57, 58, 59, 61, 66, 70, 91, 93, 99, 127, 130, 145, 173, 189, 196, 205, 223, 229, 231, 237, 249, 250, 252, 263, 264, 280, 290, 291, 317, 323, 330, 352, 362, 396, 401, 406, 428, 453, 496, 503, 518, 612]
+        }, 8: {
             id: 8,
             name: "wartortle",
             specie: 8,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 9, method: "level_up", minLevel: 36},]
-        },
-        9: {id: 9, name: "blastoise", specie: 9, is_default: true, type1: "water", evolutions: []},
-        10: {
+            evolutions: [{to: 9, method: "level_up", minLevel: 36},],
+            baseHp: 59,
+            baseAtk: 64,
+            baseDef: 80,
+            baseSpeed: 58,
+            moves: [0, 5, 8, 25, 29, 33, 34, 36, 38, 44, 55, 56, 57, 58, 59, 61, 66, 70, 91, 99, 127, 130, 145, 173, 189, 196, 205, 223, 229, 231, 237, 249, 250, 263, 264, 280, 290, 291, 317, 352, 362, 401, 406, 428, 496, 503, 518, 612]
+        }, 9: {
+            id: 9,
+            name: "blastoise",
+            specie: 9,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 79,
+            baseAtk: 84,
+            baseDef: 103,
+            baseSpeed: 78,
+            moves: [0, 5, 8, 25, 29, 33, 34, 36, 38, 44, 55, 56, 57, 58, 59, 61, 63, 66, 70, 89, 91, 99, 127, 130, 145, 157, 173, 189, 196, 200, 205, 223, 229, 231, 237, 249, 250, 263, 264, 280, 290, 291, 308, 317, 324, 352, 362, 399, 401, 406, 411, 416, 419, 428, 430, 431, 479, 496, 503, 518, 523, 525, 612]
+        }, 10: {
             id: 10,
             name: "caterpie",
             specie: 10,
             is_default: true,
             type1: "bug",
-            evolutions: [{to: 11, method: "level_up", minLevel: 7},]
-        },
-        11: {
+            evolutions: [{to: 11, method: "level_up", minLevel: 7},],
+            baseHp: 45,
+            baseAtk: 25,
+            baseDef: 28,
+            baseSpeed: 45,
+            moves: [0, 33, 173, 450, 527]
+        }, 11: {
             id: 11,
             name: "metapod",
             specie: 11,
             is_default: true,
             type1: "bug",
-            evolutions: [{to: 12, method: "level_up", minLevel: 10},]
-        },
-        12: {id: 12, name: "butterfree", specie: 12, is_default: true, type1: "bug", type2: "flying", evolutions: []},
-        13: {
+            evolutions: [{to: 12, method: "level_up", minLevel: 10},],
+            baseHp: 50,
+            baseAtk: 23,
+            baseDef: 40,
+            baseSpeed: 30,
+            moves: [0, 450, 527]
+        }, 12: {
+            id: 12,
+            name: "butterfree",
+            specie: 12,
+            is_default: true,
+            type1: "bug",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 68,
+            baseDef: 65,
+            baseSpeed: 70,
+            moves: [0, 13, 16, 36, 38, 60, 63, 72, 76, 93, 94, 99, 129, 138, 168, 173, 202, 237, 239, 247, 263, 290, 314, 318, 324, 332, 369, 403, 405, 412, 416, 450, 466, 474, 496, 512, 522, 527, 611]
+        }, 13: {
             id: 13,
             name: "weedle",
             specie: 13,
             is_default: true,
             type1: "bug",
             type2: "poison",
-            evolutions: [{to: 14, method: "level_up", minLevel: 7},]
-        },
-        14: {
+            evolutions: [{to: 14, method: "level_up", minLevel: 7},],
+            baseHp: 40,
+            baseAtk: 28,
+            baseDef: 25,
+            baseSpeed: 50,
+            moves: [0, 40, 450, 527]
+        }, 14: {
             id: 14,
             name: "kakuna",
             specie: 14,
             is_default: true,
             type1: "bug",
             type2: "poison",
-            evolutions: [{to: 15, method: "level_up", minLevel: 10},]
-        },
-        15: {id: 15, name: "beedrill", specie: 15, is_default: true, type1: "bug", type2: "poison", evolutions: []},
-        16: {
+            evolutions: [{to: 15, method: "level_up", minLevel: 10},],
+            baseHp: 45,
+            baseAtk: 25,
+            baseDef: 38,
+            baseSpeed: 35,
+            moves: [0, 450, 527]
+        }, 15: {
+            id: 15,
+            name: "beedrill",
+            specie: 15,
+            is_default: true,
+            type1: "bug",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 68,
+            baseDef: 60,
+            baseSpeed: 75,
+            moves: [0, 15, 31, 36, 38, 41, 42, 63, 72, 76, 99, 129, 130, 168, 173, 188, 202, 206, 210, 228, 237, 249, 263, 280, 282, 290, 314, 318, 332, 369, 371, 372, 398, 404, 416, 450, 466, 474, 496, 512, 522, 527, 529, 565, 611, 693]
+        }, 16: {
             id: 16,
             name: "pidgey",
             specie: 16,
             is_default: true,
             type1: "normal",
             type2: "flying",
-            evolutions: [{to: 17, method: "level_up", minLevel: 18},]
-        },
-        17: {
+            evolutions: [{to: 17, method: "level_up", minLevel: 18},],
+            baseHp: 40,
+            baseAtk: 40,
+            baseDef: 38,
+            baseSpeed: 56,
+            moves: [0, 13, 16, 17, 19, 33, 36, 38, 98, 99, 129, 143, 168, 173, 185, 189, 211, 228, 237, 239, 253, 257, 263, 290, 314, 332, 365, 369, 403, 413, 466, 496, 542]
+        }, 17: {
             id: 17,
             name: "pidgeotto",
             specie: 17,
             is_default: true,
             type1: "normal",
             type2: "flying",
-            evolutions: [{to: 18, method: "level_up", minLevel: 36},]
-        },
-        18: {id: 18, name: "pidgeot", specie: 18, is_default: true, type1: "normal", type2: "flying", evolutions: []},
-        19: {
+            evolutions: [{to: 18, method: "level_up", minLevel: 36},],
+            baseHp: 63,
+            baseAtk: 55,
+            baseDef: 53,
+            baseSpeed: 71,
+            moves: [0, 13, 16, 17, 19, 33, 36, 38, 98, 99, 129, 143, 168, 173, 189, 211, 237, 239, 253, 257, 263, 290, 314, 332, 365, 369, 403, 466, 496, 542]
+        }, 18: {
+            id: 18,
+            name: "pidgeot",
+            specie: 18,
+            is_default: true,
+            type1: "normal",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 83,
+            baseAtk: 75,
+            baseDef: 73,
+            baseSpeed: 101,
+            moves: [0, 13, 16, 17, 19, 33, 36, 38, 63, 98, 99, 129, 143, 168, 173, 189, 211, 237, 239, 253, 257, 263, 290, 314, 332, 365, 369, 403, 416, 466, 496, 542]
+        }, 19: {
             id: 19,
             name: "rattata",
             specie: 19,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 20, method: "level_up", minLevel: 20},]
-        },
-        20: {id: 20, name: "raticate", specie: 20, is_default: true, type1: "normal", evolutions: []},
-        21: {
+            evolutions: [{to: 20, method: "level_up", minLevel: 20},],
+            baseHp: 30,
+            baseAtk: 41,
+            baseDef: 35,
+            baseSpeed: 72,
+            moves: [0, 15, 29, 33, 34, 36, 38, 44, 55, 58, 59, 61, 85, 87, 91, 98, 99, 129, 130, 154, 158, 168, 172, 173, 189, 196, 228, 231, 237, 242, 247, 249, 253, 263, 279, 290, 343, 351, 365, 369, 372, 387, 389, 428, 451, 496, 514, 528]
+        }, 20: {
+            id: 20,
+            name: "raticate",
+            specie: 20,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 55,
+            baseAtk: 66,
+            baseDef: 65,
+            baseSpeed: 97,
+            moves: [0, 15, 29, 33, 34, 36, 38, 44, 55, 58, 59, 61, 63, 70, 85, 87, 91, 98, 99, 129, 130, 158, 168, 173, 189, 196, 228, 231, 237, 242, 247, 249, 253, 263, 290, 343, 351, 365, 369, 372, 387, 389, 416, 428, 451, 496, 514, 528]
+        }, 21: {
             id: 21,
             name: "spearow",
             specie: 21,
             is_default: true,
             type1: "normal",
             type2: "flying",
-            evolutions: [{to: 22, method: "level_up", minLevel: 20},]
-        },
-        22: {id: 22, name: "fearow", specie: 22, is_default: true, type1: "normal", type2: "flying", evolutions: []},
-        23: {
+            evolutions: [{to: 22, method: "level_up", minLevel: 20},],
+            baseHp: 40,
+            baseAtk: 46,
+            baseDef: 31,
+            baseSpeed: 70,
+            moves: [0, 13, 19, 31, 36, 38, 64, 65, 98, 99, 129, 143, 161, 168, 173, 185, 189, 206, 211, 228, 237, 239, 253, 257, 263, 290, 310, 314, 332, 365, 369, 372, 466, 496, 497, 529]
+        }, 22: {
+            id: 22,
+            name: "fearow",
+            specie: 22,
+            is_default: true,
+            type1: "normal",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 76,
+            baseDef: 63,
+            baseSpeed: 100,
+            moves: [0, 13, 19, 31, 36, 38, 63, 64, 65, 99, 129, 143, 168, 173, 189, 206, 211, 228, 237, 239, 253, 257, 263, 290, 314, 332, 365, 369, 372, 416, 466, 496, 497, 529]
+        }, 23: {
             id: 23,
             name: "ekans",
             specie: 23,
             is_default: true,
             type1: "poison",
-            evolutions: [{to: 24, method: "level_up", minLevel: 22},]
-        },
-        24: {id: 24, name: "arbok", specie: 24, is_default: true, type1: "poison", evolutions: []},
-        25: {
+            evolutions: [{to: 24, method: "level_up", minLevel: 22},],
+            baseHp: 35,
+            baseAtk: 50,
+            baseDef: 49,
+            baseSpeed: 55,
+            moves: [0, 20, 21, 29, 34, 35, 36, 38, 40, 44, 51, 70, 72, 89, 91, 99, 130, 157, 168, 173, 188, 202, 228, 231, 237, 242, 263, 290, 305, 317, 342, 371, 389, 398, 399, 401, 402, 426, 441, 474, 482, 491, 496, 523, 562, 611, 693]
+        }, 24: {
+            id: 24,
+            name: "arbok",
+            specie: 24,
+            is_default: true,
+            type1: "poison",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 80,
+            baseDef: 74,
+            baseSpeed: 80,
+            moves: [0, 20, 29, 34, 35, 36, 38, 40, 44, 51, 63, 70, 72, 89, 91, 99, 130, 157, 168, 173, 188, 202, 231, 237, 242, 263, 290, 317, 371, 398, 399, 401, 402, 416, 422, 423, 424, 426, 441, 474, 482, 491, 496, 523, 525, 562, 611, 693]
+        }, 25: {
             id: 25,
             name: "pikachu",
             specie: 25,
             is_default: true,
             type1: "electric",
-            evolutions: [{to: 26, method: "level_up", minLevel: 32},]
-        },
-        26: {id: 26, name: "raichu", specie: 26, is_default: true, type1: "electric", evolutions: []},
-        27: {
+            evolutions: [{to: 26, method: "level_up", minLevel: 32},],
+            baseHp: 35,
+            baseAtk: 53,
+            baseDef: 45,
+            baseSpeed: 90,
+            moves: [0, 5, 6, 9, 21, 25, 29, 34, 36, 38, 57, 66, 70, 84, 85, 87, 91, 98, 99, 129, 130, 173, 189, 192, 205, 209, 223, 231, 237, 249, 263, 264, 280, 282, 290, 324, 343, 351, 364, 435, 451, 496, 497, 521, 527, 528, 609]
+        }, 26: {
+            id: 26,
+            name: "raichu",
+            specie: 26,
+            is_default: true,
+            type1: "electric",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 90,
+            baseDef: 68,
+            baseSpeed: 110,
+            moves: [0, 5, 6, 9, 25, 29, 34, 36, 38, 63, 66, 70, 84, 85, 87, 91, 98, 99, 129, 130, 168, 173, 189, 192, 205, 223, 231, 237, 249, 263, 264, 280, 282, 290, 324, 343, 351, 411, 416, 451, 496, 497, 521, 527, 528]
+        }, 27: {
             id: 27,
             name: "sandshrew",
             specie: 27,
             is_default: true,
             type1: "ground",
-            evolutions: [{to: 28, method: "level_up", minLevel: 22},]
-        },
-        28: {id: 28, name: "sandslash", specie: 28, is_default: true, type1: "ground", evolutions: []},
-        29: {
+            evolutions: [{to: 28, method: "level_up", minLevel: 22},],
+            baseHp: 50,
+            baseAtk: 48,
+            baseDef: 58,
+            baseSpeed: 40,
+            moves: [0, 10, 15, 29, 34, 36, 38, 40, 66, 70, 89, 91, 99, 129, 130, 154, 157, 163, 168, 173, 189, 205, 210, 223, 229, 231, 232, 237, 249, 263, 264, 280, 282, 290, 306, 317, 328, 332, 341, 343, 398, 400, 404, 414, 421, 431, 496, 498, 523]
+        }, 28: {
+            id: 28,
+            name: "sandslash",
+            specie: 28,
+            is_default: true,
+            type1: "ground",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 73,
+            baseDef: 83,
+            baseSpeed: 65,
+            moves: [0, 10, 15, 29, 34, 36, 38, 40, 63, 66, 70, 89, 91, 99, 129, 130, 154, 157, 163, 168, 173, 189, 205, 210, 223, 229, 231, 237, 249, 263, 264, 280, 282, 290, 306, 317, 328, 332, 343, 398, 404, 411, 414, 416, 421, 431, 444, 496, 523]
+        }, 29: {
             id: 29,
             name: "nidoran-f",
             specie: 29,
             is_default: true,
             type1: "poison",
-            evolutions: [{to: 30, method: "level_up", minLevel: 16},]
-        },
-        30: {
+            evolutions: [{to: 30, method: "level_up", minLevel: 16},],
+            baseHp: 55,
+            baseAtk: 44,
+            baseDef: 46,
+            baseSpeed: 41,
+            moves: [0, 10, 15, 24, 29, 33, 34, 36, 38, 40, 44, 58, 59, 70, 85, 87, 91, 99, 130, 154, 168, 173, 188, 189, 228, 231, 237, 242, 249, 263, 290, 305, 332, 342, 351, 352, 398, 421, 474, 496, 497, 498]
+        }, 30: {
             id: 30,
             name: "nidorina",
             specie: 30,
             is_default: true,
             type1: "poison",
-            evolutions: [{to: 31, method: "level_up", minLevel: 32},]
-        },
-        31: {id: 31, name: "nidoqueen", specie: 31, is_default: true, type1: "poison", type2: "ground", evolutions: []},
-        32: {
+            evolutions: [{to: 31, method: "level_up", minLevel: 32},],
+            baseHp: 70,
+            baseAtk: 59,
+            baseDef: 61,
+            baseSpeed: 56,
+            moves: [0, 10, 15, 24, 29, 33, 34, 36, 38, 40, 44, 55, 58, 59, 61, 70, 85, 87, 91, 99, 130, 154, 168, 173, 188, 189, 231, 237, 242, 249, 263, 290, 305, 332, 351, 352, 398, 421, 474, 496, 497]
+        }, 31: {
+            id: 31,
+            name: "nidoqueen",
+            specie: 31,
+            is_default: true,
+            type1: "poison",
+            type2: "ground",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 84,
+            baseDef: 86,
+            baseSpeed: 76,
+            moves: [0, 5, 6, 7, 8, 9, 10, 15, 24, 25, 29, 33, 34, 36, 38, 40, 53, 55, 57, 58, 59, 61, 63, 66, 70, 85, 87, 89, 91, 99, 126, 130, 157, 168, 173, 188, 189, 196, 200, 210, 223, 231, 237, 247, 249, 250, 253, 263, 264, 276, 280, 290, 317, 332, 351, 352, 398, 401, 406, 411, 414, 416, 419, 421, 431, 444, 474, 479, 482, 496, 497, 498, 510, 523, 525, 529, 612]
+        }, 32: {
             id: 32,
             name: "nidoran-m",
             specie: 32,
             is_default: true,
             type1: "poison",
-            evolutions: [{to: 33, method: "level_up", minLevel: 16},]
-        },
-        33: {
+            evolutions: [{to: 33, method: "level_up", minLevel: 16},],
+            baseHp: 46,
+            baseAtk: 49,
+            baseDef: 40,
+            baseSpeed: 50,
+            moves: [0, 15, 24, 29, 30, 31, 33, 34, 36, 38, 40, 58, 59, 64, 70, 85, 87, 91, 93, 99, 130, 168, 173, 188, 189, 231, 237, 249, 263, 290, 342, 351, 352, 389, 398, 421, 457, 474, 496, 497, 498, 529, 684]
+        }, 33: {
             id: 33,
             name: "nidorino",
             specie: 33,
             is_default: true,
             type1: "poison",
-            evolutions: [{to: 34, method: "level_up", minLevel: 32},]
-        },
-        34: {id: 34, name: "nidoking", specie: 34, is_default: true, type1: "poison", type2: "ground", evolutions: []},
-        35: {
+            evolutions: [{to: 34, method: "level_up", minLevel: 32},],
+            baseHp: 61,
+            baseAtk: 64,
+            baseDef: 56,
+            baseSpeed: 65,
+            moves: [0, 15, 24, 29, 30, 31, 33, 34, 36, 38, 40, 55, 58, 59, 61, 64, 70, 85, 87, 91, 99, 130, 168, 173, 188, 189, 231, 237, 249, 263, 290, 351, 352, 389, 398, 421, 474, 496, 497, 529, 684]
+        }, 34: {
+            id: 34,
+            name: "nidoking",
+            specie: 34,
+            is_default: true,
+            type1: "poison",
+            type2: "ground",
+            evolutions: [],
+            baseHp: 81,
+            baseAtk: 94,
+            baseDef: 76,
+            baseSpeed: 85,
+            moves: [0, 5, 6, 7, 8, 9, 15, 24, 25, 29, 30, 33, 34, 36, 37, 38, 40, 53, 55, 57, 58, 59, 61, 63, 64, 66, 70, 85, 87, 89, 91, 99, 126, 130, 157, 168, 173, 188, 189, 196, 200, 210, 223, 224, 231, 237, 247, 249, 250, 253, 263, 264, 276, 280, 290, 317, 351, 352, 389, 398, 401, 406, 411, 414, 416, 419, 421, 431, 444, 474, 479, 482, 496, 497, 498, 510, 523, 525, 529, 612, 684]
+        }, 35: {
             id: 35,
             name: "clefairy",
             specie: 35,
             is_default: true,
             type1: "fairy",
-            evolutions: [{to: 36, method: "level_up", minLevel: 32},]
-        },
-        36: {id: 36, name: "clefable", specie: 36, is_default: true, type1: "fairy", evolutions: []},
-        37: {
+            evolutions: [{to: 36, method: "level_up", minLevel: 32},],
+            baseHp: 70,
+            baseAtk: 53,
+            baseDef: 57,
+            baseSpeed: 35,
+            moves: [0, 1, 3, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 55, 58, 59, 61, 66, 70, 76, 85, 87, 91, 94, 99, 126, 130, 138, 161, 173, 189, 192, 196, 205, 223, 231, 237, 247, 249, 263, 264, 280, 282, 290, 304, 309, 324, 340, 343, 351, 352, 358, 387, 409, 428, 451, 473, 496, 497, 500, 510, 514, 574, 585, 605, 612]
+        }, 36: {
+            id: 36,
+            name: "clefable",
+            specie: 36,
+            is_default: true,
+            type1: "fairy",
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 83,
+            baseDef: 82,
+            baseSpeed: 60,
+            moves: [0, 3, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 55, 58, 59, 61, 63, 66, 70, 76, 85, 87, 91, 94, 99, 126, 130, 138, 161, 173, 189, 192, 196, 205, 223, 231, 237, 247, 249, 263, 264, 280, 282, 290, 304, 324, 340, 343, 351, 352, 387, 409, 411, 416, 428, 451, 473, 496, 497, 510, 514, 574, 605, 612]
+        }, 37: {
             id: 37,
             name: "vulpix",
             specie: 37,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 38, method: "level_up", minLevel: 32},]
-        },
-        38: {id: 38, name: "ninetales", specie: 38, is_default: true, type1: "fire", evolutions: []},
-        39: {
+            evolutions: [{to: 38, method: "level_up", minLevel: 32},],
+            baseHp: 38,
+            baseAtk: 46,
+            baseDef: 53,
+            baseSpeed: 65,
+            moves: [0, 29, 34, 36, 38, 52, 53, 83, 91, 98, 99, 126, 129, 130, 173, 185, 231, 237, 257, 263, 290, 315, 326, 343, 371, 394, 399, 412, 428, 466, 481, 488, 492, 496, 506, 510, 517, 541]
+        }, 38: {
+            id: 38,
+            name: "ninetales",
+            specie: 38,
+            is_default: true,
+            type1: "fire",
+            evolutions: [],
+            baseHp: 73,
+            baseAtk: 79,
+            baseDef: 88,
+            baseSpeed: 100,
+            moves: [0, 29, 34, 36, 38, 52, 53, 63, 76, 83, 91, 98, 99, 126, 129, 130, 138, 173, 231, 237, 257, 263, 290, 315, 343, 371, 399, 412, 416, 428, 466, 473, 488, 492, 496, 510]
+        }, 39: {
             id: 39,
             name: "jigglypuff",
             specie: 39,
             is_default: true,
             type1: "normal",
             type2: "fairy",
-            evolutions: [{to: 40, method: "level_up", minLevel: 32},]
-        },
-        40: {id: 40, name: "wigglytuff", specie: 40, is_default: true, type1: "normal", type2: "fairy", evolutions: []},
-        41: {
+            evolutions: [{to: 40, method: "level_up", minLevel: 32},],
+            baseHp: 115,
+            baseAtk: 45,
+            baseDef: 23,
+            baseSpeed: 20,
+            moves: [0, 1, 3, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 55, 58, 59, 61, 66, 70, 76, 85, 87, 91, 94, 99, 126, 130, 138, 161, 173, 189, 192, 196, 205, 223, 237, 247, 263, 264, 280, 282, 290, 304, 340, 343, 351, 352, 358, 387, 409, 451, 496, 497, 510, 514, 528, 574, 605, 612]
+        }, 40: {
+            id: 40,
+            name: "wigglytuff",
+            specie: 40,
+            is_default: true,
+            type1: "normal",
+            type2: "fairy",
+            evolutions: [],
+            baseHp: 140,
+            baseAtk: 78,
+            baseDef: 48,
+            baseSpeed: 45,
+            moves: [0, 3, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 55, 58, 59, 61, 63, 66, 70, 76, 85, 87, 91, 94, 99, 126, 130, 138, 161, 173, 189, 192, 196, 205, 223, 237, 247, 263, 264, 280, 282, 290, 304, 340, 343, 351, 352, 387, 409, 411, 416, 451, 496, 497, 510, 514, 528, 583, 605, 612]
+        }, 41: {
             id: 41,
             name: "zubat",
             specie: 41,
             is_default: true,
             type1: "poison",
             type2: "flying",
-            evolutions: [{to: 42, method: "level_up", minLevel: 22},]
-        },
-        42: {
+            evolutions: [{to: 42, method: "level_up", minLevel: 22},],
+            baseHp: 40,
+            baseAtk: 38,
+            baseDef: 38,
+            baseSpeed: 55,
+            moves: [0, 13, 16, 17, 19, 36, 38, 44, 71, 72, 98, 99, 129, 141, 168, 173, 185, 188, 202, 211, 228, 237, 239, 247, 253, 257, 263, 290, 305, 310, 314, 332, 365, 369, 371, 403, 413, 428, 466, 474, 496, 512]
+        }, 42: {
             id: 42,
             name: "golbat",
             specie: 42,
             is_default: true,
             type1: "poison",
             type2: "flying",
-            evolutions: [{to: 169, method: "level_up", minLevel: 32},]
-        },
-        43: {
+            evolutions: [{to: 169, method: "level_up", minLevel: 32},],
+            baseHp: 75,
+            baseAtk: 73,
+            baseDef: 73,
+            baseSpeed: 90,
+            moves: [0, 13, 17, 19, 36, 38, 44, 63, 71, 72, 99, 129, 141, 168, 173, 188, 202, 211, 237, 239, 247, 253, 257, 263, 290, 305, 310, 314, 332, 365, 369, 371, 403, 416, 428, 466, 474, 496, 512]
+        }, 43: {
             id: 43,
             name: "oddish",
             specie: 43,
             is_default: true,
             type1: "grass",
             type2: "poison",
-            evolutions: [{to: 44, method: "level_up", minLevel: 21},]
-        },
-        44: {
+            evolutions: [{to: 44, method: "level_up", minLevel: 21},],
+            baseHp: 45,
+            baseAtk: 63,
+            baseDef: 60,
+            baseSpeed: 30,
+            moves: [0, 15, 36, 38, 51, 71, 72, 75, 76, 80, 99, 173, 188, 202, 237, 263, 290, 331, 402, 412, 474, 496, 585, 605, 611]
+        }, 44: {
             id: 44,
             name: "gloom",
             specie: 44,
             is_default: true,
             type1: "grass",
             type2: "poison",
-            evolutions: [{to: 45, method: "level_up", minLevel: 32}, {to: 182, method: "level_up", minLevel: 32},]
-        },
-        45: {id: 45, name: "vileplume", specie: 45, is_default: true, type1: "grass", type2: "poison", evolutions: []},
-        46: {
+            evolutions: [{to: 45, method: "level_up", minLevel: 32}, {to: 182, method: "level_up", minLevel: 32},],
+            baseHp: 60,
+            baseAtk: 75,
+            baseDef: 73,
+            baseSpeed: 40,
+            moves: [0, 15, 36, 38, 51, 71, 72, 76, 80, 99, 173, 188, 202, 237, 263, 290, 331, 402, 409, 412, 474, 496, 572, 605, 611]
+        }, 45: {
+            id: 45,
+            name: "vileplume",
+            specie: 45,
+            is_default: true,
+            type1: "grass",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 95,
+            baseDef: 88,
+            baseSpeed: 50,
+            moves: [0, 15, 34, 36, 38, 51, 63, 71, 72, 76, 80, 99, 173, 188, 202, 237, 263, 290, 331, 402, 409, 412, 416, 474, 496, 572, 605, 611]
+        }, 46: {
             id: 46,
             name: "paras",
             specie: 46,
             is_default: true,
             type1: "bug",
             type2: "grass",
-            evolutions: [{to: 47, method: "level_up", minLevel: 24},]
-        },
-        47: {id: 47, name: "parasect", specie: 47, is_default: true, type1: "bug", type2: "grass", evolutions: []},
-        48: {
+            evolutions: [{to: 47, method: "level_up", minLevel: 24},],
+            baseHp: 35,
+            baseAtk: 58,
+            baseDef: 55,
+            baseSpeed: 25,
+            moves: [0, 10, 15, 34, 36, 38, 60, 71, 72, 76, 91, 99, 130, 141, 163, 168, 173, 188, 202, 206, 210, 228, 232, 237, 249, 263, 280, 282, 290, 331, 332, 402, 404, 412, 440, 450, 474, 496, 522, 565]
+        }, 47: {
+            id: 47,
+            name: "parasect",
+            specie: 47,
+            is_default: true,
+            type1: "bug",
+            type2: "grass",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 78,
+            baseDef: 80,
+            baseSpeed: 30,
+            moves: [0, 10, 15, 34, 36, 38, 63, 71, 72, 76, 91, 99, 130, 141, 163, 168, 173, 188, 202, 206, 210, 237, 249, 263, 280, 282, 290, 331, 332, 402, 404, 412, 416, 440, 450, 474, 496, 522]
+        }, 48: {
             id: 48,
             name: "venonat",
             specie: 48,
             is_default: true,
             type1: "bug",
             type2: "poison",
-            evolutions: [{to: 49, method: "level_up", minLevel: 31},]
-        },
-        49: {id: 49, name: "venomoth", specie: 49, is_default: true, type1: "bug", type2: "poison", evolutions: []},
-        50: {
+            evolutions: [{to: 49, method: "level_up", minLevel: 31},],
+            baseHp: 60,
+            baseAtk: 48,
+            baseDef: 53,
+            baseSpeed: 45,
+            moves: [0, 33, 36, 38, 60, 72, 76, 93, 94, 99, 129, 141, 168, 173, 188, 202, 237, 263, 290, 305, 324, 428, 450, 474, 496, 522, 611]
+        }, 49: {
+            id: 49,
+            name: "venomoth",
+            specie: 49,
+            is_default: true,
+            type1: "bug",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 70,
+            baseAtk: 78,
+            baseDef: 68,
+            baseSpeed: 90,
+            moves: [0, 13, 16, 33, 36, 38, 60, 63, 72, 76, 93, 94, 99, 129, 141, 168, 173, 188, 202, 237, 239, 263, 290, 305, 314, 318, 324, 332, 369, 405, 412, 416, 428, 450, 466, 474, 496, 512, 522, 611]
+        }, 50: {
             id: 50,
             name: "diglett",
             specie: 50,
             is_default: true,
             type1: "ground",
-            evolutions: [{to: 51, method: "level_up", minLevel: 26},]
-        },
-        51: {id: 51, name: "dugtrio", specie: 51, is_default: true, type1: "ground", evolutions: []},
-        52: {
+            evolutions: [{to: 51, method: "level_up", minLevel: 26},],
+            baseHp: 10,
+            baseAtk: 45,
+            baseDef: 35,
+            baseSpeed: 95,
+            moves: [0, 10, 15, 29, 34, 36, 38, 89, 91, 99, 154, 157, 163, 168, 173, 185, 188, 189, 228, 237, 246, 249, 253, 263, 290, 310, 317, 332, 389, 414, 421, 426, 496, 497, 523]
+        }, 51: {
+            id: 51,
+            name: "dugtrio",
+            specie: 51,
+            is_default: true,
+            type1: "ground",
+            evolutions: [],
+            baseHp: 35,
+            baseAtk: 75,
+            baseDef: 60,
+            baseSpeed: 120,
+            moves: [0, 10, 15, 34, 36, 38, 63, 89, 91, 99, 154, 157, 161, 163, 168, 173, 188, 189, 237, 249, 253, 263, 290, 310, 317, 328, 332, 389, 400, 414, 416, 421, 426, 444, 482, 496, 497, 523]
+        }, 52: {
             id: 52,
             name: "meowth",
             specie: 52,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 53, method: "level_up", minLevel: 28},]
-        },
-        53: {id: 53, name: "persian", specie: 53, is_default: true, type1: "normal", evolutions: []},
-        54: {
+            evolutions: [{to: 53, method: "level_up", minLevel: 28},],
+            baseHp: 40,
+            baseAtk: 43,
+            baseDef: 38,
+            baseSpeed: 90,
+            moves: [0, 6, 10, 15, 29, 34, 36, 38, 44, 55, 61, 85, 87, 91, 99, 129, 130, 138, 154, 163, 168, 173, 185, 189, 192, 196, 231, 237, 247, 252, 253, 263, 282, 290, 304, 332, 343, 351, 352, 364, 369, 371, 372, 387, 399, 400, 402, 421, 441, 492, 496, 497, 514]
+        }, 53: {
+            id: 53,
+            name: "persian",
+            specie: 53,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 68,
+            baseDef: 63,
+            baseSpeed: 115,
+            moves: [0, 6, 10, 15, 29, 34, 36, 38, 44, 55, 61, 63, 85, 87, 91, 99, 129, 130, 138, 154, 163, 168, 173, 185, 189, 192, 196, 231, 237, 247, 252, 253, 263, 282, 290, 304, 332, 343, 351, 352, 364, 369, 371, 372, 387, 399, 400, 402, 408, 416, 421, 441, 492, 496, 497, 514, 583]
+        }, 54: {
             id: 54,
             name: "psyduck",
             specie: 54,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 55, method: "level_up", minLevel: 33},]
-        },
-        55: {id: 55, name: "golduck", specie: 55, is_default: true, type1: "water", evolutions: []},
-        56: {
+            evolutions: [{to: 55, method: "level_up", minLevel: 33},],
+            baseHp: 50,
+            baseAtk: 59,
+            baseDef: 49,
+            baseSpeed: 55,
+            moves: [0, 5, 6, 8, 10, 25, 29, 34, 36, 38, 55, 56, 57, 58, 59, 60, 61, 66, 70, 91, 93, 94, 99, 127, 129, 130, 154, 173, 189, 196, 223, 231, 237, 238, 248, 249, 250, 263, 264, 280, 290, 291, 324, 332, 352, 362, 401, 421, 426, 428, 473, 485, 496, 499, 503, 612]
+        }, 55: {
+            id: 55,
+            name: "golduck",
+            specie: 55,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 89,
+            baseDef: 79,
+            baseSpeed: 85,
+            moves: [0, 5, 6, 8, 10, 25, 29, 34, 36, 38, 55, 56, 57, 58, 59, 61, 63, 66, 70, 91, 93, 94, 99, 127, 129, 130, 154, 173, 189, 196, 210, 223, 231, 237, 249, 250, 263, 264, 280, 290, 291, 324, 332, 352, 362, 401, 411, 416, 421, 428, 431, 453, 473, 490, 496, 503, 612]
+        }, 56: {
             id: 56,
             name: "mankey",
             specie: 56,
             is_default: true,
             type1: "fighting",
-            evolutions: [{to: 57, method: "level_up", minLevel: 28},]
-        },
-        57: {id: 57, name: "primeape", specie: 57, is_default: true, type1: "fighting", evolutions: []},
-        58: {
+            evolutions: [{to: 57, method: "level_up", minLevel: 28},],
+            baseHp: 40,
+            baseAtk: 58,
+            baseDef: 40,
+            baseSpeed: 70,
+            moves: [0, 2, 5, 6, 7, 8, 9, 10, 25, 29, 34, 36, 37, 38, 66, 70, 85, 87, 89, 91, 99, 129, 130, 154, 157, 168, 173, 189, 200, 223, 228, 231, 237, 238, 249, 253, 263, 264, 265, 279, 280, 290, 315, 317, 332, 343, 369, 370, 371, 372, 398, 400, 402, 410, 411, 431, 441, 479, 490, 496, 512, 514, 523, 530, 612, 681, 707]
+        }, 57: {
+            id: 57,
+            name: "primeape",
+            specie: 57,
+            is_default: true,
+            type1: "fighting",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 83,
+            baseDef: 65,
+            baseSpeed: 95,
+            moves: [0, 2, 5, 6, 7, 8, 9, 10, 25, 29, 34, 36, 37, 38, 63, 66, 70, 85, 87, 89, 91, 99, 129, 130, 154, 157, 168, 173, 189, 200, 223, 228, 231, 237, 238, 249, 253, 263, 264, 280, 290, 315, 317, 332, 343, 369, 370, 371, 372, 398, 402, 410, 411, 416, 431, 441, 444, 479, 490, 496, 512, 514, 523, 530, 612, 707]
+        }, 58: {
             id: 58,
             name: "growlithe",
             specie: 58,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 59, method: "level_up", minLevel: 32},]
-        },
-        59: {id: 59, name: "arcanine", specie: 59, is_default: true, type1: "fire", evolutions: []},
-        60: {
+            evolutions: [{to: 59, method: "level_up", minLevel: 32},],
+            baseHp: 55,
+            baseAtk: 70,
+            baseDef: 48,
+            baseSpeed: 60,
+            moves: [0, 24, 29, 34, 36, 37, 38, 44, 52, 53, 70, 83, 91, 99, 126, 129, 130, 168, 172, 173, 189, 200, 225, 231, 237, 242, 249, 257, 263, 290, 315, 332, 343, 370, 394, 424, 481, 488, 496, 510, 514, 528, 555, 682]
+        }, 59: {
+            id: 59,
+            name: "arcanine",
+            specie: 59,
+            is_default: true,
+            type1: "fire",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 105,
+            baseDef: 80,
+            baseSpeed: 95,
+            moves: [0, 29, 34, 36, 38, 44, 52, 53, 63, 70, 76, 91, 99, 126, 129, 130, 168, 172, 173, 189, 200, 225, 231, 237, 245, 249, 257, 263, 290, 315, 332, 343, 406, 416, 422, 424, 431, 442, 488, 496, 510, 514, 523, 528, 555]
+        }, 60: {
             id: 60,
             name: "poliwag",
             specie: 60,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 61, method: "level_up", minLevel: 25},]
-        },
-        61: {
+            evolutions: [{to: 61, method: "level_up", minLevel: 25},],
+            baseHp: 40,
+            baseAtk: 45,
+            baseDef: 40,
+            baseSpeed: 90,
+            moves: [0, 3, 29, 34, 36, 38, 55, 56, 57, 58, 59, 61, 91, 94, 99, 127, 130, 145, 168, 173, 196, 237, 250, 263, 290, 291, 301, 341, 352, 358, 426, 496, 503]
+        }, 61: {
             id: 61,
             name: "poliwhirl",
             specie: 61,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 62, method: "level_up", minLevel: 32}, {to: 186, method: "level_up", minLevel: 32},]
-        },
-        62: {
+            evolutions: [{to: 62, method: "level_up", minLevel: 32}, {to: 186, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 58,
+            baseDef: 58,
+            baseSpeed: 90,
+            moves: [0, 3, 5, 8, 25, 29, 34, 36, 38, 55, 56, 57, 58, 59, 61, 66, 70, 89, 91, 94, 99, 127, 130, 145, 168, 173, 189, 196, 237, 249, 250, 263, 264, 280, 290, 291, 341, 352, 358, 426, 496, 503, 523, 612]
+        }, 62: {
             id: 62,
             name: "poliwrath",
             specie: 62,
             is_default: true,
             type1: "water",
             type2: "fighting",
-            evolutions: []
-        },
-        63: {
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 83,
+            baseDef: 93,
+            baseSpeed: 70,
+            moves: [0, 3, 5, 8, 25, 29, 34, 36, 38, 55, 57, 58, 59, 61, 63, 66, 70, 89, 91, 94, 99, 127, 130, 157, 168, 173, 189, 196, 223, 237, 249, 250, 263, 264, 280, 290, 291, 317, 352, 371, 398, 410, 411, 416, 431, 490, 496, 503, 509, 523, 612]
+        }, 63: {
             id: 63,
             name: "abra",
             specie: 63,
             is_default: true,
             type1: "psychic",
-            evolutions: [{to: 64, method: "level_up", minLevel: 16},]
-        },
-        64: {
+            evolutions: [{to: 64, method: "level_up", minLevel: 16},],
+            baseHp: 25,
+            baseAtk: 63,
+            baseDef: 35,
+            baseSpeed: 90,
+            moves: [0, 5, 7, 8, 9, 25, 29, 34, 36, 38, 66, 94, 99, 130, 138, 161, 168, 173, 192, 223, 231, 237, 247, 263, 264, 282, 290, 324, 351, 409, 412, 428, 451, 473, 492, 496, 605]
+        }, 64: {
             id: 64,
             name: "kadabra",
             specie: 64,
             is_default: true,
             type1: "psychic",
-            evolutions: [{to: 65, method: "level_up", minLevel: 32},]
-        },
-        65: {id: 65, name: "alakazam", specie: 65, is_default: true, type1: "psychic", evolutions: []},
-        66: {
+            evolutions: [{to: 65, method: "level_up", minLevel: 32},],
+            baseHp: 40,
+            baseAtk: 78,
+            baseDef: 50,
+            baseSpeed: 105,
+            moves: [0, 5, 7, 8, 9, 25, 29, 34, 36, 38, 60, 66, 91, 93, 94, 99, 130, 138, 161, 168, 173, 192, 223, 231, 237, 247, 248, 263, 264, 282, 290, 324, 351, 409, 412, 427, 428, 451, 473, 492, 496, 605]
+        }, 65: {
+            id: 65,
+            name: "alakazam",
+            specie: 65,
+            is_default: true,
+            type1: "psychic",
+            evolutions: [],
+            baseHp: 55,
+            baseAtk: 93,
+            baseDef: 70,
+            baseSpeed: 120,
+            moves: [0, 5, 7, 8, 9, 25, 29, 34, 36, 38, 60, 63, 66, 91, 93, 94, 99, 130, 138, 161, 168, 173, 192, 223, 231, 237, 247, 248, 263, 264, 282, 290, 324, 351, 409, 411, 412, 416, 427, 428, 451, 473, 492, 496, 605]
+        }, 66: {
             id: 66,
             name: "machop",
             specie: 66,
             is_default: true,
             type1: "fighting",
-            evolutions: [{to: 67, method: "level_up", minLevel: 28},]
-        },
-        67: {
+            evolutions: [{to: 67, method: "level_up", minLevel: 28},],
+            baseHp: 70,
+            baseAtk: 58,
+            baseDef: 43,
+            baseSpeed: 35,
+            moves: [0, 2, 5, 7, 8, 9, 25, 27, 29, 34, 36, 38, 53, 66, 70, 89, 91, 99, 126, 130, 157, 168, 173, 189, 223, 233, 237, 238, 249, 263, 264, 265, 276, 279, 280, 282, 290, 317, 358, 370, 371, 398, 410, 411, 418, 431, 479, 490, 496, 510, 514, 523, 530, 612]
+        }, 67: {
             id: 67,
             name: "machoke",
             specie: 67,
             is_default: true,
             type1: "fighting",
-            evolutions: [{to: 68, method: "level_up", minLevel: 32},]
-        },
-        68: {id: 68, name: "machamp", specie: 68, is_default: true, type1: "fighting", evolutions: []},
-        69: {
+            evolutions: [{to: 68, method: "level_up", minLevel: 32},],
+            baseHp: 80,
+            baseAtk: 75,
+            baseDef: 65,
+            baseSpeed: 45,
+            moves: [0, 2, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 66, 70, 89, 91, 99, 126, 130, 157, 168, 173, 189, 223, 233, 237, 238, 249, 263, 264, 276, 279, 280, 282, 290, 317, 358, 371, 398, 410, 411, 431, 479, 490, 496, 510, 514, 523, 530, 612]
+        }, 68: {
+            id: 68,
+            name: "machamp",
+            specie: 68,
+            is_default: true,
+            type1: "fighting",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 98,
+            baseDef: 83,
+            baseSpeed: 55,
+            moves: [0, 2, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 63, 66, 70, 89, 91, 99, 126, 130, 157, 168, 173, 189, 223, 233, 237, 238, 249, 263, 264, 276, 279, 280, 282, 290, 317, 358, 371, 398, 410, 411, 416, 431, 444, 479, 490, 496, 510, 514, 523, 530, 612]
+        }, 69: {
             id: 69,
             name: "bellsprout",
             specie: 69,
             is_default: true,
             type1: "grass",
             type2: "poison",
-            evolutions: [{to: 70, method: "level_up", minLevel: 21},]
-        },
-        70: {
+            evolutions: [{to: 70, method: "level_up", minLevel: 21},],
+            baseHp: 50,
+            baseAtk: 73,
+            baseDef: 33,
+            baseSpeed: 40,
+            moves: [0, 15, 20, 21, 22, 35, 36, 38, 51, 72, 75, 76, 99, 141, 168, 173, 188, 202, 237, 263, 282, 290, 311, 331, 345, 389, 398, 402, 412, 438, 474, 491, 496, 499, 562, 611]
+        }, 70: {
             id: 70,
             name: "weepinbell",
             specie: 70,
             is_default: true,
             type1: "grass",
             type2: "poison",
-            evolutions: [{to: 71, method: "level_up", minLevel: 32},]
-        },
-        71: {id: 71, name: "victreebel", specie: 71, is_default: true, type1: "grass", type2: "poison", evolutions: []},
-        72: {
+            evolutions: [{to: 71, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 88,
+            baseDef: 48,
+            baseSpeed: 55,
+            moves: [0, 15, 20, 21, 22, 35, 36, 38, 51, 72, 75, 76, 99, 168, 173, 188, 202, 237, 263, 282, 290, 331, 389, 398, 402, 412, 450, 474, 496, 611]
+        }, 71: {
+            id: 71,
+            name: "victreebel",
+            specie: 71,
+            is_default: true,
+            type1: "grass",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 103,
+            baseDef: 68,
+            baseSpeed: 70,
+            moves: [0, 15, 20, 22, 34, 35, 36, 38, 51, 63, 72, 75, 76, 99, 168, 173, 188, 202, 237, 263, 282, 290, 331, 348, 389, 398, 402, 412, 416, 437, 450, 474, 496, 536, 611]
+        }, 72: {
             id: 72,
             name: "tentacool",
             specie: 72,
             is_default: true,
             type1: "water",
             type2: "poison",
-            evolutions: [{to: 73, method: "level_up", minLevel: 30},]
-        },
-        73: {id: 73, name: "tentacruel", specie: 73, is_default: true, type1: "water", type2: "poison", evolutions: []},
-        74: {
+            evolutions: [{to: 73, method: "level_up", minLevel: 30},],
+            baseHp: 40,
+            baseAtk: 45,
+            baseDef: 68,
+            baseSpeed: 70,
+            moves: [0, 15, 20, 35, 36, 38, 40, 51, 55, 56, 57, 58, 59, 61, 62, 72, 99, 127, 130, 132, 145, 168, 173, 188, 196, 202, 229, 237, 250, 263, 282, 290, 291, 330, 352, 362, 371, 398, 474, 482, 491, 496, 503, 506, 605, 611]
+        }, 73: {
+            id: 73,
+            name: "tentacruel",
+            specie: 73,
+            is_default: true,
+            type1: "water",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 75,
+            baseDef: 93,
+            baseSpeed: 100,
+            moves: [0, 15, 20, 35, 36, 38, 40, 51, 55, 56, 57, 58, 59, 61, 63, 72, 99, 127, 130, 132, 168, 173, 188, 196, 202, 237, 250, 263, 282, 290, 291, 352, 362, 371, 398, 416, 474, 482, 491, 496, 503, 506, 605, 611]
+        }, 74: {
             id: 74,
             name: "geodude",
             specie: 74,
             is_default: true,
             type1: "rock",
             type2: "ground",
-            evolutions: [{to: 75, method: "level_up", minLevel: 25},]
-        },
-        75: {
+            evolutions: [{to: 75, method: "level_up", minLevel: 25},],
+            baseHp: 40,
+            baseAtk: 55,
+            baseDef: 65,
+            baseSpeed: 20,
+            moves: [0, 5, 7, 9, 29, 33, 34, 36, 38, 53, 66, 70, 88, 89, 91, 99, 120, 126, 153, 157, 173, 189, 205, 223, 237, 246, 249, 263, 264, 276, 280, 290, 317, 350, 359, 389, 414, 431, 444, 479, 496, 510, 523, 612]
+        }, 75: {
             id: 75,
             name: "graveler",
             specie: 75,
             is_default: true,
             type1: "rock",
             type2: "ground",
-            evolutions: [{to: 76, method: "level_up", minLevel: 32},]
-        },
-        76: {id: 76, name: "golem", specie: 76, is_default: true, type1: "rock", type2: "ground", evolutions: []},
-        77: {
+            evolutions: [{to: 76, method: "level_up", minLevel: 32},],
+            baseHp: 55,
+            baseAtk: 70,
+            baseDef: 80,
+            baseSpeed: 35,
+            moves: [0, 5, 7, 9, 29, 33, 34, 36, 38, 53, 66, 70, 88, 89, 91, 99, 120, 126, 153, 157, 173, 189, 205, 223, 237, 246, 249, 263, 264, 276, 280, 290, 317, 350, 389, 414, 431, 444, 479, 496, 510, 523, 612]
+        }, 76: {
+            id: 76,
+            name: "golem",
+            specie: 76,
+            is_default: true,
+            type1: "rock",
+            type2: "ground",
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 88,
+            baseDef: 98,
+            baseSpeed: 45,
+            moves: [0, 5, 7, 9, 25, 29, 33, 34, 36, 38, 53, 63, 66, 70, 88, 89, 91, 99, 120, 126, 153, 157, 173, 189, 205, 210, 223, 237, 246, 249, 263, 264, 276, 280, 290, 317, 350, 389, 411, 414, 416, 431, 442, 444, 479, 496, 510, 523, 537, 612]
+        }, 77: {
             id: 77,
             name: "ponyta",
             specie: 77,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 78, method: "level_up", minLevel: 40},]
-        },
-        78: {id: 78, name: "rapidash", specie: 78, is_default: true, type1: "fire", evolutions: []},
-        79: {
+            evolutions: [{to: 78, method: "level_up", minLevel: 40},],
+            baseHp: 50,
+            baseAtk: 75,
+            baseDef: 60,
+            baseSpeed: 90,
+            moves: [0, 23, 24, 29, 33, 34, 36, 37, 38, 52, 53, 70, 76, 83, 98, 99, 126, 129, 130, 172, 173, 231, 237, 257, 263, 290, 315, 340, 394, 488, 496, 497, 510, 517, 528, 667]
+        }, 78: {
+            id: 78,
+            name: "rapidash",
+            specie: 78,
+            is_default: true,
+            type1: "fire",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 90,
+            baseDef: 75,
+            baseSpeed: 105,
+            moves: [0, 23, 29, 31, 33, 34, 36, 38, 52, 53, 63, 70, 76, 83, 98, 99, 126, 129, 130, 172, 173, 224, 231, 237, 257, 263, 290, 315, 340, 394, 398, 416, 488, 496, 497, 510, 517, 528, 529, 684]
+        }, 79: {
             id: 79,
             name: "slowpoke",
             specie: 79,
             is_default: true,
             type1: "water",
             type2: "psychic",
-            evolutions: [{to: 80, method: "level_up", minLevel: 37}, {to: 199, method: "level_up", minLevel: 32},]
-        },
-        80: {id: 80, name: "slowbro", specie: 80, is_default: true, type1: "water", type2: "psychic", evolutions: []},
-        81: {
+            evolutions: [{to: 80, method: "level_up", minLevel: 37}, {to: 199, method: "level_up", minLevel: 32},],
+            baseHp: 90,
+            baseAtk: 53,
+            baseDef: 53,
+            baseSpeed: 15,
+            moves: [0, 6, 23, 29, 33, 34, 36, 38, 53, 55, 57, 58, 59, 61, 70, 89, 91, 93, 94, 99, 126, 129, 130, 138, 161, 173, 189, 192, 196, 231, 237, 247, 248, 250, 263, 290, 291, 324, 352, 362, 401, 428, 473, 496, 497, 503, 510, 523, 562]
+        }, 80: {
+            id: 80,
+            name: "slowbro",
+            specie: 80,
+            is_default: true,
+            type1: "water",
+            type2: "psychic",
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 88,
+            baseDef: 95,
+            baseSpeed: 30,
+            moves: [0, 5, 6, 8, 25, 29, 33, 34, 36, 38, 53, 55, 57, 58, 59, 61, 63, 66, 70, 89, 91, 93, 94, 99, 126, 129, 130, 138, 161, 173, 189, 192, 196, 210, 223, 231, 237, 247, 249, 250, 263, 264, 280, 290, 291, 324, 332, 352, 362, 401, 409, 411, 416, 419, 428, 473, 492, 496, 497, 503, 510, 523]
+        }, 81: {
             id: 81,
             name: "magnemite",
             specie: 81,
             is_default: true,
             type1: "electric",
             type2: "steel",
-            evolutions: [{to: 82, method: "level_up", minLevel: 30},]
-        },
-        82: {
+            evolutions: [{to: 82, method: "level_up", minLevel: 30},],
+            baseHp: 25,
+            baseAtk: 65,
+            baseDef: 63,
+            baseSpeed: 45,
+            moves: [0, 33, 36, 38, 84, 85, 87, 99, 129, 153, 173, 192, 205, 209, 237, 263, 290, 324, 351, 429, 430, 435, 443, 451, 496, 521, 527, 528]
+        }, 82: {
             id: 82,
             name: "magneton",
             specie: 82,
             is_default: true,
             type1: "electric",
             type2: "steel",
-            evolutions: [{to: 462, method: "level_up", minLevel: 32},]
-        },
-        83: {id: 83, name: "farfetchd", specie: 83, is_default: true, type1: "normal", type2: "flying", evolutions: []},
-        84: {
+            evolutions: [{to: 462, method: "level_up", minLevel: 32},],
+            baseHp: 50,
+            baseAtk: 90,
+            baseDef: 83,
+            baseSpeed: 70,
+            moves: [0, 33, 36, 38, 63, 84, 85, 87, 99, 129, 153, 161, 173, 192, 205, 209, 237, 263, 290, 324, 351, 416, 429, 430, 435, 443, 451, 496, 521, 527, 528]
+        }, 83: {
+            id: 83,
+            name: "farfetchd",
+            specie: 83,
+            is_default: true,
+            type1: "normal",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 52,
+            baseAtk: 74,
+            baseDef: 59,
+            baseSpeed: 60,
+            moves: [0, 13, 15, 16, 19, 29, 31, 34, 36, 38, 64, 98, 99, 129, 130, 143, 163, 168, 173, 189, 206, 210, 211, 231, 237, 239, 253, 257, 263, 279, 282, 290, 314, 332, 343, 348, 364, 365, 369, 387, 398, 400, 403, 413, 466, 496, 512, 514, 660, 693]
+        }, 84: {
             id: 84,
             name: "doduo",
             specie: 84,
             is_default: true,
             type1: "normal",
             type2: "flying",
-            evolutions: [{to: 85, method: "level_up", minLevel: 31},]
-        },
-        85: {id: 85, name: "dodrio", specie: 85, is_default: true, type1: "normal", type2: "flying", evolutions: []},
-        86: {
+            evolutions: [{to: 85, method: "level_up", minLevel: 31},],
+            baseHp: 35,
+            baseAtk: 60,
+            baseDef: 40,
+            baseSpeed: 75,
+            moves: [0, 19, 26, 31, 34, 36, 37, 38, 64, 65, 98, 99, 129, 130, 143, 161, 168, 173, 185, 189, 211, 228, 237, 253, 263, 282, 290, 314, 332, 365, 372, 413, 458, 496, 497]
+        }, 85: {
+            id: 85,
+            name: "dodrio",
+            specie: 85,
+            is_default: true,
+            type1: "normal",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 85,
+            baseDef: 65,
+            baseSpeed: 110,
+            moves: [0, 19, 26, 31, 34, 36, 37, 38, 63, 64, 65, 98, 99, 129, 130, 143, 161, 168, 173, 189, 211, 228, 237, 253, 263, 282, 290, 314, 332, 365, 371, 416, 458, 496, 497]
+        }, 86: {
             id: 86,
             name: "seel",
             specie: 86,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 87, method: "level_up", minLevel: 34},]
-        },
-        87: {id: 87, name: "dewgong", specie: 87, is_default: true, type1: "water", type2: "ice", evolutions: []},
-        88: {
+            evolutions: [{to: 87, method: "level_up", minLevel: 34},],
+            baseHp: 65,
+            baseAtk: 45,
+            baseDef: 63,
+            baseSpeed: 45,
+            moves: [0, 6, 21, 29, 34, 36, 38, 55, 57, 58, 59, 61, 62, 64, 70, 99, 122, 127, 130, 168, 173, 196, 231, 237, 250, 252, 263, 290, 291, 324, 333, 352, 362, 401, 420, 453, 496, 497, 529, 562, 684]
+        }, 87: {
+            id: 87,
+            name: "dewgong",
+            specie: 87,
+            is_default: true,
+            type1: "water",
+            type2: "ice",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 70,
+            baseDef: 88,
+            baseSpeed: 70,
+            moves: [0, 6, 29, 34, 36, 38, 55, 57, 58, 59, 61, 62, 63, 70, 99, 127, 130, 168, 173, 196, 231, 237, 250, 263, 290, 291, 324, 352, 362, 401, 416, 419, 420, 453, 496, 497, 524, 529, 684]
+        }, 88: {
             id: 88,
             name: "grimer",
             specie: 88,
             is_default: true,
             type1: "poison",
-            evolutions: [{to: 89, method: "level_up", minLevel: 38},]
-        },
-        89: {id: 89, name: "muk", specie: 89, is_default: true, type1: "poison", evolutions: []},
-        90: {
+            evolutions: [{to: 89, method: "level_up", minLevel: 38},],
+            baseHp: 80,
+            baseAtk: 60,
+            baseDef: 50,
+            baseSpeed: 25,
+            moves: [0, 1, 7, 8, 9, 34, 53, 70, 72, 85, 87, 91, 99, 120, 122, 124, 126, 153, 157, 168, 173, 188, 189, 192, 202, 223, 237, 247, 263, 290, 317, 325, 351, 371, 398, 425, 426, 441, 474, 482, 491, 496, 510, 562, 611, 612]
+        }, 89: {
+            id: 89,
+            name: "muk",
+            specie: 89,
+            is_default: true,
+            type1: "poison",
+            evolutions: [],
+            baseHp: 105,
+            baseAtk: 85,
+            baseDef: 88,
+            baseSpeed: 50,
+            moves: [0, 1, 7, 8, 9, 34, 53, 63, 70, 72, 85, 87, 91, 99, 120, 124, 126, 153, 157, 168, 173, 188, 189, 192, 202, 223, 237, 247, 249, 263, 264, 280, 290, 317, 351, 371, 398, 399, 411, 416, 426, 441, 474, 482, 496, 510, 562, 611, 612]
+        }, 90: {
             id: 90,
             name: "shellder",
             specie: 90,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 91, method: "level_up", minLevel: 32},]
-        },
-        91: {id: 91, name: "cloyster", specie: 91, is_default: true, type1: "water", type2: "ice", evolutions: []},
-        92: {
+            evolutions: [{to: 91, method: "level_up", minLevel: 32},],
+            baseHp: 30,
+            baseAtk: 55,
+            baseDef: 63,
+            baseSpeed: 40,
+            moves: [0, 33, 36, 38, 41, 55, 56, 57, 58, 59, 61, 62, 99, 120, 128, 129, 153, 161, 173, 196, 229, 237, 250, 263, 290, 291, 333, 341, 350, 352, 362, 371, 419, 420, 496, 534]
+        }, 91: {
+            id: 91,
+            name: "cloyster",
+            specie: 91,
+            is_default: true,
+            type1: "water",
+            type2: "ice",
+            evolutions: [],
+            baseHp: 50,
+            baseAtk: 90,
+            baseDef: 113,
+            baseSpeed: 70,
+            moves: [0, 36, 38, 55, 56, 57, 58, 59, 61, 62, 63, 99, 120, 128, 129, 131, 153, 161, 173, 196, 237, 250, 263, 290, 291, 324, 352, 362, 371, 398, 416, 419, 496, 524, 556, 684]
+        }, 92: {
             id: 92,
             name: "gastly",
             specie: 92,
             is_default: true,
             type1: "ghost",
             type2: "poison",
-            evolutions: [{to: 93, method: "level_up", minLevel: 25},]
-        },
-        93: {
+            evolutions: [{to: 93, method: "level_up", minLevel: 25},],
+            baseHp: 30,
+            baseAtk: 68,
+            baseDef: 33,
+            baseSpeed: 80,
+            moves: [0, 7, 8, 9, 72, 85, 87, 94, 99, 120, 122, 123, 138, 153, 168, 173, 188, 192, 196, 202, 237, 247, 253, 263, 282, 290, 310, 371, 389, 399, 412, 466, 474, 492, 496, 499, 506, 605, 611]
+        }, 93: {
             id: 93,
             name: "haunter",
             specie: 93,
             is_default: true,
             type1: "ghost",
             type2: "poison",
-            evolutions: [{to: 94, method: "level_up", minLevel: 32},]
-        },
-        94: {id: 94, name: "gengar", specie: 94, is_default: true, type1: "ghost", type2: "poison", evolutions: []},
-        95: {
+            evolutions: [{to: 94, method: "level_up", minLevel: 32},],
+            baseHp: 45,
+            baseAtk: 83,
+            baseDef: 50,
+            baseSpeed: 95,
+            moves: [0, 7, 8, 9, 72, 85, 87, 94, 99, 120, 122, 138, 153, 168, 173, 188, 192, 196, 202, 237, 247, 253, 263, 282, 290, 325, 371, 389, 398, 399, 412, 421, 466, 474, 492, 496, 506, 605, 611]
+        }, 94: {
+            id: 94,
+            name: "gengar",
+            specie: 94,
+            is_default: true,
+            type1: "ghost",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 98,
+            baseDef: 68,
+            baseSpeed: 110,
+            moves: [0, 5, 7, 8, 9, 25, 29, 34, 36, 38, 63, 66, 70, 72, 85, 87, 94, 99, 120, 122, 130, 138, 153, 168, 173, 188, 192, 196, 202, 223, 237, 247, 249, 253, 263, 264, 280, 282, 290, 325, 371, 389, 398, 399, 409, 411, 412, 416, 421, 466, 474, 492, 496, 506, 605, 611, 612]
+        }, 95: {
             id: 95,
             name: "onix",
             specie: 95,
             is_default: true,
             type1: "rock",
             type2: "ground",
-            evolutions: [{to: 208, method: "level_up", minLevel: 32},]
-        },
-        96: {
+            evolutions: [{to: 208, method: "level_up", minLevel: 32},],
+            baseHp: 35,
+            baseAtk: 38,
+            baseDef: 103,
+            baseSpeed: 70,
+            moves: [0, 20, 21, 29, 33, 34, 36, 38, 70, 88, 89, 91, 99, 120, 130, 153, 157, 173, 189, 205, 225, 231, 237, 239, 246, 249, 263, 290, 317, 328, 350, 371, 406, 414, 430, 431, 442, 444, 479, 496, 523, 525, 693]
+        }, 96: {
             id: 96,
             name: "drowzee",
             specie: 96,
             is_default: true,
             type1: "psychic",
-            evolutions: [{to: 97, method: "level_up", minLevel: 26},]
-        },
-        97: {id: 97, name: "hypno", specie: 97, is_default: true, type1: "psychic", evolutions: []},
-        98: {
+            evolutions: [{to: 97, method: "level_up", minLevel: 26},],
+            baseHp: 60,
+            baseAtk: 46,
+            baseDef: 68,
+            baseSpeed: 42,
+            moves: [0, 1, 5, 7, 8, 9, 25, 29, 34, 36, 38, 60, 66, 93, 94, 99, 130, 138, 161, 168, 173, 192, 223, 237, 247, 248, 263, 264, 280, 290, 324, 358, 409, 427, 428, 473, 485, 490, 492, 496, 605, 612]
+        }, 97: {
+            id: 97,
+            name: "hypno",
+            specie: 97,
+            is_default: true,
+            type1: "psychic",
+            evolutions: [],
+            baseHp: 85,
+            baseAtk: 73,
+            baseDef: 93,
+            baseSpeed: 67,
+            moves: [0, 1, 5, 7, 8, 9, 25, 29, 34, 36, 38, 60, 63, 66, 93, 94, 99, 130, 138, 161, 168, 173, 192, 223, 237, 247, 248, 263, 264, 280, 290, 324, 358, 409, 411, 416, 428, 473, 485, 490, 492, 496, 605, 612]
+        }, 98: {
             id: 98,
             name: "krabby",
             specie: 98,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 99, method: "level_up", minLevel: 28},]
-        },
-        99: {id: 99, name: "kingler", specie: 99, is_default: true, type1: "water", evolutions: []},
-        100: {
+            evolutions: [{to: 99, method: "level_up", minLevel: 28},],
+            baseHp: 30,
+            baseAtk: 65,
+            baseDef: 58,
+            baseSpeed: 50,
+            moves: [0, 11, 15, 21, 23, 34, 36, 38, 55, 57, 58, 59, 61, 70, 91, 99, 145, 152, 157, 168, 173, 189, 196, 206, 210, 232, 237, 246, 249, 250, 263, 276, 280, 282, 290, 291, 317, 341, 352, 362, 404, 496, 498, 503]
+        }, 99: {
+            id: 99,
+            name: "kingler",
+            specie: 99,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 55,
+            baseAtk: 90,
+            baseDef: 83,
+            baseSpeed: 75,
+            moves: [0, 11, 15, 21, 23, 34, 36, 38, 55, 57, 58, 59, 61, 63, 70, 91, 99, 145, 152, 157, 168, 173, 189, 196, 206, 210, 232, 237, 246, 249, 250, 263, 276, 280, 282, 290, 291, 317, 341, 352, 362, 404, 416, 496, 503]
+        }, 100: {
             id: 100,
             name: "voltorb",
             specie: 100,
             is_default: true,
             type1: "electric",
-            evolutions: [{to: 101, method: "level_up", minLevel: 30},]
-        },
-        101: {id: 101, name: "electrode", specie: 101, is_default: true, type1: "electric", evolutions: []},
-        102: {
+            evolutions: [{to: 101, method: "level_up", minLevel: 30},],
+            baseHp: 40,
+            baseAtk: 43,
+            baseDef: 53,
+            baseSpeed: 100,
+            moves: [0, 29, 33, 36, 85, 87, 99, 120, 129, 153, 168, 173, 192, 205, 209, 237, 263, 290, 324, 351, 389, 435, 451, 492, 496, 521, 528]
+        }, 101: {
+            id: 101,
+            name: "electrode",
+            specie: 101,
+            is_default: true,
+            type1: "electric",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 65,
+            baseDef: 75,
+            baseSpeed: 150,
+            moves: [0, 29, 33, 36, 63, 85, 87, 99, 120, 129, 130, 153, 168, 173, 192, 205, 209, 237, 263, 290, 324, 351, 389, 416, 435, 451, 492, 496, 521, 528]
+        }, 102: {
             id: 102,
             name: "exeggcute",
             specie: 102,
             is_default: true,
             type1: "grass",
             type2: "psychic",
-            evolutions: [{to: 103, method: "level_up", minLevel: 32},]
-        },
-        103: {
+            evolutions: [{to: 103, method: "level_up", minLevel: 32},],
+            baseHp: 60,
+            baseAtk: 50,
+            baseDef: 63,
+            baseSpeed: 40,
+            moves: [0, 36, 38, 70, 72, 76, 93, 94, 99, 120, 121, 138, 140, 153, 168, 173, 188, 202, 205, 237, 246, 253, 263, 290, 326, 331, 402, 412, 437, 496, 611]
+        }, 103: {
             id: 103,
             name: "exeggutor",
             specie: 103,
             is_default: true,
             type1: "grass",
             type2: "psychic",
-            evolutions: []
-        },
-        104: {
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 110,
+            baseDef: 80,
+            baseSpeed: 55,
+            moves: [0, 23, 29, 36, 38, 63, 70, 72, 76, 93, 94, 99, 120, 121, 138, 140, 153, 168, 173, 188, 202, 205, 237, 246, 263, 290, 331, 402, 412, 416, 428, 437, 452, 473, 496, 611]
+        }, 104: {
             id: 104,
             name: "cubone",
             specie: 104,
             is_default: true,
             type1: "ground",
-            evolutions: [{to: 105, method: "level_up", minLevel: 28},]
-        },
-        105: {id: 105, name: "marowak", specie: 105, is_default: true, type1: "ground", evolutions: []},
-        106: {id: 106, name: "hitmonlee", specie: 106, is_default: true, type1: "fighting", evolutions: []},
-        107: {id: 107, name: "hitmonchan", specie: 107, is_default: true, type1: "fighting", evolutions: []},
-        108: {
+            evolutions: [{to: 105, method: "level_up", minLevel: 28},],
+            baseHp: 50,
+            baseAtk: 45,
+            baseDef: 73,
+            baseSpeed: 35,
+            moves: [0, 5, 7, 9, 24, 25, 29, 34, 36, 37, 38, 53, 55, 58, 59, 61, 66, 70, 89, 91, 99, 125, 126, 130, 155, 157, 168, 173, 189, 196, 198, 206, 210, 223, 231, 237, 246, 249, 253, 263, 264, 280, 282, 290, 317, 332, 414, 431, 442, 479, 496, 497, 498, 510, 514, 523, 612, 693, 707]
+        }, 105: {
+            id: 105,
+            name: "marowak",
+            specie: 105,
+            is_default: true,
+            type1: "ground",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 65,
+            baseDef: 95,
+            baseSpeed: 45,
+            moves: [0, 5, 7, 9, 25, 29, 34, 36, 37, 38, 53, 55, 58, 59, 61, 63, 66, 70, 89, 91, 99, 125, 126, 130, 155, 157, 168, 173, 189, 196, 198, 200, 206, 210, 223, 231, 237, 249, 253, 263, 264, 280, 282, 290, 317, 332, 411, 414, 416, 431, 442, 444, 479, 496, 497, 510, 514, 523, 612, 693, 707]
+        }, 106: {
+            id: 106,
+            name: "hitmonlee",
+            specie: 106,
+            is_default: true,
+            type1: "fighting",
+            evolutions: [],
+            baseHp: 50,
+            baseAtk: 78,
+            baseDef: 82,
+            baseSpeed: 87,
+            moves: [0, 5, 24, 25, 26, 27, 29, 34, 36, 38, 66, 70, 89, 99, 129, 130, 136, 157, 168, 173, 189, 223, 237, 249, 263, 264, 276, 279, 280, 282, 290, 299, 317, 340, 343, 364, 370, 389, 398, 410, 411, 431, 444, 490, 496, 514, 523, 612]
+        }, 107: {
+            id: 107,
+            name: "hitmonchan",
+            specie: 107,
+            is_default: true,
+            type1: "fighting",
+            evolutions: [],
+            baseHp: 50,
+            baseAtk: 70,
+            baseDef: 95,
+            baseSpeed: 76,
+            moves: [0, 4, 5, 7, 8, 9, 25, 29, 34, 36, 38, 66, 70, 89, 99, 129, 130, 157, 168, 173, 183, 189, 223, 228, 237, 249, 263, 264, 279, 280, 290, 317, 327, 343, 364, 370, 409, 410, 411, 418, 431, 444, 490, 496, 514, 523, 612]
+        }, 108: {
             id: 108,
             name: "lickitung",
             specie: 108,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 463, method: "level_up", minLevel: 32},]
-        },
-        109: {
+            evolutions: [{to: 463, method: "level_up", minLevel: 32},],
+            baseHp: 90,
+            baseAtk: 58,
+            baseDef: 75,
+            baseSpeed: 30,
+            moves: [0, 5, 7, 8, 9, 15, 20, 21, 23, 25, 29, 34, 35, 36, 37, 38, 53, 55, 57, 58, 59, 61, 63, 66, 70, 76, 85, 87, 89, 91, 99, 122, 126, 130, 138, 157, 168, 173, 189, 196, 205, 223, 231, 237, 247, 249, 250, 263, 264, 265, 280, 282, 290, 317, 330, 351, 352, 359, 401, 416, 428, 431, 438, 496, 498, 510, 514, 523, 525, 562, 612, 693]
+        }, 109: {
             id: 109,
             name: "koffing",
             specie: 109,
             is_default: true,
             type1: "poison",
-            evolutions: [{to: 110, method: "level_up", minLevel: 35},]
-        },
-        110: {id: 110, name: "weezing", specie: 110, is_default: true, type1: "poison", evolutions: []},
-        111: {
+            evolutions: [{to: 110, method: "level_up", minLevel: 35},],
+            baseHp: 40,
+            baseAtk: 63,
+            baseDef: 70,
+            baseSpeed: 35,
+            moves: [0, 33, 53, 60, 85, 87, 99, 120, 123, 124, 126, 153, 168, 173, 188, 192, 205, 237, 247, 253, 263, 290, 351, 371, 372, 399, 474, 496, 499, 510, 562, 611]
+        }, 110: {
+            id: 110,
+            name: "weezing",
+            specie: 110,
+            is_default: true,
+            type1: "poison",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 88,
+            baseDef: 95,
+            baseSpeed: 60,
+            moves: [0, 33, 53, 63, 85, 87, 99, 120, 123, 124, 126, 153, 168, 173, 188, 192, 205, 237, 247, 253, 263, 290, 351, 371, 372, 399, 416, 458, 474, 496, 499, 510, 562, 611]
+        }, 111: {
             id: 111,
             name: "rhyhorn",
             specie: 111,
             is_default: true,
             type1: "ground",
             type2: "rock",
-            evolutions: [{to: 112, method: "level_up", minLevel: 42},]
-        },
-        112: {
+            evolutions: [{to: 112, method: "level_up", minLevel: 42},],
+            baseHp: 80,
+            baseAtk: 58,
+            baseDef: 63,
+            baseSpeed: 25,
+            moves: [0, 23, 29, 30, 31, 34, 36, 37, 38, 53, 58, 59, 70, 85, 87, 89, 91, 99, 126, 130, 157, 168, 173, 189, 192, 196, 205, 224, 228, 231, 237, 242, 246, 249, 253, 263, 276, 290, 306, 317, 350, 351, 371, 398, 401, 406, 407, 414, 422, 423, 424, 431, 444, 479, 496, 498, 510, 523, 529, 684]
+        }, 112: {
             id: 112,
             name: "rhydon",
             specie: 112,
             is_default: true,
             type1: "ground",
             type2: "rock",
-            evolutions: [{to: 464, method: "level_up", minLevel: 32},]
-        },
-        113: {
+            evolutions: [{to: 464, method: "level_up", minLevel: 32},],
+            baseHp: 105,
+            baseAtk: 88,
+            baseDef: 83,
+            baseSpeed: 40,
+            moves: [0, 5, 6, 7, 8, 9, 15, 23, 25, 29, 30, 31, 34, 36, 38, 53, 55, 57, 58, 59, 61, 63, 66, 70, 85, 87, 89, 91, 99, 126, 130, 157, 168, 173, 189, 192, 196, 200, 205, 210, 223, 224, 231, 237, 246, 249, 250, 253, 263, 264, 276, 280, 290, 317, 350, 351, 359, 371, 398, 401, 406, 411, 414, 416, 419, 421, 431, 444, 479, 496, 498, 510, 523, 525, 529, 612, 684, 693]
+        }, 113: {
             id: 113,
             name: "chansey",
             specie: 113,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 242, method: "level_up", minLevel: 32},]
-        },
-        114: {
+            evolutions: [{to: 242, method: "level_up", minLevel: 32},],
+            baseHp: 250,
+            baseAtk: 20,
+            baseDef: 55,
+            baseSpeed: 50,
+            moves: [0, 1, 3, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 55, 58, 59, 61, 63, 66, 70, 76, 85, 87, 89, 94, 99, 121, 126, 130, 138, 157, 161, 173, 189, 192, 196, 205, 223, 231, 237, 247, 249, 263, 264, 280, 290, 304, 317, 343, 351, 352, 387, 409, 416, 426, 428, 431, 451, 496, 497, 510, 514, 523, 528, 605, 612]
+        }, 114: {
             id: 114,
             name: "tangela",
             specie: 114,
             is_default: true,
             type1: "grass",
-            evolutions: [{to: 465, method: "level_up", minLevel: 32},]
-        },
-        115: {id: 115, name: "kangaskhan", specie: 115, is_default: true, type1: "normal", evolutions: []},
-        116: {
+            evolutions: [{to: 465, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 78,
+            baseDef: 78,
+            baseSpeed: 60,
+            moves: [0, 15, 20, 21, 22, 29, 34, 36, 38, 63, 71, 72, 76, 93, 99, 130, 132, 168, 173, 188, 202, 237, 246, 249, 263, 282, 290, 331, 351, 358, 402, 412, 416, 437, 438, 496, 611]
+        }, 115: {
+            id: 115,
+            name: "kangaskhan",
+            specie: 115,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 105,
+            baseAtk: 68,
+            baseDef: 80,
+            baseSpeed: 90,
+            moves: [0, 4, 5, 7, 8, 9, 15, 23, 25, 29, 34, 36, 38, 44, 53, 55, 57, 58, 59, 61, 63, 66, 70, 76, 85, 87, 89, 91, 99, 126, 130, 146, 157, 168, 173, 189, 192, 196, 200, 210, 223, 231, 237, 242, 247, 249, 250, 252, 253, 263, 264, 280, 290, 306, 317, 332, 343, 351, 352, 359, 389, 401, 409, 411, 416, 419, 421, 431, 458, 496, 498, 509, 510, 514, 523, 612]
+        }, 116: {
             id: 116,
             name: "horsea",
             specie: 116,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 117, method: "level_up", minLevel: 32},]
-        },
-        117: {
+            evolutions: [{to: 117, method: "level_up", minLevel: 32},],
+            baseHp: 30,
+            baseAtk: 55,
+            baseDef: 48,
+            baseSpeed: 60,
+            moves: [0, 13, 29, 36, 38, 55, 56, 57, 58, 59, 61, 62, 99, 127, 129, 130, 145, 173, 190, 196, 200, 225, 237, 239, 250, 263, 290, 291, 324, 330, 340, 352, 362, 406, 430, 496, 499, 503]
+        }, 117: {
             id: 117,
             name: "seadra",
             specie: 117,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 230, method: "level_up", minLevel: 32},]
-        },
-        118: {
+            evolutions: [{to: 230, method: "level_up", minLevel: 32},],
+            baseHp: 55,
+            baseAtk: 80,
+            baseDef: 70,
+            baseSpeed: 85,
+            moves: [0, 29, 36, 38, 55, 56, 57, 58, 59, 61, 63, 99, 127, 129, 130, 145, 173, 196, 200, 225, 237, 239, 250, 263, 290, 291, 324, 340, 352, 362, 406, 416, 430, 496, 503]
+        }, 118: {
             id: 118,
             name: "goldeen",
             specie: 118,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 119, method: "level_up", minLevel: 33},]
-        },
-        119: {id: 119, name: "seaking", specie: 119, is_default: true, type1: "water", evolutions: []},
-        120: {
+            evolutions: [{to: 119, method: "level_up", minLevel: 33},],
+            baseHp: 45,
+            baseAtk: 51,
+            baseDef: 55,
+            baseSpeed: 63,
+            moves: [0, 30, 31, 34, 36, 38, 55, 56, 57, 58, 59, 60, 61, 64, 99, 127, 129, 130, 173, 189, 196, 210, 224, 237, 250, 263, 282, 290, 291, 324, 340, 341, 352, 398, 401, 496, 503, 529, 684]
+        }, 119: {
+            id: 119,
+            name: "seaking",
+            specie: 119,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 79,
+            baseDef: 73,
+            baseSpeed: 68,
+            moves: [0, 30, 31, 36, 38, 55, 57, 58, 59, 61, 63, 64, 99, 127, 129, 130, 173, 189, 196, 210, 224, 237, 250, 263, 282, 290, 291, 324, 340, 352, 398, 401, 416, 496, 503, 529, 684]
+        }, 120: {
             id: 120,
             name: "staryu",
             specie: 120,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 121, method: "level_up", minLevel: 32},]
-        },
-        121: {
+            evolutions: [{to: 121, method: "level_up", minLevel: 32},],
+            baseHp: 30,
+            baseAtk: 58,
+            baseDef: 55,
+            baseSpeed: 85,
+            moves: [0, 33, 36, 38, 55, 56, 57, 58, 59, 61, 62, 85, 87, 94, 99, 127, 129, 130, 161, 173, 192, 196, 205, 229, 237, 239, 250, 263, 290, 291, 324, 352, 362, 408, 430, 496, 503, 605]
+        }, 121: {
             id: 121,
             name: "starmie",
             specie: 121,
             is_default: true,
             type1: "water",
             type2: "psychic",
-            evolutions: []
-        },
-        122: {
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 88,
+            baseDef: 85,
+            baseSpeed: 115,
+            moves: [0, 33, 36, 38, 55, 56, 57, 58, 59, 61, 63, 85, 87, 94, 99, 127, 129, 130, 138, 161, 173, 192, 196, 205, 229, 237, 239, 250, 263, 290, 291, 324, 352, 362, 416, 419, 430, 473, 496, 503, 605]
+        }, 122: {
             id: 122,
             name: "mr-mime",
             specie: 122,
             is_default: true,
             type1: "psychic",
             type2: "fairy",
-            evolutions: []
-        },
-        123: {
+            evolutions: [],
+            baseHp: 40,
+            baseAtk: 73,
+            baseDef: 93,
+            baseSpeed: 90,
+            moves: [0, 1, 3, 5, 7, 8, 9, 25, 29, 34, 36, 38, 60, 63, 66, 76, 85, 87, 93, 94, 99, 130, 138, 168, 173, 189, 192, 196, 223, 237, 247, 248, 252, 263, 264, 280, 290, 324, 332, 343, 345, 351, 358, 371, 409, 411, 412, 416, 428, 451, 473, 492, 496, 605, 611, 612]
+        }, 123: {
             id: 123,
             name: "scyther",
             specie: 123,
             is_default: true,
             type1: "bug",
             type2: "flying",
-            evolutions: [{to: 212, method: "level_up", minLevel: 32},]
-        },
-        124: {id: 124, name: "jynx", specie: 124, is_default: true, type1: "ice", type2: "psychic", evolutions: []},
-        125: {
+            evolutions: [{to: 212, method: "level_up", minLevel: 32},],
+            baseHp: 70,
+            baseAtk: 83,
+            baseDef: 80,
+            baseSpeed: 105,
+            moves: [0, 13, 15, 17, 29, 36, 38, 63, 98, 99, 129, 130, 163, 168, 173, 206, 210, 211, 228, 237, 249, 263, 280, 282, 290, 318, 332, 364, 369, 400, 403, 404, 405, 410, 416, 450, 458, 466, 496, 522, 693]
+        }, 124: {
+            id: 124,
+            name: "jynx",
+            specie: 124,
+            is_default: true,
+            type1: "ice",
+            type2: "psychic",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 83,
+            baseDef: 65,
+            baseSpeed: 95,
+            moves: [0, 1, 3, 5, 8, 25, 29, 34, 36, 37, 38, 55, 58, 59, 61, 63, 66, 94, 99, 122, 130, 138, 168, 173, 181, 189, 196, 223, 237, 247, 263, 264, 280, 290, 304, 324, 343, 352, 358, 371, 409, 411, 412, 416, 419, 428, 473, 496, 497, 524, 531, 577, 612]
+        }, 125: {
             id: 125,
             name: "electabuzz",
             specie: 125,
             is_default: true,
             type1: "electric",
-            evolutions: [{to: 466, method: "level_up", minLevel: 32},]
-        },
-        126: {
+            evolutions: [{to: 466, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 89,
+            baseDef: 71,
+            baseSpeed: 105,
+            moves: [0, 5, 7, 8, 9, 25, 29, 34, 36, 38, 63, 66, 70, 84, 85, 87, 94, 98, 99, 129, 130, 168, 173, 189, 192, 223, 231, 237, 249, 263, 264, 280, 290, 324, 343, 351, 411, 416, 431, 435, 451, 490, 496, 521, 527, 528, 530, 612]
+        }, 126: {
             id: 126,
             name: "magmar",
             specie: 126,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 467, method: "level_up", minLevel: 32},]
-        },
-        127: {id: 127, name: "pinsir", specie: 127, is_default: true, type1: "bug", evolutions: []},
-        128: {id: 128, name: "tauros", specie: 128, is_default: true, type1: "normal", evolutions: []},
-        129: {
+            evolutions: [{to: 467, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 98,
+            baseDef: 71,
+            baseSpeed: 93,
+            moves: [0, 5, 7, 9, 25, 29, 34, 36, 38, 52, 53, 63, 66, 70, 83, 94, 99, 123, 126, 130, 168, 173, 185, 189, 223, 231, 237, 249, 257, 263, 264, 280, 290, 315, 343, 411, 416, 431, 436, 481, 488, 490, 496, 499, 510, 530, 612]
+        }, 127: {
+            id: 127,
+            name: "pinsir",
+            specie: 127,
+            is_default: true,
+            type1: "bug",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 90,
+            baseDef: 85,
+            baseSpeed: 85,
+            moves: [0, 11, 15, 20, 29, 31, 34, 36, 37, 38, 63, 66, 70, 89, 91, 98, 99, 157, 163, 168, 173, 185, 206, 210, 233, 237, 249, 263, 264, 276, 279, 280, 282, 290, 317, 364, 370, 404, 411, 416, 431, 444, 450, 458, 479, 480, 496, 522, 523, 693]
+        }, 128: {
+            id: 128,
+            name: "tauros",
+            specie: 128,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 70,
+            baseDef: 83,
+            baseSpeed: 110,
+            moves: [0, 23, 29, 30, 33, 34, 36, 37, 38, 53, 57, 58, 59, 63, 70, 76, 85, 87, 89, 99, 126, 130, 157, 173, 192, 196, 200, 228, 231, 237, 249, 250, 253, 263, 290, 317, 351, 352, 371, 416, 428, 431, 442, 444, 496, 510, 514, 523, 528, 684]
+        }, 129: {
             id: 129,
             name: "magikarp",
             specie: 129,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 130, method: "level_up", minLevel: 20},]
-        },
-        130: {
+            evolutions: [{to: 130, method: "level_up", minLevel: 20},],
+            baseHp: 20,
+            baseAtk: 13,
+            baseDef: 38,
+            baseSpeed: 80,
+            moves: [0, 33, 340]
+        }, 130: {
             id: 130,
             name: "gyarados",
             specie: 130,
             is_default: true,
             type1: "water",
             type2: "flying",
-            evolutions: []
-        },
-        131: {id: 131, name: "lapras", specie: 131, is_default: true, type1: "water", type2: "ice", evolutions: []},
-        132: {id: 132, name: "ditto", specie: 132, is_default: true, type1: "normal", evolutions: []},
-        133: {
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 93,
+            baseDef: 90,
+            baseSpeed: 81,
+            moves: [0, 29, 33, 34, 36, 37, 38, 44, 53, 55, 56, 57, 58, 59, 61, 63, 70, 85, 87, 89, 99, 126, 127, 130, 173, 192, 196, 200, 225, 231, 237, 239, 242, 249, 250, 253, 263, 290, 291, 340, 352, 362, 371, 399, 401, 406, 416, 419, 423, 442, 444, 496, 503, 510, 523, 525, 542, 693]
+        }, 131: {
+            id: 131,
+            name: "lapras",
+            specie: 131,
+            is_default: true,
+            type1: "water",
+            type2: "ice",
+            evolutions: [],
+            baseHp: 130,
+            baseAtk: 85,
+            baseDef: 88,
+            baseSpeed: 60,
+            moves: [0, 29, 34, 36, 38, 55, 56, 57, 58, 59, 61, 62, 63, 70, 76, 85, 87, 94, 99, 127, 130, 138, 173, 192, 196, 200, 225, 231, 237, 246, 248, 249, 250, 263, 290, 291, 304, 324, 351, 352, 362, 401, 406, 416, 419, 420, 428, 442, 496, 497, 523, 524, 529, 573, 684]
+        }, 132: {
+            id: 132, name: "ditto", specie: 132, is_default: true, type1: "normal", evolutions: [],
+            baseHp: 48, baseAtk: 48, baseDef: 48, baseSpeed: 48, moves: [0]
+        }, 133: {
             id: 133,
             name: "eevee",
             specie: 133,
@@ -763,558 +1667,1261 @@ export const pokemonVarieties: Record<number, IPokemonVariety> =
                 to: 700,
                 method: "level_up",
                 minLevel: 32
-            },]
-        },
-        134: {id: 134, name: "vaporeon", specie: 134, is_default: true, type1: "water", evolutions: []},
-        135: {id: 135, name: "jolteon", specie: 135, is_default: true, type1: "electric", evolutions: []},
-        136: {id: 136, name: "flareon", specie: 136, is_default: true, type1: "fire", evolutions: []},
-        137: {
+            },],
+            baseHp: 55,
+            baseAtk: 50,
+            baseDef: 58,
+            baseSpeed: 55,
+            moves: [0, 29, 33, 34, 36, 38, 44, 91, 98, 99, 129, 130, 173, 189, 231, 237, 247, 263, 290, 304, 343, 387, 485, 496, 497, 500, 514]
+        }, 134: {
+            id: 134,
+            name: "vaporeon",
+            specie: 134,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 130,
+            baseAtk: 88,
+            baseDef: 78,
+            baseSpeed: 65,
+            moves: [0, 29, 33, 34, 36, 38, 44, 55, 56, 57, 58, 59, 61, 62, 63, 70, 91, 98, 99, 127, 129, 130, 173, 189, 196, 231, 237, 247, 249, 250, 263, 290, 291, 304, 324, 330, 343, 352, 362, 387, 401, 416, 496, 497, 503, 514]
+        }, 135: {
+            id: 135,
+            name: "jolteon",
+            specie: 135,
+            is_default: true,
+            type1: "electric",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 88,
+            baseDef: 78,
+            baseSpeed: 130,
+            moves: [0, 24, 29, 33, 34, 36, 38, 42, 63, 70, 84, 85, 87, 91, 98, 99, 129, 130, 173, 189, 192, 231, 237, 247, 249, 263, 290, 304, 324, 343, 351, 387, 416, 422, 435, 451, 496, 497, 514, 521, 528]
+        }, 136: {
+            id: 136,
+            name: "flareon",
+            specie: 136,
+            is_default: true,
+            type1: "fire",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 113,
+            baseDef: 85,
+            baseSpeed: 65,
+            moves: [0, 29, 33, 34, 36, 38, 44, 52, 53, 63, 70, 83, 91, 98, 99, 123, 126, 129, 130, 173, 189, 192, 231, 237, 247, 249, 257, 263, 276, 290, 304, 315, 343, 387, 394, 416, 424, 436, 488, 496, 497, 510, 514]
+        }, 137: {
             id: 137,
             name: "porygon",
             specie: 137,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 233, method: "level_up", minLevel: 32},]
-        },
-        138: {
+            evolutions: [{to: 233, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 73,
+            baseDef: 73,
+            baseSpeed: 40,
+            moves: [0, 33, 36, 38, 58, 59, 60, 63, 76, 85, 87, 94, 99, 129, 130, 138, 161, 168, 173, 192, 196, 231, 237, 247, 263, 290, 324, 332, 351, 387, 416, 428, 435, 451, 473, 492, 496, 527]
+        }, 138: {
             id: 138,
             name: "omanyte",
             specie: 138,
             is_default: true,
             type1: "rock",
             type2: "water",
-            evolutions: [{to: 139, method: "level_up", minLevel: 40},]
-        },
-        139: {id: 139, name: "omastar", specie: 139, is_default: true, type1: "rock", type2: "water", evolutions: []},
-        140: {
+            evolutions: [{to: 139, method: "level_up", minLevel: 40},],
+            baseHp: 35,
+            baseAtk: 65,
+            baseDef: 78,
+            baseSpeed: 35,
+            moves: [0, 20, 21, 29, 30, 34, 36, 38, 44, 55, 56, 57, 58, 59, 61, 62, 99, 127, 131, 132, 157, 168, 173, 196, 205, 237, 246, 249, 250, 263, 282, 290, 291, 317, 330, 341, 350, 352, 362, 414, 479, 496, 503]
+        }, 139: {
+            id: 139,
+            name: "omastar",
+            specie: 139,
+            is_default: true,
+            type1: "rock",
+            type2: "water",
+            evolutions: [],
+            baseHp: 70,
+            baseAtk: 88,
+            baseDef: 98,
+            baseSpeed: 55,
+            moves: [0, 20, 29, 30, 34, 36, 38, 44, 55, 56, 57, 58, 59, 61, 63, 66, 99, 127, 130, 131, 132, 157, 168, 173, 196, 205, 237, 246, 249, 250, 263, 282, 290, 291, 317, 341, 350, 352, 362, 414, 416, 431, 444, 479, 496, 503]
+        }, 140: {
             id: 140,
             name: "kabuto",
             specie: 140,
             is_default: true,
             type1: "rock",
             type2: "water",
-            evolutions: [{to: 141, method: "level_up", minLevel: 40},]
-        },
-        141: {id: 141, name: "kabutops", specie: 141, is_default: true, type1: "rock", type2: "water", evolutions: []},
-        142: {
+            evolutions: [{to: 141, method: "level_up", minLevel: 40},],
+            baseHp: 30,
+            baseAtk: 68,
+            baseDef: 68,
+            baseSpeed: 55,
+            moves: [0, 10, 34, 36, 38, 55, 56, 57, 58, 59, 61, 62, 71, 72, 91, 99, 127, 157, 163, 168, 173, 189, 196, 202, 205, 229, 237, 246, 249, 250, 263, 282, 290, 317, 332, 341, 352, 362, 414, 453, 479, 496, 503]
+        }, 141: {
+            id: 141,
+            name: "kabutops",
+            specie: 141,
+            is_default: true,
+            type1: "rock",
+            type2: "water",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 90,
+            baseDef: 88,
+            baseSpeed: 80,
+            moves: [0, 10, 13, 15, 25, 29, 34, 36, 38, 55, 56, 57, 58, 59, 61, 63, 66, 71, 72, 91, 99, 127, 130, 157, 163, 168, 173, 189, 196, 202, 205, 210, 237, 246, 249, 250, 263, 276, 280, 282, 290, 291, 317, 332, 341, 352, 362, 364, 400, 401, 404, 414, 416, 431, 444, 453, 479, 496, 503]
+        }, 142: {
             id: 142,
             name: "aerodactyl",
             specie: 142,
             is_default: true,
             type1: "rock",
             type2: "flying",
-            evolutions: []
-        },
-        143: {id: 143, name: "snorlax", specie: 143, is_default: true, type1: "normal", evolutions: []},
-        144: {id: 144, name: "articuno", specie: 144, is_default: true, type1: "ice", type2: "flying", evolutions: []},
-        145: {
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 83,
+            baseDef: 70,
+            baseSpeed: 130,
+            moves: [0, 13, 17, 19, 29, 36, 38, 44, 53, 63, 70, 89, 99, 126, 129, 143, 157, 168, 173, 211, 225, 228, 231, 237, 239, 242, 246, 249, 257, 263, 290, 314, 317, 332, 337, 371, 372, 401, 406, 414, 416, 422, 423, 424, 442, 444, 466, 479, 496, 507, 510, 523, 693]
+        }, 143: {
+            id: 143,
+            name: "snorlax",
+            specie: 143,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 160,
+            baseAtk: 88,
+            baseDef: 88,
+            baseSpeed: 30,
+            moves: [0, 5, 6, 7, 8, 9, 25, 29, 33, 34, 36, 38, 53, 55, 57, 58, 59, 61, 63, 66, 70, 76, 85, 87, 89, 94, 99, 120, 122, 126, 130, 157, 173, 189, 192, 196, 200, 205, 223, 228, 237, 242, 247, 249, 250, 263, 264, 276, 280, 290, 304, 317, 343, 351, 352, 387, 402, 411, 416, 428, 431, 441, 442, 479, 496, 498, 510, 514, 523, 528, 562, 612, 667]
+        }, 144: {
+            id: 144,
+            name: "articuno",
+            specie: 144,
+            is_default: true,
+            type1: "ice",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 90,
+            baseDef: 113,
+            baseSpeed: 85,
+            moves: [0, 13, 16, 19, 36, 38, 55, 58, 59, 61, 63, 64, 99, 129, 143, 173, 181, 189, 196, 211, 237, 239, 246, 249, 263, 290, 314, 324, 332, 352, 365, 369, 416, 419, 420, 466, 496, 507, 524, 542, 573]
+        }, 145: {
             id: 145,
             name: "zapdos",
             specie: 145,
             is_default: true,
             type1: "electric",
             type2: "flying",
-            evolutions: []
-        },
-        146: {id: 146, name: "moltres", specie: 146, is_default: true, type1: "fire", type2: "flying", evolutions: []},
-        147: {
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 108,
+            baseDef: 88,
+            baseSpeed: 100,
+            moves: [0, 13, 19, 36, 38, 63, 64, 65, 84, 85, 87, 99, 129, 143, 173, 189, 192, 211, 237, 239, 246, 249, 257, 263, 290, 314, 324, 332, 351, 365, 369, 416, 435, 451, 466, 496, 507, 521, 528]
+        }, 146: {
+            id: 146,
+            name: "moltres",
+            specie: 146,
+            is_default: true,
+            type1: "fire",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 113,
+            baseDef: 88,
+            baseSpeed: 90,
+            moves: [0, 13, 17, 19, 36, 38, 52, 53, 63, 64, 76, 83, 99, 126, 129, 143, 173, 189, 211, 237, 239, 246, 249, 257, 263, 290, 314, 315, 332, 365, 369, 403, 416, 466, 488, 496, 507, 510, 542, 682]
+        }, 147: {
             id: 147,
             name: "dratini",
             specie: 147,
             is_default: true,
             type1: "dragon",
-            evolutions: [{to: 148, method: "level_up", minLevel: 30},]
-        },
-        148: {
+            evolutions: [{to: 148, method: "level_up", minLevel: 30},],
+            baseHp: 41,
+            baseAtk: 57,
+            baseDef: 48,
+            baseSpeed: 50,
+            moves: [0, 20, 21, 29, 34, 35, 36, 38, 53, 55, 57, 58, 59, 61, 63, 85, 87, 99, 126, 127, 129, 130, 173, 192, 196, 200, 225, 231, 237, 239, 245, 250, 263, 290, 351, 352, 401, 406, 407, 434, 453, 496, 510, 525, 693]
+        }, 148: {
             id: 148,
             name: "dragonair",
             specie: 148,
             is_default: true,
             type1: "dragon",
-            evolutions: [{to: 149, method: "level_up", minLevel: 55},]
-        },
-        149: {
+            evolutions: [{to: 149, method: "level_up", minLevel: 55},],
+            baseHp: 61,
+            baseAtk: 77,
+            baseDef: 68,
+            baseSpeed: 70,
+            moves: [0, 20, 21, 29, 34, 35, 36, 38, 53, 55, 57, 58, 59, 61, 63, 85, 87, 99, 126, 127, 129, 130, 173, 192, 196, 200, 225, 231, 237, 239, 250, 263, 290, 351, 352, 401, 406, 407, 434, 496, 510, 525, 693]
+        }, 149: {
             id: 149,
             name: "dragonite",
             specie: 149,
             is_default: true,
             type1: "dragon",
             type2: "flying",
-            evolutions: []
-        },
-        150: {id: 150, name: "mewtwo", specie: 150, is_default: true, type1: "psychic", evolutions: []},
-        151: {id: 151, name: "mew", specie: 151, is_default: true, type1: "psychic", evolutions: []},
-        10103: {
-            id: 10103,
-            name: "vulpix-alola",
-            specie: 37,
-            is_default: false,
-            type1: "ice",
-            evolutions: []
-        },
-        152: {
+            evolutions: [],
+            baseHp: 91,
+            baseAtk: 117,
+            baseDef: 98,
+            baseSpeed: 80,
+            moves: [0, 7, 8, 9, 13, 15, 17, 19, 20, 21, 29, 34, 35, 36, 38, 53, 55, 57, 58, 59, 61, 63, 70, 85, 87, 89, 99, 126, 127, 129, 130, 157, 173, 189, 192, 196, 200, 210, 211, 223, 225, 231, 237, 239, 249, 250, 257, 263, 264, 276, 280, 290, 291, 314, 317, 332, 337, 351, 352, 401, 406, 407, 411, 416, 434, 442, 444, 466, 496, 507, 510, 523, 525, 542, 612, 693]
+        }, 150: {
+            id: 150,
+            name: "mewtwo",
+            specie: 150,
+            is_default: true,
+            type1: "psychic",
+            evolutions: [],
+            baseHp: 106,
+            baseAtk: 132,
+            baseDef: 90,
+            baseSpeed: 130,
+            moves: [0, 5, 6, 7, 8, 9, 25, 29, 34, 36, 38, 53, 55, 58, 59, 61, 63, 66, 70, 76, 85, 87, 89, 93, 94, 99, 120, 126, 129, 130, 138, 157, 161, 173, 189, 192, 196, 223, 231, 237, 247, 248, 249, 263, 264, 280, 290, 291, 317, 324, 332, 351, 352, 396, 398, 401, 409, 411, 412, 416, 419, 427, 428, 431, 444, 451, 473, 490, 492, 496, 510, 523, 540, 612, 693]
+        }, 151: {
+            id: 151,
+            name: "mew",
+            specie: 151,
+            is_default: true,
+            type1: "psychic",
+            evolutions: [],
+            baseHp: 100,
+            baseAtk: 100,
+            baseDef: 100,
+            baseSpeed: 100,
+            moves: [0, 1, 5, 6, 7, 8, 9, 13, 15, 19, 20, 25, 29, 34, 36, 38, 53, 55, 57, 58, 59, 61, 63, 66, 70, 72, 76, 85, 87, 89, 91, 94, 99, 120, 121, 126, 127, 129, 130, 138, 141, 143, 153, 157, 161, 168, 173, 185, 188, 189, 192, 196, 200, 202, 205, 206, 210, 211, 223, 225, 231, 237, 239, 246, 247, 249, 250, 252, 253, 257, 263, 264, 276, 280, 282, 290, 291, 304, 314, 315, 317, 318, 324, 331, 332, 337, 340, 343, 351, 352, 362, 365, 369, 371, 387, 389, 396, 398, 399, 401, 402, 404, 406, 409, 410, 411, 412, 414, 416, 419, 421, 428, 430, 431, 441, 442, 444, 450, 451, 466, 473, 474, 479, 482, 488, 490, 492, 496, 497, 503, 507, 510, 512, 514, 521, 522, 523, 524, 525, 527, 528, 529, 530, 555, 605, 611, 612, 684, 693]
+        }, 152: {
             id: 152,
             name: "chikorita",
             specie: 152,
             is_default: true,
             type1: "grass",
-            evolutions: [{to: 153, method: "level_up", minLevel: 16},]
-        },
-        153: {
+            evolutions: [{to: 153, method: "level_up", minLevel: 16},],
+            baseHp: 45,
+            baseAtk: 49,
+            baseDef: 65,
+            baseSpeed: 45,
+            moves: [0, 15, 22, 29, 33, 34, 38, 75, 76, 173, 189, 202, 210, 231, 237, 246, 263, 290, 331, 345, 402, 412, 437, 496, 497, 520]
+        }, 153: {
             id: 153,
             name: "bayleef",
             specie: 153,
             is_default: true,
             type1: "grass",
-            evolutions: [{to: 154, method: "level_up", minLevel: 32},]
-        },
-        154: {id: 154, name: "meganium", specie: 154, is_default: true, type1: "grass", evolutions: []},
-        155: {
+            evolutions: [{to: 154, method: "level_up", minLevel: 32},],
+            baseHp: 60,
+            baseAtk: 63,
+            baseDef: 80,
+            baseSpeed: 60,
+            moves: [0, 15, 29, 33, 34, 38, 70, 75, 76, 173, 189, 202, 210, 231, 237, 246, 249, 263, 290, 331, 345, 402, 412, 496, 497, 520]
+        }, 154: {
+            id: 154,
+            name: "meganium",
+            specie: 154,
+            is_default: true,
+            type1: "grass",
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 83,
+            baseDef: 100,
+            baseSpeed: 80,
+            moves: [0, 15, 29, 33, 34, 38, 63, 70, 75, 76, 80, 89, 173, 189, 200, 202, 210, 231, 237, 246, 249, 263, 290, 331, 338, 345, 402, 412, 416, 431, 496, 497, 520, 523, 525, 572]
+        }, 155: {
             id: 155,
             name: "cyndaquil",
             specie: 155,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 156, method: "level_up", minLevel: 14},]
-        },
-        156: {
+            evolutions: [{to: 156, method: "level_up", minLevel: 14},],
+            baseHp: 39,
+            baseAtk: 56,
+            baseDef: 47,
+            baseSpeed: 65,
+            moves: [0, 15, 24, 29, 33, 34, 37, 38, 52, 53, 66, 91, 98, 126, 129, 154, 172, 173, 189, 205, 231, 237, 257, 263, 284, 290, 306, 315, 326, 332, 343, 394, 436, 481, 488, 496, 510, 517, 519, 528, 682]
+        }, 156: {
             id: 156,
             name: "quilava",
             specie: 156,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 157, method: "level_up", minLevel: 36},]
-        },
-        157: {id: 157, name: "typhlosion", specie: 157, is_default: true, type1: "fire", evolutions: []},
-        158: {
+            evolutions: [{to: 157, method: "level_up", minLevel: 36},],
+            baseHp: 58,
+            baseAtk: 72,
+            baseDef: 62,
+            baseSpeed: 80,
+            moves: [0, 15, 29, 33, 34, 38, 52, 53, 70, 91, 98, 126, 129, 172, 173, 189, 205, 210, 231, 237, 249, 257, 263, 264, 280, 284, 290, 315, 332, 343, 436, 488, 496, 510, 517, 519, 528, 682]
+        }, 157: {
+            id: 157,
+            name: "typhlosion",
+            specie: 157,
+            is_default: true,
+            type1: "fire",
+            evolutions: [],
+            baseHp: 78,
+            baseAtk: 97,
+            baseDef: 82,
+            baseSpeed: 100,
+            moves: [0, 5, 7, 9, 15, 25, 29, 33, 34, 38, 52, 53, 63, 70, 76, 89, 91, 98, 126, 129, 157, 172, 173, 189, 205, 210, 223, 231, 237, 249, 257, 263, 264, 280, 284, 290, 307, 315, 317, 332, 343, 411, 416, 421, 431, 436, 488, 496, 510, 517, 519, 523, 528, 612, 682]
+        }, 158: {
             id: 158,
             name: "totodile",
             specie: 158,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 159, method: "level_up", minLevel: 18},]
-        },
-        159: {
+            evolutions: [{to: 159, method: "level_up", minLevel: 18},],
+            baseHp: 50,
+            baseAtk: 55,
+            baseDef: 56,
+            baseSpeed: 43,
+            moves: [0, 5, 8, 10, 13, 15, 25, 29, 34, 37, 38, 44, 55, 56, 57, 58, 59, 91, 99, 127, 157, 163, 173, 189, 196, 223, 231, 232, 237, 242, 246, 250, 253, 263, 264, 276, 280, 290, 291, 317, 332, 337, 352, 401, 421, 423, 453, 496, 498, 503, 518, 612]
+        }, 159: {
             id: 159,
             name: "croconaw",
             specie: 159,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 160, method: "level_up", minLevel: 30},]
-        },
-        160: {id: 160, name: "feraligatr", specie: 160, is_default: true, type1: "water", evolutions: []},
-        161: {
+            evolutions: [{to: 160, method: "level_up", minLevel: 30},],
+            baseHp: 65,
+            baseAtk: 70,
+            baseDef: 72,
+            baseSpeed: 58,
+            moves: [0, 5, 8, 10, 15, 25, 29, 34, 37, 38, 44, 55, 56, 57, 58, 59, 70, 91, 99, 127, 157, 163, 173, 189, 196, 210, 223, 231, 237, 242, 246, 249, 250, 253, 263, 264, 276, 280, 290, 291, 317, 332, 337, 352, 401, 421, 423, 496, 498, 503, 518, 612]
+        }, 160: {
+            id: 160,
+            name: "feraligatr",
+            specie: 160,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 85,
+            baseAtk: 92,
+            baseDef: 92,
+            baseSpeed: 78,
+            moves: [0, 5, 8, 10, 15, 25, 29, 34, 37, 38, 44, 55, 56, 57, 58, 59, 63, 70, 89, 91, 99, 127, 157, 163, 173, 189, 196, 200, 210, 223, 231, 237, 242, 246, 249, 250, 253, 263, 264, 276, 280, 290, 291, 308, 317, 332, 337, 352, 401, 406, 411, 416, 419, 421, 423, 431, 496, 498, 503, 518, 523, 525, 612]
+        }, 161: {
             id: 161,
             name: "sentret",
             specie: 161,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 162, method: "level_up", minLevel: 15},]
-        },
-        162: {id: 162, name: "furret", specie: 162, is_default: true, type1: "normal", evolutions: []},
-        163: {
+            evolutions: [{to: 162, method: "level_up", minLevel: 15},],
+            baseHp: 35,
+            baseAtk: 41,
+            baseDef: 40,
+            baseSpeed: 20,
+            moves: [0, 7, 8, 9, 10, 15, 21, 29, 33, 34, 38, 53, 57, 58, 76, 85, 91, 98, 129, 154, 163, 168, 173, 189, 205, 210, 223, 228, 231, 237, 247, 250, 253, 263, 264, 280, 282, 290, 304, 343, 351, 352, 369, 387, 389, 401, 421, 451, 496, 497, 514, 612, 693]
+        }, 162: {
+            id: 162,
+            name: "furret",
+            specie: 162,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 85,
+            baseAtk: 61,
+            baseDef: 60,
+            baseSpeed: 90,
+            moves: [0, 7, 8, 9, 10, 15, 21, 29, 34, 38, 53, 57, 58, 59, 63, 70, 76, 85, 87, 91, 98, 129, 154, 168, 173, 189, 205, 210, 223, 231, 237, 247, 249, 250, 253, 263, 264, 280, 282, 290, 304, 343, 351, 352, 369, 387, 389, 401, 411, 416, 421, 451, 496, 497, 514, 612, 693]
+        }, 163: {
             id: 163,
             name: "hoothoot",
             specie: 163,
             is_default: true,
             type1: "normal",
             type2: "flying",
-            evolutions: [{to: 164, method: "level_up", minLevel: 20},]
-        },
-        164: {
+            evolutions: [{to: 164, method: "level_up", minLevel: 20},],
+            baseHp: 60,
+            baseAtk: 33,
+            baseDef: 43,
+            baseSpeed: 50,
+            moves: [0, 17, 19, 33, 36, 38, 64, 93, 94, 129, 138, 143, 168, 173, 185, 189, 211, 237, 239, 247, 253, 257, 263, 290, 304, 314, 318, 326, 332, 365, 403, 428, 466, 485, 496, 497, 542, 585]
+        }, 164: {
             id: 164,
             name: "noctowl",
             specie: 164,
             is_default: true,
             type1: "normal",
             type2: "flying",
-            evolutions: []
-        },
-        165: {
+            evolutions: [],
+            baseHp: 100,
+            baseAtk: 68,
+            baseDef: 73,
+            baseSpeed: 70,
+            moves: [0, 19, 33, 36, 38, 63, 64, 93, 94, 129, 138, 143, 168, 173, 189, 211, 237, 239, 247, 253, 257, 263, 290, 304, 314, 318, 326, 332, 365, 403, 416, 428, 466, 485, 496, 497, 585]
+        }, 165: {
             id: 165,
             name: "ledyba",
             specie: 165,
             is_default: true,
             type1: "bug",
             type2: "flying",
-            evolutions: [{to: 166, method: "level_up", minLevel: 18},]
-        },
-        166: {id: 166, name: "ledian", specie: 166, is_default: true, type1: "bug", type2: "flying", evolutions: []},
-        167: {
+            evolutions: [{to: 166, method: "level_up", minLevel: 18},],
+            baseHp: 40,
+            baseAtk: 30,
+            baseDef: 55,
+            baseSpeed: 55,
+            moves: [0, 4, 5, 8, 9, 29, 33, 38, 60, 76, 91, 129, 146, 168, 173, 183, 202, 205, 223, 237, 253, 263, 264, 280, 282, 290, 314, 318, 332, 369, 403, 405, 409, 450, 466, 496, 512, 522, 611, 612]
+        }, 166: {
+            id: 166,
+            name: "ledian",
+            specie: 166,
+            is_default: true,
+            type1: "bug",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 55,
+            baseAtk: 45,
+            baseDef: 80,
+            baseSpeed: 85,
+            moves: [0, 4, 5, 8, 9, 29, 33, 38, 63, 70, 76, 91, 129, 168, 173, 183, 202, 205, 223, 237, 249, 253, 263, 264, 280, 282, 290, 314, 318, 332, 369, 403, 405, 409, 411, 416, 450, 466, 496, 512, 522, 611, 612]
+        }, 167: {
             id: 167,
             name: "spinarak",
             specie: 167,
             is_default: true,
             type1: "bug",
             type2: "poison",
-            evolutions: [{to: 168, method: "level_up", minLevel: 22},]
-        },
-        168: {id: 168, name: "ariados", specie: 168, is_default: true, type1: "bug", type2: "poison", evolutions: []},
-        169: {id: 169, name: "crobat", specie: 169, is_default: true, type1: "poison", type2: "flying", evolutions: []},
-        170: {
+            evolutions: [{to: 168, method: "level_up", minLevel: 22},],
+            baseHp: 40,
+            baseAtk: 50,
+            baseDef: 40,
+            baseSpeed: 30,
+            moves: [0, 34, 38, 40, 41, 42, 60, 71, 76, 91, 94, 132, 141, 154, 168, 173, 188, 202, 224, 228, 237, 263, 290, 324, 340, 389, 398, 400, 404, 425, 440, 450, 474, 492, 496, 522, 527, 611, 679]
+        }, 168: {
+            id: 168,
+            name: "ariados",
+            specie: 168,
+            is_default: true,
+            type1: "bug",
+            type2: "poison",
+            evolutions: [],
+            baseHp: 70,
+            baseAtk: 75,
+            baseDef: 70,
+            baseSpeed: 40,
+            moves: [0, 34, 38, 40, 42, 63, 71, 76, 91, 94, 132, 141, 154, 168, 173, 188, 202, 237, 263, 290, 324, 340, 389, 398, 404, 416, 425, 440, 450, 474, 492, 496, 522, 527, 565, 611, 684]
+        }, 169: {
+            id: 169,
+            name: "crobat",
+            specie: 169,
+            is_default: true,
+            type1: "poison",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 85,
+            baseAtk: 80,
+            baseDef: 80,
+            baseSpeed: 130,
+            moves: [0, 17, 19, 38, 44, 63, 71, 129, 141, 143, 168, 173, 188, 202, 211, 237, 239, 247, 253, 257, 263, 290, 305, 310, 314, 332, 365, 369, 371, 399, 403, 404, 416, 428, 440, 466, 474, 496, 512]
+        }, 170: {
             id: 170,
             name: "chinchou",
             specie: 170,
             is_default: true,
             type1: "water",
             type2: "electric",
-            evolutions: [{to: 171, method: "level_up", minLevel: 27},]
-        },
-        171: {
+            evolutions: [{to: 171, method: "level_up", minLevel: 27},],
+            baseHp: 75,
+            baseAtk: 47,
+            baseDef: 47,
+            baseSpeed: 67,
+            moves: [0, 36, 38, 55, 56, 57, 58, 59, 60, 61, 85, 87, 127, 145, 173, 192, 196, 209, 237, 250, 263, 290, 291, 324, 340, 351, 352, 362, 389, 435, 451, 496, 503, 521, 528, 605]
+        }, 171: {
             id: 171,
             name: "lanturn",
             specie: 171,
             is_default: true,
             type1: "water",
             type2: "electric",
-            evolutions: []
-        },
-        172: {
+            evolutions: [],
+            baseHp: 125,
+            baseAtk: 67,
+            baseDef: 67,
+            baseSpeed: 67,
+            moves: [0, 36, 38, 55, 56, 57, 58, 59, 61, 63, 85, 87, 127, 145, 173, 192, 196, 209, 237, 250, 263, 290, 291, 324, 340, 351, 352, 362, 389, 401, 416, 435, 451, 496, 503, 521, 528, 605]
+        }, 172: {
             id: 172,
             name: "pichu",
             specie: 172,
             is_default: true,
             type1: "electric",
-            evolutions: [{to: 25, method: "level_up", minLevel: 32},]
-        },
-        173: {
+            evolutions: [{to: 25, method: "level_up", minLevel: 32},],
+            baseHp: 20,
+            baseAtk: 38,
+            baseDef: 25,
+            baseSpeed: 60,
+            moves: [0, 3, 5, 9, 25, 29, 34, 38, 84, 85, 87, 129, 173, 189, 192, 205, 231, 237, 252, 253, 263, 290, 324, 343, 344, 351, 451, 496, 497, 521, 527, 528, 574]
+        }, 173: {
             id: 173,
             name: "cleffa",
             specie: 173,
             is_default: true,
             type1: "fairy",
-            evolutions: [{to: 35, method: "level_up", minLevel: 32},]
-        },
-        174: {
+            evolutions: [{to: 35, method: "level_up", minLevel: 32},],
+            baseHp: 50,
+            baseAtk: 35,
+            baseDef: 42,
+            baseSpeed: 15,
+            moves: [0, 1, 5, 25, 29, 34, 38, 53, 76, 91, 94, 126, 138, 173, 189, 192, 196, 205, 231, 237, 247, 253, 263, 290, 304, 324, 343, 345, 351, 352, 387, 428, 473, 496, 497, 500, 510]
+        }, 174: {
             id: 174,
             name: "igglybuff",
             specie: 174,
             is_default: true,
             type1: "normal",
             type2: "fairy",
-            evolutions: [{to: 39, method: "level_up", minLevel: 32},]
-        },
-        175: {
+            evolutions: [{to: 39, method: "level_up", minLevel: 32},],
+            baseHp: 90,
+            baseAtk: 35,
+            baseDef: 18,
+            baseSpeed: 15,
+            moves: [0, 1, 5, 25, 29, 34, 38, 53, 76, 91, 94, 126, 138, 173, 185, 189, 192, 196, 205, 237, 247, 253, 263, 290, 304, 340, 343, 351, 352, 387, 496, 497, 510, 528]
+        }, 175: {
             id: 175,
             name: "togepi",
             specie: 175,
             is_default: true,
             type1: "fairy",
-            evolutions: [{to: 176, method: "level_up", minLevel: 32},]
-        },
-        176: {
+            evolutions: [{to: 176, method: "level_up", minLevel: 32},],
+            baseHp: 35,
+            baseAtk: 30,
+            baseDef: 65,
+            baseSpeed: 20,
+            moves: [0, 5, 25, 29, 34, 38, 53, 64, 76, 94, 126, 129, 138, 173, 189, 192, 205, 237, 246, 247, 248, 249, 253, 263, 290, 304, 324, 326, 343, 351, 352, 387, 428, 473, 496, 497, 500, 510, 605]
+        }, 176: {
             id: 176,
             name: "togetic",
             specie: 176,
             is_default: true,
             type1: "fairy",
             type2: "flying",
-            evolutions: [{to: 468, method: "level_up", minLevel: 32},]
-        },
-        177: {
+            evolutions: [{to: 468, method: "level_up", minLevel: 32},],
+            baseHp: 55,
+            baseAtk: 60,
+            baseDef: 95,
+            baseSpeed: 40,
+            moves: [0, 5, 19, 25, 29, 34, 38, 53, 63, 76, 94, 126, 129, 138, 143, 173, 189, 192, 205, 211, 237, 239, 246, 247, 249, 257, 263, 264, 280, 290, 304, 314, 318, 324, 332, 343, 345, 351, 352, 387, 409, 416, 428, 466, 473, 496, 497, 510, 514, 584, 605, 684]
+        }, 177: {
             id: 177,
             name: "natu",
             specie: 177,
             is_default: true,
             type1: "psychic",
             type2: "flying",
-            evolutions: [{to: 178, method: "level_up", minLevel: 25},]
-        },
-        178: {id: 178, name: "xatu", specie: 178, is_default: true, type1: "psychic", type2: "flying", evolutions: []},
-        179: {
+            evolutions: [{to: 178, method: "level_up", minLevel: 25},],
+            baseHp: 40,
+            baseAtk: 60,
+            baseDef: 45,
+            baseSpeed: 70,
+            moves: [0, 38, 64, 65, 76, 94, 98, 129, 138, 143, 168, 173, 185, 202, 211, 237, 239, 247, 248, 257, 263, 290, 314, 318, 324, 332, 365, 369, 389, 428, 466, 473, 485, 496, 500, 605]
+        }, 178: {
+            id: 178,
+            name: "xatu",
+            specie: 178,
+            is_default: true,
+            type1: "psychic",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 85,
+            baseDef: 70,
+            baseSpeed: 95,
+            moves: [0, 19, 38, 63, 64, 76, 94, 129, 138, 143, 168, 173, 202, 211, 237, 239, 247, 248, 257, 263, 290, 314, 318, 324, 332, 365, 369, 389, 403, 416, 428, 466, 473, 492, 496, 500, 605]
+        }, 179: {
             id: 179,
             name: "mareep",
             specie: 179,
             is_default: true,
             type1: "electric",
-            evolutions: [{to: 180, method: "level_up", minLevel: 15},]
-        },
-        180: {
+            evolutions: [{to: 180, method: "level_up", minLevel: 15},],
+            baseHp: 55,
+            baseAtk: 53,
+            baseDef: 43,
+            baseSpeed: 35,
+            moves: [0, 29, 33, 34, 36, 38, 84, 85, 87, 129, 173, 192, 231, 237, 263, 290, 324, 351, 408, 435, 451, 496, 497, 527, 528]
+        }, 180: {
             id: 180,
             name: "flaaffy",
             specie: 180,
             is_default: true,
             type1: "electric",
-            evolutions: [{to: 181, method: "level_up", minLevel: 30},]
-        },
-        181: {id: 181, name: "ampharos", specie: 181, is_default: true, type1: "electric", evolutions: []},
-        182: {id: 182, name: "bellossom", specie: 182, is_default: true, type1: "grass", evolutions: []},
-        183: {
+            evolutions: [{to: 181, method: "level_up", minLevel: 30},],
+            baseHp: 70,
+            baseAtk: 68,
+            baseDef: 58,
+            baseSpeed: 45,
+            moves: [0, 5, 7, 9, 25, 29, 33, 34, 36, 38, 70, 84, 85, 87, 129, 173, 192, 223, 231, 237, 249, 263, 264, 280, 290, 324, 351, 408, 435, 451, 496, 497, 521, 527, 528, 612]
+        }, 181: {
+            id: 181,
+            name: "ampharos",
+            specie: 181,
+            is_default: true,
+            type1: "electric",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 95,
+            baseDef: 88,
+            baseSpeed: 55,
+            moves: [0, 5, 7, 9, 25, 29, 33, 34, 36, 38, 63, 70, 84, 85, 87, 129, 173, 192, 200, 223, 231, 237, 249, 263, 264, 280, 290, 324, 351, 406, 408, 411, 416, 431, 435, 451, 496, 497, 521, 523, 527, 528, 612, 693]
+        }, 182: {
+            id: 182,
+            name: "bellossom",
+            specie: 182,
+            is_default: true,
+            type1: "grass",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 85,
+            baseDef: 98,
+            baseSpeed: 50,
+            moves: [0, 15, 38, 63, 71, 72, 76, 80, 173, 188, 202, 237, 253, 263, 290, 331, 345, 348, 402, 409, 412, 416, 437, 474, 496, 572, 605, 611]
+        }, 183: {
             id: 183,
             name: "marill",
             specie: 183,
             is_default: true,
             type1: "water",
             type2: "fairy",
-            evolutions: [{to: 184, method: "level_up", minLevel: 18},]
-        },
-        184: {
+            evolutions: [{to: 184, method: "level_up", minLevel: 18},],
+            baseHp: 70,
+            baseAtk: 20,
+            baseDef: 50,
+            baseSpeed: 40,
+            moves: [0, 5, 8, 25, 29, 33, 34, 38, 55, 56, 57, 58, 59, 61, 70, 91, 127, 129, 145, 173, 189, 196, 205, 223, 231, 237, 248, 249, 250, 263, 264, 276, 280, 282, 290, 291, 304, 330, 340, 343, 352, 401, 453, 496, 503, 583, 612]
+        }, 184: {
             id: 184,
             name: "azumarill",
             specie: 184,
             is_default: true,
             type1: "water",
             type2: "fairy",
-            evolutions: []
-        },
-        185: {id: 185, name: "sudowoodo", specie: 185, is_default: true, type1: "rock", evolutions: []},
-        186: {id: 186, name: "politoed", specie: 186, is_default: true, type1: "water", evolutions: []},
-        187: {
+            evolutions: [],
+            baseHp: 100,
+            baseAtk: 55,
+            baseDef: 80,
+            baseSpeed: 50,
+            moves: [0, 5, 8, 25, 29, 33, 34, 38, 55, 56, 57, 58, 59, 61, 63, 70, 91, 127, 129, 145, 173, 189, 196, 205, 223, 231, 237, 249, 250, 263, 264, 276, 280, 282, 290, 291, 304, 340, 343, 352, 401, 411, 416, 496, 503, 523, 583, 612]
+        }, 185: {
+            id: 185,
+            name: "sudowoodo",
+            specie: 185,
+            is_default: true,
+            type1: "rock",
+            evolutions: [],
+            baseHp: 70,
+            baseAtk: 65,
+            baseDef: 90,
+            baseSpeed: 30,
+            moves: [0, 5, 7, 8, 9, 21, 25, 29, 34, 38, 70, 88, 89, 91, 120, 153, 157, 168, 173, 185, 189, 205, 223, 237, 249, 263, 264, 280, 290, 317, 328, 343, 359, 389, 414, 444, 452, 457, 479, 492, 496, 523, 612]
+        }, 186: {
+            id: 186,
+            name: "politoed",
+            specie: 186,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 83,
+            baseDef: 88,
+            baseSpeed: 70,
+            moves: [0, 3, 5, 8, 25, 29, 34, 38, 55, 57, 58, 59, 61, 63, 70, 89, 91, 94, 127, 168, 173, 189, 196, 223, 237, 249, 250, 263, 264, 280, 290, 291, 304, 340, 352, 371, 411, 416, 496, 497, 503, 523, 612]
+        }, 187: {
             id: 187,
             name: "hoppip",
             specie: 187,
             is_default: true,
             type1: "grass",
             type2: "flying",
-            evolutions: [{to: 188, method: "level_up", minLevel: 18},]
-        },
-        188: {
+            evolutions: [{to: 188, method: "level_up", minLevel: 18},],
+            baseHp: 35,
+            baseAtk: 35,
+            baseDef: 48,
+            baseSpeed: 50,
+            moves: [0, 6, 29, 33, 38, 71, 72, 76, 93, 173, 202, 237, 263, 290, 318, 331, 332, 340, 369, 402, 412, 496, 512, 584, 605, 611]
+        }, 188: {
             id: 188,
             name: "skiploom",
             specie: 188,
             is_default: true,
             type1: "grass",
             type2: "flying",
-            evolutions: [{to: 189, method: "level_up", minLevel: 27},]
-        },
-        189: {
+            evolutions: [{to: 189, method: "level_up", minLevel: 27},],
+            baseHp: 55,
+            baseAtk: 45,
+            baseDef: 58,
+            baseSpeed: 80,
+            moves: [0, 29, 33, 38, 71, 72, 76, 173, 202, 237, 263, 290, 318, 331, 332, 340, 369, 402, 412, 496, 512, 584, 605, 611]
+        }, 189: {
             id: 189,
             name: "jumpluff",
             specie: 189,
             is_default: true,
             type1: "grass",
             type2: "flying",
-            evolutions: []
-        },
-        190: {
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 55,
+            baseDef: 83,
+            baseSpeed: 110,
+            moves: [0, 29, 33, 38, 63, 71, 72, 76, 173, 202, 237, 263, 290, 318, 331, 332, 340, 369, 402, 412, 416, 496, 512, 584, 605, 611]
+        }, 190: {
             id: 190,
             name: "aipom",
             specie: 190,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 424, method: "level_up", minLevel: 32},]
-        },
-        191: {
+            evolutions: [{to: 424, method: "level_up", minLevel: 32},],
+            baseHp: 55,
+            baseAtk: 55,
+            baseDef: 55,
+            baseSpeed: 85,
+            moves: [0, 3, 5, 7, 8, 9, 10, 15, 21, 25, 29, 34, 38, 70, 76, 85, 87, 91, 129, 138, 154, 168, 173, 189, 192, 210, 223, 228, 231, 237, 247, 249, 252, 253, 263, 264, 279, 280, 282, 290, 310, 332, 340, 343, 351, 352, 369, 371, 387, 402, 421, 441, 458, 490, 492, 496, 512, 514, 541, 612]
+        }, 191: {
             id: 191,
             name: "sunkern",
             specie: 191,
             is_default: true,
             type1: "grass",
-            evolutions: [{to: 192, method: "level_up", minLevel: 32},]
-        },
-        192: {id: 192, name: "sunflora", specie: 192, is_default: true, type1: "grass", evolutions: []},
-        193: {
+            evolutions: [{to: 192, method: "level_up", minLevel: 32},],
+            baseHp: 30,
+            baseAtk: 30,
+            baseDef: 30,
+            baseSpeed: 30,
+            moves: [0, 15, 38, 71, 72, 75, 76, 173, 188, 202, 237, 253, 263, 290, 331, 402, 412, 414, 496]
+        }, 192: {
+            id: 192,
+            name: "sunflora",
+            specie: 192,
+            is_default: true,
+            type1: "grass",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 90,
+            baseDef: 70,
+            baseSpeed: 30,
+            moves: [0, 1, 15, 38, 63, 71, 72, 75, 76, 80, 173, 188, 202, 237, 253, 263, 290, 331, 402, 412, 414, 416, 437, 496, 572]
+        }, 193: {
             id: 193,
             name: "yanma",
             specie: 193,
             is_default: true,
             type1: "bug",
             type2: "flying",
-            evolutions: [{to: 469, method: "level_up", minLevel: 32},]
-        },
-        194: {
+            evolutions: [{to: 469, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 70,
+            baseDef: 45,
+            baseSpeed: 95,
+            moves: [0, 17, 29, 33, 38, 76, 94, 98, 129, 138, 141, 168, 173, 185, 202, 211, 228, 237, 246, 247, 253, 263, 290, 314, 318, 324, 332, 364, 369, 403, 405, 450, 466, 496]
+        }, 194: {
             id: 194,
             name: "wooper",
             specie: 194,
             is_default: true,
             type1: "water",
             type2: "ground",
-            evolutions: [{to: 195, method: "level_up", minLevel: 20},]
-        },
-        195: {
+            evolutions: [{to: 195, method: "level_up", minLevel: 20},],
+            baseHp: 55,
+            baseAtk: 35,
+            baseDef: 35,
+            baseSpeed: 15,
+            moves: [0, 8, 21, 24, 29, 34, 38, 55, 57, 58, 59, 89, 91, 127, 173, 188, 189, 196, 205, 223, 231, 237, 246, 249, 250, 263, 290, 291, 330, 341, 352, 401, 414, 426, 482, 491, 496, 503, 523, 611, 612]
+        }, 195: {
             id: 195,
             name: "quagsire",
             specie: 195,
             is_default: true,
             type1: "water",
             type2: "ground",
-            evolutions: []
-        },
-        196: {id: 196, name: "espeon", specie: 196, is_default: true, type1: "psychic", evolutions: []},
-        197: {id: 197, name: "umbreon", specie: 197, is_default: true, type1: "dark", evolutions: []},
-        198: {
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 75,
+            baseDef: 75,
+            baseSpeed: 35,
+            moves: [0, 5, 8, 21, 25, 29, 34, 38, 55, 57, 58, 59, 63, 70, 89, 91, 127, 157, 168, 173, 188, 189, 196, 205, 223, 231, 237, 246, 249, 250, 263, 264, 280, 290, 291, 317, 330, 341, 352, 401, 411, 414, 416, 426, 444, 482, 496, 503, 523, 611, 612]
+        }, 196: {
+            id: 196,
+            name: "espeon",
+            specie: 196,
+            is_default: true,
+            type1: "psychic",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 98,
+            baseDef: 78,
+            baseSpeed: 110,
+            moves: [0, 15, 29, 33, 34, 38, 60, 63, 91, 93, 94, 98, 129, 138, 173, 189, 192, 231, 237, 247, 248, 263, 290, 304, 324, 343, 387, 416, 428, 473, 496, 497, 514, 605]
+        }, 197: {
+            id: 197,
+            name: "umbreon",
+            specie: 197,
+            is_default: true,
+            type1: "dark",
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 63,
+            baseDef: 120,
+            baseSpeed: 65,
+            moves: [0, 15, 29, 33, 34, 38, 63, 91, 94, 98, 129, 138, 173, 185, 189, 192, 228, 231, 237, 247, 263, 290, 304, 343, 371, 372, 387, 389, 399, 416, 492, 496, 497, 514, 555]
+        }, 198: {
             id: 198,
             name: "murkrow",
             specie: 198,
             is_default: true,
             type1: "dark",
             type2: "flying",
-            evolutions: [{to: 430, method: "level_up", minLevel: 32},]
-        },
-        199: {
+            evolutions: [{to: 430, method: "level_up", minLevel: 32},],
+            baseHp: 60,
+            baseAtk: 85,
+            baseDef: 42,
+            baseSpeed: 91,
+            moves: [0, 17, 19, 38, 64, 65, 94, 98, 129, 138, 143, 168, 173, 185, 189, 196, 211, 228, 237, 239, 247, 253, 257, 263, 290, 310, 314, 332, 365, 371, 372, 389, 399, 413, 466, 492, 496, 514, 555]
+        }, 199: {
             id: 199,
             name: "slowking",
             specie: 199,
             is_default: true,
             type1: "water",
             type2: "psychic",
-            evolutions: []
-        },
-        200: {
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 88,
+            baseDef: 95,
+            baseSpeed: 30,
+            moves: [0, 5, 8, 25, 29, 33, 34, 38, 53, 55, 57, 58, 59, 63, 70, 89, 91, 93, 94, 126, 129, 138, 173, 189, 192, 196, 210, 223, 231, 237, 247, 249, 250, 263, 264, 280, 290, 291, 324, 352, 362, 401, 408, 409, 411, 416, 419, 428, 473, 492, 496, 497, 503, 510, 523, 525, 612]
+        }, 200: {
             id: 200,
             name: "misdreavus",
             specie: 200,
             is_default: true,
             type1: "ghost",
-            evolutions: [{to: 429, method: "level_up", minLevel: 32},]
-        },
-        201: {id: 201, name: "unown", specie: 201, is_default: true, type1: "psychic", evolutions: []},
-        202: {id: 202, name: "wobbuffet", specie: 202, is_default: true, type1: "psychic", evolutions: []},
-        203: {
+            evolutions: [{to: 429, method: "level_up", minLevel: 32},],
+            baseHp: 60,
+            baseAtk: 73,
+            baseDef: 73,
+            baseSpeed: 85,
+            moves: [0, 29, 38, 60, 85, 87, 94, 129, 138, 168, 173, 192, 196, 237, 247, 253, 263, 290, 304, 310, 332, 351, 371, 389, 399, 408, 425, 451, 466, 492, 496, 497, 506, 605]
+        }, 201: {
+            id: 201, name: "unown", specie: 201, is_default: true, type1: "psychic", evolutions: [],
+            baseHp: 48, baseAtk: 72, baseDef: 48, baseSpeed: 48, moves: [0, 237]
+        }, 202: {
+            id: 202, name: "wobbuffet", specie: 202, is_default: true, type1: "psychic", evolutions: [],
+            baseHp: 190, baseAtk: 33, baseDef: 58, baseSpeed: 33, moves: [0]
+        }, 203: {
             id: 203,
             name: "girafarig",
             specie: 203,
             is_default: true,
             type1: "normal",
             type2: "psychic",
-            evolutions: []
-        },
-        204: {
+            evolutions: [],
+            baseHp: 70,
+            baseAtk: 85,
+            baseDef: 65,
+            baseSpeed: 85,
+            moves: [0, 13, 23, 24, 29, 33, 34, 36, 38, 60, 70, 85, 87, 89, 93, 94, 129, 138, 168, 173, 189, 192, 231, 237, 242, 247, 248, 249, 253, 263, 290, 304, 310, 324, 351, 372, 389, 412, 428, 451, 458, 473, 492, 496, 497, 514, 523, 605, 706]
+        }, 204: {
             id: 204,
             name: "pineco",
             specie: 204,
             is_default: true,
             type1: "bug",
-            evolutions: [{to: 205, method: "level_up", minLevel: 31},]
-        },
-        205: {id: 205, name: "forretress", specie: 205, is_default: true, type1: "bug", type2: "steel", evolutions: []},
-        206: {id: 206, name: "dunsparce", specie: 206, is_default: true, type1: "normal", evolutions: []},
-        207: {
+            evolutions: [{to: 205, method: "level_up", minLevel: 31},],
+            baseHp: 50,
+            baseAtk: 50,
+            baseDef: 63,
+            baseSpeed: 15,
+            moves: [0, 29, 33, 34, 36, 38, 42, 70, 76, 89, 91, 120, 129, 153, 157, 173, 202, 205, 229, 237, 249, 263, 279, 290, 317, 328, 371, 450, 474, 496, 522, 523, 529]
+        }, 205: {
+            id: 205,
+            name: "forretress",
+            specie: 205,
+            is_default: true,
+            type1: "bug",
+            type2: "steel",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 75,
+            baseDef: 100,
+            baseSpeed: 40,
+            moves: [0, 29, 33, 34, 36, 38, 63, 70, 76, 89, 91, 120, 153, 157, 173, 192, 202, 205, 229, 237, 249, 263, 290, 317, 324, 371, 416, 429, 430, 450, 474, 496, 521, 522, 523, 529]
+        }, 206: {
+            id: 206,
+            name: "dunsparce",
+            specie: 206,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 100,
+            baseAtk: 68,
+            baseDef: 68,
+            baseSpeed: 45,
+            moves: [0, 20, 29, 34, 36, 38, 44, 53, 58, 59, 70, 76, 85, 87, 89, 91, 99, 126, 138, 157, 168, 173, 189, 192, 205, 228, 231, 237, 246, 247, 249, 263, 290, 310, 317, 351, 352, 387, 398, 401, 403, 407, 428, 451, 496, 506, 510, 514, 523, 528, 529]
+        }, 207: {
             id: 207,
             name: "gligar",
             specie: 207,
             is_default: true,
             type1: "ground",
             type2: "flying",
-            evolutions: [{to: 472, method: "level_up", minLevel: 32},]
-        },
-        208: {id: 208, name: "steelix", specie: 208, is_default: true, type1: "steel", type2: "ground", evolutions: []},
-        209: {
+            evolutions: [{to: 472, method: "level_up", minLevel: 32},],
+            baseHp: 65,
+            baseAtk: 55,
+            baseDef: 85,
+            baseSpeed: 85,
+            moves: [0, 13, 15, 17, 29, 38, 40, 70, 89, 91, 98, 129, 138, 157, 163, 168, 173, 185, 188, 206, 210, 211, 231, 232, 237, 249, 263, 280, 282, 290, 317, 327, 328, 332, 342, 364, 369, 371, 398, 399, 400, 401, 404, 414, 431, 440, 444, 450, 474, 496, 512, 522, 523]
+        }, 208: {
+            id: 208,
+            name: "steelix",
+            specie: 208,
+            is_default: true,
+            type1: "steel",
+            type2: "ground",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 70,
+            baseDef: 133,
+            baseSpeed: 30,
+            moves: [0, 15, 20, 21, 29, 33, 34, 38, 63, 70, 88, 89, 91, 99, 120, 153, 157, 173, 189, 205, 225, 231, 237, 239, 242, 246, 249, 263, 290, 317, 371, 399, 401, 406, 414, 416, 422, 423, 424, 430, 431, 442, 444, 479, 496, 523, 525, 693]
+        }, 209: {
             id: 209,
             name: "snubbull",
             specie: 209,
             is_default: true,
             type1: "fairy",
-            evolutions: [{to: 210, method: "level_up", minLevel: 23},]
-        },
-        210: {id: 210, name: "granbull", specie: 210, is_default: true, type1: "fairy", evolutions: []},
-        211: {
+            evolutions: [{to: 210, method: "level_up", minLevel: 23},],
+            baseHp: 60,
+            baseAtk: 60,
+            baseDef: 45,
+            baseSpeed: 30,
+            moves: [0, 5, 7, 8, 9, 25, 29, 33, 34, 36, 38, 44, 53, 70, 76, 85, 87, 89, 91, 99, 122, 126, 168, 173, 185, 188, 189, 192, 223, 237, 242, 247, 249, 263, 264, 265, 276, 280, 290, 304, 315, 343, 351, 352, 370, 371, 387, 422, 423, 424, 496, 510, 514, 523, 528, 555, 583, 605, 612]
+        }, 210: {
+            id: 210,
+            name: "granbull",
+            specie: 210,
+            is_default: true,
+            type1: "fairy",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 90,
+            baseDef: 68,
+            baseSpeed: 45,
+            moves: [0, 5, 7, 8, 9, 25, 29, 33, 34, 36, 38, 44, 53, 63, 70, 76, 85, 87, 89, 91, 99, 122, 126, 157, 168, 173, 188, 189, 192, 200, 223, 231, 237, 242, 247, 249, 263, 264, 276, 280, 290, 304, 315, 317, 343, 351, 352, 371, 387, 411, 416, 422, 423, 424, 431, 444, 496, 510, 514, 523, 528, 555, 583, 605, 612]
+        }, 211: {
             id: 211,
             name: "qwilfish",
             specie: 211,
             is_default: true,
             type1: "water",
             type2: "poison",
-            evolutions: []
-        },
-        212: {id: 212, name: "scizor", specie: 212, is_default: true, type1: "bug", type2: "steel", evolutions: []},
-        213: {id: 213, name: "shuckle", specie: 213, is_default: true, type1: "bug", type2: "rock", evolutions: []},
-        214: {
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 75,
+            baseDef: 70,
+            baseSpeed: 85,
+            moves: [0, 29, 33, 36, 38, 40, 42, 55, 56, 57, 58, 59, 61, 120, 127, 129, 145, 153, 173, 188, 196, 205, 237, 247, 250, 263, 279, 290, 291, 310, 324, 340, 351, 352, 362, 371, 398, 401, 453, 474, 482, 491, 496, 503, 565]
+        }, 212: {
+            id: 212,
+            name: "scizor",
+            specie: 212,
+            is_default: true,
+            type1: "bug",
+            type2: "steel",
+            evolutions: [],
+            baseHp: 70,
+            baseAtk: 93,
+            baseDef: 90,
+            baseSpeed: 65,
+            moves: [0, 13, 15, 29, 38, 63, 70, 98, 129, 163, 168, 173, 206, 210, 211, 228, 232, 237, 249, 263, 276, 280, 282, 290, 318, 332, 364, 369, 400, 404, 416, 418, 430, 442, 450, 458, 466, 474, 496, 512, 522, 693]
+        }, 213: {
+            id: 213,
+            name: "shuckle",
+            specie: 213,
+            is_default: true,
+            type1: "bug",
+            type2: "rock",
+            evolutions: [],
+            baseHp: 20,
+            baseAtk: 10,
+            baseDef: 230,
+            baseSpeed: 5,
+            moves: [0, 20, 29, 34, 35, 38, 51, 70, 88, 89, 91, 132, 157, 173, 188, 189, 205, 237, 246, 249, 263, 282, 290, 317, 328, 350, 414, 444, 450, 474, 479, 482, 496, 522, 523, 611]
+        }, 214: {
             id: 214,
             name: "heracross",
             specie: 214,
             is_default: true,
             type1: "bug",
             type2: "fighting",
-            evolutions: []
-        },
-        215: {
+            evolutions: [],
+            baseHp: 80,
+            baseAtk: 83,
+            baseDef: 85,
+            baseSpeed: 85,
+            moves: [0, 15, 29, 30, 31, 33, 34, 36, 38, 42, 63, 70, 89, 91, 157, 168, 173, 206, 210, 224, 228, 237, 249, 263, 264, 279, 280, 282, 290, 292, 317, 331, 332, 350, 364, 370, 400, 410, 411, 416, 421, 444, 450, 474, 479, 496, 498, 514, 522, 523, 693]
+        }, 215: {
             id: 215,
             name: "sneasel",
             specie: 215,
             is_default: true,
             type1: "dark",
             type2: "ice",
-            evolutions: [{to: 461, method: "level_up", minLevel: 32},]
-        },
-        216: {
+            evolutions: [{to: 461, method: "level_up", minLevel: 32},],
+            baseHp: 55,
+            baseAtk: 65,
+            baseDef: 65,
+            baseSpeed: 115,
+            moves: [0, 8, 10, 15, 29, 38, 44, 57, 58, 59, 70, 91, 98, 129, 138, 154, 163, 168, 173, 185, 189, 196, 206, 210, 223, 228, 231, 232, 237, 247, 249, 250, 252, 263, 264, 280, 282, 290, 306, 332, 364, 371, 398, 399, 404, 419, 420, 421, 458, 490, 492, 496, 514, 555, 556, 612, 675]
+        }, 216: {
             id: 216,
             name: "teddiursa",
             specie: 216,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 217, method: "level_up", minLevel: 30},]
-        },
-        217: {id: 217, name: "ursaring", specie: 217, is_default: true, type1: "normal", evolutions: []},
-        218: {
+            evolutions: [{to: 217, method: "level_up", minLevel: 30},],
+            baseHp: 60,
+            baseAtk: 65,
+            baseDef: 50,
+            baseSpeed: 40,
+            moves: [0, 5, 7, 8, 9, 10, 15, 25, 29, 34, 36, 37, 38, 70, 89, 91, 122, 129, 154, 157, 163, 168, 173, 185, 189, 192, 205, 210, 223, 232, 237, 238, 242, 249, 263, 264, 276, 280, 290, 304, 317, 332, 343, 370, 371, 387, 400, 402, 421, 441, 496, 498, 514, 523, 583, 612]
+        }, 217: {
+            id: 217,
+            name: "ursaring",
+            specie: 217,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 103,
+            baseDef: 75,
+            baseSpeed: 55,
+            moves: [0, 5, 7, 8, 9, 10, 15, 25, 29, 34, 37, 38, 63, 70, 89, 91, 122, 129, 154, 157, 163, 168, 173, 185, 189, 192, 205, 210, 223, 237, 249, 253, 263, 264, 276, 280, 290, 304, 317, 332, 343, 359, 371, 387, 402, 411, 416, 419, 421, 431, 441, 444, 479, 496, 514, 523, 612]
+        }, 218: {
             id: 218,
             name: "slugma",
             specie: 218,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 219, method: "level_up", minLevel: 38},]
-        },
-        219: {id: 219, name: "magcargo", specie: 219, is_default: true, type1: "fire", type2: "rock", evolutions: []},
-        220: {
+            evolutions: [{to: 219, method: "level_up", minLevel: 38},],
+            baseHp: 40,
+            baseAtk: 55,
+            baseDef: 40,
+            baseSpeed: 20,
+            moves: [0, 34, 38, 52, 53, 88, 120, 123, 126, 157, 173, 189, 205, 237, 246, 249, 257, 263, 290, 315, 317, 414, 436, 481, 488, 496, 499, 510, 517, 611]
+        }, 219: {
+            id: 219,
+            name: "magcargo",
+            specie: 219,
+            is_default: true,
+            type1: "fire",
+            type2: "rock",
+            evolutions: [],
+            baseHp: 60,
+            baseAtk: 70,
+            baseDef: 100,
+            baseSpeed: 30,
+            moves: [0, 34, 38, 52, 53, 63, 70, 76, 88, 89, 120, 123, 126, 153, 157, 173, 189, 205, 237, 246, 249, 257, 263, 290, 315, 317, 414, 416, 436, 444, 479, 481, 488, 496, 499, 510, 523, 611]
+        }, 220: {
             id: 220,
             name: "swinub",
             specie: 220,
             is_default: true,
             type1: "ice",
             type2: "ground",
-            evolutions: [{to: 221, method: "level_up", minLevel: 33},]
-        },
-        221: {
+            evolutions: [{to: 221, method: "level_up", minLevel: 33},],
+            baseHp: 50,
+            baseAtk: 40,
+            baseDef: 35,
+            baseSpeed: 50,
+            moves: [0, 29, 33, 34, 36, 38, 44, 58, 59, 70, 89, 91, 157, 173, 181, 189, 196, 237, 246, 249, 263, 276, 290, 317, 333, 341, 414, 419, 420, 426, 496, 523, 556, 573]
+        }, 221: {
             id: 221,
             name: "piloswine",
             specie: 221,
             is_default: true,
             type1: "ice",
             type2: "ground",
-            evolutions: [{to: 473, method: "level_up", minLevel: 32},]
-        },
-        222: {id: 222, name: "corsola", specie: 222, is_default: true, type1: "water", type2: "rock", evolutions: []},
-        223: {
+            evolutions: [{to: 473, method: "level_up", minLevel: 32},],
+            baseHp: 100,
+            baseAtk: 80,
+            baseDef: 70,
+            baseSpeed: 50,
+            moves: [0, 29, 30, 31, 34, 36, 37, 38, 58, 59, 63, 64, 70, 89, 91, 157, 173, 181, 189, 196, 237, 246, 249, 263, 276, 290, 317, 414, 416, 419, 423, 426, 444, 496, 523]
+        }, 222: {
+            id: 222,
+            name: "corsola",
+            specie: 222,
+            is_default: true,
+            type1: "water",
+            type2: "rock",
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 60,
+            baseDef: 95,
+            baseSpeed: 35,
+            moves: [0, 29, 33, 34, 38, 57, 58, 59, 61, 70, 89, 91, 94, 120, 131, 145, 153, 157, 173, 189, 196, 205, 237, 246, 247, 249, 250, 263, 290, 317, 333, 350, 352, 362, 389, 408, 414, 444, 457, 496, 503, 523, 710]
+        }, 223: {
             id: 223,
             name: "remoraid",
             specie: 223,
             is_default: true,
             type1: "water",
-            evolutions: [{to: 224, method: "level_up", minLevel: 25},]
-        },
-        224: {id: 224, name: "octillery", specie: 224, is_default: true, type1: "water", evolutions: []},
-        225: {id: 225, name: "delibird", specie: 225, is_default: true, type1: "ice", type2: "flying", evolutions: []},
-        226: {id: 226, name: "mantine", specie: 226, is_default: true, type1: "water", type2: "flying", evolutions: []},
-        227: {
+            evolutions: [{to: 224, method: "level_up", minLevel: 25},],
+            baseHp: 35,
+            baseAtk: 65,
+            baseDef: 35,
+            baseSpeed: 65,
+            moves: [0, 38, 53, 55, 56, 57, 58, 59, 60, 61, 62, 63, 94, 126, 127, 129, 168, 173, 189, 190, 196, 237, 250, 263, 290, 291, 323, 324, 331, 340, 341, 350, 352, 362, 402, 441, 451, 479, 491, 496, 503, 510]
+        }, 224: {
+            id: 224,
+            name: "octillery",
+            specie: 224,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 105,
+            baseDef: 75,
+            baseSpeed: 45,
+            moves: [0, 20, 38, 53, 55, 56, 57, 58, 59, 60, 61, 62, 63, 94, 126, 127, 129, 132, 168, 173, 188, 189, 190, 196, 237, 250, 263, 290, 291, 324, 331, 340, 350, 352, 362, 371, 402, 412, 416, 430, 441, 451, 479, 482, 496, 503, 510]
+        }, 225: {
+            id: 225,
+            name: "delibird",
+            specie: 225,
+            is_default: true,
+            type1: "ice",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 45,
+            baseAtk: 60,
+            baseDef: 45,
+            baseSpeed: 75,
+            moves: [0, 5, 8, 19, 25, 29, 34, 38, 58, 59, 62, 65, 98, 129, 143, 168, 173, 189, 196, 205, 229, 237, 248, 252, 263, 264, 280, 290, 301, 324, 332, 340, 352, 365, 402, 419, 420, 441, 496, 524, 573, 612, 693]
+        }, 226: {
+            id: 226,
+            name: "mantine",
+            specie: 226,
+            is_default: true,
+            type1: "water",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 85,
+            baseAtk: 60,
+            baseDef: 105,
+            baseSpeed: 70,
+            moves: [0, 17, 21, 29, 33, 34, 36, 38, 56, 57, 58, 59, 60, 61, 63, 89, 127, 129, 145, 157, 173, 189, 196, 237, 239, 250, 263, 290, 291, 314, 317, 324, 331, 332, 340, 352, 362, 401, 402, 403, 416, 441, 442, 496, 503, 512, 523]
+        }, 227: {
             id: 227,
             name: "skarmory",
             specie: 227,
             is_default: true,
             type1: "steel",
             type2: "flying",
-            evolutions: []
-        },
-        228: {
+            evolutions: [],
+            baseHp: 65,
+            baseAtk: 60,
+            baseDef: 105,
+            baseSpeed: 70,
+            moves: [0, 15, 19, 31, 38, 64, 65, 129, 143, 157, 163, 168, 173, 189, 196, 210, 211, 228, 232, 237, 239, 249, 263, 290, 314, 317, 332, 364, 365, 371, 372, 399, 400, 403, 404, 413, 430, 442, 466, 496, 507]
+        }, 228: {
             id: 228,
             name: "houndour",
             specie: 228,
             is_default: true,
             type1: "dark",
             type2: "fire",
-            evolutions: [{to: 229, method: "level_up", minLevel: 24},]
-        },
-        229: {id: 229, name: "houndoom", specie: 229, is_default: true, type1: "dark", type2: "fire", evolutions: []},
-        230: {id: 230, name: "kingdra", specie: 230, is_default: true, type1: "water", type2: "dragon", evolutions: []},
-        231: {
+            evolutions: [{to: 229, method: "level_up", minLevel: 24},],
+            baseHp: 45,
+            baseAtk: 70,
+            baseDef: 40,
+            baseSpeed: 65,
+            moves: [0, 29, 34, 38, 44, 52, 53, 76, 83, 99, 123, 126, 129, 138, 168, 173, 185, 188, 189, 228, 231, 237, 242, 247, 249, 253, 257, 263, 290, 304, 315, 364, 371, 389, 399, 422, 424, 488, 492, 496, 510, 514, 517, 555]
+        }, 229: {
+            id: 229,
+            name: "houndoom",
+            specie: 229,
+            is_default: true,
+            type1: "dark",
+            type2: "fire",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 100,
+            baseDef: 65,
+            baseSpeed: 95,
+            moves: [0, 29, 34, 38, 44, 52, 53, 63, 70, 76, 123, 126, 129, 138, 168, 173, 185, 188, 189, 231, 237, 242, 247, 249, 253, 257, 263, 290, 304, 315, 371, 389, 399, 416, 422, 424, 488, 492, 496, 510, 514, 517, 555]
+        }, 230: {
+            id: 230,
+            name: "kingdra",
+            specie: 230,
+            is_default: true,
+            type1: "water",
+            type2: "dragon",
+            evolutions: [],
+            baseHp: 75,
+            baseAtk: 95,
+            baseDef: 95,
+            baseSpeed: 85,
+            moves: [0, 29, 34, 38, 55, 56, 57, 58, 59, 61, 63, 127, 129, 145, 173, 196, 200, 225, 237, 239, 250, 263, 290, 291, 324, 340, 352, 362, 406, 416, 430, 434, 442, 496, 503]
+        }, 231: {
             id: 231,
             name: "phanpy",
             specie: 231,
             is_default: true,
             type1: "ground",
-            evolutions: [{to: 232, method: "level_up", minLevel: 25},]
-        },
-        232: {id: 232, name: "donphan", specie: 232, is_default: true, type1: "ground", evolutions: []},
-        233: {
+            evolutions: [{to: 232, method: "level_up", minLevel: 25},],
+            baseHp: 90,
+            baseAtk: 50,
+            baseDef: 50,
+            baseSpeed: 40,
+            moves: [0, 21, 29, 33, 34, 36, 38, 55, 70, 89, 157, 173, 189, 205, 231, 237, 246, 249, 263, 276, 282, 290, 304, 317, 387, 402, 414, 420, 441, 457, 496, 497, 523, 583, 667]
+        }, 232: {
+            id: 232,
+            name: "donphan",
+            specie: 232,
+            is_default: true,
+            type1: "ground",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 90,
+            baseDef: 90,
+            baseSpeed: 50,
+            moves: [0, 21, 29, 30, 31, 34, 38, 63, 70, 89, 157, 173, 189, 205, 229, 231, 237, 246, 249, 263, 276, 282, 290, 304, 317, 340, 372, 387, 398, 402, 414, 416, 422, 424, 441, 444, 496, 497, 523, 693]
+        }, 233: {
             id: 233,
             name: "porygon2",
             specie: 233,
             is_default: true,
             type1: "normal",
-            evolutions: [{to: 474, method: "level_up", minLevel: 32},]
-        },
-        234: {id: 234, name: "stantler", specie: 234, is_default: true, type1: "normal", evolutions: []},
-        235: {id: 235, name: "smeargle", specie: 235, is_default: true, type1: "normal", evolutions: []},
-        236: {
+            evolutions: [{to: 474, method: "level_up", minLevel: 32},],
+            baseHp: 85,
+            baseAtk: 93,
+            baseDef: 93,
+            baseSpeed: 60,
+            moves: [0, 33, 38, 58, 59, 60, 63, 76, 85, 87, 94, 129, 138, 161, 168, 173, 192, 196, 231, 237, 247, 263, 290, 324, 332, 351, 387, 416, 428, 435, 451, 473, 492, 496, 527]
+        }, 234: {
+            id: 234,
+            name: "stantler",
+            specie: 234,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 73,
+            baseAtk: 90,
+            baseDef: 64,
+            baseSpeed: 85,
+            moves: [0, 23, 24, 26, 29, 33, 34, 36, 37, 38, 44, 76, 85, 87, 89, 94, 99, 129, 138, 168, 173, 189, 224, 231, 237, 247, 253, 263, 290, 310, 324, 326, 340, 351, 387, 389, 412, 416, 428, 451, 473, 496, 514, 523, 528]
+        }, 235: {
+            id: 235, name: "smeargle", specie: 235, is_default: true, type1: "normal", evolutions: [],
+            baseHp: 55, baseAtk: 20, baseDef: 40, baseSpeed: 75, moves: [0]
+        }, 236: {
             id: 236,
             name: "tyrogue",
             specie: 236,
@@ -1324,59 +2931,198 @@ export const pokemonVarieties: Record<number, IPokemonVariety> =
                 to: 107,
                 method: "level_up",
                 minLevel: 20
-            }, {to: 237, method: "level_up", minLevel: 20},]
-        },
-        237: {id: 237, name: "hitmontop", specie: 237, is_default: true, type1: "fighting", evolutions: []},
-        238: {
+            }, {to: 237, method: "level_up", minLevel: 20},],
+            baseHp: 35,
+            baseAtk: 35,
+            baseDef: 35,
+            baseSpeed: 35,
+            moves: [0, 25, 29, 33, 34, 38, 70, 89, 129, 136, 157, 168, 173, 183, 189, 228, 229, 237, 249, 252, 253, 263, 280, 290, 343, 364, 410, 418, 490, 496, 514, 523]
+        }, 237: {
+            id: 237,
+            name: "hitmontop",
+            specie: 237,
+            is_default: true,
+            type1: "fighting",
+            evolutions: [],
+            baseHp: 50,
+            baseAtk: 65,
+            baseDef: 103,
+            baseSpeed: 70,
+            moves: [0, 25, 27, 29, 34, 38, 70, 89, 91, 98, 129, 157, 167, 168, 173, 189, 205, 228, 229, 237, 239, 249, 263, 279, 280, 290, 332, 343, 364, 370, 389, 410, 444, 490, 496, 514, 523, 529]
+        }, 238: {
             id: 238,
             name: "smoochum",
             specie: 238,
             is_default: true,
             type1: "ice",
             type2: "psychic",
-            evolutions: [{to: 124, method: "level_up", minLevel: 30},]
-        },
-        239: {
+            evolutions: [{to: 124, method: "level_up", minLevel: 30},],
+            baseHp: 45,
+            baseAtk: 58,
+            baseDef: 40,
+            baseSpeed: 65,
+            moves: [0, 1, 5, 8, 25, 34, 38, 58, 59, 93, 94, 122, 138, 168, 173, 181, 189, 196, 223, 237, 247, 252, 253, 263, 290, 324, 343, 352, 358, 371, 419, 428, 473, 496, 497, 524, 531]
+        }, 239: {
             id: 239,
             name: "elekid",
             specie: 239,
             is_default: true,
             type1: "electric",
-            evolutions: [{to: 125, method: "level_up", minLevel: 30},]
-        },
-        240: {
+            evolutions: [{to: 125, method: "level_up", minLevel: 30},],
+            baseHp: 45,
+            baseAtk: 64,
+            baseDef: 46,
+            baseSpeed: 95,
+            moves: [0, 2, 5, 7, 8, 9, 25, 27, 29, 34, 38, 84, 85, 87, 94, 98, 129, 168, 173, 189, 192, 223, 237, 238, 249, 253, 263, 264, 280, 290, 324, 343, 351, 359, 364, 435, 451, 496, 521, 527, 528, 530, 612]
+        }, 240: {
             id: 240,
             name: "magby",
             specie: 240,
             is_default: true,
             type1: "fire",
-            evolutions: [{to: 126, method: "level_up", minLevel: 30},]
-        },
-        241: {id: 241, name: "miltank", specie: 241, is_default: true, type1: "normal", evolutions: []},
-        242: {id: 242, name: "blissey", specie: 242, is_default: true, type1: "normal", evolutions: []},
-        243: {id: 243, name: "raikou", specie: 243, is_default: true, type1: "electric", evolutions: []},
-        244: {id: 244, name: "entei", specie: 244, is_default: true, type1: "fire", evolutions: []},
-        245: {id: 245, name: "suicune", specie: 245, is_default: true, type1: "water", evolutions: []},
-        246: {
+            evolutions: [{to: 126, method: "level_up", minLevel: 30},],
+            baseHp: 45,
+            baseAtk: 73,
+            baseDef: 46,
+            baseSpeed: 83,
+            moves: [0, 2, 5, 7, 9, 25, 29, 34, 38, 52, 53, 83, 94, 123, 126, 168, 173, 183, 185, 189, 223, 231, 237, 238, 249, 253, 257, 263, 264, 280, 290, 315, 343, 394, 436, 481, 488, 496, 499, 510, 530, 562, 612]
+        }, 241: {
+            id: 241,
+            name: "miltank",
+            specie: 241,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 95,
+            baseAtk: 60,
+            baseDef: 88,
+            baseSpeed: 100,
+            moves: [0, 5, 7, 8, 9, 23, 25, 29, 33, 34, 38, 57, 58, 59, 63, 70, 76, 85, 87, 89, 146, 157, 173, 189, 192, 196, 205, 223, 231, 237, 247, 249, 250, 263, 264, 280, 290, 317, 351, 352, 358, 359, 411, 416, 428, 442, 496, 497, 514, 523, 531, 562, 612]
+        }, 242: {
+            id: 242,
+            name: "blissey",
+            specie: 242,
+            is_default: true,
+            type1: "normal",
+            evolutions: [],
+            baseHp: 255,
+            baseAtk: 43,
+            baseDef: 73,
+            baseSpeed: 55,
+            moves: [0, 1, 3, 5, 7, 8, 9, 25, 29, 34, 36, 38, 53, 58, 59, 63, 70, 76, 85, 87, 89, 94, 121, 126, 138, 157, 173, 189, 192, 196, 205, 223, 231, 237, 247, 249, 263, 264, 280, 290, 304, 317, 343, 351, 352, 387, 409, 411, 416, 419, 428, 431, 451, 496, 497, 510, 514, 523, 528, 605, 612]
+        }, 243: {
+            id: 243,
+            name: "raikou",
+            specie: 243,
+            is_default: true,
+            type1: "electric",
+            evolutions: [],
+            baseHp: 90,
+            baseAtk: 100,
+            baseDef: 88,
+            baseSpeed: 115,
+            moves: [0, 15, 29, 34, 38, 44, 63, 70, 84, 85, 87, 91, 98, 129, 173, 189, 192, 209, 231, 237, 242, 247, 249, 263, 290, 324, 326, 351, 416, 422, 431, 435, 442, 451, 496, 521, 523, 528, 555]
+        }, 244: {
+            id: 244,
+            name: "entei",
+            specie: 244,
+            is_default: true,
+            type1: "fire",
+            evolutions: [],
+            baseHp: 115,
+            baseAtk: 103,
+            baseDef: 80,
+            baseSpeed: 100,
+            moves: [0, 15, 23, 29, 34, 38, 44, 52, 53, 63, 70, 76, 83, 91, 126, 129, 173, 189, 221, 231, 237, 247, 249, 257, 263, 284, 290, 315, 326, 416, 424, 431, 436, 442, 444, 488, 496, 510, 523, 555]
+        }, 245: {
+            id: 245,
+            name: "suicune",
+            specie: 245,
+            is_default: true,
+            type1: "water",
+            evolutions: [],
+            baseHp: 100,
+            baseAtk: 83,
+            baseDef: 115,
+            baseSpeed: 85,
+            moves: [0, 15, 16, 29, 34, 38, 44, 55, 56, 57, 58, 59, 61, 62, 63, 91, 127, 129, 173, 189, 196, 231, 237, 247, 249, 250, 263, 290, 291, 324, 326, 352, 362, 416, 419, 423, 431, 442, 466, 496, 503, 523, 555]
+        }, 246: {
             id: 246,
             name: "larvitar",
             specie: 246,
             is_default: true,
             type1: "rock",
             type2: "ground",
-            evolutions: [{to: 247, method: "level_up", minLevel: 30},]
-        },
-        247: {
+            evolutions: [{to: 247, method: "level_up", minLevel: 30},],
+            baseHp: 50,
+            baseAtk: 55,
+            baseDef: 50,
+            baseSpeed: 41,
+            moves: [0, 23, 29, 34, 37, 38, 44, 63, 89, 91, 157, 173, 189, 200, 228, 231, 237, 242, 246, 249, 253, 263, 276, 280, 290, 317, 371, 372, 399, 414, 442, 444, 479, 496, 498, 514, 523, 555, 612]
+        }, 247: {
             id: 247,
             name: "pupitar",
             specie: 247,
             is_default: true,
             type1: "rock",
             type2: "ground",
-            evolutions: [{to: 248, method: "level_up", minLevel: 55},]
+            evolutions: [{to: 248, method: "level_up", minLevel: 55},],
+            baseHp: 70,
+            baseAtk: 75,
+            baseDef: 70,
+            baseSpeed: 51,
+            moves: [0, 29, 34, 37, 38, 44, 63, 89, 91, 157, 173, 189, 200, 231, 237, 242, 246, 249, 253, 263, 276, 280, 290, 317, 371, 399, 414, 442, 444, 479, 496, 498, 514, 523, 555, 612]
+        }, 248: {
+            id: 248,
+            name: "tyranitar",
+            specie: 248,
+            is_default: true,
+            type1: "rock",
+            type2: "dark",
+            evolutions: [],
+            baseHp: 100,
+            baseAtk: 115,
+            baseDef: 105,
+            baseSpeed: 61,
+            moves: [0, 5, 7, 8, 9, 15, 25, 29, 34, 37, 38, 44, 53, 57, 58, 59, 63, 70, 85, 87, 89, 91, 126, 157, 173, 189, 200, 210, 223, 225, 231, 237, 242, 246, 249, 250, 253, 263, 264, 276, 280, 290, 317, 332, 337, 351, 352, 371, 399, 401, 406, 411, 414, 416, 419, 421, 422, 423, 424, 431, 442, 444, 479, 492, 496, 498, 510, 514, 523, 525, 555, 612, 693]
+        }, 249: {
+            id: 249,
+            name: "lugia",
+            specie: 249,
+            is_default: true,
+            type1: "psychic",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 106,
+            baseAtk: 90,
+            baseDef: 142,
+            baseSpeed: 110,
+            moves: [0, 16, 19, 29, 34, 38, 56, 57, 58, 59, 63, 70, 85, 87, 89, 94, 127, 129, 138, 143, 173, 177, 189, 192, 196, 202, 211, 225, 231, 237, 239, 246, 247, 248, 249, 250, 263, 290, 291, 304, 311, 314, 324, 326, 332, 351, 352, 362, 401, 406, 407, 414, 416, 419, 428, 442, 451, 466, 473, 496, 497, 507, 523, 525]
+        }, 250: {
+            id: 250,
+            name: "ho-oh",
+            specie: 250,
+            is_default: true,
+            type1: "fire",
+            type2: "flying",
+            evolutions: [],
+            baseHp: 106,
+            baseAtk: 120,
+            baseDef: 122,
+            baseSpeed: 90,
+            moves: [0, 16, 19, 38, 53, 63, 70, 76, 85, 87, 89, 94, 126, 129, 138, 143, 173, 189, 192, 202, 211, 221, 225, 237, 239, 246, 247, 248, 249, 257, 263, 290, 304, 311, 314, 315, 324, 326, 332, 351, 365, 413, 414, 416, 428, 442, 451, 466, 488, 496, 497, 507, 510, 523]
+        }, 251: {
+            id: 251,
+            name: "celebi",
+            specie: 251,
+            is_default: true,
+            type1: "psychic",
+            type2: "grass",
+            evolutions: [],
+            baseHp: 100,
+            baseAtk: 100,
+            baseDef: 100,
+            baseSpeed: 100,
+            moves: [0, 15, 38, 63, 76, 93, 94, 129, 138, 173, 189, 202, 237, 246, 247, 248, 253, 263, 290, 318, 324, 332, 345, 351, 352, 369, 387, 389, 402, 412, 414, 416, 428, 437, 451, 496, 497, 605]
         },
-        248: {id: 248, name: "tyranitar", specie: 248, is_default: true, type1: "rock", type2: "dark", evolutions: []},
-        249: {id: 249, name: "lugia", specie: 249, is_default: true, type1: "psychic", type2: "flying", evolutions: []},
-        250: {id: 250, name: "ho-oh", specie: 250, is_default: true, type1: "fire", type2: "flying", evolutions: []},
-        251: {id: 251, name: "celebi", specie: 251, is_default: true, type1: "psychic", type2: "grass", evolutions: []},
     }
