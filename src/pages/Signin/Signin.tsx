@@ -21,11 +21,12 @@ import {
 import {book, build, colorFill, grid} from 'ionicons/icons';
 import React, {useState} from 'react';
 import './Signin.scss';
-import {RouteComponentProps, withRouter} from "react-router";
+import {Redirect, RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
 import PageWithSideMenu from "../../components/page-with-side-menu/PageWithSideMenu";
 import {useForm} from "react-hook-form";
 import {auth, firestore} from "../../firebase";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 
 type FormData = {
@@ -37,6 +38,8 @@ const SigninPage: React.FC<RouteComponentProps> = ({history}) => {
     const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formSubmitErrorMessage, setFormSubmitErrorMessage] = useState("");
+    const [user, initialising, error] = useAuthState(auth);
+
 
     const onSubmit = handleSubmit(async (data: any) => {
         console.log(data);
@@ -55,6 +58,11 @@ const SigninPage: React.FC<RouteComponentProps> = ({history}) => {
 
     const goToSignup = () => {
         history.push(Routes.SIGNUP)
+    }
+
+
+    if (user) {
+        return <Redirect to={Routes.HOME+'/week'}/>;
     }
 
     return (

@@ -1,3 +1,6 @@
+import {ITask} from "../models/Task";
+import dayjs from "dayjs";
+
 /**
  * Returns a random integer between min (inclusive) and max (inclusive).
  * The value is no lower than min (or the next integer greater than min
@@ -32,4 +35,8 @@ export function threeHousesNumberPipe(number: number) {
 }
 
 export const isObject = <T extends object>(value: any): value is T => typeof value === 'object' && typeof value !== 'function' && value != undefined;
+
+export function diffDaysFromToday(date: Date) {
+    return dayjs(date).endOf("day").diff(dayjs().endOf("day"), "day");
+}
 

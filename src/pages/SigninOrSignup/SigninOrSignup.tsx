@@ -1,30 +1,15 @@
-import {
-    IonButtons,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonListHeader,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar
-} from '@ionic/react';
-import {book, build, colorFill, grid} from 'ionicons/icons';
+import {IonContent, IonHeader, IonPage} from '@ionic/react';
 import React from 'react';
 import './SigninOrSignup.scss';
-import {RouteComponentProps, withRouter} from "react-router";
+import {Redirect, RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
 import NesDialog from "../../components/nes-dialog/NesDialog";
+import {auth} from "../../firebase";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 const SigninOrSignupPage: React.FC<RouteComponentProps> = ({history}) => {
+
+    const [user, initialising, error] = useAuthState(auth);
 
     const goToSignin = () => {
         history.push(Routes.SIGNIN)
@@ -32,6 +17,11 @@ const SigninOrSignupPage: React.FC<RouteComponentProps> = ({history}) => {
 
     const goToSignup = () => {
         history.push(Routes.SIGNUP)
+    }
+
+
+    if (user) {
+        return <Redirect to={Routes.HOME+'/week'}/>;
     }
 
     // const openModalConfirmationNewAccount = () => {

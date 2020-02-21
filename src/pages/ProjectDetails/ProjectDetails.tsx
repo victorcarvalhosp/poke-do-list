@@ -60,7 +60,7 @@ const ProjectDetailsPage: React.FC<ComponentProps> = observer(({match}) => {
                         <IonIcon icon={add} onClick={e => openModalNewTask()}/>
                     </IonFabButton>
                 </IonFab>
-                <ListItems list={taskStore.list} loading={taskStore.loadingList}/>
+                <ListItems list={taskStore.list} loading={taskStore.loadingList} groupType="all"/>
             </IonContent>
         </IonPage>
     );

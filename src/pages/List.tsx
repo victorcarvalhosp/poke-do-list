@@ -52,7 +52,7 @@ const ListPage: React.FC<ComponentProps> = observer(({match}) => {
             <PkmnHeader title={title}/>
 
             <IonContent>
-                <ListItems list={taskStore.list} loading={taskStore.loadingList}/>
+                <ListItems list={taskStore.list} loading={taskStore.loadingList} groupType={filter === 'today' ? 'today' : filter === 'week' ? 'week' : 'none'}/>
                 {/*<button type="button" className="nes-btn is-primary">Primary</button>*/}
                 <IonFab vertical="bottom" horizontal="end" slot="fixed">
                     <IonFabButton color="light" onClick={e => openModalNewTask()}>
