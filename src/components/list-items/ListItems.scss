@@ -1,0 +1,16 @@
+.pkmn-list-items {
+  ion-list-header {
+    font-size: 12px;
+  }
+  .empty-sub-list {
+
+    ion-list-header {
+      opacity: 0.5;
+    }
+
+    .list-md {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}

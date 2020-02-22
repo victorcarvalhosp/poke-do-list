@@ -8,6 +8,7 @@ import Loading from "../loading/Loading";
 import BlankState from "../blank-state/BlankState";
 import dayjs from "dayjs";
 import {diffDaysFromToday} from "../../utils/utils";
+import "./ListItems.scss";
 
 
 interface IComponentProps {
@@ -30,57 +31,61 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
     const OVERDUE_SUBGROUP = -1;
     const LATER_SUBGROUP = 8;
 
+    /*REFACTOR THIS LOGIC  TO STORE/SERVICE*/
     function groupListByDate() {
         const defaultGroups: Map<number, ListSubGroup> = new Map<number, ListSubGroup>();
 
         defaultGroups.set(OVERDUE_SUBGROUP, {groupName: "Overdue", list: []});
         defaultGroups.set(0, {groupName: "Today", list: []});
-        if (groupType === "week" || groupType == "all") {
-            defaultGroups.set(1, {groupName: "Tomorrow", list: []});
-            for (let i = 2; i < 8; i++) {
-                const date = dayjs().add(i, 'day').toDate();
-                const dayName: string = days[date.getDay()];
-                defaultGroups.set(i, {groupName: dayName, list: []});
+        if (groupType === "week" || groupType === "all") {
+            addNextSevenDaysToGroupListByDate(defaultGroups, days);
+            if (groupType === "all") {
+                defaultGroups.set(LATER_SUBGROUP, {groupName: "Later", list: []});
             }
-        }
-        if (groupType == "all") {
-            defaultGroups.set(LATER_SUBGROUP, {groupName: "Later", list: []});
         }
 
         setListGroupByDate(defaultGroups);
         list.forEach(task => {
-            console.log('LIST FOR EACH');
-            if (task.date) {
-                for (let [key, value] of defaultGroups) {
-                    console.log("COMPARISON KEY" + key, dayjs(task.date?.toDate()).diff(dayjs(), "hour"));
-                    if (key == OVERDUE_SUBGROUP) {
-                        if (diffDaysFromToday(task.date?.toDate()) <= key) {
-                            defaultGroups.get(key)?.list.push(task);
-                            break;
-                        }
-                    } else if (key == LATER_SUBGROUP) {
-                        if (diffDaysFromToday(task.date?.toDate()) >= key) {
-                            defaultGroups.get(key)?.list.push(task);
-                            break;
-                        }
-                    } else {
-                        if (diffDaysFromToday(task.date?.toDate()) == key) {
-                            defaultGroups.get(key)?.list.push(task);
-                            break;
-                        }
-                    }
-                }
-            } else {
-                console.log('NO DATE TASK');
-                defaultGroups.get(7)?.list.push(task);
-            }
+            addTaskToTheCorrectGroupByDate(task, defaultGroups);
         })
     }
 
-    useEffect(() => {
-        // {group: "Overdue", tasks: []}, {group: "Today", tasks: []}, {group: "Later", tasks: []}
+    function addNextSevenDaysToGroupListByDate(defaultGroups: Map<number, ListSubGroup>, days: string[]) {
+        defaultGroups.set(1, {groupName: "Tomorrow", list: []});
+        for (let i = 2; i < 8; i++) {
+            const date = dayjs().add(i, 'day').toDate();
+            const dayName: string = days[date.getDay()];
+            defaultGroups.set(i, {groupName: dayName, list: []});
+        }
+    }
 
-//groups - overdue, today, tomorrow, next day name 5 times, future
+    function addTaskToTheCorrectGroupByDate(task: ITask, defaultGroups: Map<number, ListSubGroup>) {
+        if (task.date) {
+            for (let [key, value] of defaultGroups) {
+                console.log("COMPARISON KEY" + key, dayjs(task.date?.toDate()).diff(dayjs(), "hour"));
+                if (key == OVERDUE_SUBGROUP) {
+                    if (diffDaysFromToday(task.date?.toDate()) <= key) {
+                        defaultGroups.get(key)?.list.push(task);
+                        break;
+                    }
+                } else if (key == LATER_SUBGROUP) {
+                    if (diffDaysFromToday(task.date?.toDate()) >= key) {
+                        defaultGroups.get(key)?.list.push(task);
+                        break;
+                    }
+                } else {
+                    if (diffDaysFromToday(task.date?.toDate()) == key) {
+                        defaultGroups.get(key)?.list.push(task);
+                        break;
+                    }
+                }
+            }
+        } else {
+            defaultGroups.get(LATER_SUBGROUP)?.list.push(task);
+        }
+    }
+
+    useEffect(() => {
         if (groupType != "none") {
             groupListByDate();
         }
@@ -92,10 +97,11 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
 
     return (<>
         {groupType != 'none' ?
-            (<>
-                {Array.from(listGroupByDate.values()).map(subGroup => (
-                    <>
-                        <IonListHeader lines="inset">
+            (<div className="pkmn-list-items">
+                {loading && (<Loading/>)}
+                {!loading && Array.from(listGroupByDate.values()).map(subGroup => (
+                    <span className={subGroup.list.length === 0 ? 'empty-sub-list' : ''}>
+                        <IonListHeader lines="inset" >
                             <IonLabel>{subGroup.groupName}</IonLabel>
                         </IonListHeader>
                         <IonList>
@@ -104,9 +110,9 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
                                 )
                             )}
                         </IonList>
-                    </>
+                    </span>
                 ))}
-            </>)
+            </div>)
             : (
                 <IonList>
                     {loading && (<Loading/>)}

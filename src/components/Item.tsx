@@ -33,7 +33,7 @@ const Item: React.FC<IProps> = ({item, onClickItem}) => {
         return <> </>
     } else {
         return <IonItem key={item.id} className={pokebalAnimation ? 'change-background-color task-item' : 'task-item'} >
-            <div slot="start">
+            <div slot="start" className="checkbox-area">
                 <label className="nes-checkbox-label-2x">
                     <input disabled={pokebalAnimation} type="checkbox" className="nes-checkbox"
                            onClick={(e) => finishTask(e)}/>

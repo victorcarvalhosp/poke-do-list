@@ -135,6 +135,10 @@
 
 .task-item {
 
+  .checkbox-area{
+    margin-inline-end: 21px;
+  }
+
   @media only screen and (max-width: $sm) {
     font-size: 12px;
   }
@@ -161,8 +165,8 @@
   }
 
   .nes-checkbox-label-2x {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 34px;
   }
 
   .details {
