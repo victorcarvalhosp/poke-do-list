@@ -56,7 +56,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
             <IonContent className="ion-padding">
                 <IonGrid>
                     <IonRow className="pkmn-grid">
-                        <IonButton onClick={importAllData}>Import all data</IonButton>
+                        {/*<IonButton onClick={importAllData}>Import all data</IonButton>*/}
                         {allPokemonPokedex.map(i => (
                                 <IonCol key={i} className="pkmn-grid-item" sizeXl="1" sizeLg="2" sizeMd="2" sizeSm="3"
                                         onClick={e => openModalDetails(i)}

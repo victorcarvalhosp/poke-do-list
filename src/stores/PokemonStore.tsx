@@ -82,13 +82,19 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     async evolvePokemon(pokemon: IPokemon, evolution: IEvolution) {
-        const evolveTo = pokemonVarieties[evolution.to];
-        pokemon.name = evolveTo.name;
-        pokemon.variety = evolveTo.id;
-        await FirebaseApi.updatePokemon(this.root.userStore.user.uid, pokemon);
-        if (pokemon.id === this.root.userStore.user.partnerPokemon?.id) {
-            await this.root.userStore.updatePartner(pokemon);
+        try {
+            const evolveTo = pokemonVarieties[evolution.to];
+            pokemon.name = evolveTo.name;
+            pokemon.variety = evolveTo.id;
+            this.registerPokedex(pokemon.variety, true);
+            await FirebaseApi.updatePokemon(this.root.userStore.user.uid, pokemon);
+            if (pokemon.id === this.root.userStore.user.partnerPokemon?.id) {
+                await this.root.userStore.updatePartner(pokemon);
+            }
+        } catch (e) {
+            this.root.uiStore.showToast("Something went wrong", "danger");
         }
+
     }
 
     @action
@@ -111,7 +117,6 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     async selectInitialPokemon(selectedPokemon: IPokemonVariety) {
-        debugger;
         const initialPkmn = this.generatePokemonWithRandomAttributes(selectedPokemon.id, "Initial Pokémon");
         this.caughtPokemon(initialPkmn);
         this.setPokemonAsPartner(initialPkmn);
@@ -125,7 +130,6 @@ export class PokemonStore implements IPokemonStore {
 
     @action
     async caughtPokemon(pokemon: IPokemon) {
-        debugger;
         const myPokemon = pokemon;
         myPokemon.date = firebase.firestore.Timestamp.fromDate(new Date());
         //Add some random properties for attack, height...
@@ -196,7 +200,7 @@ export class PokemonStore implements IPokemonStore {
         // @ts-ignore
         const selectedTier = pokemonEncounters[task.project?.theme || "inbox"][tier];
         // @ts-ignore
-        const randomPosition: number = getRandomInt(0, selectedTier.length-1);
+        const randomPosition: number = getRandomInt(0, selectedTier.length - 1);
         console.log(randomPosition);
         // @ts-ignore
         console.log(selectedTier[randomPosition]);
