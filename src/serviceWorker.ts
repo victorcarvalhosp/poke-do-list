@@ -62,6 +62,22 @@ export function register(config?: Config) {
   }
 }
 
+function showUpdateBar() {
+  let snackbar = document.getElementById('snackbar');
+  // @ts-ignore
+  snackbar.className = 'show';
+}
+
+// @ts-ignore
+document.getElementById('reload').addEventListener('click', function () {
+  //Review this in another moment, this was the only way that I was able to make it work
+  navigator.serviceWorker.ready.then(registration => {
+    registration.unregister().then(() => {
+      window.location.reload();
+    });
+  });
+});
+
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
@@ -81,6 +97,7 @@ function registerValidSW(swUrl: string, config?: Config) {
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
+              showUpdateBar();
 
               // Execute callback
               if (config && config.onUpdate) {
