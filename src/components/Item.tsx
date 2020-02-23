@@ -50,7 +50,7 @@ const Item: React.FC<IProps> = ({item, onClickItem}) => {
                 )}
                 </span>
             </IonLabel>
-            <div slot="end" onClick={() => onClickItem(item)}>
+            <div className="pkmn-char-slot" slot="end" onClick={() => onClickItem(item)}>
                 {!pokebalAnimation && item.pokemon && (<Overworld direction="down" animationActive={true} wild={true} type="pokemon"
                                                                   spriteUrl={`${item.pokemon?.variety}.png`}/>)}
                 {pokebalAnimation && (<div className="pokeball-animation"></div>)}
