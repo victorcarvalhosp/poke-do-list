@@ -25,10 +25,10 @@ const ListPage: React.FC<ComponentProps> = observer(({match}) => {
     useEffect(() => {
         if (filter === 'today') {
             taskStore.loadListToday();
-            setTitle("Today tasks")
+            setTitle("Today")
         } else if (filter === 'week') {
             taskStore.loadListWeek();
-            setTitle("This week tasks")
+            setTitle("Next 7 days")
         } else {
             taskStore.loadListInbox();
             setTitle("Inbox")

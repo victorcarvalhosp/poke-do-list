@@ -91,12 +91,12 @@ const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
                             <IonLabel>Pokédex</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
-                    <IonMenuToggle autoHide={false}>
-                        <IonItem routerLink={Routes.BATTLE} routerDirection="none">
-                            <IonIcon slot="start" icon={power}/>
-                            <IonLabel>Battle demo</IonLabel>
-                        </IonItem>
-                    </IonMenuToggle>
+                    {/*<IonMenuToggle autoHide={false}>*/}
+                    {/*    <IonItem routerLink={Routes.BATTLE} routerDirection="none">*/}
+                    {/*        <IonIcon slot="start" icon={power}/>*/}
+                    {/*        <IonLabel>Battle demo</IonLabel>*/}
+                    {/*    </IonItem>*/}
+                    {/*</IonMenuToggle>*/}
                     <IonMenuToggle autoHide={false}>
                         <IonItem onClick={logOut} routerDirection="none">
                             <IonIcon slot="start" icon={power}/>

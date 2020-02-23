@@ -9,6 +9,7 @@ export interface ITask {
   project?: IProject;
   pokemon?: IPokemon;
   date?: firebase.firestore.Timestamp | null;
+  withTime?: boolean;
 }
 
 export class Task implements  ITask{
@@ -18,10 +19,12 @@ export class Task implements  ITask{
   project?: IProject;
   pokemon?: IPokemon;
   date?: firebase.firestore.Timestamp;
+  withTime?: boolean;
 
   constructor() {
     this.complete = false;
     this.title = '';
+    this.withTime = false;
   }
 
 }

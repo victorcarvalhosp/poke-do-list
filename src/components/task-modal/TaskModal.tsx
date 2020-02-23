@@ -48,7 +48,9 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
     const {taskStore, projectStore} = useRootStore();
     const [isDateSelectOpen, setIsDateSelectOpen] = useState(false);
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+    const [isTimeDateSelectOpen, setIsTimeDateSelectOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+    const [selectedTimeDate, setSelectedTimeDate] = useState<Date | undefined>(undefined);
     const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
@@ -57,13 +59,28 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
 
     const handleDateChange = (e: any) => {
         setSelectedDate(e);
-        setValue("date", e);
+    }
+
+    const handleTimeDateChange = (e: any) => {
+        console.log(e);
+        if (e) {
+            const selectedTimeDateDayJs = dayjs(e);
+            console.log(selectedTimeDateDayJs.get('minute'));
+            const dateWithTime = dayjs(selectedDate).set('hour', selectedTimeDateDayJs.get('hour')).set('minute', selectedTimeDateDayJs.get('minute')).toDate();
+            setSelectedTimeDate(dateWithTime);
+            setSelectedDate(dateWithTime);
+        } else {
+            setSelectedDate(dayjs(selectedDate).endOf('day').toDate());
+            setSelectedTimeDate(e);
+        }
     }
 
     const ionModalDidPresent = () => {
         /*Need to reset form in order for it to work properly!*/
+        register("withTime");
         reset({title: '', project: ""});
-        setSelectedDate(taskStore.selected.date ? taskStore.selected.date.toDate() : null);
+        setSelectedDate(taskStore.selected.date ? taskStore.selected.date.toDate() : undefined);
+        setSelectedTimeDate(taskStore.selected.date && taskStore.selected.withTime ? taskStore.selected.date.toDate() : undefined);
         setValue("title", taskStore.selected.title);
         if (taskStore.selected.project) {
             setValue("project", JSON.stringify(taskStore.selected.project));
@@ -74,12 +91,13 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
         taskStore.closeModal();
     }
 
-    const onSubmit = handleSubmit(async (data: any) => {
+    const onSubmit = handleSubmit(async (data: FormData) => {
         const taskSave: ITask = {
             ...taskStore.selected,
             title: data.title,
             complete: false,
-            project: data.project ? JSON.parse(data.project) : null
+            project: data.project ? JSON.parse(data.project) : null,
+            withTime: selectedTimeDate ? true : false
         };
         if (selectedDate) {
             taskSave.date = firebase.firestore.Timestamp.fromDate(new Date(selectedDate));
@@ -149,6 +167,12 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                                     onClick={() => setIsDateSelectOpen(true)}>
                                 {selectedDate ? dayjs(selectedDate).format('MM/DD') : 'Select Date'}
                             </button>
+                            {selectedDate && (
+                                <button form="formTask" type="button" className="btn-fill-clear"
+                                        onClick={() => setIsTimeDateSelectOpen(true)} style={{marginLeft: '32px'}}>
+                                    {selectedTimeDate ? dayjs(selectedTimeDate).format('hh:mm A') : 'Add time'}
+                                </button>
+                            )}
 
                             <DatePicker
                                 style={{display: 'none'}}
@@ -156,12 +180,23 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                                 onOpen={() => setIsDateSelectOpen(true)}
                                 onClose={() => setIsDateSelectOpen(false)}
                                 clearable
+                                autoOk
                                 inputVariant="outlined"
                                 value={selectedDate}
                                 placeholder="10/10/2018"
                                 onChange={date => handleDateChange(date as any)}
                                 minDate={new Date()}
                                 format="MM/DD/YYYY"
+                            />
+                            <TimePicker
+                                style={{display: 'none'}}
+                                open={isTimeDateSelectOpen}
+                                onOpen={() => setIsTimeDateSelectOpen(true)}
+                                onClose={() => setIsTimeDateSelectOpen(false)}
+                                clearable
+                                inputVariant="outlined"
+                                value={selectedTimeDate}
+                                onChange={date => handleTimeDateChange(date as any)}
                             />
                         </div>
                         {/*<DatePicker*/}

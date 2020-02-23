@@ -37,6 +37,16 @@ img {
   z-index: 99999 !important;
 }
 
+.item .sc-ion-label-md-h, .item .sc-ion-label-ios-h {
+  white-space: normal;
+}
+
+ion-title{
+  &.title-default{
+    font-size: 14px;
+    padding-inline-start: 0;
+  }
+}
 
 .theme-red{
   color: #ce372b;

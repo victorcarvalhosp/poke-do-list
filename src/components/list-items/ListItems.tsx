@@ -62,7 +62,6 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
     function addTaskToTheCorrectGroupByDate(task: ITask, defaultGroups: Map<number, ListSubGroup>) {
         if (task.date) {
             for (let [key, value] of defaultGroups) {
-                console.log("COMPARISON KEY" + key, dayjs(task.date?.toDate()).diff(dayjs(), "hour"));
                 if (key == OVERDUE_SUBGROUP) {
                     if (diffDaysFromToday(task.date?.toDate()) <= key) {
                         defaultGroups.get(key)?.list.push(task);
@@ -100,7 +99,7 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
             (<div className="pkmn-list-items">
                 {loading && (<Loading/>)}
                 {!loading && Array.from(listGroupByDate.values()).map(subGroup => (
-                    <span className={subGroup.list.length === 0 ? 'empty-sub-list' : ''}>
+                    <span key={subGroup.groupName} className={subGroup.list.length === 0 ? 'empty-sub-list' : ''}>
                         <IonListHeader lines="inset" >
                             <IonLabel>{subGroup.groupName}</IonLabel>
                         </IonListHeader>

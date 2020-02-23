@@ -46,7 +46,7 @@ const Item: React.FC<IProps> = ({item, onClickItem}) => {
                 {item.project && (
                     <span className={`project-name theme-${item.project?.theme}`} >{item.project.name}</span>)}
                 {item.date && (
-                    <span className="date">{` ${dayjs(item.date?.toDate()).format('MM/DD')}`}</span>
+                    <span className="date">{` ${dayjs(item.date?.toDate()).format('MM/DD')} ${item.withTime ? dayjs(item.date?.toDate()).format('hh:mm A') : ''}`}</span>
                 )}
                 </span>
             </IonLabel>
