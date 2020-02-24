@@ -97,10 +97,14 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
             <IonContent className="ion-padding">
                 <div className="top-area" >
                     <PokemonBasicDetails pokemon={pokemon} />
-                    <p>HP: {pokemon.hp}</p>
-                    <p>ATK: {pokemon.atk}</p>
-                    <p>DEF: {pokemon.def}</p>
-                    <p>SPEED: {pokemon.speed}</p>
+                    <div className="pkmn-stats">
+                        <div>
+                            <p><span>HP:</span> {pokemon.hp}</p>
+                            <p><span>ATK:</span> {pokemon.atk}</p>
+                            <p><span>DEF:</span> {pokemon.def}</p>
+                            <p><span>SPEED:</span> {pokemon.speed}</p>
+                        </div>
+                    </div>
                     {pokemonVariety.evolutions.length > 0 &&
                     <div className="evolutions-area">
                         {pokemonVariety.evolutions.map((evolution, i) => (

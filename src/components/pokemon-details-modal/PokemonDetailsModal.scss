@@ -15,6 +15,22 @@
     }
   }
 
+  .pkmn-stats{
+    margin: 14px auto;
+    width: 112px;
+    p{
+      margin-bottom: 0.4rem;
+      font-size: 0.7rem;
+    }
+    div{
+      span{
+        float: left;
+        color: var(--ion-color-medium);
+      }
+      text-align: right;
+    }
+  }
+
 
   .evolutions-area {
     margin-top: 24px;
