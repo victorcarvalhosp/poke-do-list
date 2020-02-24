@@ -46,6 +46,7 @@ export class UserStore implements  IUserStore{
 
     @action
     async logOut(){
+        this.user = new User();
         await auth.signOut();
     }
 

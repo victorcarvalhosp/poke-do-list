@@ -76,7 +76,7 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
         history.push(Routes.SIGNUP)
     }
 
-    if (userStore.user.partnerPokemon) {
+    if (userStore.user.partnerPokemon && userStore.user.partnerPokemon.id) {
         return <Redirect to={Routes.HOME+'/week'}/>;
     }
 
@@ -126,7 +126,7 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
                             <p>{pokemonSpecies[selectedPokemon.id].description}</p>
                         </div>
                     </div>
-                    <IonButton className="choose-button" size="large" expand="full" onClick={selectPokemon} disabled={userStore.user.partnerPokemon}>Choose {selectedPokemon.name}!</IonButton>
+                    <IonButton className="choose-button" size="large" expand="full" onClick={selectPokemon}>Choose {selectedPokemon.name}!</IonButton>
                 </main>
             </IonContent>
         </IonPage>

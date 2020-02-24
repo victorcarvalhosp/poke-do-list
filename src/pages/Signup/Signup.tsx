@@ -34,6 +34,7 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     }
 
     const afterSignup = () => {
+        debugger;
         setOpenModal(false);
         let nextStep = step + 1;
         setStep(nextStep);
