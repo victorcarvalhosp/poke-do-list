@@ -72,31 +72,25 @@ const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
                             <IonLabel>7 days</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
-                    {/*<IonMenuToggle autoHide={false}>*/}
-                    {/*    <IonItem routerLink={`${Routes.HOME}/month`} routerDirection="none">*/}
-                    {/*        <IonIcon slot="start" icon={calendarSharp}/>*/}
-                    {/*        <IonLabel>31 days</IonLabel>*/}
-                    {/*    </IonItem>*/}
-                    {/*</IonMenuToggle>*/}
+                    <ProjectsAccordionMenu/>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={Routes.POKEMON} routerDirection="none">
                             <IonIcon slot="start" icon={bookmarkOutline}/>
-                            <IonLabel>My Pokémon</IonLabel>
+                            <IonLabel>My Pokémon's</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
-                    <ProjectsAccordionMenu/>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={Routes.POKEDEX} routerDirection="none">
                             <IonIcon slot="start" icon={phonePortraitOutline}/>
                             <IonLabel>Pokédex</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
-                    <IonMenuToggle autoHide={false}>
-                        <IonItem routerLink={Routes.BATTLE} routerDirection="none">
-                            <IonIcon slot="start" icon={power}/>
-                            <IonLabel>Battle demo</IonLabel>
-                        </IonItem>
-                    </IonMenuToggle>
+                    {/*<IonMenuToggle autoHide={false}>*/}
+                    {/*    <IonItem routerLink={Routes.BATTLE} routerDirection="none">*/}
+                    {/*        <IonIcon slot="start" icon={power}/>*/}
+                    {/*        <IonLabel>Battle demo</IonLabel>*/}
+                    {/*    </IonItem>*/}
+                    {/*</IonMenuToggle>*/}
                     <IonMenuToggle autoHide={false}>
                         <IonItem onClick={logOut} routerDirection="none">
                             <IonIcon slot="start" icon={power}/>

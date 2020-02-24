@@ -28,6 +28,7 @@ import {IEvolution} from "../../models/Evolution";
 import {useRootStore} from "../../stores/StoreContext";
 import useDirection from "../../hooks/useDirection";
 import PokemonBasicDetails from "../../components/pokemon-basic-details/PokemonBasicDetails";
+import {moves} from "../../data/moves";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -126,7 +127,7 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                     <IonList className="more-details">
                         {pokemon.id === userStore.user.partnerPokemon?.id ?
                             (
-                                <IonItem color="light"><IonIcon slot="start" icon={star} color="warning" />This is you actual partner</IonItem>
+                                <IonItem color="light"><IonIcon slot="start" icon={star} color="warning" />This is your actual partner</IonItem>
                             ) :
                             (
                                 <>
@@ -137,7 +138,6 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                             )
                         }
                     </IonList>
-
                     <div className="caught-when">
                         <h3>{pokemon.task}</h3>
                         <p className="level">Caught on {pokemon.date ? new Intl.DateTimeFormat('en-us', {

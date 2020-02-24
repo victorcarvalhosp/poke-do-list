@@ -18,6 +18,7 @@ export interface IPokemon {
   ivAtk: number;
   ivDef: number;
   ivSpeed: number;
+  moves: number[];
 }
 
 export class Pokemon implements IPokemon{
@@ -37,6 +38,7 @@ export class Pokemon implements IPokemon{
   ivAtk: number;
   ivDef: number;
   ivSpeed: number;
+  moves: number[];
 
   constructor() {
     this.name = '';
@@ -52,6 +54,7 @@ export class Pokemon implements IPokemon{
     this.ivAtk = 0;
     this.ivDef = 0;
     this.ivSpeed = 0;
+    this.moves = [];
   }
 
 }

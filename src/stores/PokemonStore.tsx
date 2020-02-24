@@ -191,7 +191,8 @@ export class PokemonStore implements IPokemonStore {
             ivHp: ivHp,
             ivAtk: ivAtk,
             ivDef: ivDef,
-            ivSpeed: ivSpeed
+            ivSpeed: ivSpeed,
+            moves: [variety.moves[getRandomInt(0, variety.moves.length-1)]]
         };
     }
 
@@ -255,7 +256,8 @@ export class PokemonStore implements IPokemonStore {
             ivAtk: 15,
             ivDef: 15,
             ivHp: 15,
-            ivSpeed: 15
+            ivSpeed: 15,
+            moves: [variety.moves[getRandomInt(0, variety.moves.length-1)]]
         };
     }
 
