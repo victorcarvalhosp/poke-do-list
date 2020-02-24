@@ -159,6 +159,11 @@ export class PokemonStore implements IPokemonStore {
         const myPokemon = this.root.userStore.user.partnerPokemon;
         if (myPokemon) {
             myPokemon.level = myPokemon.level + 1;
+            const { hp , atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[myPokemon.variety], {ivHp: myPokemon.ivHp, ivAtk: myPokemon.ivAtk, ivDef: myPokemon.ivSpeed, ivSpeed: myPokemon.ivSpeed}, myPokemon.level);
+            myPokemon.hp = hp;
+            myPokemon.atk = atk;
+            myPokemon.def = def;
+            myPokemon.speed = speed;
             await FirebaseApi.updatePokemon(this.root.userStore.user.uid, myPokemon);
             await this.root.userStore.updatePartner(myPokemon);
         }
@@ -168,6 +173,8 @@ export class PokemonStore implements IPokemonStore {
     @action
     generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon {
         const variety: IPokemonVariety = pokemonVarieties[pokemonVarietyId];
+        const {ivHp, ivAtk, ivDef, ivSpeed} = this.generateIvs();
+        const {hp, atk, def, speed} = this.calculatePokemonStats(variety, {ivHp, ivAtk, ivDef, ivSpeed}, 1);
         //TODO Generate random attributes as id, gender, stats, level, iv
         return {
             id: makeid(),
@@ -177,14 +184,41 @@ export class PokemonStore implements IPokemonStore {
             task: task,
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             actualHp: variety.baseHp,
-            hp: variety.baseHp,
-            atk: variety.baseAtk,
-            def: variety.baseDef,
-            speed: variety.baseDef,
-            ivAtk: 15,
-            ivDef: 15,
-            ivHp: 15,
-            ivSpeed: 15
+            hp: hp,
+            atk: atk,
+            def: def,
+            speed: speed,
+            ivHp: ivHp,
+            ivAtk: ivAtk,
+            ivDef: ivDef,
+            ivSpeed: ivSpeed
+        };
+    }
+
+    private calculatePokemonStats(pokemon: IPokemonVariety, ivs: { ivHp: number; ivAtk: number; ivDef: number; ivSpeed: number }, level: number): { hp: number, atk: number, def: number, speed: number } {
+        /* Simplified version of pokémon stats formulas => More details here: https://www.dragonflycave.com/mechanics/stats*/
+        const hp: number = this.calculateHpStat(pokemon.baseHp, ivs.ivHp, level);
+        const atk: number = this.calculateStat(pokemon.baseAtk, ivs.ivAtk, level);
+        const def: number = this.calculateStat(pokemon.baseDef, ivs.ivDef, level);
+        const speed: number = this.calculateStat(pokemon.baseSpeed, ivs.ivSpeed, level);
+
+        return {hp: hp, atk: atk, def: def, speed: speed};
+    }
+
+    private calculateHpStat(baseHpStat: number, ivHp: number, level: number) {
+        return Math.floor((2 * baseHpStat + ivHp) * level / 100 + level + 10);
+    }
+
+    private calculateStat(baseStat: number, iv: number, level: number) {
+        return Math.floor(Math.floor((2 * baseStat + iv) * level / 100 + 5) * 1);
+    }
+
+    private generateIvs() {
+        return {
+            ivHp: getRandomInt(0, 31),
+            ivAtk: getRandomInt(0, 31),
+            ivDef: getRandomInt(0, 31),
+            ivSpeed: getRandomInt(0, 31)
         };
     }
 
@@ -250,4 +284,6 @@ export class PokemonStore implements IPokemonStore {
     closeModal() {
         this.modalOpen = false;
     }
+
+
 }

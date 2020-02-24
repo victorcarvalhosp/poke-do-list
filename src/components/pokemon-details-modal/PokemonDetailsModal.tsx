@@ -97,7 +97,10 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
             <IonContent className="ion-padding">
                 <div className="top-area" >
                     <PokemonBasicDetails pokemon={pokemon} />
-
+                    <p>HP: {pokemon.hp}</p>
+                    <p>ATK: {pokemon.atk}</p>
+                    <p>DEF: {pokemon.def}</p>
+                    <p>SPEED: {pokemon.speed}</p>
                     {pokemonVariety.evolutions.length > 0 &&
                     <div className="evolutions-area">
                         {pokemonVariety.evolutions.map((evolution, i) => (
@@ -146,8 +149,8 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
             <IonAlert
                 isOpen={showTransferAlert}
                 onDidDismiss={() => setShowTransferAlert(false)}
-                header={'Are you sure?'}
-                message={`Are you sure you want to transfer ${pokemon.name}? This action can't be undone!`}
+                header={`Are you sure you want to transfer ${pokemon.name} to the professor?`}
+                message={`You can't undo this action once you transfer.`}
                 buttons={[
                     {
                         text: 'Cancel',
@@ -158,7 +161,7 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                         }
                     },
                     {
-                        text: 'Yes, remove',
+                        text: 'Yes, transfer',
                         handler: () => {
                             handleTransfer();
                         }
