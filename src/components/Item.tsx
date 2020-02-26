@@ -1,4 +1,4 @@
-import {IonItem, IonLabel} from '@ionic/react';
+import {IonItem, IonLabel, IonIcon} from '@ionic/react';
 import React, {useState} from 'react';
 import '../pages/List.css'
 import {ITask} from "../models/Task";
@@ -7,6 +7,7 @@ import Overworld from "./overworld/Overworld";
 import {useRootStore} from "../stores/StoreContext";
 import dayjs from "dayjs";
 import {IPokemon, Pokemon} from "../models/Pokemon";
+import {repeatOutline} from "ionicons/icons";
 
 interface IProps {
     item: ITask;
@@ -41,7 +42,7 @@ const Item: React.FC<IProps> = ({item, onClickItem}) => {
                 </label>
             </div>
             <IonLabel onClick={() => onClickItem(item)}>
-                {item.title}
+                {item.title}<span className="repeat-icon">{item.date && item.repeat && (<IonIcon icon={repeatOutline}></IonIcon>)}</span>
                 <span className="details">
                 {item.project && (
                     <span className={`project-name theme-${item.project?.theme}`} >{item.project.name}</span>)}

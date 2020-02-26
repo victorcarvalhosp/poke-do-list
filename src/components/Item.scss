@@ -178,7 +178,12 @@
   }
   .date{
     font-size: 9px;
-    color: #607d8b;
+    color: var(--ion-color-medium);
+  }
+  .repeat-icon{
+    color: var(--ion-color-medium);
+    font-size: 1.3rem;
+    margin-left: 8px;
   }
 }
 
