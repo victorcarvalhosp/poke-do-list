@@ -62,7 +62,7 @@ const SigninPage: React.FC<RouteComponentProps> = ({history}) => {
 
 
     if (user) {
-        return <Redirect to={Routes.HOME+'/week'}/>;
+        // return <Redirect to={Routes.HOME+'/week'}/>;
     }
 
     return (

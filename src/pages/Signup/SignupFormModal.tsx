@@ -42,13 +42,9 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formSubmitErrorMessage, setFormSubmitErrorMessage] = useState("");
 
-
     // const [toggleAudio, playAudio] = useAudio("/audio/sounds/sfx_menu_move3.wav");
     const [selected, setSelected] = useState("0");
     const {userStore} = useRootStore();
-
-    const [userFirebase] = useAuthState(auth);
-
 
     // console.log(watch('email')) // watch input value by passing the name of it
     const closeModal = () => {
@@ -56,7 +52,6 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
     }
 
     const setChar = (e:any) => {
-        console.log(e.target.name +" "+ e.target.value);
         setValue(e.target.name , e.target.value);
         setSelected(e.target.value);
     }
@@ -64,10 +59,6 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
     const characterList = ['001', '002', '003', '004'];
 
     const onSubmit =  handleSubmit(async(data: any) => {
-        if(Object.entries(data).length === 0 && data.constructor === Object){
-            console.log('no data');
-        }
-        console.log(data);
         setIsSubmitting(true);
         const {name, email, password, character} = data;
         try {
@@ -92,10 +83,6 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
         /*Need to reset form in order for it to work properly!*/
         reset({name: '', email: '', password: '', character: ''});
     }
-
-    // if (userFirebase) {
-    //     return <Redirect to={Routes.HOME}/>;
-    // }
 
     return (
         <IonModal isOpen={open} backdropDismiss={false} cssClass="signup-form-modal" onDidPresent={ionModalDidPresent}>

@@ -242,23 +242,7 @@ export class PokemonStore implements IPokemonStore {
         // @ts-ignore
         const variety: IPokemonVariety = pokemonVarieties[selectedTier[randomPosition].varietyId];
         this.registerPokedex(variety.id, false);
-        return {
-            id: makeid(),
-            name: pokemonSpecies[variety.specie].name,
-            variety: variety.id,
-            level: 1,
-            task: task.title,
-            actualHp: variety.baseHp,
-            hp: variety.baseHp,
-            atk: variety.baseAtk,
-            def: variety.baseDef,
-            speed: variety.baseDef,
-            ivAtk: 15,
-            ivDef: 15,
-            ivHp: 15,
-            ivSpeed: 15,
-            moves: [variety.moves[getRandomInt(0, variety.moves.length-1)]]
-        };
+        return this.generatePokemonWithRandomAttributes(variety.id, task.title);
     }
 
     private calculateTierPokemonEncounter(): string {

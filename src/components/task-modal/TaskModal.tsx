@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './TaskModal.scss'
-import useAudio from "../../hooks/useAudio";
-import Typing from 'react-typing-animation';
 import {
+    IonAlert,
     IonButton,
     IonButtons,
     IonContent,
@@ -11,28 +10,16 @@ import {
     IonModal,
     IonSpinner,
     IonTitle,
-    IonToolbar,
-    IonAlert
+    IonToolbar
 } from "@ionic/react";
 import {useRootStore} from "../../stores/StoreContext";
 import {useForm} from "react-hook-form";
 import {observer} from "mobx-react-lite";
 import {close, trash} from "ionicons/icons";
-import {auth, firestore} from "../../firebase";
-import {
-    DatePicker,
-    TimePicker,
-    DateTimePicker,
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import {DatePicker, TimePicker,} from '@material-ui/pickers';
 import dayjs from "dayjs";
-import {ModalDatePicker} from "../date-picker-modal/ModalDatePicker";
-import DayjsUtils from "@date-io/dayjs";
 import {ITask} from "../../models/Task";
 import firebase from 'firebase';
-import {IProject, Project} from "../../models/Project";
-import PokemonWildModal from "../pokemon-wild-modal/PokemonWildModal";
 import PokemonBasicDetails from "../pokemon-basic-details/PokemonBasicDetails";
 
 interface IComponentProps {
@@ -41,6 +28,15 @@ interface IComponentProps {
 type FormData = {
     title: string;
     project: string;
+    repeat: boolean;
+    repeatFrequency: "daily" | "monthly";
+    mon?: boolean;
+    tue?: boolean;
+    wed?: boolean;
+    thu?: boolean;
+    fri?: boolean;
+    sat?: boolean;
+    sun?: boolean;
 }
 
 const TaskModal: React.FC<IComponentProps> = observer(() => {
@@ -52,12 +48,19 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
     const [selectedTimeDate, setSelectedTimeDate] = useState<Date | undefined>(undefined);
     const [showAlert, setShowAlert] = useState(false);
+    const repeatTask = watch("repeat");
+    const repeatFrequency = watch("repeatFrequency");
+    const [formSubmitErrorMessage, setFormSubmitErrorMessage] = useState("");
+
 
     useEffect(() => {
         register({name: "date"})
     }, [])
 
     const handleDateChange = (e: any) => {
+        if(!e){
+            setValue("repeat", false);
+        }
         setSelectedDate(e);
     }
 
@@ -78,13 +81,39 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     const ionModalDidPresent = () => {
         /*Need to reset form in order for it to work properly!*/
         register("withTime");
-        reset({title: '', project: ""});
+        reset({
+            title: '',
+            project: "",
+            repeat: false,
+            repeatFrequency: 'daily',
+            mon: true,
+            tue: true,
+            wed: true,
+            thu: true,
+            fri: true,
+            sat: true,
+            sun: true
+        });
         setSelectedDate(taskStore.selected.date ? taskStore.selected.date.toDate() : undefined);
         setSelectedTimeDate(taskStore.selected.date && taskStore.selected.withTime ? taskStore.selected.date.toDate() : undefined);
-        setValue("title", taskStore.selected.title);
-        if (taskStore.selected.project) {
-            setValue("project", JSON.stringify(taskStore.selected.project));
+        if (taskStore.selected.id) {
+            setValue("title", taskStore.selected.title);
+            reset({
+                title: taskStore.selected.title,
+                repeat: taskStore.selected.repeat,
+                repeatFrequency: taskStore.selected.repeatFrequency,
+                mon: taskStore.selected.mon,
+                tue: taskStore.selected.tue,
+                wed: taskStore.selected.wed,
+                thu: taskStore.selected.thu,
+                fri: taskStore.selected.fri,
+                sat: taskStore.selected.sat,
+                sun: taskStore.selected.sun
+            });
         }
+            if (taskStore.selected.project) {
+                setValue("project", JSON.stringify(taskStore.selected.project));
+            }
     }
 
     const closeModal = () => {
@@ -92,9 +121,14 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     }
 
     const onSubmit = handleSubmit(async (data: FormData) => {
+        if(data.repeat && data.repeatFrequency === 'daily' && !data.mon && !data.tue && !data.wed && !data.thu && !data.fri && !data.sat && !data.sun){
+            setFormSubmitErrorMessage("You need to select at least one day of the week to repeat")
+            return;
+        }
+        console.log(data);
         const taskSave: ITask = {
             ...taskStore.selected,
-            title: data.title,
+            ...data,
             complete: false,
             project: data.project ? JSON.parse(data.project) : null,
             withTime: selectedTimeDate ? true : false
@@ -173,6 +207,72 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                                     {selectedTimeDate ? dayjs(selectedTimeDate).format('hh:mm A') : 'Add time'}
                                 </button>
                             )}
+
+                            {selectedDate && (
+                                <label className="nes-checkbox-label" style={{marginTop: '18px'}}>
+                                    <input id="repeat" name="repeat" type="checkbox" className="nes-checkbox"
+                                           ref={register}
+                                    />
+                                    <span>Repeat</span>
+                                </label>
+                            )}
+                            {repeatTask && <div>
+                                <div className="nes-field">
+                                    <label htmlFor="repeatFrequency">Frequency:</label>
+                                    <div
+                                        className={errors && errors.repeatFrequency ? 'nes-select is-error' : 'nes-select'}>
+                                        <select id="repeatFrequency" name="repeatFrequency"
+                                                ref={register({required: "required"})}>
+                                            <option value="daily">Daily</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {repeatFrequency === "daily" ? (<div>
+                                    <label className="nes-checkbox-label">
+                                        <input id="mon" name="mon" type="checkbox" className="nes-checkbox"
+                                               ref={register}
+                                        />
+                                        <span>mon</span>
+                                    </label>
+                                    <label className="nes-checkbox-label">
+                                        <input id="tue" name="tue" type="checkbox" className="nes-checkbox"
+                                               ref={register}
+                                        />
+                                        <span>tue</span>
+                                    </label>
+                                    <label className="nes-checkbox-label">
+                                        <input id="wed" name="wed" type="checkbox" className="nes-checkbox"
+                                               ref={register}
+                                        />
+                                        <span>wed</span>
+                                    </label>
+                                    <label className="nes-checkbox-label">
+                                        <input id="thu" name="thu" type="checkbox" className="nes-checkbox"
+                                               ref={register}
+                                        />
+                                        <span>thu</span>
+                                    </label>
+                                    <label className="nes-checkbox-label">
+                                        <input id="fri" name="fri" type="checkbox" className="nes-checkbox"
+                                               ref={register}
+                                        />
+                                        <span>fri</span>
+                                    </label>
+                                    <label className="nes-checkbox-label">
+                                        <input id="sat" name="sat" type="checkbox" className="nes-checkbox"
+                                               ref={register}
+                                        />
+                                        <span>sat</span>
+                                    </label>
+                                    <label className="nes-checkbox-label">
+                                        <input id="sun" name="sun" type="checkbox" className="nes-checkbox"
+                                               ref={register}
+                                        />
+                                        <span>sun</span>
+                                    </label>
+                                </div>) : (<div></div>)}
+                            </div>}
 
                             <DatePicker
                                 style={{display: 'none'}}

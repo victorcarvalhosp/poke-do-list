@@ -10,6 +10,15 @@ export interface ITask {
   pokemon?: IPokemon;
   date?: firebase.firestore.Timestamp | null;
   withTime?: boolean;
+  repeat: boolean;
+  repeatFrequency?: "daily" | "monthly";
+  mon?: boolean;
+  tue?: boolean;
+  wed?: boolean;
+  thu?: boolean;
+  fri?: boolean;
+  sat?: boolean;
+  sun?: boolean;
 }
 
 export class Task implements  ITask{
@@ -20,11 +29,28 @@ export class Task implements  ITask{
   pokemon?: IPokemon;
   date?: firebase.firestore.Timestamp;
   withTime?: boolean;
+  repeat: boolean;
+  repeatFrequency?: "daily" | "monthly";
+  mon?: boolean;
+  tue?: boolean;
+  wed?: boolean;
+  thu?: boolean;
+  fri?: boolean;
+  sat?: boolean;
+  sun?: boolean;
 
   constructor() {
     this.complete = false;
     this.title = '';
     this.withTime = false;
+    this.repeat = false;
+    this.mon = false;
+    this.tue = false;
+    this.wed = false;
+    this.thu = false;
+    this.fri = false;
+    this.sat = false;
+    this.sun = false;
   }
 
 }

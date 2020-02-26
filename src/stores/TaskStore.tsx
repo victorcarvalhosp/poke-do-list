@@ -10,6 +10,7 @@ import {pokemonSpecies} from "../data/pokemon-species";
 import {ITaskFilters, TaskFilters} from "../models/TaskFilters";
 import dayjs from "dayjs";
 import firebase from "firebase";
+import {repeat} from "ionicons/icons";
 
 
 export interface ITaskStore {
@@ -174,7 +175,26 @@ export class TaskStore implements ITaskStore {
             this.root.uiStore.showToast(`${pkmnName} caught!`);
         }
         if (task.id) {
-            await FirebaseApi.completeTask(this.root.userStore.user.uid, task.id);
+            if (task.repeat) {
+                task.pokemon = this.root.pokemonStore.generateRandomPokemon(task);
+                if (task.repeatFrequency === 'daily') {
+                    for (let i = 0; i <= 6; i++) {
+                        const nextDay = dayjs(task.date?.toDate()).add(i + 1, 'day');
+                        if (nextDay.day() === 0 && task.sun || nextDay.day() === 1 && task.mon ||
+                            nextDay.day() === 2 && task.tue || nextDay.day() === 3 && task.wed ||
+                            nextDay.day() === 4 && task.thu || nextDay.day() === 5 && task.fri ||
+                            nextDay.day() === 6 && task.sat) {
+                            task.date = firebase.firestore.Timestamp.fromDate(nextDay.toDate());
+                            break;
+                        }
+                    }
+                } else if (task.repeatFrequency === 'monthly') {
+                    task.date = firebase.firestore.Timestamp.fromDate(dayjs(task.date?.toDate()).add(1, 'month').toDate());
+                }
+                await FirebaseApi.saveTask(this.root.userStore.user.uid, task);
+            } else {
+                await FirebaseApi.completeTask(this.root.userStore.user.uid, task.id);
+            }
         }
     }
 

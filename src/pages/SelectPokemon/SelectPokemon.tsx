@@ -72,13 +72,9 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
         }
     }
 
-    const goToSignup = () => {
-        history.push(Routes.SIGNUP)
-    }
-
-    if (userStore.user.partnerPokemon && userStore.user.partnerPokemon.id) {
-        return <Redirect to={Routes.HOME+'/week'}/>;
-    }
+    // if (userStore.user.partnerPokemon && userStore.user.partnerPokemon.id) {
+    //     return <Redirect to={Routes.HOME+'/week'}/>;
+    // }
 
     return (
         <IonPage id="select-pokemon-page">
@@ -106,14 +102,14 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
                             </div>
                             <button className="NextSpritesheetButton NextSpritesheetButton--prev"
                                     onClick={e => setPreviousActive()}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 4 7" shape-rendering="crispEdges">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 4 7" shapeRendering="crispEdges">
                                     <metadata>Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj</metadata>
                                     <path stroke="#434343" d="M3 0h1M2 1h1M1 2h1M0 3h1M1 4h1M2 5h1M3 6h1"/>
                                 </svg>
                             </button>
                             <button className="NextSpritesheetButton NextSpritesheetButton--next"
                                     onClick={e => setNextActive()}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 4 7" shape-rendering="crispEdges">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 4 7" shapeRendering="crispEdges">
                                     <metadata>Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj</metadata>
                                     <path stroke="#434343" d="M0 0h1M1 1h1M2 2h1M3 3h1M2 4h1M1 5h1M0 6h1"/>
                                 </svg>
@@ -126,7 +122,7 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
                             <p>{pokemonSpecies[selectedPokemon.id].description}</p>
                         </div>
                     </div>
-                    <IonButton className="choose-button" size="large" expand="full" onClick={selectPokemon}>Choose {selectedPokemon.name}!</IonButton>
+                    <IonButton className="choose-button" size="large" expand="full" onClick={selectPokemon} disabled={userStore.user.partnerPokemon !== undefined && userStore.user.partnerPokemon.id != null}>Choose {selectedPokemon.name}!</IonButton>
                 </main>
             </IonContent>
         </IonPage>

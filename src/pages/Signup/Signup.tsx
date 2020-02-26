@@ -18,7 +18,6 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
 
     const [step, setStep] = useState(0);
-    const [name, setName] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const {userStore} = useRootStore();
     const [appearPokemon, setAppearPokemon] = useState(false);
@@ -34,7 +33,6 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     }
 
     const afterSignup = () => {
-        debugger;
         setOpenModal(false);
         let nextStep = step + 1;
         setStep(nextStep);
@@ -46,7 +44,6 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
     }, []);
 
     const onClickContinue = async () => {
-        console.log('GO TO NEXT' + step);
         if (step === FINAL_STEP) {
             // await stopAudio();
             history.push(Routes.SIGNUP_SELECT_POKEMON);

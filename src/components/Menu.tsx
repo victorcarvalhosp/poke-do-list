@@ -55,6 +55,18 @@ const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
             <IonContent>
                 <IonList>
                     <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={Routes.POKEDEX} routerDirection="none">
+                            <IonIcon slot="start" icon={phonePortraitOutline}/>
+                            <IonLabel>Pokédex</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={Routes.POKEMON} routerDirection="none">
+                            <IonIcon slot="start" icon={bookmarkOutline}/>
+                            <IonLabel>Pokémon</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
+                    <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.HOME}/inbox`} routerDirection="none">
                             <IonIcon slot="start" icon={folderOpenOutline}/>
                             <IonLabel>Inbox</IonLabel>
@@ -73,18 +85,7 @@ const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
                         </IonItem>
                     </IonMenuToggle>
                     <ProjectsAccordionMenu/>
-                    <IonMenuToggle autoHide={false}>
-                        <IonItem routerLink={Routes.POKEMON} routerDirection="none">
-                            <IonIcon slot="start" icon={bookmarkOutline}/>
-                            <IonLabel>My Pokémon's</IonLabel>
-                        </IonItem>
-                    </IonMenuToggle>
-                    <IonMenuToggle autoHide={false}>
-                        <IonItem routerLink={Routes.POKEDEX} routerDirection="none">
-                            <IonIcon slot="start" icon={phonePortraitOutline}/>
-                            <IonLabel>Pokédex</IonLabel>
-                        </IonItem>
-                    </IonMenuToggle>
+
                     {/*<IonMenuToggle autoHide={false}>*/}
                     {/*    <IonItem routerLink={Routes.BATTLE} routerDirection="none">*/}
                     {/*        <IonIcon slot="start" icon={power}/>*/}
