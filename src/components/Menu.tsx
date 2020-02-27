@@ -20,7 +20,7 @@ import {
     calendarOutline,
     calendarSharp,
     folderOpenOutline, phonePortraitOutline,
-    power
+    power, settingsOutline
 } from "ionicons/icons";
 import {Routes} from "../router/Router";
 import {useRootStore} from "../stores/StoreContext";
@@ -92,6 +92,13 @@ const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
                     {/*        <IonLabel>Battle demo</IonLabel>*/}
                     {/*    </IonItem>*/}
                     {/*</IonMenuToggle>*/}
+
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={`${Routes.SETTINGS}`} routerDirection="none">
+                            <IonIcon slot="start" icon={settingsOutline}/>
+                            <IonLabel>Settings</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem onClick={logOut} routerDirection="none">
                             <IonIcon slot="start" icon={power}/>

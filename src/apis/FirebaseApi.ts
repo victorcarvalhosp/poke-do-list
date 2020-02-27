@@ -16,7 +16,7 @@ export class FirebaseApi {
     }
 
     static async getOpenTasksByProject(userId: string, projectId: string) {
-        return firestore.collection(`users/${userId}/tasks`).where('complete', '==', false).where("project.id", "==", projectId).orderBy('title');
+        return firestore.collection(`users/${userId}/tasks`).where('complete', '==', false).where("project.id", "==", projectId).orderBy('date');
     }
 
     static async getOpenTasksUntilDate(userId: string, date: firebase.firestore.Timestamp) {
@@ -105,6 +105,13 @@ export class FirebaseApi {
     static async updatePokedex(userId: string, pokedex: Record<number, IPokedexStatus>) {
         const dbPath = `users/${userId}/`;
         return firestore.doc(dbPath).update({pokedex: pokedex});
+    }
+
+    static async updateTheme(userId: string, theme: string) {
+        return firebase
+            .firestore()
+            .doc(`users/${userId}`)
+            .update({theme: theme});
     }
 
     //

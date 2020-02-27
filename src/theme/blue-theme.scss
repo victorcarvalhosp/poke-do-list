@@ -1,0 +1,29 @@
+/*
+ * Red Colors
+ * -------------------------------------------
+ */
+.blue-theme{
+  --ion-color-tertiary: #55917F;
+  --ion-color-tertiary-rgb: 85,145,127;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255,255,255;
+  --ion-color-tertiary-shade: #4b8070;
+  --ion-color-tertiary-tint: #669c8c;
+}
+
+.ios .blue-theme {
+  --ion-background-color: #96d4cf;
+
+}
+
+.md .blue-theme {
+  --ion-background-color: #96d4cf;
+}
+
+.blue-theme ion-toolbar {
+  --background: var(--ion-background-color);
+}
+
+.blue-theme ion-header {
+  background: var(--ion-background-color);
+}

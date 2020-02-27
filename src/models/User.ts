@@ -10,6 +10,8 @@ export interface IUser {
   partnerPokemon?: IPokemon;
   creationDate: Date;
   pokedex: Record<number, IPokedexStatus>;
+  theme?: string;
+
 }
 
 export class User implements IUser{
@@ -19,6 +21,7 @@ export class User implements IUser{
   uid: string;
   creationDate: Date;
   pokedex: Record<number, IPokedexStatus>;
+  theme?: string;
 
   constructor() {
     this.character = '';

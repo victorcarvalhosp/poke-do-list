@@ -44,6 +44,7 @@ export class Task implements  ITask{
     this.title = '';
     this.withTime = false;
     this.repeat = false;
+    this.repeatFrequency = 'daily';
     this.mon = false;
     this.tue = false;
     this.wed = false;

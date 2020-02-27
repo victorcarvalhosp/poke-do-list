@@ -29,12 +29,14 @@ import {useRootStore} from "./stores/StoreContext";
 import ProjectModal from "./components/project-modal/ProjectModal";
 import TaskModal from "./components/task-modal/TaskModal";
 import ToastDefault from "./components/toast-default/ToastDefault";
+import {IonApp} from '@ionic/react';
 
 
 const App: React.FC = () => {
     const [user, initialising, error] = useAuthState(auth);
-    const {userStore} = useRootStore();
+    const {userStore, uiStore} = useRootStore();
     userStore.setUser(user ? user.uid : '0');
+    uiStore.setThemeFromUser();
 
     if (initialising) {
         return (
@@ -55,17 +57,21 @@ const App: React.FC = () => {
     return (
         <>
             {/*<IonApp id="ion-app-root">*/}
-            <MuiPickersUtilsProvider utils={DayjsUtils}>
-                <IonReactRouter>
-                    {/*<IonSplitPane contentId="main">*/}
-                    <Menu/>
-                    <Router/>
-                    <ProjectModal/>
-                    <TaskModal/>
-                    <ToastDefault />
-                    {/*</IonSplitPane>*/}
-                </IonReactRouter>
-            </MuiPickersUtilsProvider>
+            <div className={`${uiStore.mode}-theme`}>
+                <MuiPickersUtilsProvider utils={DayjsUtils}>
+                    <IonApp>
+                        <IonReactRouter>
+                            {/*<IonSplitPane contentId="main">*/}
+                            <Menu/>
+                            <Router/>
+                            <ProjectModal/>
+                            <TaskModal/>
+                            <ToastDefault/>
+                            {/*</IonSplitPane>*/}
+                        </IonReactRouter>
+                    </IonApp>
+                </MuiPickersUtilsProvider>
+            </div>
             {/*</IonApp>*/}
         </>
     )
