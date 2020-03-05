@@ -1,9 +1,10 @@
 import {ITask} from "./Task";
 import firebase from "firebase";
 import {observable} from "mobx";
+import {makeid} from "../utils/utils";
 
 export interface IPokemon {
-  id?: string;
+  id: string;
   name: string;
   variety: number;
   level: number;
@@ -22,7 +23,7 @@ export interface IPokemon {
 }
 
 export class Pokemon implements IPokemon{
-  id?: string;
+  id: string;
   name: string;
   variety: number;
   level: number;
@@ -41,6 +42,7 @@ export class Pokemon implements IPokemon{
   moves: number[];
 
   constructor() {
+    this.id = makeid();
     this.name = '';
     this.variety = 0;
     this.level = 1;

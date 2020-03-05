@@ -1,0 +1,25 @@
+.hp-bar{
+  text-align: center;
+  line-height: 0;
+:root {
+  --bar-fill: #57e705;
+  --pixel-size: 7;
+}
+
+  .healthbar {
+    width: calc(38px * var(--pixel-size));
+    margin: 0 auto calc(2px * var(--pixel-size)) auto;
+    display: block;
+  }
+
+  .healthbar_fill {
+    /*    width: 100%; */
+    fill: var(--bar-fill);
+    transition: width 0.1s ease-in, fill 0.2s linear;
+  }
+
+  span{
+    font-size: 0.5rem;
+    color: #222428;
+  }
+}

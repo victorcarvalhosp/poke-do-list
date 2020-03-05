@@ -86,12 +86,12 @@ const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
                     </IonMenuToggle>
                     <ProjectsAccordionMenu/>
 
-                    {/*<IonMenuToggle autoHide={false}>*/}
-                    {/*    <IonItem routerLink={Routes.BATTLE} routerDirection="none">*/}
-                    {/*        <IonIcon slot="start" icon={power}/>*/}
-                    {/*        <IonLabel>Battle demo</IonLabel>*/}
-                    {/*    </IonItem>*/}
-                    {/*</IonMenuToggle>*/}
+                    <IonMenuToggle autoHide={false}>
+                        <IonItem routerLink={Routes.BATTLE} routerDirection="none">
+                            <IonIcon slot="start" icon={power}/>
+                            <IonLabel>Battle demo</IonLabel>
+                        </IonItem>
+                    </IonMenuToggle>
 
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.SETTINGS}`} routerDirection="none">

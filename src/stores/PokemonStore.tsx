@@ -86,6 +86,11 @@ export class PokemonStore implements IPokemonStore {
             const evolveTo = pokemonVarieties[evolution.to];
             pokemon.name = evolveTo.name;
             pokemon.variety = evolveTo.id;
+            const { hp , atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[pokemon.variety], {ivHp: pokemon.ivHp, ivAtk: pokemon.ivAtk, ivDef: pokemon.ivSpeed, ivSpeed: pokemon.ivSpeed}, pokemon.level);
+            pokemon.hp = hp;
+            pokemon.atk = atk;
+            pokemon.def = def;
+            pokemon.speed = speed;
             this.registerPokedex(pokemon.variety, true);
             await FirebaseApi.updatePokemon(this.root.userStore.user.uid, pokemon);
             if (pokemon.id === this.root.userStore.user.partnerPokemon?.id) {
@@ -174,16 +179,17 @@ export class PokemonStore implements IPokemonStore {
     generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon {
         const variety: IPokemonVariety = pokemonVarieties[pokemonVarietyId];
         const {ivHp, ivAtk, ivDef, ivSpeed} = this.generateIvs();
-        const {hp, atk, def, speed} = this.calculatePokemonStats(variety, {ivHp, ivAtk, ivDef, ivSpeed}, 1);
+        const level = 1;
+        const {hp, atk, def, speed} = this.calculatePokemonStats(variety, {ivHp, ivAtk, ivDef, ivSpeed}, level);
         //TODO Generate random attributes as id, gender, stats, level, iv
         return {
             id: makeid(),
             name: pokemonSpecies[variety.specie].name,
             variety: variety.id,
-            level: 1,
+            level: level,
             task: task,
             date: firebase.firestore.Timestamp.fromDate(new Date()),
-            actualHp: variety.baseHp,
+            actualHp: hp,
             hp: hp,
             atk: atk,
             def: def,

@@ -7,6 +7,9 @@ import Overworld from "../../components/overworld/Overworld";
 import {observer} from "mobx-react-lite";
 import LineTo, {SteppedLineTo, Line} from 'react-lineto';
 import {PropTypes} from "@material-ui/core";
+import {IPokemon} from "../../models/Pokemon";
+import {moves} from "../../data/moves";
+import HpBar from "../../components/hp-bar/HpBar";
 
 
 const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
@@ -14,9 +17,11 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
     const {battleStore} = useRootStore();
     const [blockButton, setBlockButton] = useState(false);
 
-    const setActivePos = (i: number) => {
+    const setActivePos = (pkmn: IPokemon, i: number) => {
         console.log('SET ACTIVE', i);
         battleStore.setActivePos(i);
+        battleStore.player1TurnAction[battleStore.activePos].move = pkmn.moves[0];
+
         // if (!battleStore.player1TurnAction[i]) {
         //     battleStore.player1TurnAction[i] = new BattleAction(1);
         //     battleStore.player1TurnAction[i].pos = i;
@@ -45,37 +50,26 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
 
                 </IonToolbar>
             </IonHeader>
-            <IonContent className="ion-padding">
-                {/*<HoverTest />*/}
+            <IonContent>
                 {battleStore.battleResult}
                 <div className="battle-container">
                     {battleStore.player1SelectedPokemons.map((pkmn, i) => (
                         <span key={i}>
-                            <div onClick={e => setActivePos(i)} style={{cursor: 'pointer'}}
+                            <div onClick={e => setActivePos(pkmn, i)} style={{cursor: 'pointer'}}
                                  className={`player1-pkmn pos-${i} ${battleStore.activePos === i ? 'active-action' : ''}`}
                                  id={`pkmn-p1-${i}`}>
                                 <Overworld spriteUrl={`${pkmn.variety}.png`} direction="up" animationActive={true}
                                            type="pokemon" className={`pkmn-p1-${i} `}
-                                           onClick={() => setActivePos(i)}/>
+                                           onClick={() => setActivePos(pkmn, i)}/>
                             </div>
                             <div className={`player1-hp pos-${i}`}>
-                                <p>
-                            {pkmn.actualHp}
-                                </p>
+                                <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={true}/>
                             </div>
-
-                            {/*<div className={`player1-action pos-${i} ${battleStore.activePos === i ? 'active-action' : ''}`}>*/}
-                            {/*    <div>*/}
-                            {/*        {battleStore.player2SelectedPokemons.length > 0 && battleStore.player1TurnAction[i].opponentPos >= 0 && battleStore.player2SelectedPokemons[battleStore.player1TurnAction[i].opponentPos] && (*/}
-                            {/*            <Overworld*/}
-                            {/*                spriteUrl={`${battleStore.player2SelectedPokemons[battleStore.player1TurnAction[i].opponentPos].variety}.png`}*/}
-                            {/*                direction="down" animationActive={false}*/}
-                            {/*                type="pokemon" className={`action-pkmn`}/>*/}
-                            {/*        )}*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
                             {!blockButton && (
                                 <LineTo
+                                    borderColor={'#989aa2'}
+                                    borderStyle={'dashed'}
+                                    className={'line-to-pokemon'}
                                     from={`pkmn-p1-${i}`}
                                     to={`pkmn-p2-${battleStore.player1TurnAction[i].opponentPos}`}
                                     fromAnchor="middle middle"
@@ -86,8 +80,10 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                         </span>
                     ))}
                     {battleStore.player2SelectedPokemons.map((pkmn, i) => (<>
+                            <div className={`player2-hp pos-${i}`}>
+                                <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={false}/>
+                            </div>
                             <div className={`player2-pkmn pos-${i}`} id={`pkmn-p2-${i}`}>
-                                {pkmn.actualHp}
                                 <Overworld key={i} spriteUrl={`${pkmn.variety}.png`} direction="down"
                                            animationActive={true}
                                            type="pokemon" className={`pkmn-p2-${i}`}
@@ -97,6 +93,20 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                         </>
                     ))}
                 </div>
+                {blockButton && (
+                    <p>{battleStore.attackMessage}</p>
+                )}
+                {!blockButton && battleStore.player1SelectedPokemons[battleStore.activePos] && (
+                    <div>
+                        <p>
+                            {battleStore.player1SelectedPokemons[battleStore.activePos].name}
+                        </p>
+                        ATTACK:
+                        {battleStore.player1SelectedPokemons[battleStore.activePos].moves.map(move => (
+                            <p>{moves[move].name}</p>
+                        ))}
+                    </div>
+                )}
                 <button onClick={handleReady} disabled={blockButton}> READY!</button>
             </IonContent>
         </IonPage>
