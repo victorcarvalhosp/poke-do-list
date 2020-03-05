@@ -253,7 +253,7 @@ export class PokemonStore implements IPokemonStore {
 
     private calculateTierPokemonEncounter(): string {
         let tiers = ["tier1", "tier2", "tier3", "tier4", "tier5"];
-        const tiersweight = [5.4, 3, 1, 0.5, 0.1]; //weight of each element above
+        const tiersweight = [5, 3.4, 1, 0.5, 0.1]; //weight of each element above
         const totalweight = eval(tiersweight.join("+")) //get total weight (in this case, 10)
         const weighedTiers = new Array() //new array to hold "weighted" tiers
         let currentTier = 0

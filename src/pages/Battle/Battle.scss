@@ -1,8 +1,16 @@
 @import "src/theme/variables";
 
 #battle-page {
+  .battle-area {
+    width: 100%;
+    margin: 0 auto !important;
+    width: 100%;
+    max-width: 400px;
+  }
+
   background-color: #EEEEEE;
-  .battle-container {
+
+  .battle-arena {
     background: url("../../assets/images/battle/background/grass1.png") repeat;
     position: relative;
     padding: 10px;
@@ -98,20 +106,20 @@
 
 
   .animation-atk-player1-enemy-pos-0 {
-      top: 65px;
-      bottom: 170px;
-      left: 0 !important;
+    top: 65px;
+    bottom: 170px;
+    left: 0 !important;
   }
 
   .animation-atk-player1-enemy-pos-1 {
-      top: 65px;
-      left: 40% !important;
+    top: 65px;
+    left: 40% !important;
   }
 
   .animation-atk-player1-enemy-pos-2 {
-      top: 65px;
-      bottom: 170px;
-      right: 0 !important;
+    top: 65px;
+    bottom: 170px;
+    right: 0 !important;
     left: auto !important;
   }
 

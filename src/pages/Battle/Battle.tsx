@@ -52,9 +52,10 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
             </IonHeader>
             <IonContent>
                 {battleStore.battleResult}
-                <div className="battle-container">
-                    {battleStore.player1SelectedPokemons.map((pkmn, i) => (
-                        <span key={i}>
+                <div className="battle-area">
+                    <div className="battle-arena">
+                        {battleStore.player1SelectedPokemons.map((pkmn, i) => (
+                            pkmn.actualHp > 0 && (<span key={i}>
                             <div onClick={e => setActivePos(pkmn, i)} style={{cursor: 'pointer'}}
                                  className={`player1-pkmn pos-${i} ${battleStore.activePos === i ? 'active-action' : ''}`}
                                  id={`pkmn-p1-${i}`}>
@@ -65,49 +66,51 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                             <div className={`player1-hp pos-${i}`}>
                                 <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={true}/>
                             </div>
-                            {!blockButton && (
-                                <LineTo
-                                    borderColor={'#989aa2'}
-                                    borderStyle={'dashed'}
-                                    className={'line-to-pokemon'}
-                                    from={`pkmn-p1-${i}`}
-                                    to={`pkmn-p2-${battleStore.player1TurnAction[i].opponentPos}`}
-                                    fromAnchor="middle middle"
-                                    toAnchor="middle bottom"
-                                    borderWidth={3}
-                                />
-                            )}
-                        </span>
-                    ))}
-                    {battleStore.player2SelectedPokemons.map((pkmn, i) => (<>
-                            <div className={`player2-hp pos-${i}`}>
-                                <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={false}/>
-                            </div>
-                            <div className={`player2-pkmn pos-${i}`} id={`pkmn-p2-${i}`}>
-                                <Overworld key={i} spriteUrl={`${pkmn.variety}.png`} direction="down"
-                                           animationActive={true}
-                                           type="pokemon" className={`pkmn-p2-${i}`}
-                                           onClick={() => setSelectedOpponent(i)}/>
+                                {!blockButton && (
+                                    <LineTo
+                                        borderColor={'#989aa2'}
+                                        borderStyle={'dashed'}
+                                        className={'line-to-pokemon'}
+                                        from={`pkmn-p1-${i}`}
+                                        to={`pkmn-p2-${battleStore.player1TurnAction[i].opponentPos}`}
+                                        fromAnchor="middle middle"
+                                        toAnchor="middle bottom"
+                                        borderWidth={3}
+                                    />
+                                )}
+                        </span>)
+                        ))}
+                        {battleStore.player2SelectedPokemons.map((pkmn, i) => (
+                            pkmn.actualHp > 0 && (<>
+                                <div className={`player2-hp pos-${i}`}>
+                                    <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={false}/>
+                                </div>
+                                <div className={`player2-pkmn pos-${i}`} id={`pkmn-p2-${i}`}>
+                                    <Overworld key={i} spriteUrl={`${pkmn.variety}.png`} direction="down"
+                                               animationActive={true}
+                                               type="pokemon" className={`pkmn-p2-${i}`}
+                                               onClick={() => setSelectedOpponent(i)}/>
 
-                            </div>
-                        </>
-                    ))}
-                </div>
-                {blockButton && (
-                    <p>{battleStore.attackMessage}</p>
-                )}
-                {!blockButton && battleStore.player1SelectedPokemons[battleStore.activePos] && (
-                    <div>
-                        <p>
-                            {battleStore.player1SelectedPokemons[battleStore.activePos].name}
-                        </p>
-                        ATTACK:
-                        {battleStore.player1SelectedPokemons[battleStore.activePos].moves.map(move => (
-                            <p>{moves[move].name}</p>
+                                </div>
+                            </>)
                         ))}
                     </div>
-                )}
-                <button onClick={handleReady} disabled={blockButton}> READY!</button>
+                    {blockButton && (
+                        <p>{battleStore.attackMessage}</p>
+                    )}
+                    {!blockButton && battleStore.player1SelectedPokemons[battleStore.activePos] && (
+                        <div>
+                            <p>
+                                {battleStore.player1SelectedPokemons[battleStore.activePos].name}
+                            </p>
+                            ATTACK:
+                            {battleStore.player1SelectedPokemons[battleStore.activePos].moves.map(move => (
+                                <p>{moves[move].name}</p>
+                            ))}
+                        </div>
+                    )}
+                    <button onClick={handleReady} disabled={blockButton}> READY!</button>
+                </div>
             </IonContent>
         </IonPage>
     );

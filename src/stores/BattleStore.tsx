@@ -1,16 +1,14 @@
-import {observable, action, computed} from 'mobx'
+import {action, observable} from 'mobx'
 import {RootStore} from "./RootStore";
 import {IPokemon} from "../models/Pokemon";
 import {Task} from "../models/Task";
 import {BattleAction, IBattleAction} from "../models/BattleAction";
 import {IMove} from "../models/IMove";
 import {pokemonVarieties} from "../data/pokemon-varieties";
-import {addDelay, delay} from "../utils/delay";
-import {move} from "ionicons/icons";
+import {addDelay} from "../utils/delay";
 import {moves} from "../data/moves";
 import {typeChart} from "../data/type-chart";
 import {getRandomInt, getRandomNumber} from "../utils/utils";
-import {act} from "react-dom/test-utils";
 
 export interface IBattleStore {
     player1SelectedPokemons: IPokemon[];
@@ -76,19 +74,12 @@ export class BattleStore implements IBattleStore {
     @action
     async runTurn() {
         console.log('attack');
-        if (this.player1SelectedPokemons.length > 0 && this.player2SelectedPokemons.length > 0) {
+        if (this.player1StillHaveLivePokemon() && this.player2StillHaveLivePokemon()) {
             const allActions: IBattleAction[] = [...this.player1TurnAction, ...this.player2TurnAction];
             for (let action of allActions) {
-                if (action.player === 1) {
-                    const result = await this.runPlayer1Action(action);
-                    if (result != "") {
-                        break;
-                    }
-                } else {
-                    const result = await this.runPlayer2Action(action);
-                    if (result != "") {
-                        break;
-                    }
+                const result = await this.runAction(action);
+                if (result != "") {
+                    break;
                 }
             }
             this.refreshTurnAction();
@@ -97,19 +88,43 @@ export class BattleStore implements IBattleStore {
         // this.player2TurnAction = [];
     }
 
-    private async runPlayer2Action(action: IBattleAction): Promise<"" | "win" | "lose" | "draw"> {
-        if (this.player2SelectedPokemons[action.pos]) {
-            if (!this.player1SelectedPokemons[action.opponentPos]) {
-                action.opponentPos = 0;
+    private async runAction(action: IBattleAction): Promise<"" | "win" | "lose" | "draw"> {
+        console.log("MOVE IDDD" + action.move);
+        const attackerTeam = action.player === 1 ? this.player1SelectedPokemons : this.player2SelectedPokemons;
+        const defenderTeam = action.player === 1 ? this.player2SelectedPokemons : this.player1SelectedPokemons;
+
+        if (action.player === 2) {
+            //RANDOM ATTACK FOR ENEMY
+            const randomPos = getRandomInt(0, 2);
+            if (defenderTeam[randomPos]) {
+                action.opponentPos = randomPos;
+            } else {
+                action.opponentPos = this.getNextAvailableAttackPosition(defenderTeam);
             }
-            await this.runAnimation(2, action.pos, action.opponentPos);
-            const damage = this.calculateDamage(this.player2SelectedPokemons[action.pos], this.player1SelectedPokemons[action.opponentPos], moves[action.move]);
-            this.player1SelectedPokemons[action.opponentPos].actualHp -= damage;
-            this.attackMessage = 'Enemy ' + pokemonVarieties[this.player2SelectedPokemons[action.pos].variety].name + ' used ' + moves[action.move].name + " on my " + pokemonVarieties[this.player1SelectedPokemons[action.opponentPos].variety].name;
+        }
+
+        const attacker = attackerTeam[action.pos];
+        let defender = defenderTeam[action.opponentPos];
+
+
+        if (defender.actualHp <= 0) {
+            //RANDOM OPPONENT ATTACK
+            console.log('CHANGE ATTACK POSITION');
+            const nextPos = this.getNextAvailableAttackPosition(defenderTeam);
+            action.opponentPos = nextPos;
+            defender = defenderTeam[action.opponentPos];
+        }
+
+        if (attacker && attacker.actualHp > 0) {
+            this.attackMessage = `${action.player === 1 ? 'My ' : 'Enemy '}` + pokemonVarieties[attacker.variety].name + ' used ' + moves[action.move].name + " on " + pokemonVarieties[defender.variety].name;
+            await this.runAnimation(action.player, action.pos, action.opponentPos);
+            const damage: number = this.calculateDamage(attacker, defender, moves[action.move]);
             console.log(this.attackMessage);
-            if (this.player1SelectedPokemons[action.opponentPos].actualHp <= 0) {
-                this.player1SelectedPokemons.splice(action.opponentPos, 1);
-                action.opponentPos = 0;
+            defender.actualHp -= damage;
+            if (defender.actualHp <= 0) {
+                defender.actualHp = 0;
+                // this.player2SelectedPokemons.splice(action.opponentPos, 1);
+                this.getNextAvailableAttackPosition(defenderTeam);
                 return new Promise(resolve => {
                     resolve(this.verifyIfWinner());
                 });
@@ -120,28 +135,8 @@ export class BattleStore implements IBattleStore {
         });
     }
 
-    private async runPlayer1Action(action: IBattleAction): Promise<"" | "win" | "lose" | "draw"> {
-        console.log("MOVE IDDD" + action.move);
-        if (this.player1SelectedPokemons[action.pos]) {
-            if (!this.player2SelectedPokemons[action.opponentPos]) {
-                action.opponentPos = 0;
-            }
-            await this.runAnimation(1, action.pos, action.opponentPos);
-            const damage: number = this.calculateDamage(this.player1SelectedPokemons[action.pos], this.player2SelectedPokemons[action.opponentPos], moves[action.move]);
-            this.attackMessage = 'My ' + pokemonVarieties[this.player1SelectedPokemons[action.pos].variety].name + ' used ' + moves[action.move].name + " on " + pokemonVarieties[this.player2SelectedPokemons[action.opponentPos].variety].name;
-            console.log(this.attackMessage);
-            this.player2SelectedPokemons[action.opponentPos].actualHp -= damage;
-            if (this.player2SelectedPokemons[action.opponentPos].actualHp <= 0) {
-                this.player2SelectedPokemons.splice(action.opponentPos, 1);
-                action.opponentPos = 0;
-                return new Promise(resolve => {
-                    resolve(this.verifyIfWinner());
-                });
-            }
-        }
-        return new Promise(resolve => {
-            resolve("");
-        });
+    private getNextAvailableAttackPosition(defenderTeam: IPokemon[]): number {
+        return defenderTeam[0] && defenderTeam[0].actualHp > 0 ? 0 : defenderTeam[1] && defenderTeam[1].actualHp > 0 ? 1 : 2;
     }
 
     private refreshTurnAction() {
@@ -154,23 +149,38 @@ export class BattleStore implements IBattleStore {
     }
 
     private verifyIfWinner(): "" | "win" | "lose" | "draw" {
-        if (this.player1SelectedPokemons.length === 0 && this.player2SelectedPokemons.length > 0) {
-            console.log('YOU LOSE');
-            this.battleResult = "lose";
-            return "lose";
-        } else if (this.player2SelectedPokemons.length === 0 && this.player1SelectedPokemons.length > 0) {
-            console.log('YOU WIN');
-            this.battleResult = "win";
-            return "win"
-        } else if (this.player1SelectedPokemons.length === 0 && this.player2SelectedPokemons.length === 0) {
-            console.log('DRAW');
-            this.battleResult = "draw";
-            return "draw";
-        } else {
+        if (this.player1StillHaveLivePokemon() && this.player2StillHaveLivePokemon()) {
             this.battleResult = "";
             console.log('NEXT TURN');
             return "";
+        } else if (!this.player1StillHaveLivePokemon() && this.player2StillHaveLivePokemon()) {
+            console.log('YOU LOSE');
+            this.battleResult = "lose";
+            return "lose";
+        } else if (this.player1StillHaveLivePokemon() && !this.player2StillHaveLivePokemon()) {
+            console.log('YOU WIN');
+            this.battleResult = "win";
+            return "win"
+        } else if (!this.player1StillHaveLivePokemon() && !this.player2StillHaveLivePokemon()) {
+            console.log('DRAW');
+            this.battleResult = "draw";
+            return "draw";
         }
+
+        return "";
+    }
+
+    private player1StillHaveLivePokemon() {
+        return !this.isPokemonPosDead(1, 0) || !this.isPokemonPosDead(1, 1) || !this.isPokemonPosDead(1, 2);
+    }
+
+    private player2StillHaveLivePokemon() {
+        return !this.isPokemonPosDead(2, 0) || !this.isPokemonPosDead(2, 1) || !this.isPokemonPosDead(2, 2);
+    }
+
+    private isPokemonPosDead(player: 1 | 2, pos: number) {
+        const team = player === 1 ? this.player1SelectedPokemons : this.player2SelectedPokemons;
+        return (!team[pos] || (team[pos] && team[pos].actualHp <= 0));
     }
 
     private async runAnimation(player: number, pos: number, opponentPos: number) {
@@ -204,10 +214,10 @@ export class BattleStore implements IBattleStore {
         const D = defender.def;
         const sameTypeAttackBonus = move.type === pokemonVarieties[attacker.variety].type1 || move.type === pokemonVarieties[attacker.variety].type2 ? 1.5 : 1;
         const typeModifier: number = this.calculateTypeModifier(move.type, pokemonVarieties[defender.variety].type1, pokemonVarieties[defender.variety].type2);
-        const modifier = getRandomNumber(0.85, 1) * sameTypeAttackBonus*typeModifier;
+        const modifier = getRandomNumber(0.85, 1) * sameTypeAttackBonus * typeModifier;
 
 
-        const damage = Math.floor(((((2*level/5+2)*power * A/D)/50)+2) * modifier);
+        const damage = Math.floor(((((2 * level / 5 + 2) * power * A / D) / 50) + 2) * modifier);
         console.log(damage);
         return damage;
     }
