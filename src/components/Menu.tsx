@@ -19,7 +19,7 @@ import {
     calendar,
     calendarOutline,
     calendarSharp,
-    folderOpenOutline, phonePortraitOutline,
+    folderOpenOutline, mapOutline, phonePortraitOutline,
     power, settingsOutline
 } from "ionicons/icons";
 import {Routes} from "../router/Router";
@@ -85,13 +85,19 @@ const Menu: React.FunctionComponent<MenuProps> = ({history}) => {
                         </IonItem>
                     </IonMenuToggle>
                     <ProjectsAccordionMenu/>
-
                     <IonMenuToggle autoHide={false}>
-                        <IonItem routerLink={Routes.BATTLE} routerDirection="none">
-                            <IonIcon slot="start" icon={power}/>
-                            <IonLabel>Battle demo</IonLabel>
+                        <IonItem routerLink={`${Routes.EXPLORE}`} routerDirection="none">
+                            <IonIcon slot="start" icon={mapOutline}/>
+                            <IonLabel>Explore</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
+
+                    {/*<IonMenuToggle autoHide={false}>*/}
+                    {/*    <IonItem routerLink={Routes.BATTLE} routerDirection="none">*/}
+                    {/*        <IonIcon slot="start" icon={power}/>*/}
+                    {/*        <IonLabel>Battle demo</IonLabel>*/}
+                    {/*    </IonItem>*/}
+                    {/*</IonMenuToggle>*/}
 
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.SETTINGS}`} routerDirection="none">

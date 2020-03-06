@@ -13,6 +13,7 @@ import ProjectDetailsPage from "../pages/ProjectDetails/ProjectDetails";
 import PokedexPage from "../pages/Pokedex/Pokedex";
 import BattlePage from "../pages/Battle/Battle";
 import SettingsPage from "../pages/Settings/Settings";
+import ExplorePage from "../pages/Explore/Explore";
 
 
 export enum Routes {
@@ -26,7 +27,9 @@ export enum Routes {
     PROJECT_DETAILS = '/project',
     POKEDEX = '/pokedex',
     BATTLE = '/battle',
-    SETTINGS = '/settings'
+    SETTINGS = '/settings',
+    EXPLORE = '/explore'
+
 }
 
 const Router: React.FC = () => {
@@ -45,6 +48,7 @@ const Router: React.FC = () => {
             <PrivateRoute path={Routes.PROJECT_DETAILS+'/:id'} component={ProjectDetailsPage}  exact={true}/>
             <PrivateRoute path={Routes.BATTLE} component={BattlePage}  exact={true}/>
             <PrivateRoute path={Routes.SETTINGS} component={SettingsPage}  exact={true}/>
+            <PrivateRoute path={Routes.EXPLORE} component={ExplorePage}  exact={true}/>
         </IonRouterOutlet>
     )
 };

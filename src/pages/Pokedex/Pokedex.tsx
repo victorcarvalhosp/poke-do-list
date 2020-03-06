@@ -23,8 +23,8 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const [modalDetailsOpen, setModalDetailsOpen] = useState<boolean>(false);
     const [selectedPokedexItem, setSelectedPokedexItem] = useState<IPokedexStatus>(new PokedexStatus());
 
-    var allPokemonPokedex = [];
-    for (var i = 1; i <= 251; i++) {
+    const allPokemonPokedex = [];
+    for (let i = 1; i <= 251; i++) {
         allPokemonPokedex.push(i);
     }
 

@@ -4,13 +4,13 @@ import useAudio from "../../hooks/useAudio";
 import Typing from 'react-typing-animation';
 import {IonButtons, IonIcon} from "@ionic/react";
 import {arrowUp} from "ionicons/icons";
-import {CLOUDINARY_URL_POKEMON_OVERWORLD} from "../../utils/consts";
+import {CLOUDINARY_URL_HUMAN_OVERWORLD, CLOUDINARY_URL_POKEMON_OVERWORLD} from "../../utils/consts";
 
 interface IComponentProps {
     spriteUrl: string;
     direction: "up" | "down" | "right" | "left";
     animationActive?:boolean;
-    type?: "pokemon"| "human" | "item";
+    type?: "pokemon"| "human" | "item" | "other";
     className?: string
     wild?: boolean;
     onClick?(): void
@@ -22,7 +22,7 @@ const Overworld: React.FC<IComponentProps> = ({spriteUrl, direction,animationAct
             onClick();
         }
     }
-    const path = type && type === "human" ? '../../assets/overworlds/humans/' : type && type === "pokemon" ? `${CLOUDINARY_URL_POKEMON_OVERWORLD}` : type && type === "item" ? '../../assets/overworlds/items/': '';
+    const path = type && type === "human" ? `${CLOUDINARY_URL_HUMAN_OVERWORLD}` : type && type === "pokemon" ? `${CLOUDINARY_URL_POKEMON_OVERWORLD}` : type && type === "item" ? '../../assets/overworlds/items/': '';
     return (
             <div className={`Character Character--walk-${direction ? direction: 'down'} ` + (className ? className : '')} onClick={handleClick}>
                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/WalkingDemo-Shadow.png"
