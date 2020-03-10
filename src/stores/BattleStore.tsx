@@ -1,6 +1,6 @@
-import {action, observable} from 'mobx'
+import {action, computed, observable} from 'mobx'
 import {RootStore} from "./RootStore";
-import {IPokemon} from "../models/Pokemon";
+import {IPokemon, Pokemon} from "../models/Pokemon";
 import {Task} from "../models/Task";
 import {BattleAction, IBattleAction} from "../models/BattleAction";
 import {IMove} from "../models/IMove";
@@ -9,6 +9,8 @@ import {addDelay} from "../utils/delay";
 import {moves} from "../data/moves";
 import {typeChart} from "../data/type-chart";
 import {getRandomInt, getRandomNumber} from "../utils/utils";
+import {ITrainerInfo} from "../models/IExploreItem";
+
 
 export interface IBattleStore {
     player1SelectedPokemons: IPokemon[];
@@ -21,16 +23,24 @@ export interface IBattleStore {
     opponentsSelectPos: number;
     battleResult: "" | "win" | "lose" | "draw";
     animationRunning: boolean;
-
+    opponentInfo: ITrainerInfo;
     attackMessage: string;
+    myPokemonListWithMaxLevel: IPokemon[];
 
     // runAnimation: {from: number, to: number};
+    clearPlayer1SelectedPokemons(): void;
+
+    initBattle(): void;
 
     runTurn(): void;
 
     setActivePos(i: number): void;
 
+    setOpponent(trainer: ITrainerInfo): void;
+
     setOpponentsSelectPos(i: number): void;
+
+    setPokemonPos(pos: number, pkmn: IPokemon): void;
 }
 
 export class BattleStore implements IBattleStore {
@@ -38,13 +48,13 @@ export class BattleStore implements IBattleStore {
     }
 
     @observable
-    player1SelectedPokemons: IPokemon[] = [this.root.pokemonStore.generateRandomPokemon(new Task()), this.root.pokemonStore.generateRandomPokemon(new Task()), this.root.pokemonStore.generateRandomPokemon(new Task())];
+    player1SelectedPokemons: IPokemon[] = [new Pokemon(), new Pokemon(), new Pokemon()];
     @observable
-    player2SelectedPokemons: IPokemon[] = [this.root.pokemonStore.generateRandomPokemon(new Task()), this.root.pokemonStore.generateRandomPokemon(new Task()), this.root.pokemonStore.generateRandomPokemon(new Task())];
+    player2SelectedPokemons: IPokemon[] = [new Pokemon(), new Pokemon(), new Pokemon()];
     @observable
-    player1TurnAction: IBattleAction[] = [new BattleAction(1, 0, this.player1SelectedPokemons[0].moves[0]), new BattleAction(1, 1, this.player1SelectedPokemons[1].moves[0]), new BattleAction(1, 2, this.player1SelectedPokemons[2].moves[0])];
+    player1TurnAction: IBattleAction[] = [];
     @observable
-    player2TurnAction: IBattleAction[] = [new BattleAction(2, 0, this.player2SelectedPokemons[0].moves[0]), new BattleAction(2, 1, this.player2SelectedPokemons[1].moves[0]), new BattleAction(2, 2, this.player2SelectedPokemons[2].moves[0])];
+    player2TurnAction: IBattleAction[] = [];
     @observable
     player1TurnReady: boolean = false;
     @observable
@@ -59,6 +69,22 @@ export class BattleStore implements IBattleStore {
     animationRunning: boolean = false;
     @observable
     attackMessage: string = "";
+    @observable
+    opponentInfo: ITrainerInfo = {sprite: '', name: '', pokemon: []};
+
+    @action
+    initBattle() {
+        for (let pkmn of this.player1SelectedPokemons) {
+            pkmn.actualHp = pkmn.hp;
+        }
+        for (let pkmn of this.player2SelectedPokemons) {
+            pkmn.actualHp = pkmn.hp;
+        }
+        const initOpponentPosSelected = this.player2SelectedPokemons[1].actualHp > 0 ? 1 : 0;
+        //FIRST opponentPos is 0 because of weid bug where line doesn't load properly on the first turn - debug this if needed later
+        this.player1TurnAction = [new BattleAction(1, 0, 0, this.player1SelectedPokemons[0].moves[0]), new BattleAction(1, 1, initOpponentPosSelected, this.player1SelectedPokemons[1].moves[0]), new BattleAction(1, 2, initOpponentPosSelected, this.player1SelectedPokemons[2].moves[0])];
+        this.player2TurnAction = [new BattleAction(2, 0, 0, this.player2SelectedPokemons[0].moves[0]), new BattleAction(2, 1, 0, this.player2SelectedPokemons[1].moves[0]), new BattleAction(2, 2, 0, this.player2SelectedPokemons[2].moves[0])];
+    }
 
     @action
     setActivePos(i: number) {
@@ -70,13 +96,23 @@ export class BattleStore implements IBattleStore {
         this.opponentsSelectPos = i;
     }
 
+    @action
+    setOpponent(trainer: ITrainerInfo) {
+        this.opponentInfo = trainer;
+        this.player2SelectedPokemons[0] = this.root.pokemonStore.generatePokemonWithRandomAttributes(this.opponentInfo.pokemon[0].variety, "", this.opponentInfo.pokemon[0]);
+        this.player2SelectedPokemons[1] = this.root.pokemonStore.generatePokemonWithRandomAttributes(this.opponentInfo.pokemon[1].variety, "", this.opponentInfo.pokemon[1]);
+        this.player2SelectedPokemons[2] = this.root.pokemonStore.generatePokemonWithRandomAttributes(this.opponentInfo.pokemon[2].variety, "", this.opponentInfo.pokemon[2]);
+    }
+
 
     @action
     async runTurn() {
         console.log('attack');
         if (this.player1StillHaveLivePokemon() && this.player2StillHaveLivePokemon()) {
             const allActions: IBattleAction[] = [...this.player1TurnAction, ...this.player2TurnAction];
-            for (let action of allActions) {
+            const allActionsOrderedBySpeed: IBattleAction[] = allActions.sort((a, b) => ((a.player === 1 ? this.player1SelectedPokemons[a.pos].speed : this.player2SelectedPokemons[a.pos].speed) < (b.player === 1 ? this.player1SelectedPokemons[b.pos].speed : this.player2SelectedPokemons[b.pos].speed)) ? 1 : -1);
+            console.log(allActionsOrderedBySpeed);
+            for (let action of allActionsOrderedBySpeed) {
                 const result = await this.runAction(action);
                 if (result != "") {
                     break;
@@ -188,17 +224,42 @@ export class BattleStore implements IBattleStore {
         if (player === 1) {
             await addDelay(1000);
             // @ts-ignore
-            document.getElementById(`pkmn-p1-${pos}`).classList.add("class", `animation-atk-player1-enemy-pos-${opponentPos}`);
+            document.getElementById(`pkmn-p1-${pos}`).classList.add("class", `animation-atk-player1`);
+            // @ts-ignore
+            document.getElementById(`pkmn-p1-${pos}`).classList.add("class", `enemy-pos-${opponentPos}`);
+            if (this.player2SelectedPokemons[opponentPos].gigantamax) {
+                // @ts-ignore
+                document.getElementById(`pkmn-p1-${pos}`).classList.add("class", `animation-atk-gigantamax`);
+            }
             await addDelay(1000);
             // @ts-ignore
-            document.getElementById(`pkmn-p1-${pos}`).classList.remove(`animation-atk-player1-enemy-pos-${opponentPos}`);
+            document.getElementById(`pkmn-p1-${pos}`).classList.remove(`animation-atk-player1`);
+            // @ts-ignore
+            document.getElementById(`pkmn-p1-${pos}`).classList.remove(`enemy-pos-${opponentPos}`);
+            // @ts-ignore
+            if (this.player2SelectedPokemons[opponentPos].gigantamax) {
+                // @ts-ignore
+                document.getElementById(`pkmn-p1-${pos}`).classList.remove(`animation-atk-gigantamax`);
+            }
         } else {
             await addDelay(1000);
             // @ts-ignore
-            document.getElementById(`pkmn-p2-${pos}`).classList.add("class", `animation-atk-player2-enemy-pos-${opponentPos}`);
+            document.getElementById(`pkmn-p2-${pos}`).classList.add("class", `animation-atk-player2`);
+            // @ts-ignore
+            document.getElementById(`pkmn-p2-${pos}`).classList.add("class", `enemy-pos-${opponentPos}`);
+            if (this.player2SelectedPokemons[pos].gigantamax) {
+                // @ts-ignore
+                document.getElementById(`pkmn-p2-${pos}`).classList.add("class", `animation-atk-gigantamax`);
+            }
             await addDelay(1000);
             // @ts-ignore
-            document.getElementById(`pkmn-p2-${pos}`).classList.remove(`animation-atk-player2-enemy-pos-${opponentPos}`);
+            document.getElementById(`pkmn-p2-${pos}`).classList.remove(`animation-atk-player2`);
+            // @ts-ignore
+            document.getElementById(`pkmn-p2-${pos}`).classList.remove(`enemy-pos-${opponentPos}`);
+            if (this.player2SelectedPokemons[pos].gigantamax) {
+                // @ts-ignore
+                document.getElementById(`pkmn-p2-${pos}`).classList.remove(`animation-atk-gigantamax`);
+            }
         }
         this.animationRunning = false;
 
@@ -226,5 +287,21 @@ export class BattleStore implements IBattleStore {
         const typeModifier = 1 * typeChart[attackType][type1] * (type2 ? 1 * typeChart[attackType][type2] : 1)
         console.log(attackType + " vs " + type1 + "/" + type2 + "===" + typeModifier);
         return typeModifier;
+    }
+
+    @action
+    setPokemonPos(pos: number, pkmn: IPokemon) {
+        this.player1SelectedPokemons[pos] = pkmn;
+    };
+
+
+    @computed
+    get myPokemonListWithMaxLevel() {
+        return this.opponentInfo && this.opponentInfo.maxLevel ? this.root.pokemonStore.list.filter(pkmn => pkmn.level <= (this.opponentInfo.maxLevel || 100)) : this.root.pokemonStore.list;
+    }
+
+    @action
+    clearPlayer1SelectedPokemons() {
+        this.player1SelectedPokemons = [new Pokemon(), new Pokemon(), new Pokemon()];
     }
 }

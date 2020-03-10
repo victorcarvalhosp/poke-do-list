@@ -20,9 +20,9 @@ export class BattleAction implements IBattleAction{
 
   player: 1|2;
 
-  constructor(player: 1|2, pos: number, move: number) {
+  constructor(player: 1|2, pos: number, opponentPos: number, move: number) {
     this.pos = pos;
-    this.opponentPos = 0;
+    this.opponentPos = opponentPos;
     this.move = move;
     this.player = player;
   }

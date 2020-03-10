@@ -1,5 +1,7 @@
 import {ITask} from "./Task";
 import firebase from "firebase";
+import {symlink} from "fs";
+import {Types} from "./conditional-types-definitions";
 
 
 export interface IMove {
@@ -8,7 +10,7 @@ export interface IMove {
   exhibitionName: string;
   description: string;
   accuracy: number;
-  type: "normal"|"fighting"|"flying"|"poison"|"ground"|"rock"|"bug"|"ghost"|"steel"|"fire"|"water"|"grass"|"electric"|"psychic"|"ice"|"dragon"|"dark"|"fairy"|"unknown"|"shadow" ;
+  type: Types ;
   power: number;
 }
 
@@ -18,7 +20,7 @@ export class Move implements IMove{
   description: string;
   exhibitionName: string;
   accuracy: number;
-  type: "normal"|"fighting"|"flying"|"poison"|"ground"|"rock"|"bug"|"ghost"|"steel"|"fire"|"water"|"grass"|"electric"|"psychic"|"ice"|"dragon"|"dark"|"fairy"|"unknown"|"shadow" ;
+  type: Types ;
   power: number;
 
   constructor() {

@@ -8,20 +8,18 @@ import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
 import {IPokedexStatus, PokedexStatus} from "../../models/PokedexStatus";
 import {map} from "ionicons/icons";
 import Overworld from "../../components/overworld/Overworld";
-import {exploreItems, getAllMissionsAsArray} from "../../data/explore";
 import {ExploreItem, IExploreItem} from "../../models/IExploreItem";
 import ExploreItemModal from "../../components/explore-item-modal/ExploreItemModal";
 import PokedexDetailsModal from "../../components/pokedex-details-modal/PokedexDetailsModal";
+import {FilterExploreTypes} from "../../models/conditional-types-definitions";
 
 
 const ExplorePage: React.FC<RouteComponentProps> = observer(({history}) => {
 
-    const {userStore} = useRootStore();
+    const {exploreStore} = useRootStore();
     const [modalDetailsOpen, setModalDetailsOpen] = useState<boolean>(false);
     const [selectedExploreItem, setSelectedExploreItem] = useState<IExploreItem>(new ExploreItem());
-    const [selectedSegment, setSelectedSegment] = useState<"battle" | "mission" | "event">("battle");
-    const allMissions: IExploreItem[] = getAllMissionsAsArray();
-    const [missions, setMissions] = useState<IExploreItem[]>(allMissions.filter(item => item.type === selectedSegment));
+    // const [missions, setMissions] = useState<IExploreItem[]>(allMissions.filter(item => item.type === selectedSegment));
 
 
     const onCloseModal = () => {
@@ -38,16 +36,14 @@ const ExplorePage: React.FC<RouteComponentProps> = observer(({history}) => {
     }, [])
 
     const changeSegment = (e: any) => {
-        setSelectedSegment(e.detail.value);
-        setMissions(allMissions.filter(item => item.type === e.detail.value));
-        console.log('Segment selected', e.detail.value);
+        exploreStore.setFilter(e.detail.value);
     }
 
     return (
         <IonPage id="explore-page">
-            <PkmnHeader title="Explore"/>
+            <PkmnHeader title="Explore(beta)"/>
             <IonContent className="ion-padding">
-                <IonSegment value={selectedSegment} mode="ios" onIonChange={e => changeSegment(e)}>
+                <IonSegment value={exploreStore.filter} mode="ios" onIonChange={e => changeSegment(e)}>
                     <IonSegmentButton value="battle">
                         <IonLabel>Battles</IonLabel>
                     </IonSegmentButton>
@@ -58,7 +54,7 @@ const ExplorePage: React.FC<RouteComponentProps> = observer(({history}) => {
                         <IonLabel>Events</IonLabel>
                     </IonSegmentButton>
                 </IonSegment>
-                {missions.map(mission => (
+                {exploreStore.filteredList.map(mission => (
                     <IonCard onClick={e => openModalDetails(mission)}>
                         <IonItem>
                             <IonLabel>{mission.name}</IonLabel>

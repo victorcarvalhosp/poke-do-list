@@ -2,24 +2,21 @@ import React, {useEffect, useState} from 'react';
 import './PokemonDetailsModal.scss'
 import {RouteComponentProps, withRouter} from "react-router";
 import {
+    IonAlert,
     IonButton,
     IonButtons,
     IonContent,
     IonHeader,
     IonIcon,
-    IonModal,
-    IonSpinner,
-    IonTitle,
-    IonToolbar,
+    IonItem,
     IonList,
-    IonItem, IonAlert
+    IonModal,
+    IonToolbar
 } from '@ionic/react';
-import {close, people, star, starOutline, swapHorizontalOutline} from "ionicons/icons";
+import {close, star, starOutline, swapHorizontalOutline} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
-import {Routes} from "../../router/Router";
 import {IPokemon} from "../../models/Pokemon";
 import Overworld from "../../components/overworld/Overworld";
-import Type from "../../components/type/Type";
 import {pokemonVarieties} from "../../data/pokemon-varieties";
 import {IPokemonVariety} from "../../models/PokemonVariety";
 import {IPokemonSpecie} from "../../models/PokemonSpecie";
@@ -27,8 +24,7 @@ import {pokemonSpecies} from "../../data/pokemon-species";
 import {IEvolution} from "../../models/Evolution";
 import {useRootStore} from "../../stores/StoreContext";
 import useDirection from "../../hooks/useDirection";
-import PokemonBasicDetails from "../../components/pokemon-basic-details/PokemonBasicDetails";
-import {moves} from "../../data/moves";
+import PokemonBasicDetailsWithStats from "../pokemon-basic-details-with-stats/PokemonBasicDetailsWithStats";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -52,10 +48,7 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
     const {pokemonStore, userStore} = useRootStore();
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
     const [pokemonSpecie, setPokemonSpecie] = useState<IPokemonSpecie>(pokemonSpecies[pokemonVariety.specie]);
-    const [actualDirection, changeDirection] = useDirection("down");
     const [showTransferAlert, setShowTransferAlert] = useState(false);
-
-
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);
@@ -97,15 +90,7 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
             </IonHeader>
             <IonContent className="ion-padding">
                 <div className="top-area" >
-                    <PokemonBasicDetails pokemon={pokemon} />
-                    <div className="pkmn-stats">
-                        <div>
-                            <p><span>HP:</span> {pokemon.hp}</p>
-                            <p><span>ATK:</span> {pokemon.atk}</p>
-                            <p><span>DEF:</span> {pokemon.def}</p>
-                            <p><span>SPEED:</span> {pokemon.speed}</p>
-                        </div>
-                    </div>
+                    <PokemonBasicDetailsWithStats pokemon={pokemon} />
                     {pokemonVariety.evolutions.length > 0 &&
                     <div className="evolutions-area">
                         {pokemonVariety.evolutions.map((evolution, i) => (

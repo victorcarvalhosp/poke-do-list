@@ -16,10 +16,10 @@ const PrivateRoute = (props: PrivateRouteProps) => {
         <Route
             {...rest}
             render={routeProps =>
-                !!user ? (
+                user ? (
                     <RouteComponent {...routeProps} />
                 ) :(
-                    <Redirect to={Routes.SIGNIN}/>
+                    <Redirect to={Routes.SIGNIN_SIGNUP}/>
                 )
             }
         />

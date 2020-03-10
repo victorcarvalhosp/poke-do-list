@@ -6,6 +6,8 @@ import {close} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../stores/StoreContext";
 import {IExploreItem} from "../../models/IExploreItem";
+import {Routes} from "../../router/Router";
+import Overworld from "../overworld/Overworld";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -17,7 +19,7 @@ interface IComponentProps extends RouteComponentProps {
 const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, exploreItem}) => {
 
     // console.log(watch('email')) // watch input value by passing the name of it
-    const {pokemonStore, userStore} = useRootStore();
+    const {pokemonStore, battleStore} = useRootStore();
 
     // const [pokemonSpecieVarieties, setPokemonSpecieVarieties] = useState<IPokemonSpecie>(pokemonSpecies[pokedexItem.id]);
 
@@ -27,6 +29,14 @@ const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, on
 
     const closeModal = () => {
         onClickClose();
+    }
+
+    const goToBattle = () => {
+        closeModal();
+        if (exploreItem.trainerInfo) {
+            battleStore.setOpponent(exploreItem.trainerInfo);
+            history.push(Routes.BATTLE_SELECT_POKEMON);
+        }
     }
 
     return (
@@ -44,10 +54,26 @@ const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, on
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                {exploreItem.name}
-                {exploreItem.type === "battle" && (
-                    <IonButton>Go to battle!</IonButton>
-                )}
+                <Overworld spriteUrl={exploreItem.image.name} direction="down"
+                           animationActive={exploreItem.image.animationActive}
+                           type={exploreItem.image.type}/>
+                <div className="info">
+                    <h2>
+                        {exploreItem.name}
+                    </h2>
+                    <p>{exploreItem.description}</p>
+                    {exploreItem.type === "battle" && (
+                        <button onClick={goToBattle} type="button" className="nes-btn is-primary">
+                            Go to battle!
+                        </button>
+                    )}
+                    {exploreItem.type === "event" && (
+                        <button onClick={goToBattle} type="button" className="nes-btn is-primary">
+                            Go to battle Gigantamax!
+                        </button>
+                    )}
+                </div>
+
             </IonContent>
 
         </IonModal>

@@ -1,5 +1,16 @@
 @import "src/theme/variables";
 
 .explore-item-modal {
+  --pixel-size: 4; /* Try playing with this value! */
+
+  .info{
+    text-align: center;
+    p{
+      color: #607d8b;
+    }
+  }
+  .Character {
+    margin: 0 auto 10px auto;
+  }
 
 }

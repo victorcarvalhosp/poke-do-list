@@ -1,14 +1,13 @@
-import {IPokemonSpecie, PokemonSpecie} from "./PokemonSpecie";
 import {IEvolution} from "./Evolution";
-import {IMove} from "./IMove";
+import {Types} from "./conditional-types-definitions";
 
 export interface IPokemonVariety {
   id: number;
   name: string;
   is_default: boolean;
   specie: number;
-  type1:  "normal"|"fighting"|"flying"|"poison"|"ground"|"rock"|"bug"|"ghost"|"steel"|"fire"|"water"|"grass"|"electric"|"psychic"|"ice"|"dragon"|"dark"|"fairy"|"unknown"|"shadow" ;
-  type2?:  "normal"|"fighting"|"flying"|"poison"|"ground"|"rock"|"bug"|"ghost"|"steel"|"fire"|"water"|"grass"|"electric"|"psychic"|"ice"|"dragon"|"dark"|"fairy"|"unknown"|"shadow" ;
+  type1:  Types;
+  type2?:  Types;
   evolutions: IEvolution[];
   baseHp: number;
   baseAtk: number;
@@ -23,8 +22,8 @@ export class PokemonVariety implements IPokemonVariety{
   name: string;
   is_default: boolean;
   specie: number;
-  type1:  "normal"|"fighting"|"flying"|"poison"|"ground"|"rock"|"bug"|"ghost"|"steel"|"fire"|"water"|"grass"|"electric"|"psychic"|"ice"|"dragon"|"dark"|"fairy"|"unknown"|"shadow";
-  type2?:  "normal"|"fighting"|"flying"|"poison"|"ground"|"rock"|"bug"|"ghost"|"steel"|"fire"|"water"|"grass"|"electric"|"psychic"|"ice"|"dragon"|"dark"|"fairy"|"unknown"|"shadow";
+  type1:  Types;
+  type2?:  Types;
   evolutions: IEvolution[];
   baseHp: number;
   baseAtk: number;

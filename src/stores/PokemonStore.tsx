@@ -12,6 +12,7 @@ import {IEvolution} from "../models/Evolution";
 import {Project} from "../models/Project";
 import {IPokedexStatus} from "../models/PokedexStatus";
 import {pokemonEncounters} from "../data/pokemon-encounters";
+import {IPokemonDetailsToRandomGeneration} from "../models/IExploreItem";
 
 export interface IPokemonStore {
     modalOpen: boolean;
@@ -37,7 +38,7 @@ export interface IPokemonStore {
 
     generateRandomPokemon(task: ITask): IPokemon;
 
-    generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon
+    generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string, details?: IPokemonDetailsToRandomGeneration): IPokemon
 
     levelUpPartner(): void;
 
@@ -86,7 +87,12 @@ export class PokemonStore implements IPokemonStore {
             const evolveTo = pokemonVarieties[evolution.to];
             pokemon.name = evolveTo.name;
             pokemon.variety = evolveTo.id;
-            const { hp , atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[pokemon.variety], {ivHp: pokemon.ivHp, ivAtk: pokemon.ivAtk, ivDef: pokemon.ivSpeed, ivSpeed: pokemon.ivSpeed}, pokemon.level);
+            const {hp, atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[pokemon.variety], {
+                ivHp: pokemon.ivHp,
+                ivAtk: pokemon.ivAtk,
+                ivDef: pokemon.ivSpeed,
+                ivSpeed: pokemon.ivSpeed
+            }, pokemon.level);
             pokemon.hp = hp;
             pokemon.atk = atk;
             pokemon.def = def;
@@ -164,7 +170,12 @@ export class PokemonStore implements IPokemonStore {
         const myPokemon = this.root.userStore.user.partnerPokemon;
         if (myPokemon) {
             myPokemon.level = myPokemon.level + 1;
-            const { hp , atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[myPokemon.variety], {ivHp: myPokemon.ivHp, ivAtk: myPokemon.ivAtk, ivDef: myPokemon.ivSpeed, ivSpeed: myPokemon.ivSpeed}, myPokemon.level);
+            const {hp, atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[myPokemon.variety], {
+                ivHp: myPokemon.ivHp,
+                ivAtk: myPokemon.ivAtk,
+                ivDef: myPokemon.ivSpeed,
+                ivSpeed: myPokemon.ivSpeed
+            }, myPokemon.level);
             myPokemon.hp = hp;
             myPokemon.atk = atk;
             myPokemon.def = def;
@@ -176,11 +187,20 @@ export class PokemonStore implements IPokemonStore {
     }
 
     @action
-    generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string): IPokemon {
+    generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string, details?: IPokemonDetailsToRandomGeneration): IPokemon {
         const variety: IPokemonVariety = pokemonVarieties[pokemonVarietyId];
         const {ivHp, ivAtk, ivDef, ivSpeed} = this.generateIvs();
-        const level = 1;
-        const {hp, atk, def, speed} = this.calculatePokemonStats(variety, {ivHp, ivAtk, ivDef, ivSpeed}, level);
+        let level = 1;
+        let gigantamax = false;
+        if (details) {
+            if (details.level) {
+                level = details.level;
+            }
+            if(details.gigantamax) {
+                gigantamax = details.gigantamax;
+            }
+        }
+        const {hp, atk, def, speed} = this.calculatePokemonStats(variety, {ivHp, ivAtk, ivDef, ivSpeed}, level, gigantamax);
         //TODO Generate random attributes as id, gender, stats, level, iv
         return {
             id: makeid(),
@@ -189,8 +209,8 @@ export class PokemonStore implements IPokemonStore {
             level: level,
             task: task,
             date: firebase.firestore.Timestamp.fromDate(new Date()),
-            actualHp: hp,
             hp: hp,
+            actualHp: hp,
             atk: atk,
             def: def,
             speed: speed,
@@ -198,22 +218,23 @@ export class PokemonStore implements IPokemonStore {
             ivAtk: ivAtk,
             ivDef: ivDef,
             ivSpeed: ivSpeed,
-            moves: [variety.moves[getRandomInt(0, variety.moves.length-1)]]
+            gigantamax: gigantamax,
+            moves: [variety.moves[getRandomInt(0, variety.moves.length - 1)]]
         };
     }
 
-    private calculatePokemonStats(pokemon: IPokemonVariety, ivs: { ivHp: number; ivAtk: number; ivDef: number; ivSpeed: number }, level: number): { hp: number, atk: number, def: number, speed: number } {
+    private calculatePokemonStats(pokemon: IPokemonVariety, ivs: { ivHp: number; ivAtk: number; ivDef: number; ivSpeed: number }, level: number, gigantamax?: boolean): { hp: number, atk: number, def: number, speed: number } {
         /* Simplified version of pokémon stats formulas => More details here: https://www.dragonflycave.com/mechanics/stats*/
         const hp: number = this.calculateHpStat(pokemon.baseHp, ivs.ivHp, level);
         const atk: number = this.calculateStat(pokemon.baseAtk, ivs.ivAtk, level);
         const def: number = this.calculateStat(pokemon.baseDef, ivs.ivDef, level);
         const speed: number = this.calculateStat(pokemon.baseSpeed, ivs.ivSpeed, level);
 
-        return {hp: hp, atk: atk, def: def, speed: speed};
+        return {hp: gigantamax ? hp*2 : hp, atk: atk, def: gigantamax ? def*1.2: def, speed: speed};
     }
 
     private calculateHpStat(baseHpStat: number, ivHp: number, level: number) {
-        return Math.floor((2 * baseHpStat + ivHp) * level / 100 + level + 10);
+        return Math.floor(((2 * baseHpStat + ivHp) * level / 100 + level + 10)*2);
     }
 
     private calculateStat(baseStat: number, iv: number, level: number) {

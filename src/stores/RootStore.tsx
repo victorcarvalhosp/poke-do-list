@@ -6,6 +6,7 @@ import {IPokemonStore, PokemonStore} from "./PokemonStore";
 import {IProjectStore, ProjectStore} from "./ProjectStore";
 import {BattleStore, IBattleStore} from "./BattleStore";
 import BattlePage from "../pages/Battle/Battle";
+import {ExploreStore, IExploreStore} from "./ExploreStore";
 
 export interface IRootStore {
     counterStore: ICounterStore;
@@ -15,6 +16,7 @@ export interface IRootStore {
     pokemonStore: IPokemonStore;
     projectStore: IProjectStore;
     battleStore: IBattleStore;
+    exploreStore: IExploreStore;
 }
 
 export class RootStore implements IRootStore{
@@ -25,6 +27,7 @@ export class RootStore implements IRootStore{
     pokemonStore: IPokemonStore;
     projectStore: IProjectStore;
     battleStore: IBattleStore;
+    exploreStore: IExploreStore;
 
     constructor(){
         this.counterStore = new CounterStore(this);
@@ -34,5 +37,6 @@ export class RootStore implements IRootStore{
         this.pokemonStore = new PokemonStore(this);
         this.projectStore = new ProjectStore(this);
         this.battleStore = new BattleStore(this);
+        this.exploreStore = new ExploreStore(this);
     }
 }

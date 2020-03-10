@@ -1,0 +1,12 @@
+@import "src/theme/variables";
+
+#battle-select-pokemon-page {
+  .selected{
+    border: 1px solid #000;
+  }
+  .selected-pokemons{
+    .Character {
+      margin: auto;
+    }
+  }
+}

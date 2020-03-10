@@ -119,7 +119,7 @@ export class PokeApi {
             response2[0].moves.forEach((m: any) => {
                 const urlMove: [string] = m.move.url.split("/");
                 const moveId: number = parseInt(urlMove[urlMove.length - 2]);
-                if(moves[moveId]){
+                if(moves[moveId] && moves[moveId].power <= 60){
                     pkmnMoves.push(moveId);
                 }
             });

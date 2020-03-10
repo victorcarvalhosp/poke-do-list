@@ -1,12 +1,11 @@
 import {IonContent, IonHeader, IonPage, IonToolbar} from '@ionic/react';
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Battle.scss';
 import {RouteComponentProps, withRouter} from "react-router";
 import {useRootStore} from "../../stores/StoreContext";
 import Overworld from "../../components/overworld/Overworld";
 import {observer} from "mobx-react-lite";
-import LineTo, {SteppedLineTo, Line} from 'react-lineto';
-import {PropTypes} from "@material-ui/core";
+import LineTo from 'react-lineto';
 import {IPokemon} from "../../models/Pokemon";
 import {moves} from "../../data/moves";
 import HpBar from "../../components/hp-bar/HpBar";
@@ -14,8 +13,21 @@ import HpBar from "../../components/hp-bar/HpBar";
 
 const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
 
-    const {battleStore} = useRootStore();
+    const {battleStore, userStore} = useRootStore();
     const [blockButton, setBlockButton] = useState(false);
+
+    useEffect(() => {
+        battleStore.initBattle();
+
+
+        //ADDED THIS BECAUSE OF A STRANGE BUG WHERE THE LINE DOESN'T RENDER ON THE FIRST TURN
+        setTimeout(() => {
+            // setActivePos(battleStore.player1SelectedPokemons[0], 0);
+            const initOpponentPosSelected = battleStore.player2SelectedPokemons[1].actualHp > 0 ? 1 : 0;
+            setSelectedOpponent(initOpponentPosSelected);
+        }, 500)
+    }, []);
+
 
     const setActivePos = (pkmn: IPokemon, i: number) => {
         console.log('SET ACTIVE', i);
@@ -45,19 +57,35 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     return (
         <IonPage id="battle-page">
-            <IonHeader class="transparent-header">
-                <IonToolbar>
-
-                </IonToolbar>
-            </IonHeader>
             <IonContent>
                 {battleStore.battleResult}
                 <div className="battle-area">
+                    <div className="trainer-player-2">
+                        {battleStore.opponentInfo.sprite && (
+                            <Overworld spriteUrl={`${battleStore.opponentInfo.sprite}`} direction="down"
+                                       animationActive={true}
+                                       type="human"/>)}
+                    </div>
                     <div className="battle-arena">
+                        {battleStore.player2SelectedPokemons.map((pkmn, i) => (
+                            pkmn.actualHp > 0 && (<>
+                                <div className={`player2-hp pos-${i}`}>
+                                    <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={false}/>
+                                </div>
+                                <div className={`player2-pkmn pos-${i} ${pkmn.gigantamax ? 'gigantamax' : ''}`}
+                                     id={`pkmn-p2-${i}`}>
+                                    <Overworld key={i} spriteUrl={`${pkmn.variety}.png`} direction="down"
+                                               animationActive={true}
+                                               type="pokemon" className={`pkmn-p2-${i}`}
+                                               onClick={() => setSelectedOpponent(i)}/>
+
+                                </div>
+                            </>)
+                        ))}
                         {battleStore.player1SelectedPokemons.map((pkmn, i) => (
                             pkmn.actualHp > 0 && (<span key={i}>
                             <div onClick={e => setActivePos(pkmn, i)} style={{cursor: 'pointer'}}
-                                 className={`player1-pkmn pos-${i} ${battleStore.activePos === i ? 'active-action' : ''}`}
+                                 className={`player1-pkmn pos-${i} ${battleStore.activePos === i && !blockButton ? 'active-action' : ''}`}
                                  id={`pkmn-p1-${i}`}>
                                 <Overworld spriteUrl={`${pkmn.variety}.png`} direction="up" animationActive={true}
                                            type="pokemon" className={`pkmn-p1-${i} `}
@@ -66,7 +94,7 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                             <div className={`player1-hp pos-${i}`}>
                                 <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={true}/>
                             </div>
-                                {!blockButton && (
+                                {!blockButton && battleStore.player1TurnAction[i] && (
                                     <LineTo
                                         borderColor={'#989aa2'}
                                         borderStyle={'dashed'}
@@ -80,20 +108,26 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                                 )}
                         </span>)
                         ))}
-                        {battleStore.player2SelectedPokemons.map((pkmn, i) => (
-                            pkmn.actualHp > 0 && (<>
-                                <div className={`player2-hp pos-${i}`}>
-                                    <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={false}/>
-                                </div>
-                                <div className={`player2-pkmn pos-${i}`} id={`pkmn-p2-${i}`}>
-                                    <Overworld key={i} spriteUrl={`${pkmn.variety}.png`} direction="down"
-                                               animationActive={true}
-                                               type="pokemon" className={`pkmn-p2-${i}`}
-                                               onClick={() => setSelectedOpponent(i)}/>
-
-                                </div>
-                            </>)
-                        ))}
+                    </div>
+                    <div className="trainer-player-1">
+                        <div style={{margin: '0 auto', width: '350px', display: 'block'}}>
+                            <Overworld spriteUrl={`${userStore.user.character}.png`} direction="up"
+                                       animationActive={true}
+                                       type="human"/>
+                            <div className="nes-balloon from-right inverse">
+                                {!blockButton && battleStore.player1SelectedPokemons[battleStore.activePos] && (
+                                    <div>
+                                        <p>
+                                            {battleStore.player1SelectedPokemons[battleStore.activePos].name}
+                                        </p>
+                                        {battleStore.player1SelectedPokemons[battleStore.activePos].moves.map(move => (
+                                            <p>{moves[move].name}</p>
+                                        ))}
+                                    </div>
+                                )}
+                                <button onClick={handleReady} disabled={blockButton}> READY!</button>
+                            </div>
+                        </div>
                     </div>
                     {blockButton && (
                         <p>{battleStore.attackMessage}</p>
@@ -115,116 +149,5 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
         </IonPage>
     );
 });
-
-
-interface IProps {
-}
-
-const HoverTest: React.FunctionComponent<IProps> = ({children}) => {
-
-    const initialState = {
-        from: null,
-        to: null,
-    };
-    const [state, setState] = useState(initialState);
-
-
-    useEffect(() => {
-
-    }, []);
-
-    function clearLine() {
-        setState(initialState);
-    }
-
-    function drawLine(from: any, to: any) {
-        setState({from, to});
-    }
-
-    const {from, to} = state;
-    const line = from && to ? (
-        <LineTo
-            from={from}
-            to={to}
-            fromAnchor="middle right"
-            toAnchor="middle left"
-            borderWidth={3}
-        />
-    ) : null;
-
-    return (
-        <fieldset id="hover-test">
-            <legend>Hover Test</legend>
-
-            Demonstrate how to draw a line from one component to another
-            in response to a hover event.
-
-            <Block
-                className="hover-A"
-                top="80px"
-                left="20px"
-                color="#00f"
-                onMouseOver={() => drawLine('hover-A', 'hover-F')}
-                onMouseOut={clearLine}
-            >A</Block>
-            <Block
-                className="hover-B"
-                top="140px"
-                left="20px"
-                color="#0f0"
-                onMouseOver={() => drawLine('hover-B', 'hover-E')}
-                onMouseOut={clearLine}
-            >B</Block>
-            <Block
-                className="hover-C"
-                top="200px"
-                left="20px"
-                color="#00f"
-                onMouseOver={() => drawLine('hover-C', 'hover-D')}
-                onMouseOut={clearLine}
-            >C</Block>
-            <Block
-                className="hover-D"
-                top="80px"
-                left="300px"
-                color="#0f0"
-                onMouseOver={() => drawLine('hover-D', 'hover-C')}
-                onMouseOut={clearLine}
-            >D</Block>
-            <Block
-                className="hover-E"
-                top="140px"
-                left="300px"
-                color="#00f"
-                onMouseOver={() => drawLine('hover-E', 'hover-B')}
-                onMouseOut={clearLine}
-            >E</Block>
-            <Block
-                className="hover-F"
-                top="200px"
-                left="300px"
-                color="#0f0"
-                onMouseOver={() => drawLine('hover-F', 'hover-A')}
-                onMouseOut={clearLine}
-            >F</Block>
-            {line}
-        </fieldset>
-    );
-}
-
-
-const Block: React.FunctionComponent<{ top: string, left: string, color: string, className: string, onMouseOver(): void, onMouseOut(): void }> = ({children, top, left, color, className, onMouseOver, onMouseOut}) => {
-    const style = {top, left, backgroundColor: color};
-    return (
-        <div
-            className={`block ${className}`}
-            style={style}
-            onMouseOver={onMouseOver}
-            onMouseOut={onMouseOut}
-        >
-            {children}
-        </div>
-    );
-};
 
 export default withRouter(BattlePage);

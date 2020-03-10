@@ -36,6 +36,7 @@ import Overworld from "../../components/overworld/Overworld";
 import {observer} from "mobx-react-lite";
 import PokemonDetailsModal from "../../components/pokemon-details-modal/PokemonDetailsModal";
 import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
+import PkmnList from "../../components/pkmn-list/PkmnList";
 
 
 const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
@@ -63,19 +64,7 @@ const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
         <IonPage id="pokemon-page">
             <PkmnHeader title="My Pokémon" />
             <IonContent className="ion-padding">
-                <IonGrid>
-                    <IonRow className="pkmn-grid">
-                        {pokemonStore.list.map(pkmn => (
-                                <IonCol key={pkmn.id} className="pkmn-grid-item" sizeXl="1" sizeLg="2" sizeMd="2" sizeSm="3" sizeXs="4" onClick={e => openModalDetails(pkmn)}>
-                                    <Overworld direction="down" animationActive={true} type="pokemon"
-                                               spriteUrl={`${pkmn.variety}.png`}/>
-                                    <p>{pkmn.name}</p>
-                                    <p className="level">Lv.{pkmn.level} {userStore.user.partnerPokemon?.id === pkmn.id ? <IonIcon icon={star} /> : <></>}</p>
-                                </IonCol>
-                            )
-                        )}
-                    </IonRow>
-                </IonGrid>
+                <PkmnList list={pokemonStore.list} handleItemClick={openModalDetails}/>
                 <PokemonDetailsModal open={modalDetailsOpen} onClickClose={onCloseModal} pokemon={selectedPokemon} />
             </IonContent>
         </IonPage>
