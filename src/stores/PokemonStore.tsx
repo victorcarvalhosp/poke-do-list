@@ -13,6 +13,7 @@ import {Project} from "../models/Project";
 import {IPokedexStatus} from "../models/PokedexStatus";
 import {pokemonEncounters} from "../data/pokemon-encounters";
 import {IPokemonDetailsToRandomGeneration} from "../models/IExploreItem";
+import {IMove} from "../models/IMove";
 
 export interface IPokemonStore {
     modalOpen: boolean;
@@ -196,11 +197,16 @@ export class PokemonStore implements IPokemonStore {
             if (details.level) {
                 level = details.level;
             }
-            if(details.gigantamax) {
+            if (details.gigantamax) {
                 gigantamax = details.gigantamax;
             }
         }
-        const {hp, atk, def, speed} = this.calculatePokemonStats(variety, {ivHp, ivAtk, ivDef, ivSpeed}, level, gigantamax);
+        const {hp, atk, def, speed} = this.calculatePokemonStats(variety, {
+            ivHp,
+            ivAtk,
+            ivDef,
+            ivSpeed
+        }, level, gigantamax);
         //TODO Generate random attributes as id, gender, stats, level, iv
         return {
             id: makeid(),
@@ -219,8 +225,22 @@ export class PokemonStore implements IPokemonStore {
             ivDef: ivDef,
             ivSpeed: ivSpeed,
             gigantamax: gigantamax,
-            moves: [variety.moves[getRandomInt(0, variety.moves.length - 1)]]
+            moves: this.getRandomMoves(variety)
         };
+    }
+
+    private getRandomMoves(variety: IPokemonVariety): number[] {
+        const moves: number[] = []
+        moves.push(variety.moves[getRandomInt(0, variety.moves.length - 1)]);
+        if (variety.moves.length > 1) {
+            while (moves.length < 2) {
+                const nextRandomMove = getRandomInt(0, variety.moves.length - 1);
+                if (variety.moves.filter(v => v === nextRandomMove).length === 0) {
+                    moves.push(variety.moves[nextRandomMove]);
+                }
+            }
+        }
+        return moves;
     }
 
     private calculatePokemonStats(pokemon: IPokemonVariety, ivs: { ivHp: number; ivAtk: number; ivDef: number; ivSpeed: number }, level: number, gigantamax?: boolean): { hp: number, atk: number, def: number, speed: number } {
@@ -230,11 +250,11 @@ export class PokemonStore implements IPokemonStore {
         const def: number = this.calculateStat(pokemon.baseDef, ivs.ivDef, level);
         const speed: number = this.calculateStat(pokemon.baseSpeed, ivs.ivSpeed, level);
 
-        return {hp: gigantamax ? hp*2 : hp, atk: atk, def: gigantamax ? def*1.2: def, speed: speed};
+        return {hp: gigantamax ? hp * 2 : hp, atk: atk, def: gigantamax ? def * 1.2 : def, speed: speed};
     }
 
     private calculateHpStat(baseHpStat: number, ivHp: number, level: number) {
-        return Math.floor(((2 * baseHpStat + ivHp) * level / 100 + level + 10)*2);
+        return Math.floor(((2 * baseHpStat + ivHp) * level / 100 + level + 10) * 2);
     }
 
     private calculateStat(baseStat: number, iv: number, level: number) {

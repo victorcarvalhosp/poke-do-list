@@ -81,6 +81,7 @@ export class BattleStore implements IBattleStore {
             pkmn.actualHp = pkmn.hp;
         }
         const initOpponentPosSelected = this.player2SelectedPokemons[1].actualHp > 0 ? 1 : 0;
+        this.battleResult = "";
         //FIRST opponentPos is 0 because of weid bug where line doesn't load properly on the first turn - debug this if needed later
         this.player1TurnAction = [new BattleAction(1, 0, 0, this.player1SelectedPokemons[0].moves[0]), new BattleAction(1, 1, initOpponentPosSelected, this.player1SelectedPokemons[1].moves[0]), new BattleAction(1, 2, initOpponentPosSelected, this.player1SelectedPokemons[2].moves[0])];
         this.player2TurnAction = [new BattleAction(2, 0, 0, this.player2SelectedPokemons[0].moves[0]), new BattleAction(2, 1, 0, this.player2SelectedPokemons[1].moves[0]), new BattleAction(2, 2, 0, this.player2SelectedPokemons[2].moves[0])];
@@ -176,11 +177,12 @@ export class BattleStore implements IBattleStore {
     }
 
     private refreshTurnAction() {
+        this.setActivePos(this.getNextAvailableAttackPosition(this.player1SelectedPokemons));
         this.player1TurnAction.forEach((action, i) => {
-            if (!this.player2SelectedPokemons[action.opponentPos]) {
-                action.opponentPos = 0;
-            }
             action.pos = i;
+            if (this.player2SelectedPokemons[action.opponentPos].actualHp <= 0) {
+                action.opponentPos = this.getNextAvailableAttackPosition(this.player2SelectedPokemons);
+            }
         })
     }
 
