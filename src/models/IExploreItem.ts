@@ -20,9 +20,12 @@ export interface IExploreItem {
     shortDescription: string;
     description: string;
     image: { type?: "human" | "pokemon" | "item", name: string, animationActive?: boolean, direction?: "up" | "down" | "left" | "right" };
-    type: "battle" | "battle" | "mission" | "event";
-    awards: IExploreAward[]; //Change to item
+    type: "battle" | "mission" | "event";
+    firstTimeAwards: number[]; //Change to item
+    awards: number[]; //Change to item
     trainerInfo?: ITrainerInfo;
+    appearAfter: number|null;
+    enableAfter: number|null;
 }
 
 export class ExploreItem implements IExploreItem {
@@ -31,8 +34,11 @@ export class ExploreItem implements IExploreItem {
     shortDescription: string;
     description: string;
     image: { type?: "human" | "pokemon" | "item", name: string, animationActive?: boolean, direction?: "up" | "down" | "left" | "right" };
-    type: "battle" | "battle" | "mission" | "event";
-    awards: IExploreAward[]; //Change to item
+    type: "battle" | "mission" | "event";
+    awards: number[];
+    firstTimeAwards: number[];
+    appearAfter: number|null;
+    enableAfter: number|null;
 
     constructor() {
         this.id = 0;
@@ -41,7 +47,10 @@ export class ExploreItem implements IExploreItem {
         this.description = "";
         this.image = {name: ""};
         this.type = "battle";
-        this.awards = []; //Change to item
+        this.awards = [];
+        this.firstTimeAwards = [];
+        this.appearAfter = null;
+        this.enableAfter = null;
     }
 
 }

@@ -42,6 +42,7 @@ import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
 import PkmnList from "../../components/pkmn-list/PkmnList";
 import BattleSelectPokemonDetailsModal from "./pokemon-details-modal/BattleSelectPokemonDetailsModal";
 import PkmnGridItem from "../../components/pkmn-list/pkmn-grid-item/PkmnGridItem";
+import Type from "../../components/type/Type";
 
 
 const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
@@ -83,6 +84,7 @@ const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({histor
         }
 
         const goToBattle = () => {
+            battleStore.initBattle();
             history.push(Routes.BATTLE);
         }
 
@@ -107,19 +109,30 @@ const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({histor
                 </IonHeader>
                 <IonContent
                     className="ion-padding">
-                    <div className="opponent-info">
-                        Opponent : {
-                        battleStore.opponentInfo.name
-                    }
-                        {
-                            battleStore.opponentInfo.type && (<>Type: {battleStore.opponentInfo.type}</>)
-                        }
-                        {
-                            battleStore.opponentInfo.maxLevel && (<>Max lv: {battleStore.opponentInfo.maxLevel}</>)
-                        }
-
-                    </div>
+                    <span className="sub-title">Opponent:</span>
+                    <IonGrid>
+                        <IonRow className="ion-align-items-center ion-justify-content-center">
+                            <div className="opponent-info">
+                                {battleStore.opponentInfo.sprite && (
+                                    <Overworld spriteUrl={battleStore.opponentInfo.sprite || "invisible.png"}
+                                               direction="down" type="human"
+                                               animationActive={true}/>
+                                )}
+                                <p>{
+                                    battleStore.opponentInfo.name
+                                }</p>
+                                {
+                                    battleStore.opponentInfo.maxLevel && (
+                                        <span>Max lv: {battleStore.opponentInfo.maxLevel}</span>)
+                                }
+                                {
+                                    battleStore.opponentInfo.type && (<Type type1={battleStore.opponentInfo.type}/>)
+                                }
+                            </div>
+                        </IonRow>
+                    </IonGrid>
                     <div className="selected-pokemons">
+                        <span className="sub-title">Your Pokémon's:</span>
                         <IonGrid>
                             <IonRow className="ion-align-items-center ion-justify-content-center">
                                 {[0, 1, 2].map(i => (

@@ -10,10 +10,18 @@ import {
     IonIcon,
     IonItem,
     IonList,
-    IonModal,
+    IonModal, IonTitle,
     IonToolbar
 } from '@ionic/react';
-import {close, star, starOutline, swapHorizontalOutline} from "ionicons/icons";
+import {
+    addCircleOutline,
+    arrowUp,
+    close,
+    removeCircleOutline,
+    star,
+    starOutline,
+    swapHorizontalOutline
+} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {IPokemon} from "../../models/Pokemon";
 import Overworld from "../../components/overworld/Overworld";
@@ -24,7 +32,9 @@ import {pokemonSpecies} from "../../data/pokemon-species";
 import {IEvolution} from "../../models/Evolution";
 import {useRootStore} from "../../stores/StoreContext";
 import useDirection from "../../hooks/useDirection";
-import PokemonBasicDetailsWithStats from "../pokemon-basic-details-with-stats/PokemonBasicDetailsWithStats";
+import PokemonBasicDetailsStats from "../pokemon-basic-details-stats/PokemonBasicDetailsStats";
+import PokemonBasicDetails from "../pokemon-basic-details/PokemonBasicDetails";
+import LevelUpModal from "./level-up-modal/LevelUpModal";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -49,6 +59,8 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
     const [pokemonSpecie, setPokemonSpecie] = useState<IPokemonSpecie>(pokemonSpecies[pokemonVariety.specie]);
     const [showTransferAlert, setShowTransferAlert] = useState(false);
+    const [showLevelUpModal, setShowLevelUpModal] = useState(false);
+    const [totalLevelsUp, setTotalLevelsUp] = useState(userStore.user.powerUps === 0 ? 0 : 1);
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);
@@ -74,6 +86,22 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
         closeModal();
     }
 
+    const openModalLevelUp = () => {
+        setShowLevelUpModal(true);
+    }
+
+    const addLevelUp = () => {
+        if (userStore.user.powerUps > totalLevelsUp) {
+            setTotalLevelsUp(totalLevelsUp + 1);
+        }
+    }
+
+    const removeLevelUp = () => {
+        if (totalLevelsUp > 1) {
+            setTotalLevelsUp(totalLevelsUp - 1);
+        }
+    }
+
     return (
         <IonModal isOpen={open} backdropDismiss={false} cssClass="pokemon-detail-modal">
             <IonHeader class="transparent-header">
@@ -89,8 +117,8 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                <div className="top-area" >
-                    <PokemonBasicDetailsWithStats pokemon={pokemon} />
+                <div className="top-area">
+                    <PokemonBasicDetails pokemon={pokemon}/>
                     {pokemonVariety.evolutions.length > 0 &&
                     <div className="evolutions-area">
                         {pokemonVariety.evolutions.map((evolution, i) => (
@@ -108,21 +136,27 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                         ))}
                     </div>
                     }
-
                     <IonList className="more-details">
+                        <IonItem onClick={openModalLevelUp}><IonIcon slot="start" icon={arrowUp}/>Level up!
+                            <div slot="end">{userStore.user.powerUps}</div></IonItem>
                         {pokemon.id === userStore.user.partnerPokemon?.id ?
                             (
-                                <IonItem color="light"><IonIcon slot="start" icon={star} color="warning" />This is your actual partner</IonItem>
+                                <IonItem color="light"><IonIcon slot="start" icon={star} color="warning"/>This is your
+                                    actual partner</IonItem>
                             ) :
                             (
                                 <>
-                                <IonItem onClick={changePartner}><IonIcon slot="start" icon={starOutline} />Set as Partner</IonItem>
-                                    <IonItem onClick={e => setShowTransferAlert(true)}><IonIcon slot="start" icon={swapHorizontalOutline} />Transfer</IonItem>
+                                    <IonItem onClick={changePartner}><IonIcon slot="start" icon={starOutline}/>
+                                        Set as Partner</IonItem>
+                                    <IonItem onClick={e => setShowTransferAlert(true)}><IonIcon slot="start"
+                                                                                                icon={swapHorizontalOutline}/>Transfer</IonItem>
 
                                 </>
                             )
                         }
                     </IonList>
+                    <PokemonBasicDetailsStats pokemon={pokemon}/>
+
                     <div className="caught-when">
                         <h3>{pokemon.task}</h3>
                         <p className="level">Caught on {pokemon.date ? new Intl.DateTimeFormat('en-us', {
@@ -157,6 +191,8 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                     }
                 ]}
             />
+
+            <LevelUpModal pokemon={pokemon} open={showLevelUpModal} onClickClose={() => setShowLevelUpModal(false)} />
         </IonModal>
     );
 })

@@ -41,6 +41,8 @@ export interface IPokemonStore {
 
     generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string, details?: IPokemonDetailsToRandomGeneration): IPokemon
 
+    levelUp(pokemon: IPokemon, levelsUp: number, usingPowerUp: boolean): void;
+
     levelUpPartner(): void;
 
     evolvePokemon(pokemon: IPokemon, evolution: IEvolution): void;
@@ -116,8 +118,8 @@ export class PokemonStore implements IPokemonStore {
             if (pokemon.id) {
                 await FirebaseApi.removePokemon(this.root.userStore.user.uid, pokemon.id);
             }
+            await this.root.userStore.updatePowerUps(this.root.userStore.user.powerUps+1);
             this.root.uiStore.showToast('Pokémon transfered');
-            this.levelUpPartner();
             this.closeModal();
             this.loadingSave = false;
         } catch (e) {
@@ -170,21 +172,31 @@ export class PokemonStore implements IPokemonStore {
         this.showLevelUpAnimation = true;
         const myPokemon = this.root.userStore.user.partnerPokemon;
         if (myPokemon) {
-            myPokemon.level = myPokemon.level + 1;
-            const {hp, atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[myPokemon.variety], {
-                ivHp: myPokemon.ivHp,
-                ivAtk: myPokemon.ivAtk,
-                ivDef: myPokemon.ivSpeed,
-                ivSpeed: myPokemon.ivSpeed
-            }, myPokemon.level);
-            myPokemon.hp = hp;
-            myPokemon.atk = atk;
-            myPokemon.def = def;
-            myPokemon.speed = speed;
-            await FirebaseApi.updatePokemon(this.root.userStore.user.uid, myPokemon);
-            await this.root.userStore.updatePartner(myPokemon);
+            this.levelUp(myPokemon, 1, false);
         }
         this.showLevelUpAnimation = false;
+    }
+
+    @action
+    async levelUp(pokemon: IPokemon, levelsUp: number,  usingPowerUp: boolean) {
+            pokemon.level = pokemon.level + levelsUp;
+            const {hp, atk, def, speed} = this.calculatePokemonStats(pokemonVarieties[pokemon.variety], {
+                ivHp: pokemon.ivHp,
+                ivAtk: pokemon.ivAtk,
+                ivDef: pokemon.ivSpeed,
+                ivSpeed: pokemon.ivSpeed
+            }, pokemon.level);
+            pokemon.hp = hp;
+            pokemon.atk = atk;
+            pokemon.def = def;
+            pokemon.speed = speed;
+            await FirebaseApi.updatePokemon(this.root.userStore.user.uid, pokemon);
+            if(pokemon.id === this.root.userStore.user.partnerPokemon?.id){
+                await this.root.userStore.updatePartner(pokemon);
+            }
+            if(usingPowerUp){
+                await this.root.userStore.updatePowerUps(this.root.userStore.user.powerUps-levelsUp);
+            }
     }
 
     @action

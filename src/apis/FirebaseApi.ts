@@ -107,6 +107,16 @@ export class FirebaseApi {
         return firestore.doc(dbPath).update({pokedex: pokedex});
     }
 
+    static async updateExploreItems(userId: string, exploreItemsCompleted: number[]) {
+        const dbPath = `users/${userId}/`;
+        return firestore.doc(dbPath).update({exploreItemsCompleted: exploreItemsCompleted});
+    }
+
+    static async updatePowerUps(userId: string, totalPowerUps: number) {
+        const dbPath = `users/${userId}/`;
+        return firestore.doc(dbPath).update({powerUps: totalPowerUps});
+    }
+
     static async updateTheme(userId: string, theme: string) {
         return firebase
             .firestore()

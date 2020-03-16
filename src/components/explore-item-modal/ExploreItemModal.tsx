@@ -1,7 +1,16 @@
 import React, {useEffect} from 'react';
 import './ExploreItemModal.scss'
 import {RouteComponentProps, withRouter} from "react-router";
-import {IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonModal, IonToolbar} from '@ionic/react';
+import {
+    IonButton,
+    IonButtons,
+    IonCardContent,
+    IonContent,
+    IonHeader,
+    IonIcon,
+    IonModal,
+    IonToolbar
+} from '@ionic/react';
 import {close} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../stores/StoreContext";
@@ -19,7 +28,7 @@ interface IComponentProps extends RouteComponentProps {
 const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, exploreItem}) => {
 
     // console.log(watch('email')) // watch input value by passing the name of it
-    const {pokemonStore, battleStore} = useRootStore();
+    const {exploreStore, battleStore} = useRootStore();
 
     // const [pokemonSpecieVarieties, setPokemonSpecieVarieties] = useState<IPokemonSpecie>(pokemonSpecies[pokedexItem.id]);
 
@@ -32,11 +41,13 @@ const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, on
     }
 
     const goToBattle = () => {
-        closeModal();
+        exploreStore.setSelected(exploreItem);
         if (exploreItem.trainerInfo) {
+            battleStore.clearPlayer1SelectedPokemons();
             battleStore.setOpponent(exploreItem.trainerInfo);
             history.push(Routes.BATTLE_SELECT_POKEMON);
         }
+        closeModal();
     }
 
     return (
@@ -62,6 +73,7 @@ const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, on
                         {exploreItem.name}
                     </h2>
                     <p>{exploreItem.description}</p>
+                    <span style={{display: 'block'}}>Max Lv.: {exploreItem.trainerInfo?.maxLevel}</span>
                     {exploreItem.type === "battle" && (
                         <button onClick={goToBattle} type="button" className="nes-btn is-primary">
                             Go to battle!

@@ -1,12 +1,41 @@
 @import "src/theme/variables";
 
 #battle-select-pokemon-page {
-  .selected{
+  .selected {
     border: 1px solid #000;
   }
-  .selected-pokemons{
+
+  .sub-title{
+    font-size: 0.6rem;
+    color: #607d8b;
+  }
+
+  .selected-pokemons {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -16px;
+    z-index: 99;
+    background: var(--ion-background-color);
+    height: 124px;
     .Character {
       margin: auto;
+    }
+  }
+
+  .opponent-info {
+    .Character {
+      margin: auto;
+    }
+    :not(.Character) {
+      text-align: center;
+    }
+    p{
+     margin: 0;
+    }
+    span {
+      font-size: 0.6rem;
+      color: #607d8b;
+      display: block;
     }
   }
 }

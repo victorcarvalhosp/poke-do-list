@@ -14,6 +14,7 @@ import BattlePage from "../pages/Battle/Battle";
 import SettingsPage from "../pages/Settings/Settings";
 import ExplorePage from "../pages/Explore/Explore";
 import BattleSelectPokemonPage from "../pages/BattleSelectPokemon/BattleSelectPokemon";
+import BattleAwardsPage from "../pages/BattleAwards/BattleAwards";
 
 
 export enum Routes {
@@ -28,6 +29,7 @@ export enum Routes {
     POKEDEX = '/pokedex',
     BATTLE_SELECT_POKEMON = '/battle-select-pokemon',
     BATTLE = '/battle',
+    BATTLE_AWARDS = '/battle-awards',
     SETTINGS = '/settings',
     EXPLORE = '/explore'
 
@@ -47,6 +49,7 @@ const Router: React.FC = () => {
             <PrivateRoute path={Routes.POKEDEX} component={PokedexPage} exact={true}/>
             <PrivateRoute path={Routes.PROJECT_DETAILS + '/:id'} component={ProjectDetailsPage} exact={true}/>
             <PrivateRoute path={Routes.BATTLE} component={BattlePage} exact={true}/>
+            <PrivateRoute path={Routes.BATTLE_AWARDS} component={BattleAwardsPage} exact={true}/>
             <PrivateRoute path={Routes.SETTINGS} component={SettingsPage} exact={true}/>
             <PrivateRoute path={Routes.EXPLORE} component={ExplorePage} exact={true}/>
             <PrivateRoute path={Routes.BATTLE_SELECT_POKEMON} component={BattleSelectPokemonPage} exact={true}/>

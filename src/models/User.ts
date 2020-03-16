@@ -11,7 +11,8 @@ export interface IUser {
   creationDate: Date;
   pokedex: Record<number, IPokedexStatus>;
   theme?: string;
-
+  exploreItemsCompleted: number[];
+  powerUps: number;
 }
 
 export class User implements IUser{
@@ -22,6 +23,8 @@ export class User implements IUser{
   creationDate: Date;
   pokedex: Record<number, IPokedexStatus>;
   theme?: string;
+  exploreItemsCompleted: number[];
+  powerUps: number;
 
   constructor() {
     this.character = '';
@@ -30,6 +33,8 @@ export class User implements IUser{
     this.uid = '0';
     this.pokedex = {};
     this.creationDate = new Date();
+    this.exploreItemsCompleted = [];
+    this.powerUps = 0;
   }
 
 }

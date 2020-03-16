@@ -11,6 +11,7 @@ export interface IUserStore {
 
     setUser(id: string): void;
     updatePartner(pokemon: IPokemon): void;
+    updatePowerUps(powerUps: number): void;
     logOut(): void;
 }
 export class UserStore implements  IUserStore{
@@ -42,6 +43,12 @@ export class UserStore implements  IUserStore{
     async updatePartner(pokemon: IPokemon){
         await FirebaseApi.setPokemonAsPartner(this.user.uid, pokemon);
         this.user.partnerPokemon = pokemon;
+    }
+
+    @action
+    async updatePowerUps(powerUps: number){
+        await FirebaseApi.updatePowerUps(this.user.uid, powerUps);
+        this.user.powerUps = powerUps;
     }
 
     @action

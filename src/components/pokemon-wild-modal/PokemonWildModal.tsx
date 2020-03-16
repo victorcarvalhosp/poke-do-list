@@ -1,28 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './PokemonWildModal.scss'
 import {RouteComponentProps, withRouter} from "react-router";
-import {
-    IonButton,
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonModal,
-    IonSpinner,
-    IonTitle,
-    IonToolbar
-} from '@ionic/react';
-import {close, people} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
-import {Routes} from "../../router/Router";
 import {IPokemon} from "../../models/Pokemon";
-import Overworld from "../../components/overworld/Overworld";
-import Type from "../../components/type/Type";
 import {pokemonVarieties} from "../../data/pokemon-varieties";
 import {IPokemonVariety} from "../../models/PokemonVariety";
 import {IPokemonSpecie} from "../../models/PokemonSpecie";
 import {pokemonSpecies} from "../../data/pokemon-species";
-import {IEvolution} from "../../models/Evolution";
 import {useRootStore} from "../../stores/StoreContext";
 import useDirection from "../../hooks/useDirection";
 import PokemonBasicDetails from "../../components/pokemon-basic-details/PokemonBasicDetails";

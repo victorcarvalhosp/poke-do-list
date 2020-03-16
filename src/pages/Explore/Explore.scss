@@ -5,13 +5,22 @@
   ion-segment {
     max-width: 420px;
     margin: auto;
+  }
 
+  .card-image {
+    .Character {
+      margin: 0 auto;
+    }
 
+    .level {
+      font-size: 0.5rem;
+      color: var(--ion-color-medium);
+    }
   }
 
   @media only screen and (max-width: 380px) {
     ion-segment-button {
-        font-size: 10px;
+      font-size: 10px;
     }
   }
 

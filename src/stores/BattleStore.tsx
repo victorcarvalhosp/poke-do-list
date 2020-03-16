@@ -26,6 +26,7 @@ export interface IBattleStore {
     opponentInfo: ITrainerInfo;
     attackMessage: string;
     myPokemonListWithMaxLevel: IPokemon[];
+    battleIsHappening: boolean;
 
     // runAnimation: {from: number, to: number};
     clearPlayer1SelectedPokemons(): void;
@@ -80,10 +81,11 @@ export class BattleStore implements IBattleStore {
         for (let pkmn of this.player2SelectedPokemons) {
             pkmn.actualHp = pkmn.hp;
         }
+        this.activePos = 0;
         const initOpponentPosSelected = this.player2SelectedPokemons[1].actualHp > 0 ? 1 : 0;
         this.battleResult = "";
-        //FIRST opponentPos is 0 because of weid bug where line doesn't load properly on the first turn - debug this if needed later
-        this.player1TurnAction = [new BattleAction(1, 0, 0, this.player1SelectedPokemons[0].moves[0]), new BattleAction(1, 1, initOpponentPosSelected, this.player1SelectedPokemons[1].moves[0]), new BattleAction(1, 2, initOpponentPosSelected, this.player1SelectedPokemons[2].moves[0])];
+        //FIRST opponentPos is 0 because of weird bug where line doesn't load properly on the first turn - debug this if needed later
+        this.player1TurnAction = [new BattleAction(1, 0, 1, this.player1SelectedPokemons[0].moves[0]), new BattleAction(1, 1, initOpponentPosSelected, this.player1SelectedPokemons[1].moves[0]), new BattleAction(1, 2, initOpponentPosSelected, this.player1SelectedPokemons[2].moves[0])];
         this.player2TurnAction = [new BattleAction(2, 0, 0, this.player2SelectedPokemons[0].moves[0]), new BattleAction(2, 1, 0, this.player2SelectedPokemons[1].moves[0]), new BattleAction(2, 2, 0, this.player2SelectedPokemons[2].moves[0])];
     }
 
@@ -162,9 +164,7 @@ export class BattleStore implements IBattleStore {
                 defender.actualHp = 0;
                 // this.player2SelectedPokemons.splice(action.opponentPos, 1);
                 this.getNextAvailableAttackPosition(defenderTeam);
-                return new Promise(resolve => {
-                    resolve(this.verifyIfWinner());
-                });
+                return this.verifyIfWinner();
             }
         }
         return new Promise(resolve => {
@@ -186,26 +186,29 @@ export class BattleStore implements IBattleStore {
         })
     }
 
-    private verifyIfWinner(): "" | "win" | "lose" | "draw" {
+    private async verifyIfWinner(): Promise<"" | "win" | "lose" | "draw"> {
+        let result: "" | "win" | "lose" | "draw" = "";
         if (this.player1StillHaveLivePokemon() && this.player2StillHaveLivePokemon()) {
             this.battleResult = "";
             console.log('NEXT TURN');
-            return "";
+            result = "";
         } else if (!this.player1StillHaveLivePokemon() && this.player2StillHaveLivePokemon()) {
             console.log('YOU LOSE');
             this.battleResult = "lose";
-            return "lose";
+            result = "lose";
         } else if (this.player1StillHaveLivePokemon() && !this.player2StillHaveLivePokemon()) {
             console.log('YOU WIN');
             this.battleResult = "win";
-            return "win"
+            result = "win"
         } else if (!this.player1StillHaveLivePokemon() && !this.player2StillHaveLivePokemon()) {
             console.log('DRAW');
             this.battleResult = "draw";
-            return "draw";
+            result = "draw";
         }
 
-        return "";
+        return new Promise(resolve => {
+            resolve(result);
+        });
     }
 
     private player1StillHaveLivePokemon() {
@@ -305,5 +308,10 @@ export class BattleStore implements IBattleStore {
     @action
     clearPlayer1SelectedPokemons() {
         this.player1SelectedPokemons = [new Pokemon(), new Pokemon(), new Pokemon()];
+    }
+
+    @computed
+    get battleIsHappening() {
+        return (this.player1SelectedPokemons[0].id != '' && this.player1SelectedPokemons[1].id != '' && this.player1SelectedPokemons[2].id != '');
     }
 }

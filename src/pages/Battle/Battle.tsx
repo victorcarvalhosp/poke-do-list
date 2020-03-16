@@ -1,16 +1,16 @@
-import {IonContent, IonHeader, IonPage, IonToolbar, IonButton, IonIcon} from '@ionic/react';
+import {IonButton, IonContent, IonIcon, IonPage, useIonViewDidEnter, withIonLifeCycle} from '@ionic/react';
 import React, {useEffect, useState} from 'react';
 import './Battle.scss';
-import {RouteComponentProps, withRouter} from "react-router";
+import {Redirect, RouteComponentProps, withRouter} from "react-router";
 import {useRootStore} from "../../stores/StoreContext";
 import Overworld from "../../components/overworld/Overworld";
 import {observer} from "mobx-react-lite";
 import LineTo from 'react-lineto';
-import {IPokemon} from "../../models/Pokemon";
 import {moves} from "../../data/moves";
 import HpBar from "../../components/hp-bar/HpBar";
 import {IMove} from "../../models/IMove";
-import {playForward, playForwardOutline} from "ionicons/icons";
+import {playForward} from "ionicons/icons";
+import {Routes} from "../../router/Router";
 
 
 const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
@@ -19,17 +19,23 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
     const [blockButton, setBlockButton] = useState(false);
 
     useEffect(() => {
+        if (battleStore.battleResult != "") {
+            if (battleStore.battleResult === "win") {
+                setTimeout(() => {
+                    history.push(Routes.BATTLE_AWARDS);
+                }, 2000)
+            }
+        }
+    }, [battleStore.battleResult]);
+
+    useIonViewDidEnter(() => {
         battleStore.initBattle();
-
-
-        //ADDED THIS BECAUSE OF A STRANGE BUG WHERE THE LINE DOESN'T RENDER ON THE FIRST TURN
+        console.log('ionViewDidEnter event fired');
         setTimeout(() => {
-            // setActivePos(battleStore.player1SelectedPokemons[0], 0);
             const initOpponentPosSelected = battleStore.player2SelectedPokemons[1].actualHp > 0 ? 1 : 0;
             setSelectedOpponent(initOpponentPosSelected);
         }, 500)
-    }, []);
-
+    });
 
     const setActivePos = (i: number) => {
         console.log('SET ACTIVE', i);
@@ -67,20 +73,36 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                 break;
             }
         }
-        if(turnReady){
+        if (turnReady) {
             handleReady();
         }
 
     }
 
+    if(!battleStore.battleIsHappening){
+        return <Redirect to={Routes.EXPLORE} />
+    }
+
+    const goBackExplore = () => {
+        history.push(Routes.EXPLORE);
+    }
+
+    const goBackSelect = () => {
+        history.push(Routes.BATTLE_SELECT_POKEMON);
+    }
     return (
         <IonPage id="battle-page">
             <IonContent>
-
                 <div className="battle-area">
-                    <h2 className="battle-result">
-                        {battleStore.battleResult}
-                    </h2>
+                    <div className="battle-result">
+                        {battleStore.battleResult && (
+                            <>{battleStore.battleResult}
+                                {(battleStore.battleResult === 'lose' || battleStore.battleResult === 'draw') && (
+                                    <>Try again? <div><IonButton onClick={goBackExplore}>No</IonButton><IonButton onClick={goBackSelect}>Yes</IonButton></div> </>
+                                )}
+                            </>
+                        )}
+                    </div>
                     <div className="trainer-player-2">
                         {battleStore.opponentInfo.sprite && (
                             <Overworld spriteUrl={`${battleStore.opponentInfo.sprite}`} direction="down"
@@ -108,7 +130,7 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                             <div onClick={e => setActivePos(i)} style={{cursor: 'pointer'}}
                                  className={`player1-pkmn pos-${i} ${battleStore.activePos === i && !blockButton ? 'active-action' : ''}`}
                                  id={`pkmn-p1-${i}`}>
-                                <Overworld spriteUrl={`${pkmn.variety}.png`} direction="up" animationActive={true}
+                                <Overworld spriteUrl={`${pkmn.variety}.png`} direction={battleStore.battleResult === 'win' ? 'down' : 'up'} animationActive={true}
                                            type="pokemon" className={`pkmn-p1-${i} `}
                                            onClick={() => setActivePos(i)}/>
                             </div>
@@ -132,27 +154,31 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                     </div>
                     <div className="trainer-player-1">
                         <div style={{margin: '0 auto', width: '350px', display: 'block'}}>
-                            <Overworld spriteUrl={`${userStore.user.character}.png`} direction="up"
+                            <Overworld spriteUrl={`${userStore.user.character}.png`} direction={battleStore.battleResult === 'win' ? 'down' : 'up'}
                                        animationActive={true}
                                        type="human"/>
-                            <IonButton style={{float: "right", marginTop: "-32px"}} fill="clear" onClick={handleReady} disabled={blockButton}><IonIcon slot="icon-only"
-                                icon={playForward} color="dark"></IonIcon></IonButton>
-                            {!blockButton && (
-                                <div className="nes-balloon from-right inverse">
-                                    {!blockButton && battleStore.player1SelectedPokemons[battleStore.activePos] && (
-                                        <div>
-                                            <p>
-                                                {battleStore.player1SelectedPokemons[battleStore.activePos].name} Lv.:{battleStore.player1SelectedPokemons[battleStore.activePos].level}
-                                            </p>
-                                            {battleStore.player1SelectedPokemons[battleStore.activePos].moves.map(move => (
-                                                <button className={`type-btn nes-btn ${moves[move].type}`}
-                                                        onClick={() => handleSelectMove(moves[move])}
-                                                        disabled={blockButton}>{moves[move].name}</button>
-                                            ))}
-                                        </div>
-                                    )}
+                            {!blockButton && battleStore.battleResult === '' && (
+                                <>
+                                    <IonButton style={{float: "right", marginTop: "-32px"}} fill="clear"
+                                               onClick={handleReady} disabled={blockButton}><IonIcon slot="icon-only"
+                                                                                                     icon={playForward}
+                                                                                                     color="dark"></IonIcon></IonButton>
+                                    <div className="nes-balloon from-right inverse">
+                                        {!blockButton && battleStore.player1SelectedPokemons[battleStore.activePos] && (
+                                            <div>
+                                                <p>
+                                                    {battleStore.player1SelectedPokemons[battleStore.activePos].name} Lv.:{battleStore.player1SelectedPokemons[battleStore.activePos].level}
+                                                </p>
+                                                {battleStore.player1SelectedPokemons[battleStore.activePos].moves.map(move => (
+                                                    <button className={`type-btn nes-btn ${moves[move].type}`}
+                                                            onClick={() => handleSelectMove(moves[move])}
+                                                            disabled={blockButton}>{moves[move].name}</button>
+                                                ))}
+                                            </div>
+                                        )}
 
-                                </div>
+                                    </div>
+                                </>
                             )}
                         </div>
                     </div>
@@ -165,4 +191,4 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
     );
 });
 
-export default withRouter(BattlePage);
+export default withIonLifeCycle(withRouter(BattlePage));

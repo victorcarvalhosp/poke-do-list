@@ -1,0 +1,43 @@
+#pokemon-basic-details-stats {
+  margin: 14px auto;
+  width: 112px;
+  h5 {
+    color: var(--ion-color-medium);
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+  }
+
+
+  div {
+    text-align: right;
+
+    span {
+      float: left;
+      color: var(--ion-color-medium);
+    }
+
+  }
+
+  .stats{
+    margin: 14px 0;
+    width: 112px;
+  }
+
+  .moves{
+    p{
+      margin-bottom: 0;
+    }
+  }
+
+  .pkmn-types {
+
+    zoom: 0.7;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+}

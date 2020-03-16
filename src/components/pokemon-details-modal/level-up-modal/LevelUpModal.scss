@@ -1,0 +1,16 @@
+@import "src/theme/variables";
+
+.level-up-modal {
+
+  .level-up-details{
+  text-align: center;
+
+    .level-up-list {
+      .level-up-item {
+        margin: auto;
+        max-width: 188px;
+      }
+    }
+  }
+
+}

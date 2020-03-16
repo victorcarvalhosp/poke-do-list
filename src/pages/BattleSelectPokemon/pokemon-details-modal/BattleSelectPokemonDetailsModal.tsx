@@ -20,8 +20,9 @@ import {IPokemonVariety} from "../../../models/PokemonVariety";
 import {IPokemonSpecie} from "../../../models/PokemonSpecie";
 import {pokemonVarieties} from "../../../data/pokemon-varieties";
 import {pokemonSpecies} from "../../../data/pokemon-species";
-import PokemonBasicDetailsWithStats
-    from "../../../components/pokemon-basic-details-with-stats/PokemonBasicDetailsWithStats";
+import PokemonBasicDetailsStats
+    from "../../../components/pokemon-basic-details-stats/PokemonBasicDetailsStats";
+import PokemonBasicDetails from "../../../components/pokemon-basic-details/PokemonBasicDetails";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -79,7 +80,8 @@ const BattleSelectPokemonDetailsModal: React.FC<IComponentProps> = observer(({hi
             </IonHeader>
             <IonContent className="ion-padding">
                 <div className="top-area" >
-                    <PokemonBasicDetailsWithStats pokemon={pokemon} />
+                    <PokemonBasicDetails pokemon={pokemon} />
+                    <PokemonBasicDetailsStats pokemon={pokemon} />
                     <IonList className="more-details">
 
                     </IonList>
