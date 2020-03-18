@@ -292,7 +292,7 @@ export class PokemonStore implements IPokemonStore {
         const tier = this.calculateTierPokemonEncounter();
         console.log(task.project?.theme || "inbox " + tier);
         // @ts-ignore
-        const selectedTier = pokemonEncounters[task.project?.theme || "inbox"][tier];
+        const selectedTier = pokemonEncounters[task.project?.theme || (this.root.userStore.premium ? "inbox-premium" : "inbox")][tier];
         // @ts-ignore
         const randomPosition: number = getRandomInt(0, selectedTier.length - 1);
         console.log(randomPosition);

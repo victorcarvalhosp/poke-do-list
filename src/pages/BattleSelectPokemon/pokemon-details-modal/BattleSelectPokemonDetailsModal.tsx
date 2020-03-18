@@ -1,18 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './BattleSelectPokemonDetailsModal.scss'
 import {RouteComponentProps, withRouter} from "react-router";
-import {
-    IonButton,
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonList,
-    IonModal,
-    IonToolbar
-} from '@ionic/react';
-import {close, starOutline} from "ionicons/icons";
+import {IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonList, IonModal, IonToolbar} from '@ionic/react';
+import {close} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {IPokemon} from "../../../models/Pokemon";
 import {useRootStore} from "../../../stores/StoreContext";
@@ -20,8 +10,7 @@ import {IPokemonVariety} from "../../../models/PokemonVariety";
 import {IPokemonSpecie} from "../../../models/PokemonSpecie";
 import {pokemonVarieties} from "../../../data/pokemon-varieties";
 import {pokemonSpecies} from "../../../data/pokemon-species";
-import PokemonBasicDetailsStats
-    from "../../../components/pokemon-basic-details-stats/PokemonBasicDetailsStats";
+import PokemonBasicDetailsStats from "../../../components/pokemon-basic-details-stats/PokemonBasicDetailsStats";
 import PokemonBasicDetails from "../../../components/pokemon-basic-details/PokemonBasicDetails";
 
 interface IComponentProps extends RouteComponentProps {
@@ -31,14 +20,6 @@ interface IComponentProps extends RouteComponentProps {
 
     onClickClose(): void;
 }
-
-type FormData = {
-    name: string;
-    email: string;
-    password: string;
-    character: string;
-}
-
 const BattleSelectPokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, position, pokemon}) => {
 
     // console.log(watch('email')) // watch input value by passing the name of it
@@ -55,12 +36,6 @@ const BattleSelectPokemonDetailsModal: React.FC<IComponentProps> = observer(({hi
     const closeModal = () => {
         onClickClose();
     }
-
-    // const selectPokemon = () => {
-    //     battleStore.setPokemonPos(position, pokemon);
-    //     closeModal();
-    // }
-
     return (
         <IonModal isOpen={open} backdropDismiss={false} cssClass="pokemon-detail-modal">
             <IonHeader class="transparent-header">
@@ -70,12 +45,6 @@ const BattleSelectPokemonDetailsModal: React.FC<IComponentProps> = observer(({hi
                             <IonIcon icon={close}/>
                         </IonButton>
                     </IonButtons>
-                    {/*<IonButtons slot="end">*/}
-                    {/*    {battleStore.player1SelectedPokemons.filter(pkmn => pkmn.id === pokemon.id).length > 0 ? (<IonButton disabled={true}>Already selected</IonButton>) : (*/}
-                    {/*        <IonButton onClick={selectPokemon}>Select {pokemon.name}!</IonButton>*/}
-                    {/*    )}*/}
-                    {/*</IonButtons>*/}
-
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">

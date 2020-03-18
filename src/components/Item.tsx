@@ -27,7 +27,7 @@ const Item: React.FC<IProps> = ({item, onClickItem}) => {
         // await delay(20000);
         setTimeout(() => {
             setPokebalAnimationFinished(true);
-        }, 1000);
+        }, 2000);
     }
 
     if (pokebalAnimationFinished) {

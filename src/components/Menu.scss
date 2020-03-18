@@ -1,0 +1,34 @@
+@import "src/theme/variables";
+
+#side-menu{
+  a{
+    font-size: 9px;
+  }
+  .icon{
+    margin-inline-end: 16px;
+  }
+  .trainer-details{
+    margin: auto;
+    p{
+      font-size: 9px;
+      margin-bottom: 0;
+    }
+    .trainer-name{
+      span{
+        color: var(--ion-color-success);
+      }
+      font-weight: bold;
+    }
+    .pkmn-name{
+      span{
+        color: #607d8b;
+      }
+    }
+    .pkmn-level{
+      color: #607d8b;
+    }
+  }
+
+}
+
+

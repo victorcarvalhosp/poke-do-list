@@ -6,6 +6,7 @@ import Overworld from "../overworld/Overworld";
 import {useRootStore} from "../../stores/StoreContext";
 import {arrowUp} from "ionicons/icons";
 import useDirection from "../../hooks/useDirection";
+import TrainerWithPartner from "../trainer-with-partner/TrainerWithPartner";
 
 interface IProps {
     title: string;
@@ -14,8 +15,6 @@ interface IProps {
 const PkmnHeader: React.FC<IProps> = observer(({title, children}) => {
 
     const {taskStore, userStore, pokemonStore} = useRootStore();
-    const [actualDirection, changeDirection] = useDirection("down");
-
 
     return (<IonHeader className="pkmn-header">
         <IonToolbar>
@@ -23,14 +22,8 @@ const PkmnHeader: React.FC<IProps> = observer(({title, children}) => {
                 <IonMenuButton/>
             </IonButtons>
             <IonTitle>{title}</IonTitle>
-            <IonButtons slot="end" >
-                {pokemonStore.showLevelUpAnimation && <div className="level-up"><IonIcon icon={arrowUp} ></IonIcon></div>}
-                <span onClick={changeDirection}>
-                <Overworld type="human" spriteUrl={userStore.user.character + ".png"} direction={actualDirection}
-                           animationActive={true} className="header-human" />
-                <Overworld type="pokemon" spriteUrl={userStore.user.partnerPokemon?.variety + ".png"} direction={actualDirection}
-                           animationActive={true} className={`header-pkmn ${pokemonStore.showLevelUpAnimation ? 'level-up-animation' : ''}`}/>
-                </span>
+            <IonButtons slot="end">
+                <TrainerWithPartner />
                 {children}
             </IonButtons>
         </IonToolbar>

@@ -24,7 +24,7 @@ const PkmnList: React.FC<IProps> = observer(({list, handleItemClick}) => {
     return (<IonGrid id="pkmn-list">
         <IonRow className="pkmn-grid">
             {list.map(pkmn => (
-                <PkmnGridItem pkmn={pkmn} handleItemClick={onClickAction}/>
+                <PkmnGridItem key={pkmn.id} pkmn={pkmn} handleItemClick={onClickAction}/>
                 )
             )}
         </IonRow>

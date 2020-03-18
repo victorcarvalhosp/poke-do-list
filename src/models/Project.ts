@@ -1,16 +1,17 @@
 import {IPokemon, Pokemon} from "./Pokemon";
 import firebase from "firebase";
+import {ProjectThemes} from "./conditional-types-definitions";
 
 export interface IProject {
   id?: string;
   name: string;
-  theme: "" |"red" | "blue" | "yellow" | "gold" | "silver" | "crystal";
+  theme: ProjectThemes;
 }
 
 export class Project implements  IProject{
   id?: string;
   name: string;
-  theme: "" |"red" | "blue" | "yellow" | "gold" | "silver" | "crystal";
+  theme: ProjectThemes;
 
   constructor() {
     this.name = '';

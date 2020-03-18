@@ -64,7 +64,7 @@ const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onC
         try {
             const res = await auth.createUserWithEmailAndPassword(email, password);
             if (res && res.user) {
-                const user: IUser = {uid: res.user.uid, name: name, email: email, creationDate: new Date(), character: character, pokedex: {}, exploreItemsCompleted: [], powerUps: 0};
+                const user: IUser = {uid: res.user.uid, name: name, email: email, creationDate: new Date(), character: character, pokedex: {}, exploreItemsCompleted: [], powerUps: 0, serialKey:''};
                 await firestore.doc(`users/${res.user.uid}`).set(user);
                 await userStore.setUser(user.uid)
             }

@@ -42,7 +42,7 @@ type FormData = {
 const TaskModal: React.FC<IComponentProps> = observer(() => {
 
     const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
-    const {taskStore, projectStore} = useRootStore();
+    const {taskStore, projectStore, userStore} = useRootStore();
     const [isDateSelectOpen, setIsDateSelectOpen] = useState(false);
     const [isTimeDateSelectOpen, setIsTimeDateSelectOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
@@ -210,7 +210,7 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
 
                             {selectedDate && (
                                 <label className="nes-checkbox-label" style={{marginTop: '18px'}}>
-                                    <input id="repeat" name="repeat" type="checkbox" className="nes-checkbox"
+                                    <input id="repeat" name="repeat" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                            ref={register}
                                     />
                                     <span>Repeat</span>
@@ -230,43 +230,43 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                                 </div>
                                 {repeatFrequency === "daily" ? (<div>
                                     <label className="nes-checkbox-label">
-                                        <input id="mon" name="mon" type="checkbox" className="nes-checkbox"
+                                        <input id="mon" name="mon" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                                ref={register}
                                         />
                                         <span>mon</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="tue" name="tue" type="checkbox" className="nes-checkbox"
+                                        <input id="tue" name="tue" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                                ref={register}
                                         />
                                         <span>tue</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="wed" name="wed" type="checkbox" className="nes-checkbox"
+                                        <input id="wed" name="wed" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                                ref={register}
                                         />
                                         <span>wed</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="thu" name="thu" type="checkbox" className="nes-checkbox"
+                                        <input id="thu" name="thu" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                                ref={register}
                                         />
                                         <span>thu</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="fri" name="fri" type="checkbox" className="nes-checkbox"
+                                        <input id="fri" name="fri" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                                ref={register}
                                         />
                                         <span>fri</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="sat" name="sat" type="checkbox" className="nes-checkbox"
+                                        <input id="sat" name="sat" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                                ref={register}
                                         />
                                         <span>sat</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="sun" name="sun" type="checkbox" className="nes-checkbox"
+                                        <input id="sun" name="sun" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
                                                ref={register}
                                         />
                                         <span>sun</span>

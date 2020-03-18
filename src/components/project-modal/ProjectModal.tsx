@@ -9,19 +9,20 @@ import {IProject} from "../../models/Project";
 import {trash} from "ionicons/icons";
 import {RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
+import {ProjectThemes} from "../../models/conditional-types-definitions";
 
 interface IComponentProps extends RouteComponentProps {
 }
 
 type FormData = {
     name: string;
-    theme: "" |"red" | "blue" | "yellow" | "gold" | "silver" | "crystal";
+    theme: ProjectThemes;
 }
 
 const ProjectModal: React.FC<IComponentProps> = observer(({history}) => {
 
     const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
-    const {projectStore} = useRootStore();
+    const {projectStore, userStore} = useRootStore();
     const [showAlert, setShowAlert] = useState(false);
 
     const ionModalDidPresent = () => {
@@ -85,6 +86,11 @@ const ProjectModal: React.FC<IComponentProps> = observer(({history}) => {
                                     <option value="gold" className="theme-gold">Gold</option>
                                     <option value="silver" className="theme-silver">Silver</option>
                                     <option value="crystal" className="theme-crystal">Crystal</option>
+                                    {userStore.premium && (<>
+                                        <option value="ruby" className="theme-ruby">Ruby</option>
+                                        <option value="sapphire" className="theme-sapphire">Sapphire</option>
+                                        <option value="emerald" className="theme-emerald">Emerald</option>
+                                    </>)}
                                 </select>
                                 {errors && errors.theme && (<label className="error">Theme is required</label>)}
                             </div>

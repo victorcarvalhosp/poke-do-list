@@ -117,6 +117,11 @@ export class FirebaseApi {
         return firestore.doc(dbPath).update({powerUps: totalPowerUps});
     }
 
+    static async updateSerialKey(userId: string, serialKey: string) {
+        const dbPath = `users/${userId}/`;
+        return firestore.doc(dbPath).update({serialKey: serialKey});
+    }
+
     static async updateTheme(userId: string, theme: string) {
         return firebase
             .firestore()

@@ -1,0 +1,19 @@
+#trainer-with-partner{
+    span {
+      display: inline-flex;
+    }
+
+    .header-human {
+      margin-right: -32px;
+      z-index: 999;
+    }
+
+    .level-up {
+      position: fixed;
+      left: 55px;
+      top: 0px;
+      font-size: 16px;
+    }
+
+
+}

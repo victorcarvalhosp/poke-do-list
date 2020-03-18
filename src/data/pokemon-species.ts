@@ -1766,4 +1766,949 @@ export const pokemonSpecies: Record<number, IPokemonSpecie> = {
         description: "This Pokémon came from the future by crossing over time. It is thought that so long as Celebi appears, a bright and shining future awaits us.",
         varieties: [251]
     },
+    252: {
+        id: 252,
+        exibitionName: "Treecko",
+        name: "treecko",
+        description: "Treecko is cool, calm, and collected—it never panics under any situation. If a bigger foe were to glare at this Pokémon, it would glare right back without conceding an inch of ground.",
+        varieties: [252]
+    },
+    253: {
+        id: 253,
+        exibitionName: "Grovyle",
+        name: "grovyle",
+        description: "This Pokémon adeptly flies from branch to branch in trees. In a forest, no Pokémon can ever hope to catch a fleeing Grovyle however fast they may be.",
+        varieties: [253]
+    },
+    254: {
+        id: 254,
+        exibitionName: "Sceptile",
+        name: "sceptile",
+        description: "Sceptile has seeds growing on its back. They are said to be bursting with nutrients that revitalize trees. This Pokémon raises the trees in a forest with loving care.",
+        varieties: [254, 10065]
+    },
+    255: {
+        id: 255,
+        exibitionName: "Torchic",
+        name: "torchic",
+        description: "Torchic has a place inside its body where it keeps its flame. Give it a hug—it will be glowing with warmth. This Pokémon is covered all over by a fluffy coat of down.",
+        varieties: [255]
+    },
+    256: {
+        id: 256,
+        exibitionName: "Combusken",
+        name: "combusken",
+        description: "Combusken battles with the intensely hot flames it spews from its beak and with outstandingly destructive kicks. This Pokémon’s cry is very loud and distracting.",
+        varieties: [256]
+    },
+    257: {
+        id: 257,
+        exibitionName: "Blaziken",
+        name: "blaziken",
+        description: "Blaziken has incredibly strong legs—it can easily clear a 30-story building in one leap. This Pokémon’s blazing punches leave its foes scorched and blackened.",
+        varieties: [257, 10050]
+    },
+    258: {
+        id: 258,
+        exibitionName: "Mudkip",
+        name: "mudkip",
+        description: "In water, Mudkip breathes using the gills on its cheeks. If it is faced with a tight situation in battle, this Pokémon will unleash its amazing power—it can crush rocks bigger than itself.",
+        varieties: [258]
+    },
+    259: {
+        id: 259,
+        exibitionName: "Marshtomp",
+        name: "marshtomp",
+        description: "Marshtomp is much faster at traveling through mud than it is at swimming. This Pokémon’s hindquarters exhibit obvious development, giving it the ability to walk on just its hind legs.",
+        varieties: [259]
+    },
+    260: {
+        id: 260,
+        exibitionName: "Swampert",
+        name: "swampert",
+        description: "Swampert predicts storms by sensing subtle differences in the sounds of waves and tidal winds with its fins. If a storm is approaching, it piles up boulders to protect itself.",
+        varieties: [260, 10064]
+    },
+    261: {
+        id: 261,
+        exibitionName: "Poochyena",
+        name: "poochyena",
+        description: "Poochyena is an omnivore—it will eat anything. A distinguishing feature is how large its fangs are compared to its body. This Pokémon tries to intimidate its foes by making the hair on its tail bristle out.",
+        varieties: [261]
+    },
+    262: {
+        id: 262,
+        exibitionName: "Mightyena",
+        name: "mightyena",
+        description: "Mightyena travel and act as a pack in the wild. The memory of its life in the wild compels the Pokémon to obey only those Trainers that it recognizes to possess superior skill.",
+        varieties: [262]
+    },
+    263: {
+        id: 263,
+        exibitionName: "Zigzagoon",
+        name: "zigzagoon",
+        description: "The hair on Zigzagoon’s back is bristly. It rubs the hard back hair against trees to leave its territorial markings. This Pokémon may play dead to fool foes in battle.",
+        varieties: [263]
+    },
+    264: {
+        id: 264,
+        exibitionName: "Linoone",
+        name: "linoone",
+        description: "When hunting, Linoone will make a beeline straight for the prey at a full run. While this Pokémon is capable of topping 60 mph, it has to come to a screeching halt before it can turn.",
+        varieties: [264]
+    },
+    265: {
+        id: 265,
+        exibitionName: "Wurmple",
+        name: "wurmple",
+        description: "Wurmple is targeted by Swellow as prey. This Pokémon will try to resist by pointing the spikes on its rear at the attacking predator. It will weaken the foe by leaking poison from the spikes.",
+        varieties: [265]
+    },
+    266: {
+        id: 266,
+        exibitionName: "Silcoon",
+        name: "silcoon",
+        description: "Silcoon was thought to endure hunger and not consume anything before its evolution. However, it is now thought that this Pokémon slakes its thirst by drinking rainwater that collects on its silk.",
+        varieties: [266]
+    },
+    267: {
+        id: 267,
+        exibitionName: "Beautifly",
+        name: "beautifly",
+        description: "Beautifly has a long mouth like a coiled needle, which is very convenient for collecting pollen from flowers. This Pokémon rides the spring winds as it flits around gathering pollen.",
+        varieties: [267]
+    },
+    268: {
+        id: 268,
+        exibitionName: "Cascoon",
+        name: "cascoon",
+        description: "If it is attacked, Cascoon remains motionless however badly it may be hurt. It does so because if it were to move, its body would be weak upon evolution. This Pokémon will also not forget the pain it endured.",
+        varieties: [268]
+    },
+    269: {
+        id: 269,
+        exibitionName: "Dustox",
+        name: "dustox",
+        description: "When Dustox flaps its wings, a fine dust is scattered all over. This dust is actually a powerful poison that will even make a pro wrestler sick. This Pokémon searches for food using its antennae like radar.",
+        varieties: [269]
+    },
+    270: {
+        id: 270,
+        exibitionName: "Lotad",
+        name: "lotad",
+        description: "Lotad is said to have dwelled on land before. However, this Pokémon is thought to have returned to water because the leaf on its head grew large and heavy. It now lives by floating atop the water.",
+        varieties: [270]
+    },
+    271: {
+        id: 271,
+        exibitionName: "Lombre",
+        name: "lombre",
+        description: "Lombre’s entire body is covered by a slippery, slimy film. It feels horribly unpleasant to be touched by this Pokémon’s hands. Lombre is often mistaken for a human child.",
+        varieties: [271]
+    },
+    272: {
+        id: 272,
+        exibitionName: "Ludicolo",
+        name: "ludicolo",
+        description: "Upon hearing an upbeat and cheerful rhythm, the cells in Ludicolo’s body become very energetic and active. Even in battle, this Pokémon will exhibit an amazing amount of power.",
+        varieties: [272]
+    },
+    273: {
+        id: 273,
+        exibitionName: "Seedot",
+        name: "seedot",
+        description: "Seedot looks exactly like an acorn when it is dangling from a tree branch. It startles other Pokémon by suddenly moving. This Pokémon polishes its body once a day using leaves.",
+        varieties: [273]
+    },
+    274: {
+        id: 274,
+        exibitionName: "Nuzleaf",
+        name: "nuzleaf",
+        description: "This Pokémon pulls out the leaf on its head and makes a flute with it. The sound of Nuzleaf’s flute strikes fear and uncertainty in the hearts of people lost in a forest.",
+        varieties: [274]
+    },
+    275: {
+        id: 275,
+        exibitionName: "Shiftry",
+        name: "shiftry",
+        description: "Shiftry’s large fans generate awesome gusts of wind at a speed close to 100 feet per second. The whipped-up wind blows anything away. This Pokémon chooses to live quietly deep in forests.",
+        varieties: [275]
+    },
+    276: {
+        id: 276,
+        exibitionName: "Taillow",
+        name: "taillow",
+        description: "Taillow is young—it has only just left its nest. As a result, it sometimes becomes lonesome and cries at night. This Pokémon feeds on Wurmple that live in forests.",
+        varieties: [276]
+    },
+    277: {
+        id: 277,
+        exibitionName: "Swellow",
+        name: "swellow",
+        description: "Swellow is very conscientious about the upkeep of its glossy wings. Once two Swellow are gathered, they diligently take care of cleaning each other’s wings.",
+        varieties: [277]
+    },
+    278: {
+        id: 278,
+        exibitionName: "Wingull",
+        name: "wingull",
+        description: "With its long, thin wings, it catches updrafts and flies like a glider high up into the sky.",
+        varieties: [278]
+    },
+    279: {
+        id: 279,
+        exibitionName: "Pelipper",
+        name: "pelipper",
+        description: "It places small Pokémon into its spacious beak and carries them around. No one knows where it’s taking them.",
+        varieties: [279]
+    },
+    280: {
+        id: 280,
+        exibitionName: "Ralts",
+        name: "ralts",
+        description: "Ralts has the ability to sense the emotions of people. If its Trainer is in a cheerful mood, this Pokémon grows cheerful and joyous in the same way.",
+        varieties: [280]
+    },
+    281: {
+        id: 281,
+        exibitionName: "Kirlia",
+        name: "kirlia",
+        description: "Kirlia uses the horns on its head to amplify its psychokinetic power. When the Pokémon uses its power, the air around it becomes distorted, creating mirages of nonexistent scenery.",
+        varieties: [281]
+    },
+    282: {
+        id: 282,
+        exibitionName: "Gardevoir",
+        name: "gardevoir",
+        description: "Gardevoir has the psychokinetic power to distort the dimensions and create a small black hole. This Pokémon will try to protect its Trainer even at the risk of its own life.",
+        varieties: [282, 10051]
+    },
+    283: {
+        id: 283,
+        exibitionName: "Surskit",
+        name: "surskit",
+        description: "If it’s in a pinch, it will secrete a sweet liquid from the tip of its head. Syrup made from gathering that liquid is tasty on bread.",
+        varieties: [283]
+    },
+    284: {
+        id: 284,
+        exibitionName: "Masquerain",
+        name: "masquerain",
+        description: "Masquerain intimidates enemies with the eyelike patterns of its eyespots. If that doesn’t work, it deftly makes its escape on its set of four wings.",
+        varieties: [284]
+    },
+    285: {
+        id: 285,
+        exibitionName: "Shroomish",
+        name: "shroomish",
+        description: "If Shroomish senses danger, it shakes its body and scatters spores from the top of its head. This Pokémon’s spores are so toxic, they make trees and weeds wilt.",
+        varieties: [285]
+    },
+    286: {
+        id: 286,
+        exibitionName: "Breloom",
+        name: "breloom",
+        description: "The seeds ringing Breloom’s tail are made of hardened toxic spores. It is horrible to eat the seeds. Just taking a bite of this Pokémon’s seed will cause your stomach to rumble.",
+        varieties: [286]
+    },
+    287: {
+        id: 287,
+        exibitionName: "Slakoth",
+        name: "slakoth",
+        description: "Slakoth’s heart beats just once a minute. Whatever happens, it is content to loaf around motionless. It is rare to see this Pokémon in motion.",
+        varieties: [287]
+    },
+    288: {
+        id: 288,
+        exibitionName: "Vigoroth",
+        name: "vigoroth",
+        description: "Vigoroth is simply incapable of remaining still. Even when it tries to sleep, the blood in its veins grows agitated, compelling this Pokémon to run wild throughout the jungle before it can settle down.",
+        varieties: [288]
+    },
+    289: {
+        id: 289,
+        exibitionName: "Slaking",
+        name: "slaking",
+        description: "Wherever Slaking live, rings of over a yard in diameter appear in grassy fields. They are made by the Pokémon as it eats all the grass within reach while lying prone on the ground.",
+        varieties: [289]
+    },
+    290: {
+        id: 290,
+        exibitionName: "Nincada",
+        name: "nincada",
+        description: "Nincada lives underground. It uses its sharp claws to carve the roots of trees and absorb moisture and nutrients. This Pokémon can’t withstand bright sunlight so avoids it.",
+        varieties: [290]
+    },
+    291: {
+        id: 291,
+        exibitionName: "Ninjask",
+        name: "ninjask",
+        description: "If Ninjask is not trained properly, it will refuse to obey the Trainer and cry loudly continuously. Because of this quality, this Pokémon is said to be one that puts the Trainer’s abilities to the test.",
+        varieties: [291]
+    },
+    292: {
+        id: 292,
+        exibitionName: "Shedinja",
+        name: "shedinja",
+        description: "Shedinja is a peculiar Pokémon. It seems to appear unsought in a Poké Ball after a Nincada evolves. This bizarre Pokémon is entirely immobile—it doesn’t even breathe.",
+        varieties: [292]
+    },
+    293: {
+        id: 293,
+        exibitionName: "Whismur",
+        name: "whismur",
+        description: "Whismur is very timid. If it starts to cry loudly, it becomes startled by its own crying and cries even harder. When it finally stops crying, the Pokémon goes to sleep, all tired out.",
+        varieties: [293]
+    },
+    294: {
+        id: 294,
+        exibitionName: "Loudred",
+        name: "loudred",
+        description: "Loudred shouts while stamping its feet. After it finishes shouting, this Pokémon becomes incapable of hearing anything for a while. This is considered to be a weak point.",
+        varieties: [294]
+    },
+    295: {
+        id: 295,
+        exibitionName: "Exploud",
+        name: "exploud",
+        description: "Exploud communicates its feelings to the others by emitting whistle-like sounds from the tubes on its body. This Pokémon only raises its voice when it is in battle.",
+        varieties: [295]
+    },
+    296: {
+        id: 296,
+        exibitionName: "Makuhita",
+        name: "makuhita",
+        description: "It practices its slaps by repeatedly slapping tree trunks. It has been known to slap an Exeggutor and get flung away.",
+        varieties: [296]
+    },
+    297: {
+        id: 297,
+        exibitionName: "Hariyama",
+        name: "hariyama",
+        description: "Although they enjoy comparing their strength, they’re also kind. They value etiquette, praising opponents they battle.",
+        varieties: [297]
+    },
+    298: {
+        id: 298,
+        exibitionName: "Azurill",
+        name: "azurill",
+        description: "Azurill’s tail is large and bouncy. It is packed full of the nutrients this Pokémon needs to grow. Azurill can be seen bouncing and playing on its big, rubbery tail.",
+        varieties: [298]
+    },
+    299: {
+        id: 299,
+        exibitionName: "Nosepass",
+        name: "nosepass",
+        description: "It moves less than an inch a year, but when it’s in a jam, it will spin and drill down into the ground in a split second.",
+        varieties: [299]
+    },
+    300: {
+        id: 300,
+        exibitionName: "Skitty",
+        name: "skitty",
+        description: "Skitty is known to chase around playfully after its own tail. In the wild, this Pokémon lives in holes in the trees of forests. It is very popular as a pet because of its adorable looks.",
+        varieties: [300]
+    },
+    301: {
+        id: 301,
+        exibitionName: "Delcatty",
+        name: "delcatty",
+        description: "Delcatty sleeps anywhere it wants without keeping a permanent nest. If other Pokémon approach it as it sleeps, this Pokémon will never fight—it will just move away somewhere else.",
+        varieties: [301]
+    },
+    302: {
+        id: 302,
+        exibitionName: "Sableye",
+        name: "sableye",
+        description: "It digs through the ground with its hard claws and crunches down gems with its thick pointy teeth. Carbink is its favorite food.",
+        varieties: [302, 10066]
+    },
+    303: {
+        id: 303,
+        exibitionName: "Mawile",
+        name: "mawile",
+        description: "A cunning and terrifying Pokémon, its cuteness makes opponents let down their guard—and then it swallows them whole with its huge jaws.",
+        varieties: [303, 10052]
+    },
+    304: {
+        id: 304,
+        exibitionName: "Aron",
+        name: "aron",
+        description: "Aron has a body of steel. With one all-out charge, this Pokémon can demolish even a heavy dump truck. The destroyed dump truck then becomes a handy meal for the Pokémon.",
+        varieties: [304]
+    },
+    305: {
+        id: 305,
+        exibitionName: "Lairon",
+        name: "lairon",
+        description: "Lairon feeds on iron contained in rocks and water. It makes its nest on mountains where iron ore is buried. As a result, the Pokémon often clashes with humans mining the iron ore.",
+        varieties: [305]
+    },
+    306: {
+        id: 306,
+        exibitionName: "Aggron",
+        name: "aggron",
+        description: "Aggron is protective of its environment. If its mountain is ravaged by a landslide or a fire, this Pokémon will haul topsoil to the area, plant trees, and beautifully restore its own territory.",
+        varieties: [306, 10053]
+    },
+    307: {
+        id: 307,
+        exibitionName: "Meditite",
+        name: "meditite",
+        description: "Meditite heightens its inner energy through meditation. It survives on just one berry a day. Minimal eating is another aspect of this Pokémon’s training.",
+        varieties: [307]
+    },
+    308: {
+        id: 308,
+        exibitionName: "Medicham",
+        name: "medicham",
+        description: "Through the power of meditation, Medicham developed its sixth sense. It gained the ability to use psychokinetic powers. This Pokémon is known to meditate for a whole month without eating.",
+        varieties: [308, 10054]
+    },
+    309: {
+        id: 309,
+        exibitionName: "Electrike",
+        name: "electrike",
+        description: "Friction between the air and its fur produces static electricity. When Electrike runs, it makes a crackling sound.",
+        varieties: [309]
+    },
+    310: {
+        id: 310,
+        exibitionName: "Manectric",
+        name: "manectric",
+        description: "Manectric can be found beneath unnatural thunderclouds. People say it can run at the same speed as lightning striking.",
+        varieties: [310, 10055]
+    },
+    311: {
+        id: 311,
+        exibitionName: "Plusle",
+        name: "plusle",
+        description: "When Plusle is cheering on its partner, it flashes with electric sparks from all over its body. If its partner loses, this Pokémon cries loudly.",
+        varieties: [311]
+    },
+    312: {
+        id: 312,
+        exibitionName: "Minun",
+        name: "minun",
+        description: "Minun loves to cheer on its partner in battle. It gives off sparks from its body while it is doing so. If its partner is in trouble, this Pokémon gives off increasing amounts of sparks.",
+        varieties: [312]
+    },
+    313: {
+        id: 313,
+        exibitionName: "Volbeat",
+        name: "volbeat",
+        description: "Volbeat’s tail glows like a lightbulb. With other Volbeat, it uses its tail to draw geometric shapes in the night sky. This Pokémon loves the sweet aroma given off by Illumise.",
+        varieties: [313]
+    },
+    314: {
+        id: 314,
+        exibitionName: "Illumise",
+        name: "illumise",
+        description: "Illumise leads a flight of illuminated Volbeat to draw signs in the night sky. This Pokémon is said to earn greater respect from its peers by composing more complex designs in the sky.",
+        varieties: [314]
+    },
+    315: {
+        id: 315,
+        exibitionName: "Roselia",
+        name: "roselia",
+        description: "On extremely rare occasions, a Roselia is said to appear with its flowers in unusual colors. The thorns on this Pokémon’s head contain a vicious poison.",
+        varieties: [315]
+    },
+    316: {
+        id: 316,
+        exibitionName: "Gulpin",
+        name: "gulpin",
+        description: "Most of Gulpin’s body is made up of its stomach—its heart and brain are very small in comparison. This Pokémon’s stomach contains special enzymes that dissolve anything.",
+        varieties: [316]
+    },
+    317: {
+        id: 317,
+        exibitionName: "Swalot",
+        name: "swalot",
+        description: "Swalot has no teeth, so what it eats, it swallows whole, no matter what. Its cavernous mouth yawns widely. An automobile tire could easily fit inside this Pokémon’s mouth.",
+        varieties: [317]
+    },
+    318: {
+        id: 318,
+        exibitionName: "Carvanha",
+        name: "carvanha",
+        description: "They’re such cowards that they won’t hunt alone. When five or so of them get together, they suddenly turn ferocious!",
+        varieties: [318]
+    },
+    319: {
+        id: 319,
+        exibitionName: "Sharpedo",
+        name: "sharpedo",
+        description: "People believe that carrying one of its discarded fangs will prevent mishaps at sea, so the fangs are made into accessories.",
+        varieties: [319, 10070]
+    },
+    320: {
+        id: 320,
+        exibitionName: "Wailmer",
+        name: "wailmer",
+        description: "It swims along with its mouth open and swallows down seawater along with its food. It sprays excess water out of its nostrils.",
+        varieties: [320]
+    },
+    321: {
+        id: 321,
+        exibitionName: "Wailord",
+        name: "wailord",
+        description: "They eat so many fish Pokémon that when Wailord become too numerous, fishermen have to chase them off.",
+        varieties: [321]
+    },
+    322: {
+        id: 322,
+        exibitionName: "Numel",
+        name: "numel",
+        description: "Numel stores magma of almost 2,200 degrees Fahrenheit within its body. If it gets wet, the magma cools and hardens. In that event, the Pokémon’s body grows heavy and its movements become sluggish.",
+        varieties: [322]
+    },
+    323: {
+        id: 323,
+        exibitionName: "Camerupt",
+        name: "camerupt",
+        description: "The humps on Camerupt’s back are formed by a transformation of its bones. They sometimes blast out molten magma. This Pokémon apparently erupts often when it is enraged.",
+        varieties: [323, 10087]
+    },
+    324: {
+        id: 324,
+        exibitionName: "Torkoal",
+        name: "torkoal",
+        description: "You can tell how it’s feeling by the smoke spouting from its shell. Tremendous velocity is a sign of good health.",
+        varieties: [324]
+    },
+    325: {
+        id: 325,
+        exibitionName: "Spoink",
+        name: "spoink",
+        description: "Spoink keeps a pearl on top of its head. The pearl functions to amplify this Pokémon’s psychokinetic powers. It is therefore on a constant search for a bigger pearl.",
+        varieties: [325]
+    },
+    326: {
+        id: 326,
+        exibitionName: "Grumpig",
+        name: "grumpig",
+        description: "Grumpig uses the black pearls on its body to wield its fantastic powers. When it is doing so, it dances bizarrely. This Pokémon’s black pearls are valuable as works of art.",
+        varieties: [326]
+    },
+    327: {
+        id: 327,
+        exibitionName: "Spinda",
+        name: "spinda",
+        description: "Its steps are shaky and stumbling. Walking for a long time makes it feel sick.",
+        varieties: [327]
+    },
+    328: {
+        id: 328,
+        exibitionName: "Trapinch",
+        name: "trapinch",
+        description: "Its jaws are strong enough to crush rocks but so heavy that it can’t get up if it flips over. Sandile seize those moments as their chance.",
+        varieties: [328]
+    },
+    329: {
+        id: 329,
+        exibitionName: "Vibrava",
+        name: "vibrava",
+        description: "It vibrates its wings to generate ultrasonic waves, causing its prey to faint. Then it buries the prey alive in the sand to preserve it.",
+        varieties: [329]
+    },
+    330: {
+        id: 330,
+        exibitionName: "Flygon",
+        name: "flygon",
+        description: "By flapping their wings, Flygon cause sandstorms that conceal Krookodile. The team then splits the prey they catch.",
+        varieties: [330]
+    },
+    331: {
+        id: 331,
+        exibitionName: "Cacnea",
+        name: "cacnea",
+        description: "The more arid and harsh the environment, the more pretty and fragrant a flower Cacnea grows. This Pokémon battles by wildly swinging its thorny arms.",
+        varieties: [331]
+    },
+    332: {
+        id: 332,
+        exibitionName: "Cacturne",
+        name: "cacturne",
+        description: "If a traveler is going through a desert in the thick of night, Cacturne will follow in a ragtag group. The Pokémon are biding their time, waiting for the traveler to tire and become incapable of moving.",
+        varieties: [332]
+    },
+    333: {
+        id: 333,
+        exibitionName: "Swablu",
+        name: "swablu",
+        description: "Swablu loves to make things clean. If it spots something dirty, it will wipe and polish it with its cottony wings. If its wings become dirty, this Pokémon finds a stream and showers itself.",
+        varieties: [333]
+    },
+    334: {
+        id: 334,
+        exibitionName: "Altaria",
+        name: "altaria",
+        description: "Altaria sings in a gorgeous soprano. Its wings are like cotton clouds. This Pokémon catches updrafts with its buoyant wings and soars way up into the wild blue yonder.",
+        varieties: [334, 10067]
+    },
+    335: {
+        id: 335,
+        exibitionName: "Zangoose",
+        name: "zangoose",
+        description: "Zangoose usually stays on all fours, but when angered, it gets up on its hind legs and extends its claws. This Pokémon shares a bitter rivalry with Seviper that dates back over generations.",
+        varieties: [335]
+    },
+    336: {
+        id: 336,
+        exibitionName: "Seviper",
+        name: "seviper",
+        description: "Seviper’s swordlike tail serves two purposes—it slashes foes and douses them with secreted poison. This Pokémon will not give up its long-running blood feud with Zangoose.",
+        varieties: [336]
+    },
+    337: {
+        id: 337,
+        exibitionName: "Lunatone",
+        name: "lunatone",
+        description: "Lunatone becomes active around the time of the full moon. Instead of walking, it moves by floating in midair. The Pokémon’s intimidating red eyes cause all those who see it to become transfixed with fear.",
+        varieties: [337]
+    },
+    338: {
+        id: 338,
+        exibitionName: "Solrock",
+        name: "solrock",
+        description: "Sunlight is the source of Solrock’s power. It is said to possess the ability to read the emotions of others. This Pokémon gives off intense heat while rotating its body.",
+        varieties: [338]
+    },
+    339: {
+        id: 339,
+        exibitionName: "Barboach",
+        name: "barboach",
+        description: "Its entire body is gooey. When pecked at by bird Pokémon, it slips and slides its way to freedom.",
+        varieties: [339]
+    },
+    340: {
+        id: 340,
+        exibitionName: "Whiscash",
+        name: "whiscash",
+        description: "Whiscash shakes the ground at high intensities to intimidate its opponents. It swallows its prey whole—along with mud from the swamp floor.",
+        varieties: [340]
+    },
+    341: {
+        id: 341,
+        exibitionName: "Corphish",
+        name: "corphish",
+        description: "Individuals that have been set free by Trainers who could no longer raise them have become common, and they can now be found in Alola.",
+        varieties: [341]
+    },
+    342: {
+        id: 342,
+        exibitionName: "Crawdaunt",
+        name: "crawdaunt",
+        description: "Its temperament is rough and it loves to fight, but as soon as its pincers break off, it turns cowardly. It stays timid until they grow back.",
+        varieties: [342]
+    },
+    343: {
+        id: 343,
+        exibitionName: "Baltoy",
+        name: "baltoy",
+        description: "Depictions of Pokémon similar to Baltoy have been found on the walls of caves where primitive humans lived.",
+        varieties: [343]
+    },
+    344: {
+        id: 344,
+        exibitionName: "Claydol",
+        name: "claydol",
+        description: "If it gets wet, its body melts. When rain starts to fall, it wraps its whole body up with its psychic powers to protect itself.",
+        varieties: [344]
+    },
+    345: {
+        id: 345,
+        exibitionName: "Lileep",
+        name: "lileep",
+        description: "In ancient times, it lived in warm seas. It disguised itself as seaweed to ambush its prey and devoured them whole when they got close.",
+        varieties: [345]
+    },
+    346: {
+        id: 346,
+        exibitionName: "Cradily",
+        name: "cradily",
+        description: "Normally, it lived on shallow sea shoals. When the tide went out, this Pokémon came up on land to search for prey.",
+        varieties: [346]
+    },
+    347: {
+        id: 347,
+        exibitionName: "Anorith",
+        name: "anorith",
+        description: "When restored Anorith are released into the ocean, they don’t thrive, because the water composition has changed since their era.",
+        varieties: [347]
+    },
+    348: {
+        id: 348,
+        exibitionName: "Armaldo",
+        name: "armaldo",
+        description: "It lived on land and went out into the sea to hunt for prey. Its sharp claws were its greatest weapon.",
+        varieties: [348]
+    },
+    349: {
+        id: 349,
+        exibitionName: "Feebas",
+        name: "feebas",
+        description: "They look ragged, so no one catches them. They look like they’d taste bad, so predators won’t eat them. And their numbers continue to grow.",
+        varieties: [349]
+    },
+    350: {
+        id: 350,
+        exibitionName: "Milotic",
+        name: "milotic",
+        description: "While Milotic is said to be the most beautiful Pokémon, Trainers who like Feebas and have raised it are seemingly disappointed by Milotic.",
+        varieties: [350]
+    },
+    351: {
+        id: 351,
+        exibitionName: "Castform",
+        name: "castform",
+        description: "Although its form changes with the weather, that is apparently the result of a chemical reaction and not the result of its own free will.",
+        varieties: [351, 10013, 10014, 10015]
+    },
+    352: {
+        id: 352,
+        exibitionName: "Kecleon",
+        name: "kecleon",
+        description: "It changes its hue to blend into its surroundings. If no one takes notice of it for too long, it will pout and never reveal itself.",
+        varieties: [352]
+    },
+    353: {
+        id: 353,
+        exibitionName: "Shuppet",
+        name: "shuppet",
+        description: "It eats up emotions like malice, jealousy, and resentment, so some people are grateful for its presence.",
+        varieties: [353]
+    },
+    354: {
+        id: 354,
+        exibitionName: "Banette",
+        name: "banette",
+        description: "It’s a stuffed toy that was thrown away and became possessed, ever searching for the one who threw it away so it can exact its revenge.",
+        varieties: [354, 10056]
+    },
+    355: {
+        id: 355,
+        exibitionName: "Duskull",
+        name: "duskull",
+        description: "Duskull wanders lost among the deep darkness of midnight. There is an oft-told admonishment given to misbehaving children that this Pokémon will spirit away bad children who earn scoldings from their mothers.",
+        varieties: [355]
+    },
+    356: {
+        id: 356,
+        exibitionName: "Dusclops",
+        name: "dusclops",
+        description: "Dusclops absorbs anything, however large the object may be. This Pokémon hypnotizes its foe by waving its hands in a macabre manner and by bringing its single eye to bear. The hypnotized foe is made to do Dusclops’s bidding.",
+        varieties: [356]
+    },
+    357: {
+        id: 357,
+        exibitionName: "Tropius",
+        name: "tropius",
+        description: "The bunches of fruit growing around the necks of Tropius in Alola are especially sweet compared to those in other regions.",
+        varieties: [357]
+    },
+    358: {
+        id: 358,
+        exibitionName: "Chimecho",
+        name: "chimecho",
+        description: "In high winds, Chimecho cries as it hangs from a tree branch or the eaves of a building using a suction cup on its head. This Pokémon plucks berries with its long tail and eats them.",
+        varieties: [358]
+    },
+    359: {
+        id: 359,
+        exibitionName: "Absol",
+        name: "absol",
+        description: "The only thing unlucky about Absol is its appearance. It protects fields and warns people of disaster, so one ought to be grateful for it.",
+        varieties: [359, 10057]
+    },
+    360: {
+        id: 360,
+        exibitionName: "Wynaut",
+        name: "wynaut",
+        description: "Wynaut gather on moonlit nights to play by squeezing up against each other. By being squeezed, this Pokémon gains endurance and is trained to dole out powerful counterattacks.",
+        varieties: [360]
+    },
+    361: {
+        id: 361,
+        exibitionName: "Snorunt",
+        name: "snorunt",
+        description: "It feeds mainly on ice and snow. It’s only able to survive in a limited number of places in the warm Alola region.",
+        varieties: [361]
+    },
+    362: {
+        id: 362,
+        exibitionName: "Glalie",
+        name: "glalie",
+        description: "It freezes its prey and chews them whole. However, it prefers to eat Pokémon like Vanillite that are already frozen.",
+        varieties: [362, 10074]
+    },
+    363: {
+        id: 363,
+        exibitionName: "Spheal",
+        name: "spheal",
+        description: "Spheal always travels by rolling around on its ball-like body. When the season for ice floes arrives, this Pokémon can be seen rolling about on ice and crossing the sea.",
+        varieties: [363]
+    },
+    364: {
+        id: 364,
+        exibitionName: "Sealeo",
+        name: "sealeo",
+        description: "Sealeo often balances and rolls things on the tip of its nose. While the Pokémon is rolling something, it checks the object’s aroma and texture to determine whether it likes the object or not.",
+        varieties: [364]
+    },
+    365: {
+        id: 365,
+        exibitionName: "Walrein",
+        name: "walrein",
+        description: "Walrein swims all over in frigid seawater while crushing icebergs with its grand, imposing tusks. Its thick layer of blubber makes enemy attacks bounce off harmlessly.",
+        varieties: [365]
+    },
+    366: {
+        id: 366,
+        exibitionName: "Clamperl",
+        name: "clamperl",
+        description: "Despite its appearance, it’s carnivorous. It clamps down on its prey with both sides of its shell and doesn’t let go until they stop moving.",
+        varieties: [366]
+    },
+    367: {
+        id: 367,
+        exibitionName: "Huntail",
+        name: "huntail",
+        description: "It’s not the strongest swimmer. It wags its tail to lure in its prey and then gulps them down as soon as they get close.",
+        varieties: [367]
+    },
+    368: {
+        id: 368,
+        exibitionName: "Gorebyss",
+        name: "gorebyss",
+        description: "The color of its body changes with the water temperature. The coloration of Gorebyss in Alola is almost blindingly vivid.",
+        varieties: [368]
+    },
+    369: {
+        id: 369,
+        exibitionName: "Relicanth",
+        name: "relicanth",
+        description: "Thought to have gone extinct, Relicanth was given a name that is a variation of the name of the person who discovered it.",
+        varieties: [369]
+    },
+    370: {
+        id: 370,
+        exibitionName: "Luvdisc",
+        name: "luvdisc",
+        description: "There was an era when it was overfished due to the rumor that having one of its heart-shaped scales would enable you to find a sweetheart.",
+        varieties: [370]
+    },
+    371: {
+        id: 371,
+        exibitionName: "Bagon",
+        name: "bagon",
+        description: "Whenever it sees bird Pokémon flying through the sky, it becomes envious and smashes its surroundings to bits with headbutts.",
+        varieties: [371]
+    },
+    372: {
+        id: 372,
+        exibitionName: "Shelgon",
+        name: "shelgon",
+        description: "The cells within its body are changing at a bewildering pace. Its hard shell is made from the same substance as bone.",
+        varieties: [372]
+    },
+    373: {
+        id: 373,
+        exibitionName: "Salamence",
+        name: "salamence",
+        description: "Overjoyed at finally being able to fly, it flies all over the place and usually doesn’t land until it’s completely exhausted and needs to sleep.",
+        varieties: [373, 10089]
+    },
+    374: {
+        id: 374,
+        exibitionName: "Beldum",
+        name: "beldum",
+        description: "Instead of blood, magnetism flows through its body. When it’s feeling bad, try giving it a magnet.",
+        varieties: [374]
+    },
+    375: {
+        id: 375,
+        exibitionName: "Metang",
+        name: "metang",
+        description: "With its two brains, it fires powerful psychic energy to stop its prey in their tracks.",
+        varieties: [375]
+    },
+    376: {
+        id: 376,
+        exibitionName: "Metagross",
+        name: "metagross",
+        description: "It boasts not only psychic powers but also fantastic strength. It grabs its prey with its four legs and holds them in place with its claws.",
+        varieties: [376, 10076]
+    },
+    377: {
+        id: 377,
+        exibitionName: "Regirock",
+        name: "regirock",
+        description: "Regirock’s body is composed entirely of rocks. Recently, a study made the startling discovery that the rocks were all unearthed from different locations.",
+        varieties: [377]
+    },
+    378: {
+        id: 378,
+        exibitionName: "Regice",
+        name: "regice",
+        description: "Regice cloaks itself with frigid air of -328 degrees Fahrenheit. Things will freeze solid just by going near this Pokémon. Its icy body is so cold, it will not melt even if it is immersed in magma.",
+        varieties: [378]
+    },
+    379: {
+        id: 379,
+        exibitionName: "Registeel",
+        name: "registeel",
+        description: "Registeel was imprisoned by people in ancient times. The metal composing its body is thought to be a curious substance that is not of this earth.",
+        varieties: [379]
+    },
+    380: {
+        id: 380,
+        exibitionName: "Latias",
+        name: "latias",
+        description: "Latias is highly intelligent and capable of understanding human speech. It is covered with a glass-like down. The Pokémon enfolds its body with its down and refracts light to alter its appearance.",
+        varieties: [380, 10062]
+    },
+    381: {
+        id: 381,
+        exibitionName: "Latios",
+        name: "latios",
+        description: "Latios will only open its heart to a Trainer with a compassionate spirit. This Pokémon can fly faster than a jet plane by folding its forelegs to minimize air resistance.",
+        varieties: [381, 10063]
+    },
+    382: {
+        id: 382,
+        exibitionName: "Kyogre",
+        name: "kyogre",
+        description: "Kyogre is said to be the personification of the sea itself. Legends tell of its many clashes against Groudon, as each sought to gain the power of nature.",
+        varieties: [382, 10077]
+    },
+    383: {
+        id: 383,
+        exibitionName: "Groudon",
+        name: "groudon",
+        description: "Through Primal Reversion and with nature’s full power, it will take back its true form. It can cause magma to erupt and expand the landmass of the world.",
+        varieties: [383, 10078]
+    },
+    384: {
+        id: 384,
+        exibitionName: "Rayquaza",
+        name: "rayquaza",
+        description: "It flies forever through the ozone layer, consuming meteoroids for sustenance. The many meteoroids in its body provide the energy it needs to Mega Evolve.",
+        varieties: [384, 10079]
+    },
+    385: {
+        id: 385,
+        exibitionName: "Jirachi",
+        name: "jirachi",
+        description: "Jirachi will awaken from its sleep of a thousand years if you sing to it in a voice of purity. It is said to make true any wish that people desire.",
+        varieties: [385]
+    },
+    386: {
+        id: 386,
+        exibitionName: "Deoxys",
+        name: "deoxys",
+        description: "Deoxys emerged from a virus that came from space. It is highly intelligent and wields psychokinetic powers. This Pokémon shoots lasers from the crystalline organ on its chest.",
+        varieties: [386, 10001, 10002, 10003]
+    },
 }

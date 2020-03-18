@@ -96,7 +96,7 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                 <div className="battle-area">
                     <div className="battle-result">
                         {battleStore.battleResult && (
-                            <>{battleStore.battleResult}
+                            <>{battleStore.battleResult}<br/>
                                 {(battleStore.battleResult === 'lose' || battleStore.battleResult === 'draw') && (
                                     <>Try again? <div><IonButton onClick={goBackExplore}>No</IonButton><IonButton onClick={goBackSelect}>Yes</IonButton></div> </>
                                 )}

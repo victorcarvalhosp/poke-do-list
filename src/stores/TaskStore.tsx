@@ -11,6 +11,7 @@ import {ITaskFilters, TaskFilters} from "../models/TaskFilters";
 import dayjs from "dayjs";
 import firebase from "firebase";
 import {repeat} from "ionicons/icons";
+import {addDelay, delay} from "../utils/delay";
 
 
 export interface ITaskStore {
@@ -169,6 +170,7 @@ export class TaskStore implements ITaskStore {
 
     @action
     async completeTask(task: ITask) {
+        await addDelay(1500);
         if (task.pokemon) {
             await this.root.pokemonStore.caughtPokemon(task.pokemon);
             const pkmnName = task.pokemon.name

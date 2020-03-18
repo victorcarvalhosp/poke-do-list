@@ -1,6 +1,13 @@
 @import "src/theme/variables";
 
 #battle-page {
+  /** dark **/
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 34, 34;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
   .battle-area {
     width: 100%;
     margin: 0 auto !important;
@@ -10,7 +17,6 @@
       text-align: center;
       position: fixed;
       width: 300px;
-      height: 200px;
       top: 175px;
       left: 50%;
       margin-left: -150px;

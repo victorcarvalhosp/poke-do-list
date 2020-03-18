@@ -15,8 +15,6 @@ import {IEvolution} from "../../models/Evolution";
 import {PokeApi} from "../../apis/PokeApi";
 
 
-
-
 const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     const {userStore} = useRootStore();
@@ -24,18 +22,19 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const [selectedPokedexItem, setSelectedPokedexItem] = useState<IPokedexStatus>(new PokedexStatus());
 
     const allPokemonPokedex = [];
-    for (let i = 1; i <= 251; i++) {
+    for (let i = 1; i <= (userStore.premium ? 386 : 251); i++) {
         allPokemonPokedex.push(i);
     }
-
 
     const onCloseModal = () => {
         setModalDetailsOpen(false);
     }
 
     const openModalDetails = (specieId: number) => {
-        setSelectedPokedexItem(userStore.user.pokedex[specieId]);
-        setModalDetailsOpen(true);
+        if (userStore.user.pokedex[specieId]) {
+            setSelectedPokedexItem(userStore.user.pokedex[specieId]);
+            setModalDetailsOpen(true);
+        }
     }
 
     useEffect(() => {
@@ -43,9 +42,9 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
     }, [])
 
     const importAllData = async () => {
-        // await importAllSpecies();
-         await PokeApi.importAllVarieties();
-        // await importEncounters();
+        // await PokeApi.importAllSpecies();
+        // await PokeApi.importAllVarieties();
+        await PokeApi.importEncounters();
         // PokeApi.importAllMoves();
 
     }
@@ -56,14 +55,15 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
             <IonContent className="ion-padding">
                 <IonGrid>
                     <IonRow className="pkmn-grid">
-                        {/*<IonButton onClick={importAllData}>Import all data</IonButton>*/}
+                        <IonButton onClick={importAllData}>Import all data</IonButton>
                         {allPokemonPokedex.map(i => (
                                 <IonCol key={i} className="pkmn-grid-item" sizeXl="1" sizeLg="2" sizeMd="2" sizeSm="3"
                                         onClick={e => openModalDetails(i)}
                                         sizeXs="4">
-                                    {userStore.user.pokedex[i] ? (<Overworld direction="down" animationActive={false} type="pokemon"
-                                                                             className={userStore.user.pokedex[i].caught ? '' : 'just-seen-pokedex'}
-                                                                             spriteUrl={`${pokemonSpecies[i].id}.png`}/>) :
+                                    {userStore.user.pokedex[i] ? (
+                                            <Overworld direction="down" animationActive={false} type="pokemon"
+                                                       className={userStore.user.pokedex[i].caught ? '' : 'just-seen-pokedex'}
+                                                       spriteUrl={`${pokemonSpecies[i].id}.png`}/>) :
                                         (<div className="empty-item"></div>)
                                     }
                                     <p>#{threeHousesNumberPipe(i)} {userStore.user.pokedex[i] ? pokemonSpecies[i].name : ''}</p>

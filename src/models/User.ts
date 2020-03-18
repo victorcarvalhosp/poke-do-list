@@ -13,6 +13,7 @@ export interface IUser {
   theme?: string;
   exploreItemsCompleted: number[];
   powerUps: number;
+  serialKey: string;
 }
 
 export class User implements IUser{
@@ -25,6 +26,7 @@ export class User implements IUser{
   theme?: string;
   exploreItemsCompleted: number[];
   powerUps: number;
+  serialKey: string;
 
   constructor() {
     this.character = '';
@@ -35,6 +37,7 @@ export class User implements IUser{
     this.creationDate = new Date();
     this.exploreItemsCompleted = [];
     this.powerUps = 0;
+    this.serialKey = '';
   }
 
 }

@@ -111,6 +111,82 @@ export const exploreItems: Record<number, IExploreItem> =
             appearAfter: 2,
             enableAfter: 3
         },
+        5: {
+            id: 5,
+            name: "Koga",
+            shortDescription: "Soul Badge",
+            description: "Beat Koga to win the Soul Badge",
+            type: "battle",
+            image: {type: "human", animationActive: true, name: "koga.png", direction: "down"},
+            firstTimeAwards: [1004],
+            awards: [0],
+            trainerInfo: {
+                sprite: "koga.png",
+                name: 'Koga',
+                type: "poison",
+                pokemon: [{variety: 109, level: 20}, {variety: 89, level: 20}, {variety: 110, level: 20}],
+                maxLevel: 20
+            },
+            appearAfter: 3,
+            enableAfter: 4
+        },
+        6: {
+            id: 6,
+            name: "Sabrina",
+            shortDescription: "Marsh Badge",
+            description: "Beat Sabrina to win the Marsh Badge",
+            type: "battle",
+            image: {type: "human", animationActive: true, name: "sabrina.png", direction: "down"},
+            firstTimeAwards: [1005],
+            awards: [0],
+            trainerInfo: {
+                sprite: "sabrina.png",
+                name: 'Sabrina',
+                type: "psychic",
+                pokemon: [{variety: 122, level: 24}, {variety: 65, level: 24}, {variety: 49, level: 24}],
+                maxLevel: 24
+            },
+            appearAfter: 4,
+            enableAfter: 5
+        },
+        7: {
+            id: 7,
+            name: "Blaine",
+            shortDescription: "Volcano Badge",
+            description: "Beat Blaine to win the Volcano Badge",
+            type: "battle",
+            image: {type: "human", animationActive: true, name: "blaine.png", direction: "down"},
+            firstTimeAwards: [1006],
+            awards: [0],
+            trainerInfo: {
+                sprite: "blaine.png",
+                name: 'Blaine',
+                type: "fire",
+                pokemon: [{variety: 77, level: 28}, {variety: 78, level: 28}, {variety: 58, level: 28}],
+                maxLevel: 28
+            },
+            appearAfter: 5,
+            enableAfter: 6
+        },
+        8: {
+            id: 8,
+            name: "Blue",
+            shortDescription: "Earth Badge",
+            description: "Beat Blue to win the Earth Badge",
+            type: "battle",
+            image: {type: "human", animationActive: true, name: "blue.png", direction: "down"},
+            firstTimeAwards: [1007],
+            awards: [0],
+            trainerInfo: {
+                sprite: "blue.png",
+                name: 'Blue',
+                type: "unknown",
+                pokemon: [{variety: 111, level: 32}, {variety: 59, level: 32}, {variety: 18, level: 32}],
+                maxLevel: 32
+            },
+            appearAfter: 6,
+            enableAfter: 7
+        },
         80: {
             id: 80,
             name: "Trade #001",
@@ -136,9 +212,9 @@ export const exploreItems: Record<number, IExploreItem> =
                 sprite: "",
                 name: 'Gigantamax Pikachu',
                 type: "electric",
-                pokemon: [{variety: 172, level: 5}, {variety: 25, level: 5, gigantamax: true}, {
+                pokemon: [{variety: 172, level: 2}, {variety: 25, level: 5, gigantamax: true}, {
                     variety: 172,
-                    level: 5
+                    level: 2
                 }],
                 maxLevel: 5
             },

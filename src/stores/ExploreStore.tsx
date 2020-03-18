@@ -100,6 +100,7 @@ export class ExploreStore implements IExploreStore {
         exploreItems.push(this.selected.id);
         if (this.firstTimeCompleted) {
             await FirebaseApi.updateExploreItems(this.root.userStore.user.uid, exploreItems);
+            await this.root.userStore.setUser(this.root.userStore.user.uid);
         }
     }
 }
