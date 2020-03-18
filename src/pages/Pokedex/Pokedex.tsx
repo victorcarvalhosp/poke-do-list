@@ -22,7 +22,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const [selectedPokedexItem, setSelectedPokedexItem] = useState<IPokedexStatus>(new PokedexStatus());
 
     const allPokemonPokedex = [];
-    for (let i = 1; i <= (userStore.premium ? 386 : 251); i++) {
+    for (let i = 1; i <= (userStore.premium ? 649 : 251); i++) {
         allPokemonPokedex.push(i);
     }
 
@@ -44,7 +44,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const importAllData = async () => {
         // await PokeApi.importAllSpecies();
         // await PokeApi.importAllVarieties();
-        await PokeApi.importEncounters();
+        // await PokeApi.importEncounters();
         // PokeApi.importAllMoves();
 
     }
@@ -55,7 +55,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
             <IonContent className="ion-padding">
                 <IonGrid>
                     <IonRow className="pkmn-grid">
-                        <IonButton onClick={importAllData}>Import all data</IonButton>
+                        {/*<IonButton onClick={importAllData}>Import all data</IonButton>*/}
                         {allPokemonPokedex.map(i => (
                                 <IonCol key={i} className="pkmn-grid-item" sizeXl="1" sizeLg="2" sizeMd="2" sizeSm="3"
                                         onClick={e => openModalDetails(i)}

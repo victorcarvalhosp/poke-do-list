@@ -8,7 +8,7 @@ const P = new Pokedex.Pokedex();
 export class PokeApi {
 
     static async importAllSpecies() {
-        const response = await P.resource(['/api/v2/pokemon-species/?limit=135&offset=251']);
+        const response = await P.resource(['/api/v2/pokemon-species/?limit=155&offset=494']);
         let consoleLog = "";
         const species: Record<number, IPokemonSpecie> = {};
         for (let res of response[0].results) {
@@ -51,7 +51,7 @@ export class PokeApi {
 
 
     static async importAllVarieties() {
-        const response = await P.resource(['/api/v2/pokemon/?limit=135&offset=251']);
+        const response = await P.resource(['/api/v2/pokemon/?limit=155&offset=494']);
         let consoleLog = "";
         const species: Record<number, IPokemonSpecie> = {};
         for (let res of response[0].results) {
@@ -159,7 +159,7 @@ export class PokeApi {
         const tier3 = [];
         const tier4 = [];
         const tier5 = [];
-        const response = await P.resource(['/api/v2/pokemon-species/?limit=135&offset=251']);
+        const response = await P.resource(['/api/v2/pokemon-species/?limit=155&offset=494']);
         let consoleLog = "";
         const species: Record<number, IPokemonSpecie> = {};
         for (let res of response[0].results) {

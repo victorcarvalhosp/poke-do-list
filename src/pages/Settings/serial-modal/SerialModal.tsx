@@ -34,7 +34,7 @@ const SerialModal: React.FC<IComponentProps> = observer(({open, onClickClose, hi
     const onSubmit = handleSubmit(async (data: any) => {
         const {serial} = data;
         try {
-            fetch(`http://localhost:5001/poke-do-list/us-central1/getSerialKeyValid/?serial=${serial}`, {
+            fetch(`https://us-central1-poke-do-list.cloudfunctions.net/getSerialKeyValid/?serial=${serial}`, {
                 method: 'GET',
                 headers: {'user': userStore.user.uid}
             }).then((res:any) => res.json()).then(value => {

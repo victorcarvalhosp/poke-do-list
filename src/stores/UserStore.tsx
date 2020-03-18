@@ -79,7 +79,7 @@ export class UserStore implements IUserStore {
         console.log('-----CHECKING PREMIUM LICENSE-----');
         if (this.user && this.user.serialKey) {
             try {
-                fetch(`http://localhost:5001/poke-do-list/us-central1/getSerialKeyValid/?serial=${this.user.serialKey}`, {
+                fetch(`https://us-central1-poke-do-list.cloudfunctions.net/getSerialKeyValid/?serial=${this.user.serialKey}`, {
                     method: 'GET',
                     headers: {'user': this.user.uid}
                 }).then((res: any) => res.json()).then(value => {

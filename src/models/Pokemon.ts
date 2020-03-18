@@ -20,6 +20,7 @@ export interface IPokemon {
   ivDef: number;
   ivSpeed: number;
   moves: number[];
+  shiny?: boolean;
   gigantamax?: boolean;
 }
 
@@ -41,6 +42,7 @@ export class Pokemon implements IPokemon{
   ivDef: number;
   ivSpeed: number;
   moves: number[];
+  shiny?: boolean;
   gigantamax?: boolean;
 
   constructor() {
@@ -59,6 +61,7 @@ export class Pokemon implements IPokemon{
     this.ivDef = 0;
     this.ivSpeed = 0;
     this.moves = [];
+    this.shiny = false;
     this.gigantamax = false;
   }
 
