@@ -1,4 +1,4 @@
-import {action, observable} from 'mobx'
+import {action, computed, observable} from 'mobx'
 import {RootStore} from "./RootStore";
 import {ITask, Task} from "../models/Task";
 import {FirebaseApi} from "../apis/FirebaseApi";
@@ -14,6 +14,7 @@ import {IPokedexStatus} from "../models/PokedexStatus";
 import {pokemonEncounters} from "../data/pokemon-encounters";
 import {IPokemonDetailsToRandomGeneration} from "../models/IExploreItem";
 import {IMove} from "../models/IMove";
+import {OrderPokemonBy} from "../models/conditional-types-definitions";
 
 export interface IPokemonStore {
     modalOpen: boolean;
@@ -23,7 +24,8 @@ export interface IPokemonStore {
     selected: IPokemon;
     showLevelUpAnimation: boolean;
     loadingSave: boolean;
-
+    orderBy: OrderPokemonBy;
+    listOrdered: IPokemon[];
 
     openModal(): void;
 
@@ -37,6 +39,8 @@ export interface IPokemonStore {
 
     caughtPokemon(pokemon: IPokemon): void;
 
+    registerPokedex(varietyId: number, caught: boolean): void;
+
     generateRandomPokemon(task: ITask): IPokemon;
 
     generatePokemonWithRandomAttributes(pokemonVarietyId: number, task: string, details?: IPokemonDetailsToRandomGeneration): IPokemon
@@ -48,6 +52,8 @@ export interface IPokemonStore {
     evolvePokemon(pokemon: IPokemon, evolution: IEvolution): void;
 
     transferPokemon(pokemon: IPokemon): void;
+
+    setOrderBy(orderBy: OrderPokemonBy): void;
 }
 
 export class PokemonStore implements IPokemonStore {
@@ -63,6 +69,31 @@ export class PokemonStore implements IPokemonStore {
     @observable selected: IPokemon = new Pokemon();
     @observable showLevelUpAnimation: boolean = false;
     @observable loadingSave: boolean = true;
+    @observable orderBy: OrderPokemonBy = "numeric";
+
+    @computed
+    get listOrdered(): IPokemon[]{
+        console.log('CALL LIST ORDERED');
+        if(this.orderBy === "alphabetical"){
+            return this.list.sort((a, b)=>{
+                if(a.name < b.name) { return -1; }
+                if(a.name > b.name) { return 1; }
+                return 0;
+            });
+        } else if(this.orderBy === "numeric")   {
+            return this.list.sort((a,b) => a.variety - b.variety );
+        } else if (this.orderBy === "level"){
+            return this.list.sort((a,b) => b.level - a.level );
+        }
+        return this.list;
+    }
+
+    @action
+    setOrderBy(orderBy: OrderPokemonBy){
+        console.log('ORDER BY' + orderBy);
+        this.orderBy = orderBy;
+    }
+
 
     @action
     async loadList() {
@@ -152,7 +183,8 @@ export class PokemonStore implements IPokemonStore {
         await this.levelUpPartner();
     }
 
-    private async registerPokedex(varietyId: number, caught: boolean) {
+    @action
+    public async registerPokedex(varietyId: number, caught: boolean) {
         const pokedexRegister: Record<number, IPokedexStatus> = this.root.userStore.user.pokedex;
         if (!pokedexRegister[pokemonVarieties[varietyId].specie] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId] || !pokedexRegister[pokemonVarieties[varietyId].specie].varieties[varietyId].caught) {
             pokedexRegister[pokemonVarieties[varietyId].specie] = {

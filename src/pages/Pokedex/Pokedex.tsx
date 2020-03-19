@@ -1,4 +1,4 @@
-import {IonCol, IonContent, IonGrid, IonPage, IonRow, IonButton} from '@ionic/react';
+import {IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
 import React, {useEffect, useState} from 'react';
 import './Pokedex.scss';
 import {RouteComponentProps, withRouter} from "react-router";
@@ -8,11 +8,8 @@ import {observer} from "mobx-react-lite";
 import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
 import {pokemonSpecies} from "../../data/pokemon-species";
 import {threeHousesNumberPipe} from "../../utils/utils";
-import {IPokemonSpecie, PokemonSpecie} from "../../models/PokemonSpecie";
 import PokedexDetailsModal from "../../components/pokedex-details-modal/PokedexDetailsModal";
 import {IPokedexStatus, PokedexStatus} from "../../models/PokedexStatus";
-import {IEvolution} from "../../models/Evolution";
-import {PokeApi} from "../../apis/PokeApi";
 
 
 const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
@@ -22,7 +19,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
     const [selectedPokedexItem, setSelectedPokedexItem] = useState<IPokedexStatus>(new PokedexStatus());
 
     const allPokemonPokedex = [];
-    for (let i = 1; i <= (userStore.premium ? 649 : 251); i++) {
+    for (let i = 1; i <= (userStore.premium ? 721 : 251); i++) {
         allPokemonPokedex.push(i);
     }
 

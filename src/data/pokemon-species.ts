@@ -4552,4 +4552,508 @@ export const pokemonSpecies: Record<number, IPokemonSpecie> = {
         description: "This Pokémon existed 300 million years ago. Team  Plasma altered it and attached a cannon to its back.",
         varieties: [649]
     },
+    650: {
+        id: 650,
+        exibitionName: "Chespin",
+        name: "chespin",
+        description: "Such a thick shell of wood covers its head and back   that even a direct hit from a truck wouldn’t faze it.",
+        varieties: [650]
+    },
+    651: {
+        id: 651,
+        exibitionName: "Quilladin",
+        name: "quilladin",
+        description: "They strengthen their lower bodies by   running into one another. They are very   kind and won’t start fights.",
+        varieties: [651]
+    },
+    652: {
+        id: 652,
+        exibitionName: "Chesnaught",
+        name: "chesnaught",
+        description: "When it takes a defensive posture with its fists   guarding its face, it could withstand a bomb blast.",
+        varieties: [652]
+    },
+    653: {
+        id: 653,
+        exibitionName: "Fennekin",
+        name: "fennekin",
+        description: "As it walks, it munches on a twig in place   of a snack. It intimidates opponents   by puffing hot air out of its ears.",
+        varieties: [653]
+    },
+    654: {
+        id: 654,
+        exibitionName: "Braixen",
+        name: "braixen",
+        description: "When the twig is plucked from its tail,   friction sets the twig alight. The flame   is used to send signals to its allies.",
+        varieties: [654]
+    },
+    655: {
+        id: 655,
+        exibitionName: "Delphox",
+        name: "delphox",
+        description: "Using psychic power, it generates a   fiery vortex of 5,400 degrees Fahrenheit,   incinerating foes swept into this whirl of flame.",
+        varieties: [655]
+    },
+    656: {
+        id: 656,
+        exibitionName: "Froakie",
+        name: "froakie",
+        description: "It protects its skin by covering its body in   delicate bubbles. Beneath its happy-go-lucky air,   it keeps a watchful eye on its surroundings.",
+        varieties: [656]
+    },
+    657: {
+        id: 657,
+        exibitionName: "Frogadier",
+        name: "frogadier",
+        description: "Its swiftness is unparalleled.   It can scale a tower of more   than 2,000 feet in a minute’s time.",
+        varieties: [657]
+    },
+    658: {
+        id: 658,
+        exibitionName: "Greninja",
+        name: "greninja",
+        description: "It appears and vanishes with a ninja’s grace.   It toys with its enemies using swift movements, while   slicing them with throwing stars of sharpest water.",
+        varieties: [658, 10116, 10117]
+    },
+    659: {
+        id: 659,
+        exibitionName: "Bunnelby",
+        name: "bunnelby",
+        description: "It has ears like shovels. Digging holes   strengthens its ears so much that they   can sever thick roots effortlessly.",
+        varieties: [659]
+    },
+    660: {
+        id: 660,
+        exibitionName: "Diggersby",
+        name: "diggersby",
+        description: "As powerful as an excavator, its ears   can reduce dense bedrock to rubble.   When it’s finished digging, it lounges lazily.",
+        varieties: [660]
+    },
+    661: {
+        id: 661,
+        exibitionName: "Fletchling",
+        name: "fletchling",
+        description: "While it’s an amiable Pokémon, if you touch it   unexpectedly, it will heat up its body in an   instant, and you’ll be burned.",
+        varieties: [661]
+    },
+    662: {
+        id: 662,
+        exibitionName: "Fletchinder",
+        name: "fletchinder",
+        description: "It scatters embers in the tall grass. Then bug   Pokémon, frightened by the flames, come   flying out, and Fletchinder gobbles them up.",
+        varieties: [662]
+    },
+    663: {
+        id: 663,
+        exibitionName: "Talonflame",
+        name: "talonflame",
+        description: "Its tough wings don’t allow fire to pass through   them. A long time ago, firefighters’ outfits were   made from Talonflame wings.",
+        varieties: [663]
+    },
+    664: {
+        id: 664,
+        exibitionName: "Scatterbug",
+        name: "scatterbug",
+        description: "The powder that covers its body   regulates its temperature, so it   can live in any region or climate.",
+        varieties: [664]
+    },
+    665: {
+        id: 665,
+        exibitionName: "Spewpa",
+        name: "spewpa",
+        description: "The beaks of bird Pokémon can’t begin   to scratch its stalwart body.   To defend itself, it spews powder.",
+        varieties: [665]
+    },
+    666: {
+        id: 666,
+        exibitionName: "Vivillon",
+        name: "vivillon",
+        description: "The patterns on this Pokémon’s wings   depend on the climate and topography   of its habitat. It scatters colorful scales.",
+        varieties: [666]
+    },
+    667: {
+        id: 667,
+        exibitionName: "Litleo",
+        name: "litleo",
+        description: "When they’re young, they live with a pride. Once   they’re able to hunt prey on their own, they’re   kicked out and have to make their own way.",
+        varieties: [667]
+    },
+    668: {
+        id: 668,
+        exibitionName: "Pyroar",
+        name: "pyroar",
+        description: "The males are usually lazy, but when attacked   by a strong foe, a male will protect its friends   with no regard for its own safety.",
+        varieties: [668]
+    },
+    669: {
+        id: 669,
+        exibitionName: "Flabébé",
+        name: "flabebe",
+        description: "It’s not safe without the power of a flower, but   it will keep traveling around until it finds one   with the color and shape it wants.",
+        varieties: [669]
+    },
+    670: {
+        id: 670,
+        exibitionName: "Floette",
+        name: "floette",
+        description: "It raises flowers and uses them as weapons.   The more gorgeous the blossom, the more   power it contains.",
+        varieties: [670, 10061]
+    },
+    671: {
+        id: 671,
+        exibitionName: "Florges",
+        name: "florges",
+        description: "It controls the flowers it grows. The petal   blizzards that Florges triggers are overwhelming   in their beauty and power.",
+        varieties: [671]
+    },
+    672: {
+        id: 672,
+        exibitionName: "Skiddo",
+        name: "skiddo",
+        description: "If it has sunshine and water, it doesn’t   need to eat, because it can generate   energy from the leaves on its back.",
+        varieties: [672]
+    },
+    673: {
+        id: 673,
+        exibitionName: "Gogoat",
+        name: "gogoat",
+        description: "They inhabit mountainous regions.   The leader of the herd is decided by   a battle of clashing horns.",
+        varieties: [673]
+    },
+    674: {
+        id: 674,
+        exibitionName: "Pancham",
+        name: "pancham",
+        description: "It follows Pangoro around like a henchman.   When Pancham makes a big mistake, its leaf   gets taken away.",
+        varieties: [674]
+    },
+    675: {
+        id: 675,
+        exibitionName: "Pangoro",
+        name: "pangoro",
+        description: "This rowdy Pokémon boasts great physical   strength. Many Trainers are also smitten by its   lively character.",
+        varieties: [675]
+    },
+    676: {
+        id: 676,
+        exibitionName: "Furfrou",
+        name: "furfrou",
+        description: "There was an era when aristocrats would   compete to see who could trim their Furfrou’s   fur into the most exquisite style.",
+        varieties: [676]
+    },
+    677: {
+        id: 677,
+        exibitionName: "Espurr",
+        name: "espurr",
+        description: "It has enough psychic energy to blast   everything within 300 feet of itself,   but it has no control over its power.",
+        varieties: [677]
+    },
+    678: {
+        id: 678,
+        exibitionName: "Meowstic",
+        name: "meowstic",
+        description: "The eyeball patterns on the interior of its ears   emit psychic energy. It keeps the patterns tightly   covered because that power is too immense.",
+        varieties: [678, 10025]
+    },
+    679: {
+        id: 679,
+        exibitionName: "Honedge",
+        name: "honedge",
+        description: "If anyone dares to grab its hilt, it wraps   a blue cloth around that person’s arm and   drains that person’s life energy completely.",
+        varieties: [679]
+    },
+    680: {
+        id: 680,
+        exibitionName: "Doublade",
+        name: "doublade",
+        description: "The complex attack patterns of its two swords   are unstoppable, even for an opponent   greatly accomplished at swordplay.",
+        varieties: [680]
+    },
+    681: {
+        id: 681,
+        exibitionName: "Aegislash",
+        name: "aegislash",
+        description: "Apparently, it can detect the innate qualities   of leadership. According to legend, whoever it   recognizes is destined to become king.",
+        varieties: [681, 10026]
+    },
+    682: {
+        id: 682,
+        exibitionName: "Spritzee",
+        name: "spritzee",
+        description: "In the past, rather than using perfume,   royal ladies carried a Spritzee   that would waft a fragrance they liked.",
+        varieties: [682]
+    },
+    683: {
+        id: 683,
+        exibitionName: "Aromatisse",
+        name: "aromatisse",
+        description: "Its scent is so overpowering that, unless a Trainer   happens to really enjoy the smell, he or she will   have a hard time walking alongside it.",
+        varieties: [683]
+    },
+    684: {
+        id: 684,
+        exibitionName: "Swirlix",
+        name: "swirlix",
+        description: "Because it eats nothing but sweets,   its fur is as sticky sweet as cotton candy.",
+        varieties: [684]
+    },
+    685: {
+        id: 685,
+        exibitionName: "Slurpuff",
+        name: "slurpuff",
+        description: "Its sense of smell is 100 million times better than   a human’s, so even the faintest scent tells it about   everything in the area. It’s like it can see with its nose!",
+        varieties: [685]
+    },
+    686: {
+        id: 686,
+        exibitionName: "Inkay",
+        name: "inkay",
+        description: "It draws prey near with its blinking lights and   then wraps them up in its long tentacles and   holds them in place.",
+        varieties: [686]
+    },
+    687: {
+        id: 687,
+        exibitionName: "Malamar",
+        name: "malamar",
+        description: "When it comes to strong hypnosis, there’s an   endless number of people who utilize Malamar   for their nefarious deeds.",
+        varieties: [687]
+    },
+    688: {
+        id: 688,
+        exibitionName: "Binacle",
+        name: "binacle",
+        description: "They stretch and then contract, yanking their   rocks along with them in bold hops. They eat   seaweed that washes up on the shoreline.",
+        varieties: [688]
+    },
+    689: {
+        id: 689,
+        exibitionName: "Barbaracle",
+        name: "barbaracle",
+        description: "Barbaracle’s legs and hands have minds   of their own, and they will move independently.   But they usually follow the head’s orders.",
+        varieties: [689]
+    },
+    690: {
+        id: 690,
+        exibitionName: "Skrelp",
+        name: "skrelp",
+        description: "It vanishes into seaweed and remains perfectly   still to avoid attacks from large Pokémon.   Rotten seaweed is its main food source.",
+        varieties: [690]
+    },
+    691: {
+        id: 691,
+        exibitionName: "Dragalge",
+        name: "dragalge",
+        description: "This vicious Pokémon sprays a poisonous liquid   on opponents that come near. For whatever   reason, it gets along really well with Dhelmise.",
+        varieties: [691]
+    },
+    692: {
+        id: 692,
+        exibitionName: "Clauncher",
+        name: "clauncher",
+        description: "Its claws occasionally fall off, and it keeps a low   profile until they grow back. The meat of its   claws is so delicious!",
+        varieties: [692]
+    },
+    693: {
+        id: 693,
+        exibitionName: "Clawitzer",
+        name: "clawitzer",
+        description: "It compresses the water it has sucked up and   then projects it with enough power to punch a   hole right through a thick sheet of iron.",
+        varieties: [693]
+    },
+    694: {
+        id: 694,
+        exibitionName: "Helioptile",
+        name: "helioptile",
+        description: "The frills on either side of its head have cells   that generate electricity when exposed to sunlight.",
+        varieties: [694]
+    },
+    695: {
+        id: 695,
+        exibitionName: "Heliolisk",
+        name: "heliolisk",
+        description: "It stimulates its muscles with electricity,   boosting the strength in its legs and enabling   it to run 100 yards in five seconds.",
+        varieties: [695]
+    },
+    696: {
+        id: 696,
+        exibitionName: "Tyrunt",
+        name: "tyrunt",
+        description: "Its large jaw has incredible destructive power.   Some theories suggest that its restored form is   different from its form of long ago.",
+        varieties: [696]
+    },
+    697: {
+        id: 697,
+        exibitionName: "Tyrantrum",
+        name: "tyrantrum",
+        description: "Complete restoration is impossible, allowing   room for theories that its entire body was   once covered in a feather-like coat.",
+        varieties: [697]
+    },
+    698: {
+        id: 698,
+        exibitionName: "Amaura",
+        name: "amaura",
+        description: "It lived in cold areas in ancient times. It’s said   that when Amaura whinnies, auroras appear in   the night sky.",
+        varieties: [698]
+    },
+    699: {
+        id: 699,
+        exibitionName: "Aurorus",
+        name: "aurorus",
+        description: "An Aurorus was found frozen solid within a   glacier, just as it appeared long ago, which   became quite a big event in the news.",
+        varieties: [699]
+    },
+    700: {
+        id: 700,
+        exibitionName: "Sylveon",
+        name: "sylveon",
+        description: "Once a fight breaks out, it will unflinchingly   charge at dragon Pokémon that are many times   larger than itself.",
+        varieties: [700]
+    },
+    701: {
+        id: 701,
+        exibitionName: "Hawlucha",
+        name: "hawlucha",
+        description: "It overwhelms opponents with quick moves, but   sometimes it showboats for too long when it’s   using a special move and gets itself into a pinch.",
+        varieties: [701]
+    },
+    702: {
+        id: 702,
+        exibitionName: "Dedenne",
+        name: "dedenne",
+        description: "It sneaks into people’s homes and steals   electricity from their outlets. When your electric   bill seems off, it’s the handiwork of this rascal.",
+        varieties: [702]
+    },
+    703: {
+        id: 703,
+        exibitionName: "Carbink",
+        name: "carbink",
+        description: "Some say that deep beneath the surface of the   world, a pack of Carbink live with their queen in   a kingdom of jewels.",
+        varieties: [703]
+    },
+    704: {
+        id: 704,
+        exibitionName: "Goomy",
+        name: "goomy",
+        description: "It uses its horns to check out its surroundings.   They’re very sensitive, so if you grab them, it   will feel a strong shock and be unable to move.",
+        varieties: [704]
+    },
+    705: {
+        id: 705,
+        exibitionName: "Sliggoo",
+        name: "sliggoo",
+        description: "It crawls along sluggishly. The swirly protrusion   on its back is filled with its brain and   other organs.",
+        varieties: [705]
+    },
+    706: {
+        id: 706,
+        exibitionName: "Goodra",
+        name: "goodra",
+        description: "It’s very friendly toward people. If you grow   close to it, Goodra will hug you with its sticky,   slime-covered body. Don’t get mad.",
+        varieties: [706]
+    },
+    707: {
+        id: 707,
+        exibitionName: "Klefki",
+        name: "klefki",
+        description: "Although it’s unclear why it collects keys, giving   it a key makes Klefki very happy. However, it   apparently only likes master keys.",
+        varieties: [707]
+    },
+    708: {
+        id: 708,
+        exibitionName: "Phantump",
+        name: "phantump",
+        description: "By imitating the voice of a child, it causes   people to get hopelessly lost deep in the forest.   It’s trying to make friends with them.",
+        varieties: [708]
+    },
+    709: {
+        id: 709,
+        exibitionName: "Trevenant",
+        name: "trevenant",
+        description: "It’s feared as a ghost of the forest.   Lumberjacks bring along Fire types, which   Trevenant hates, when they enter the forest.",
+        varieties: [709]
+    },
+    710: {
+        id: 710,
+        exibitionName: "Pumpkaboo",
+        name: "pumpkaboo",
+        description: "It is said to carry wandering spirits   to the place where they belong   so they can move on.",
+        varieties: [710, 10027, 10028, 10029]
+    },
+    711: {
+        id: 711,
+        exibitionName: "Gourgeist",
+        name: "gourgeist",
+        description: "It enwraps its prey in its hairlike arms.   It sings joyfully as it observes the   suffering of its prey.",
+        varieties: [711, 10030, 10031, 10032]
+    },
+    712: {
+        id: 712,
+        exibitionName: "Bergmite",
+        name: "bergmite",
+        description: "Using air of -150 degrees Fahrenheit, they   freeze opponents solid. They live in herds   above the snow line on mountains.",
+        varieties: [712]
+    },
+    713: {
+        id: 713,
+        exibitionName: "Avalugg",
+        name: "avalugg",
+        description: "The way several Bergmite huddle   on its back makes it look like   an aircraft carrier made of ice.",
+        varieties: [713]
+    },
+    714: {
+        id: 714,
+        exibitionName: "Noibat",
+        name: "noibat",
+        description: "Fruits are its favorite foods. This gourmet   carefully picks out just the ripe ones using   its sonar.",
+        varieties: [714]
+    },
+    715: {
+        id: 715,
+        exibitionName: "Noivern",
+        name: "noivern",
+        description: "Although it has a violent disposition, if you give   it a nice ripe fruit that it loves, Noivern will   suddenly become tame.",
+        varieties: [715]
+    },
+    716: {
+        id: 716,
+        exibitionName: "Xerneas",
+        name: "xerneas",
+        description: "When the horns on its head shine   in seven colors, it is said to be   sharing everlasting life.",
+        varieties: [716]
+    },
+    717: {
+        id: 717,
+        exibitionName: "Yveltal",
+        name: "yveltal",
+        description: "When its life comes to an end, it absorbs   the life energy of every living thing   and turns into a cocoon once more.",
+        varieties: [717]
+    },
+    718: {
+        id: 718,
+        exibitionName: "Zygarde",
+        name: "zygarde",
+        description: "This is Zygarde’s form when about half of its   pieces have been assembled. It plays the role of   monitoring the ecosystem.",
+        varieties: [718, 10118, 10119, 10120]
+    },
+    719: {
+        id: 719,
+        exibitionName: "Diancie",
+        name: "diancie",
+        description: "It can instantly create many diamonds   by compressing the carbon in the air   between its hands.",
+        varieties: [719, 10075]
+    },
+    720: {
+        id: 720,
+        exibitionName: "Hoopa",
+        name: "hoopa",
+        description: "It is said to be able to seize anything it desires   with its six rings and six huge arms. With its power   sealed, it is transformed into a much smaller form.",
+        varieties: [720, 10086]
+    },
+    721: {
+        id: 721,
+        exibitionName: "Volcanion",
+        name: "volcanion",
+        description: "It expels its internal steam from the   arms on its back. It has enough   power to blow away a mountain.",
+        varieties: [721]
+    },
 }

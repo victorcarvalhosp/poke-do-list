@@ -37,6 +37,7 @@ import {observer} from "mobx-react-lite";
 import PokemonDetailsModal from "../../components/pokemon-details-modal/PokemonDetailsModal";
 import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
 import PkmnList from "../../components/pkmn-list/PkmnList";
+import FabOrderByPokemon from "../../components/fab-order-by-pokemon/FabOrderByPokemon";
 
 
 const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
@@ -64,8 +65,9 @@ const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
         <IonPage id="pokemon-page">
             <PkmnHeader title="My Pokémon" />
             <IonContent className="ion-padding">
-                <PkmnList list={pokemonStore.list} handleItemClick={openModalDetails}/>
+                <PkmnList list={pokemonStore.listOrdered} handleItemClick={openModalDetails}/>
                 <PokemonDetailsModal open={modalDetailsOpen} onClickClose={onCloseModal} pokemon={selectedPokemon} />
+                <FabOrderByPokemon />
             </IonContent>
         </IonPage>
     );

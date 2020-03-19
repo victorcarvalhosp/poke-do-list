@@ -79,8 +79,8 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     }
 
-    if(!battleStore.battleIsHappening){
-        return <Redirect to={Routes.EXPLORE} />
+    if (!battleStore.battleIsHappening) {
+        return <Redirect to={Routes.EXPLORE}/>
     }
 
     const goBackExplore = () => {
@@ -98,7 +98,8 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                         {battleStore.battleResult && (
                             <>{battleStore.battleResult}<br/>
                                 {(battleStore.battleResult === 'lose' || battleStore.battleResult === 'draw') && (
-                                    <>Try again? <div><IonButton onClick={goBackExplore}>No</IonButton><IonButton onClick={goBackSelect}>Yes</IonButton></div> </>
+                                    <>Try again? <div><IonButton onClick={goBackExplore}>No</IonButton><IonButton
+                                        onClick={goBackSelect}>Yes</IonButton></div> </>
                                 )}
                             </>
                         )}
@@ -117,11 +118,22 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                                 </div>
                                 <div className={`player2-pkmn pos-${i} ${pkmn.gigantamax ? 'gigantamax' : ''}`}
                                      id={`pkmn-p2-${i}`}>
+
+                                    {battleStore.attackMessages.player === 2 && battleStore.attackMessages.pos === i && battleStore.animationRunning && (
+                                        <p className="animation-move-name">{battleStore.attackMessages.moveName}</p>
+                                    )}
                                     <Overworld key={i} spriteUrl={`${pkmn.variety}.png`} direction="down"
                                                animationActive={true}
                                                type="pokemon" className={`pkmn-p2-${i}`}
                                                onClick={() => setSelectedOpponent(i)}/>
-
+                                    {battleStore.attackMessages.player === 2 && battleStore.attackMessages.pos === i && battleStore.animationMoveRunning && (
+                                        <>
+                                            <span
+                                                className="animation-move-damage">-{battleStore.attackMessages.damage}</span>
+                                            <span
+                                                className="animation-move-effectiveness">{battleStore.attackMessages.effectiveness === "super-effective" ? 'Very effective' : (battleStore.attackMessages.effectiveness === "not-effective" ? 'Not effective' : '')}</span>
+                                        </>
+                                    )}
                                 </div>
                             </>)
                         ))}
@@ -130,9 +142,23 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                             <div onClick={e => setActivePos(i)} style={{cursor: 'pointer'}}
                                  className={`player1-pkmn pos-${i} ${battleStore.activePos === i && !blockButton ? 'active-action' : ''}`}
                                  id={`pkmn-p1-${i}`}>
-                                <Overworld spriteUrl={`${pkmn.variety}.png`} direction={battleStore.battleResult === 'win' ? 'down' : 'up'} animationActive={true}
+                                {battleStore.attackMessages.player === 1 && battleStore.attackMessages.pos === i && battleStore.animationMoveRunning && (
+                                    <>
+                                        <span
+                                            className="animation-move-damage">-{battleStore.attackMessages.damage}</span>
+                                        <span
+                                            className="animation-move-effectiveness">{battleStore.attackMessages.effectiveness === "super-effective" ? 'Very effective' : (battleStore.attackMessages.effectiveness === "not-effective" ? 'Not effective' : '')}</span>
+                                    </>
+                                )}
+
+                                <Overworld spriteUrl={`${pkmn.variety}.png`}
+                                           direction={battleStore.battleResult === 'win' ? 'down' : 'up'}
+                                           animationActive={true}
                                            type="pokemon" className={`pkmn-p1-${i} `}
                                            onClick={() => setActivePos(i)}/>
+                                {battleStore.attackMessages.player === 1 && battleStore.attackMessages.pos === i && battleStore.animationRunning && (
+                                    <p className="animation-move-name">{battleStore.attackMessages.moveName}</p>
+                                )}
                             </div>
                             <div className={`player1-hp pos-${i}`}>
                                 <HpBar actualHp={pkmn.actualHp} maxHp={pkmn.hp} id={pkmn.id} showHp={true}/>
@@ -154,7 +180,8 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                     </div>
                     <div className="trainer-player-1">
                         <div style={{margin: '0 auto', width: '350px', display: 'block'}}>
-                            <Overworld spriteUrl={`${userStore.user.character}.png`} direction={battleStore.battleResult === 'win' ? 'down' : 'up'}
+                            <Overworld spriteUrl={`${userStore.user.character}.png`}
+                                       direction={battleStore.battleResult === 'win' ? 'down' : 'up'}
                                        animationActive={true}
                                        type="human"/>
                             {!blockButton && battleStore.battleResult === '' && (
@@ -180,11 +207,14 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
                                     </div>
                                 </>
                             )}
+                            {blockButton && (
+                                <div className="nes-balloon balloon-actions">
+                                    <p>{battleStore.attackMessages.text}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
-                    {blockButton && (
-                        <p>{battleStore.attackMessage}</p>
-                    )}
+
                 </div>
             </IonContent>
         </IonPage>

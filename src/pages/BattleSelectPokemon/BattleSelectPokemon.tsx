@@ -1,49 +1,33 @@
 import {
     IonBackButton,
+    IonButton,
     IonButtons,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
     IonContent,
+    IonFab,
+    IonFabButton,
+    IonFabList,
+    IonGrid,
     IonHeader,
     IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonListHeader,
-    IonMenuButton,
-    IonPage, IonSpinner,
-    IonTitle,
-    IonToolbar,
-    IonGrid,
+    IonPage,
     IonRow,
-    IonCol,
-    IonButton,
-    IonFabButton,
-    IonFab
+    IonTitle,
+    IonToolbar
 } from '@ionic/react';
-import {arrowUp, book, build, colorFill, grid, people, person, search, star} from 'ionicons/icons';
+import {barChartOutline, filter} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
 import './BattleSelectPokemon.scss';
-import {Redirect, RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
-import PageWithSideMenu from "../../components/page-with-side-menu/PageWithSideMenu";
-import {useForm} from "react-hook-form";
-import {auth, firestore} from "../../firebase";
 import {IPokemon, Pokemon} from "../../models/Pokemon";
 import {useRootStore} from "../../stores/StoreContext";
-import Item from "../../components/Item";
 import Overworld from "../../components/overworld/Overworld";
 import {observer} from "mobx-react-lite";
-import PokemonDetailsModal from "../../components/pokemon-details-modal/PokemonDetailsModal";
-import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
 import PkmnList from "../../components/pkmn-list/PkmnList";
 import BattleSelectPokemonDetailsModal from "./pokemon-details-modal/BattleSelectPokemonDetailsModal";
 import PkmnGridItem from "../../components/pkmn-list/pkmn-grid-item/PkmnGridItem";
 import Type from "../../components/type/Type";
-
+import FabOrderByPokemon from "../../components/fab-order-by-pokemon/FabOrderByPokemon";
 
 const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
@@ -101,9 +85,11 @@ const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({histor
                         </IonButtons>
                         <IonTitle>Select Pokémon's</IonTitle>
                         <IonButtons slot="end">
-                            <IonButton
-                                disabled={battleStore.player1SelectedPokemons.filter(pkmn => pkmn.id != '').length < 3}
-                                onClick={goToBattle}>Go To Battle!</IonButton>
+                            {battleStore.player1SelectedPokemons[selectedPos].id && (
+                                    <IonButton onClick={e => openModalDetailsSelected()}>
+                                        <IonIcon slot="icon-only" icon={barChartOutline}/>
+                                    </IonButton>
+                            )}
                         </IonButtons>
                     </IonToolbar>
                 </IonHeader>
@@ -147,14 +133,11 @@ const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({histor
                     <BattleSelectPokemonDetailsModal open={modalDetailsOpen} onClickClose={onCloseModal}
                                                      pokemon={selectedPokemon} position={selectedPos}
                     />
-                    {battleStore.player1SelectedPokemons[selectedPos].id && (
-                        <IonFab vertical="bottom" horizontal="end" slot="fixed">
-                            <IonFabButton onClick={e => openModalDetailsSelected()}>
-                                <IonIcon icon={search}/>
-                            </IonFabButton>
-                        </IonFab>
-                    )}
+                        <FabOrderByPokemon />
+
                 </IonContent>
+                    <IonButton className="choose-button" color="success" size="large" expand="full" disabled={battleStore.player1SelectedPokemons.filter(pkmn => pkmn.id != '').length < 3}
+                               onClick={goToBattle}>Go To Battle!</IonButton>
             </IonPage>
         );
     })

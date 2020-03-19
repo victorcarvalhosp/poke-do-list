@@ -11,6 +11,45 @@ import {typeChart} from "../data/type-chart";
 import {getRandomInt, getRandomNumber} from "../utils/utils";
 import {ITrainerInfo} from "../models/IExploreItem";
 
+type Effectiveness = "average" | "no-damage" | "not-effective" | "super-effective";
+
+interface IMoveMessages {
+    text: string;
+    damage: number;
+    effectiveness: Effectiveness;
+    critical: boolean;
+    moveName: string;
+    pos: number;
+    player: 1 | 2;
+}
+
+class MoveMessages implements IMoveMessages {
+    text: string;
+    @observable
+    damage: number;
+    @observable
+    effectiveness: Effectiveness;
+    critical: boolean;
+    @observable
+    moveName: string;
+    pos: number;
+    player: 1 | 2;
+
+    constructor(text: string, damage: number,
+                effectiveness: Effectiveness,
+                critical: boolean,
+                moveName: string,
+                pos: number,
+                player: 1 | 2) {
+        this.text = text;
+        this.damage = damage;
+        this.effectiveness = effectiveness;
+        this.critical = critical;
+        this.moveName = moveName;
+        this.pos = pos;
+        this.player = player;
+    }
+}
 
 export interface IBattleStore {
     player1SelectedPokemons: IPokemon[];
@@ -23,8 +62,9 @@ export interface IBattleStore {
     opponentsSelectPos: number;
     battleResult: "" | "win" | "lose" | "draw";
     animationRunning: boolean;
+    animationMoveRunning: boolean;
     opponentInfo: ITrainerInfo;
-    attackMessage: string;
+    attackMessages: IMoveMessages;
     myPokemonListWithMaxLevel: IPokemon[];
     battleIsHappening: boolean;
 
@@ -69,7 +109,9 @@ export class BattleStore implements IBattleStore {
     @observable
     animationRunning: boolean = false;
     @observable
-    attackMessage: string = "";
+    animationMoveRunning: boolean = false;
+    @observable
+    attackMessages: IMoveMessages = new MoveMessages("", 0, "average", false, "", 0, 1);
     @observable
     opponentInfo: ITrainerInfo = {sprite: '', name: '', pokemon: []};
 
@@ -80,6 +122,7 @@ export class BattleStore implements IBattleStore {
         }
         for (let pkmn of this.player2SelectedPokemons) {
             pkmn.actualHp = pkmn.hp;
+            this.root.pokemonStore.registerPokedex(pkmn.variety, false);
         }
         this.activePos = 0;
         const initOpponentPosSelected = this.player2SelectedPokemons[1].actualHp > 0 ? 1 : 0;
@@ -129,6 +172,8 @@ export class BattleStore implements IBattleStore {
 
     private async runAction(action: IBattleAction): Promise<"" | "win" | "lose" | "draw"> {
         console.log("MOVE IDDD" + action.move);
+        this.attackMessages.player = action.player;
+        this.attackMessages.pos = action.pos;
         const attackerTeam = action.player === 1 ? this.player1SelectedPokemons : this.player2SelectedPokemons;
         const defenderTeam = action.player === 1 ? this.player2SelectedPokemons : this.player1SelectedPokemons;
 
@@ -155,11 +200,10 @@ export class BattleStore implements IBattleStore {
         }
 
         if (attacker && attacker.actualHp > 0) {
-            this.attackMessage = `${action.player === 1 ? 'My ' : 'Enemy '}` + pokemonVarieties[attacker.variety].name + ' used ' + moves[action.move].name + " on " + pokemonVarieties[defender.variety].name;
-            await this.runAnimation(action.player, action.pos, action.opponentPos);
+            this.attackMessages.text = `${action.player === 1 ? 'My ' : 'Enemy '}` + pokemonVarieties[attacker.variety].name + ' used ' + moves[action.move].name + " on " + pokemonVarieties[defender.variety].name;
             const damage: number = this.calculateDamage(attacker, defender, moves[action.move]);
-            console.log(this.attackMessage);
-            defender.actualHp -= damage;
+            await this.runAnimation(action.player, action.pos, action.opponentPos, moves[action.move], defender, damage);
+            console.log(this.attackMessages.text);
             if (defender.actualHp <= 0) {
                 defender.actualHp = 0;
                 // this.player2SelectedPokemons.splice(action.opponentPos, 1);
@@ -224,10 +268,11 @@ export class BattleStore implements IBattleStore {
         return (!team[pos] || (team[pos] && team[pos].actualHp <= 0));
     }
 
-    private async runAnimation(player: number, pos: number, opponentPos: number) {
+    private async runAnimation(player: number, pos: number, opponentPos: number, move: IMove, defender: IPokemon, damage: number) {
         this.animationRunning = true;
         if (player === 1) {
             await addDelay(1000);
+            this.attackMessages.moveName = move.name;
             // @ts-ignore
             document.getElementById(`pkmn-p1-${pos}`).classList.add("class", `animation-atk-player1`);
             // @ts-ignore
@@ -237,6 +282,11 @@ export class BattleStore implements IBattleStore {
                 document.getElementById(`pkmn-p1-${pos}`).classList.add("class", `animation-atk-gigantamax`);
             }
             await addDelay(1000);
+            this.animationMoveRunning = true;
+            defender.actualHp -= damage;
+            await addDelay(1000);
+            this.animationMoveRunning = false;
+            this.attackMessages.moveName = "";
             // @ts-ignore
             document.getElementById(`pkmn-p1-${pos}`).classList.remove(`animation-atk-player1`);
             // @ts-ignore
@@ -248,6 +298,7 @@ export class BattleStore implements IBattleStore {
             }
         } else {
             await addDelay(1000);
+            this.attackMessages.moveName = move.exhibitionName;
             // @ts-ignore
             document.getElementById(`pkmn-p2-${pos}`).classList.add("class", `animation-atk-player2`);
             // @ts-ignore
@@ -257,6 +308,11 @@ export class BattleStore implements IBattleStore {
                 document.getElementById(`pkmn-p2-${pos}`).classList.add("class", `animation-atk-gigantamax`);
             }
             await addDelay(1000);
+            this.animationMoveRunning = true;
+            defender.actualHp -= damage;
+            await addDelay(1000);
+            this.animationMoveRunning = false;
+            this.attackMessages.moveName = "";
             // @ts-ignore
             document.getElementById(`pkmn-p2-${pos}`).classList.remove(`animation-atk-player2`);
             // @ts-ignore
@@ -280,11 +336,16 @@ export class BattleStore implements IBattleStore {
         const D = defender.def;
         const sameTypeAttackBonus = move.type === pokemonVarieties[attacker.variety].type1 || move.type === pokemonVarieties[attacker.variety].type2 ? 1.5 : 1;
         const typeModifier: number = this.calculateTypeModifier(move.type, pokemonVarieties[defender.variety].type1, pokemonVarieties[defender.variety].type2);
-        const modifier = getRandomNumber(0.85, 1) * sameTypeAttackBonus * typeModifier;
+        const effectiveness: Effectiveness = typeModifier === 0 ? "no-damage" : (typeModifier > 1 ? "super-effective" : (typeModifier < 1 ? "not-effective" : "average"));
+        this.attackMessages.effectiveness = effectiveness;
 
+        const critical: number = getRandomNumber(1, 24) === 1 ? 1.5 : 1;
+        critical > 1 ? this.attackMessages.critical = true : this.attackMessages.critical = false;
+        const modifier = getRandomNumber(0.85, 1) * sameTypeAttackBonus * typeModifier * critical;
 
         const damage = Math.floor(((((2 * level / 5 + 2) * power * A / D) / 50) + 2) * modifier);
         console.log(damage);
+        this.attackMessages.damage = damage;
         return damage;
     }
 
@@ -302,7 +363,7 @@ export class BattleStore implements IBattleStore {
 
     @computed
     get myPokemonListWithMaxLevel() {
-        return this.opponentInfo && this.opponentInfo.maxLevel ? this.root.pokemonStore.list.filter(pkmn => pkmn.level <= (this.opponentInfo.maxLevel || 100)) : this.root.pokemonStore.list;
+        return this.opponentInfo && this.opponentInfo.maxLevel ? this.root.pokemonStore.listOrdered.filter(pkmn => pkmn.level <= (this.opponentInfo.maxLevel || 100)) : this.root.pokemonStore.listOrdered;
     }
 
     @action

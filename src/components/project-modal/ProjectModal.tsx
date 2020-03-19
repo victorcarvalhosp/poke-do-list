@@ -95,6 +95,8 @@ const ProjectModal: React.FC<IComponentProps> = observer(({history}) => {
                                         <option value="platinum" className="theme-platinum">Platinum</option>
                                         <option value="black" className="theme-black">Black</option>
                                         <option value="white" className="theme-white">White</option>
+                                        <option value="x" className="theme-x">X</option>
+                                        <option value="y" className="theme-y">Y</option>
                                     </>)}
                                 </select>
                                 {errors && errors.theme && (<label className="error">Theme is required</label>)}

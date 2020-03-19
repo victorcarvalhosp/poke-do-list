@@ -41,6 +41,10 @@
         //margin-top: -284px;
         zoom: 0.5;
 
+        &.balloon-actions{
+          min-height: 192px;
+        }
+
         button {
           zoom: 2
         }
@@ -127,6 +131,31 @@
         left: auto;
       }
     }
+
+    .animation-move-name{
+      position: absolute;
+      left: -44px;
+      width: 150px;
+      font-size: 0.6rem;
+      text-align: center;
+    }
+
+    .animation-move-damage{
+      position: absolute;
+      left: 74px;
+      top: -40px;
+      color: var(--ion-color-medium);
+      font-size: 0.45rem;
+    }
+
+    .animation-move-effectiveness{
+      position: absolute;
+      left: -64px;
+      width: 200px;
+      text-align: center;
+      top: -32px;
+      font-size: 0.6rem;
+    }
   }
 
   .player1-hp {
@@ -186,7 +215,7 @@
     }
 
     &.pos-2 {
-      right: 0;
+      left: 80%;
     }
 
     &.animation-atk-player2 {
@@ -223,6 +252,33 @@
       }
     }
 
+
+    .animation-move-name{
+      position: absolute;
+      /* left: -44px; */
+      width: 100%;
+      font-size: 0.6rem;
+      text-align: center;
+      top: -8px;
+      margin: auto;
+    }
+
+    .animation-move-damage{
+      position: absolute;
+      left: 74px;
+      bottom: -124px;
+      color: var(--ion-color-medium);
+      font-size: 0.45rem;
+    }
+
+    .animation-move-effectiveness{
+      position: absolute;
+      left: -64px;
+      width: 200px;
+      text-align: center;
+      bottom: -94px;
+      font-size: 0.6rem;
+    }
   }
 
 
@@ -363,6 +419,8 @@
       }
     }
   }
+
+
 
 }
 
