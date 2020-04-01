@@ -5,6 +5,7 @@ import {IProject} from "./Project";
 export interface ITask {
   id?: string;
   title: string;
+  notes?: string;
   complete: boolean;
   project?: IProject;
   pokemon?: IPokemon;
@@ -24,6 +25,7 @@ export interface ITask {
 export class Task implements  ITask{
   id?: string;
   title: string;
+  notes?: string;
   complete: boolean;
   project?: IProject;
   pokemon?: IPokemon;
@@ -42,6 +44,7 @@ export class Task implements  ITask{
   constructor() {
     this.complete = false;
     this.title = '';
+    this.notes = '';
     this.withTime = false;
     this.repeat = false;
     this.repeatFrequency = 'daily';

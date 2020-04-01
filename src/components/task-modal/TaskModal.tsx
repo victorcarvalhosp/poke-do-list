@@ -27,6 +27,7 @@ interface IComponentProps {
 
 type FormData = {
     title: string;
+    notes: string;
     project: string;
     repeat: boolean;
     repeatFrequency: "daily" | "monthly";
@@ -47,6 +48,7 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     const [isTimeDateSelectOpen, setIsTimeDateSelectOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
     const [selectedTimeDate, setSelectedTimeDate] = useState<Date | undefined>(undefined);
+    const [showNotes, setShowNotes] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const repeatTask = watch("repeat");
     const repeatFrequency = watch("repeatFrequency");
@@ -58,7 +60,7 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     }, [])
 
     const handleDateChange = (e: any) => {
-        if(!e){
+        if (!e) {
             setValue("repeat", false);
         }
         setSelectedDate(e);
@@ -84,6 +86,7 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
         reset({
             title: '',
             project: "",
+            notes: "",
             repeat: false,
             repeatFrequency: 'daily',
             mon: true,
@@ -97,9 +100,10 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
         setSelectedDate(taskStore.selected.date ? taskStore.selected.date.toDate() : undefined);
         setSelectedTimeDate(taskStore.selected.date && taskStore.selected.withTime ? taskStore.selected.date.toDate() : undefined);
         if (taskStore.selected.id) {
-            setValue("title", taskStore.selected.title);
+            taskStore.selected.notes ? setShowNotes(true) : setShowNotes(false);
             reset({
                 title: taskStore.selected.title,
+                notes: taskStore.selected.notes,
                 repeat: taskStore.selected.repeat,
                 repeatFrequency: taskStore.selected.repeatFrequency,
                 mon: taskStore.selected.mon,
@@ -111,9 +115,9 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                 sun: taskStore.selected.sun
             });
         }
-            if (taskStore.selected.project) {
-                setValue("project", JSON.stringify(taskStore.selected.project));
-            }
+        if (taskStore.selected.project) {
+            setValue("project", JSON.stringify(taskStore.selected.project));
+        }
     }
 
     const closeModal = () => {
@@ -121,11 +125,10 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
     }
 
     const onSubmit = handleSubmit(async (data: FormData) => {
-        if(data.repeat && data.repeatFrequency === 'daily' && !data.mon && !data.tue && !data.wed && !data.thu && !data.fri && !data.sat && !data.sun){
+        if (data.repeat && data.repeatFrequency === 'daily' && !data.mon && !data.tue && !data.wed && !data.thu && !data.fri && !data.sat && !data.sun) {
             setFormSubmitErrorMessage("You need to select at least one day of the week to repeat")
             return;
         }
-        console.log(data);
         const taskSave: ITask = {
             ...taskStore.selected,
             ...data,
@@ -196,13 +199,30 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                             </div>
                         </div>
 
+                        {showNotes === false && (
+                            <div className="nes-field">
+                                <button type="button" className="btn-fill-clear"
+                                        onClick={() => setShowNotes(true)}>
+                                    + Add notes
+                                </button>
+                            </div>
+                        )}
+                        {showNotes && (
+                            <div className="nes-field">
+                                <label htmlFor="textarea_field">Notes</label>
+                                <textarea id="notes" name="notes"
+                                          ref={register} className="nes-textarea"></textarea>
+                            </div>
+                        )}
+
+
                         <div className="nes-field">
-                            <button form="formTask" type="button" className="btn-fill-clear"
+                            <button type="button" className="btn-fill-clear"
                                     onClick={() => setIsDateSelectOpen(true)}>
                                 {selectedDate ? dayjs(selectedDate).format('MM/DD') : 'Select Date'}
                             </button>
                             {selectedDate && (
-                                <button form="formTask" type="button" className="btn-fill-clear"
+                                <button type="button" className="btn-fill-clear"
                                         onClick={() => setIsTimeDateSelectOpen(true)} style={{marginLeft: '32px'}}>
                                     {selectedTimeDate ? dayjs(selectedTimeDate).format('hh:mm A') : 'Add time'}
                                 </button>
@@ -210,7 +230,8 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
 
                             {selectedDate && (
                                 <label className="nes-checkbox-label" style={{marginTop: '18px'}}>
-                                    <input id="repeat" name="repeat" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                    <input id="repeat" name="repeat" type="checkbox"
+                                           className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                            ref={register}
                                     />
                                     <span>Repeat</span>
@@ -230,43 +251,50 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                                 </div>
                                 {repeatFrequency === "daily" ? (<div>
                                     <label className="nes-checkbox-label">
-                                        <input id="mon" name="mon" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                        <input id="mon" name="mon" type="checkbox"
+                                               className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                                ref={register}
                                         />
                                         <span>mon</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="tue" name="tue" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                        <input id="tue" name="tue" type="checkbox"
+                                               className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                                ref={register}
                                         />
                                         <span>tue</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="wed" name="wed" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                        <input id="wed" name="wed" type="checkbox"
+                                               className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                                ref={register}
                                         />
                                         <span>wed</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="thu" name="thu" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                        <input id="thu" name="thu" type="checkbox"
+                                               className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                                ref={register}
                                         />
                                         <span>thu</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="fri" name="fri" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                        <input id="fri" name="fri" type="checkbox"
+                                               className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                                ref={register}
                                         />
                                         <span>fri</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="sat" name="sat" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                        <input id="sat" name="sat" type="checkbox"
+                                               className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                                ref={register}
                                         />
                                         <span>sat</span>
                                     </label>
                                     <label className="nes-checkbox-label">
-                                        <input id="sun" name="sun" type="checkbox" className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark': ''}`}
+                                        <input id="sun" name="sun" type="checkbox"
+                                               className={`nes-checkbox ${userStore.user.theme === 'dark' ? 'is-dark' : ''}`}
                                                ref={register}
                                         />
                                         <span>sun</span>
