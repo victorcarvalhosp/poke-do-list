@@ -3,10 +3,10 @@ import './BattleAwardItem.scss';
 import {RouteComponentProps, withRouter} from "react-router";
 import {observer} from "mobx-react-lite";
 import {
-    ExploreAwardBadge, ExploreAwardLevel,
+    ExploreAwardBadge,
+    ExploreAwardLevel,
     ExploreAwardPokemon,
-    IExploreAward,
-    IExploreAwardBadge, IExploreAwardLevel,
+    IExploreAwardBadge,
     IExploreAwardPokemon
 } from "../../../models/IExploreAward";
 import {exploreAwards} from "../../../data/explore";
@@ -30,7 +30,7 @@ const BattleAwardItem: React.FC<IComponentProps> = observer(({awardId, history})
                 {exploreAwards[awardId] instanceof ExploreAwardBadge}
                 {exploreAwards[awardId] instanceof ExploreAwardBadge && (
                     <div className="img-area">
-                        <img src={CLOUDINARY_URL + 'images/' + (exploreAwards[awardId] as IExploreAwardBadge).image}/>
+                        <img alt="Award" src={CLOUDINARY_URL + 'images/' + (exploreAwards[awardId] as IExploreAwardBadge).image}/>
                     </div>
                 )}
                 {exploreAwards[awardId] instanceof ExploreAwardPokemon && (

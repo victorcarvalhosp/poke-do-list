@@ -68,13 +68,13 @@ export class UIStore implements IUIStore {
         this.mode = mode;
         document.body.classList.remove('dark-theme', 'red-theme', 'light-theme', 'blue-theme', 'green-theme');
         document.body.classList.add(mode.toString() + '-theme');
-        const result = await FirebaseApi.updateTheme(this.root.userStore.user.uid, mode.toString());
+        await FirebaseApi.updateTheme(this.root.userStore.user.uid, mode.toString());
     }
 
     @action
     async setThemeFromUser() {
         console.log(this.root.userStore.user.uid + 'USER IDDD');
-        if (this.root.userStore.user.uid && this.root.userStore.user.uid != '0') {
+        if (this.root.userStore.user.uid && this.root.userStore.user.uid !== '0') {
             const user = await FirebaseApi.getUser(this.root.userStore.user.uid);
             user.get().then(res => {
                     const themesAvailable: UIMode[] = [UIMode.Dark, UIMode.Light, UIMode.Red, UIMode.Blue, UIMode.Green];

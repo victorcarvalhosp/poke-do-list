@@ -2,32 +2,22 @@ import React, {useEffect, useState} from 'react';
 import './LevelUpModal.scss'
 import {RouteComponentProps, withRouter} from "react-router";
 import {
-    IonAlert,
     IonButton,
     IonButtons,
     IonContent,
     IonHeader,
     IonIcon,
     IonItem,
+    IonLabel,
     IonList,
-    IonModal, IonTitle,
-    IonToolbar,
-    IonLabel
+    IonModal,
+    IonTitle,
+    IonToolbar
 } from '@ionic/react';
-import {
-    addCircleOutline,
-    arrowUp,
-    close,
-    removeCircleOutline,
-    star,
-    starOutline,
-    swapHorizontalOutline
-} from "ionicons/icons";
+import {addCircleOutline, close, removeCircleOutline} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {IPokemon} from "../../../models/Pokemon";
 import {useRootStore} from "../../../stores/StoreContext";
-import {IPokemonVariety} from "../../../models/PokemonVariety";
-import {IPokemonSpecie} from "../../../models/PokemonSpecie";
 import PokemonBasicDetails from "../../pokemon-basic-details/PokemonBasicDetails";
 
 interface IComponentProps extends RouteComponentProps {

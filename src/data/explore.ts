@@ -1,14 +1,12 @@
-import {IMove} from "../models/IMove";
 import {IExploreItem} from "../models/IExploreItem";
 import {
-    ExploreAwardBadge, ExploreAwardLevel,
+    ExploreAwardBadge,
+    ExploreAwardLevel,
     ExploreAwardPokemon,
     IExploreAward,
     IExploreAwardBadge,
     IExploreAwardPokemon
 } from "../models/IExploreAward";
-import {CLOUDINARY_URL_POKEMON_OVERWORLD} from "../utils/consts";
-import {image} from "ionicons/icons";
 
 export const exploreAwards: Record<number, IExploreAward|IExploreAwardBadge|IExploreAwardPokemon> =
     {

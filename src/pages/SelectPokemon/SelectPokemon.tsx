@@ -1,33 +1,10 @@
-import {
-    IonButtons,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonListHeader,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar,
-    IonButton
-} from '@ionic/react';
-import {book, build, colorFill, grid} from 'ionicons/icons';
+import {IonButton, IonContent, IonPage} from '@ionic/react';
 import React, {useState} from 'react';
 import './SelectPokemon.scss';
-import {Redirect, Route, RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
-import PageWithSideMenu from "../../components/page-with-side-menu/PageWithSideMenu";
-import Overworld from "../../components/overworld/Overworld";
 import {pokemonVarieties} from "../../data/pokemon-varieties";
 import Type from "../../components/type/Type";
-import {observable} from "mobx";
 import {observer} from "mobx-react-lite";
 import {pokemonSpecies} from "../../data/pokemon-species";
 import {useRootStore} from "../../stores/StoreContext";
@@ -84,10 +61,10 @@ const SelectPokemonPage: React.FC<RouteComponentProps> = observer(({history}) =>
                         <h2>Select your first Pokémon</h2>
                         <div className="SpritesheetSlider">
                             <div className={`Character Character--walk-${direction}`} onClick={changeDirection}>
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/WalkingDemo-Shadow.png"
+                                <img alt="Selected Pokémon" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/WalkingDemo-Shadow.png"
                                      className="Character_shadow PixelArtImage"/>
                                 {initialPokemons.map((id, i) => (
-                                    <img src={`/assets/overworlds/pokemon/${id}.png`}
+                                    <img alt="shadow" src={`/assets/overworlds/pokemon/${id}.png`}
                                          className={`PixelArtImage Character_sprite-sheet ${(i === activeIndex ? 'active ' : ' ')}`}/>
                                 ))}
                             </div>

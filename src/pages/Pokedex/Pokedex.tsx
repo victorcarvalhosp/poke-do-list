@@ -38,13 +38,12 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
         console.log('LOAD LIST EFFECT');
     }, [])
 
-    const importAllData = async () => {
+    // const importAllData = async () => {
         // await PokeApi.importAllSpecies();
         // await PokeApi.importAllVarieties();
         // await PokeApi.importEncounters();
         // PokeApi.importAllMoves();
-
-    }
+    // }
 
     return (
         <IonPage id="pokedex-page">

@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './SignupFormModal.scss'
-import {Redirect, RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps, withRouter} from "react-router";
 import {
     IonButton,
     IonButtons,
@@ -12,13 +12,11 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import {close, send} from "ionicons/icons";
+import {close} from "ionicons/icons";
 import {useForm} from "react-hook-form";
 import {auth, firestore} from "../../firebase";
 import Overworld from "../../components/overworld/Overworld";
 import {useRootStore} from "../../stores/StoreContext";
-import {useAuthState} from "react-firebase-hooks/auth";
-import {Routes} from "../../router/Router";
 import {observer} from "mobx-react-lite";
 import {IUser} from "../../models/User";
 
@@ -38,7 +36,7 @@ type FormData = {
 
 const SignupFormModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, afterSaveAction}) => {
 
-    const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
+    const {register, handleSubmit, errors, setValue,reset} = useForm<FormData>();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formSubmitErrorMessage, setFormSubmitErrorMessage] = useState("");
 

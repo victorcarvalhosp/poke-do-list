@@ -1,6 +1,6 @@
-import React, {ReactChild, ReactNode} from 'react';
+import React, {ReactNode} from 'react';
 import './DefaultModal.scss'
-import {IonButton, IonButtons, IonHeader, IonIcon, IonModal, IonTitle, IonToolbar, IonContent} from "@ionic/react";
+import {IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonModal, IonTitle, IonToolbar} from "@ionic/react";
 import {observer} from "mobx-react-lite";
 import {close} from "ionicons/icons";
 import {isObject} from "../../utils/utils";
@@ -34,7 +34,7 @@ const DefaultModal: React.FC<IComponentProps> = observer(({open, title, onClickC
         onClickClose();
     }
 
-    const isNamedSlots = (children: any): children is NamedChildrenSlots => isObject(children) && 'content' in children;
+    // const isNamedSlots = (children: any): children is NamedChildrenSlots => isObject(children) && 'content' in children;
 
         const {headerEndArea, content} = children;
 

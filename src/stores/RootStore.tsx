@@ -5,7 +5,6 @@ import {ITaskStore, TaskStore} from "./TaskStore";
 import {IPokemonStore, PokemonStore} from "./PokemonStore";
 import {IProjectStore, ProjectStore} from "./ProjectStore";
 import {BattleStore, IBattleStore} from "./BattleStore";
-import BattlePage from "../pages/Battle/Battle";
 import {ExploreStore, IExploreStore} from "./ExploreStore";
 
 export interface IRootStore {

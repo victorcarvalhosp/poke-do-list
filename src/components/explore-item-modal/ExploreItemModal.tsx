@@ -1,16 +1,7 @@
 import React, {useEffect} from 'react';
 import './ExploreItemModal.scss'
 import {RouteComponentProps, withRouter} from "react-router";
-import {
-    IonButton,
-    IonButtons,
-    IonCardContent,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonModal,
-    IonToolbar
-} from '@ionic/react';
+import {IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonModal, IonToolbar} from '@ionic/react';
 import {close} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../stores/StoreContext";

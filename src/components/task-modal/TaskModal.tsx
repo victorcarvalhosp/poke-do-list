@@ -41,7 +41,7 @@ type FormData = {
 
 const TaskModal: React.FC<IComponentProps> = observer(() => {
 
-    const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
+    const {register, handleSubmit, errors, setValue, watch, reset} = useForm<FormData>();
     const {taskStore, projectStore, userStore} = useRootStore();
     const [isDateSelectOpen, setIsDateSelectOpen] = useState(false);
     const [isTimeDateSelectOpen, setIsTimeDateSelectOpen] = useState(false);
@@ -273,7 +273,7 @@ const TaskModal: React.FC<IComponentProps> = observer(() => {
                                     </label>
                                 </div>) : (<div></div>)}
                             </div>}
-
+                            {formSubmitErrorMessage && (<label className="error">{formSubmitErrorMessage}</label>)}
                             <DatePicker
                                 style={{display: 'none'}}
                                 open={isDateSelectOpen}

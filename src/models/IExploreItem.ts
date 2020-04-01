@@ -1,6 +1,3 @@
-import {IExploreAward} from "./IExploreAward";
-import {IPokemon} from "./Pokemon";
-
 export interface IPokemonDetailsToRandomGeneration{
     variety: number;
     level: number;

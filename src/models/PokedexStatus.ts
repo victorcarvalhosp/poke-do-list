@@ -1,5 +1,3 @@
-import {ITask} from "./Task";
-import firebase from "firebase";
 import {IPokedexVarietyStatus} from "./PokedexVarietyStatus";
 
 export interface IPokedexStatus {

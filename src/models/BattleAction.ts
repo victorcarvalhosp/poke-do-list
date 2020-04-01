@@ -1,6 +1,3 @@
-import {ITask} from "./Task";
-import firebase from "firebase";
-import {IMove} from "./IMove";
 import {observable} from "mobx";
 
 export interface IBattleAction {

@@ -1,17 +1,11 @@
-import {action, computed, observable, reaction} from 'mobx'
+import {action, observable} from 'mobx'
 import {RootStore} from "./RootStore";
 import {ITask, Task} from "../models/Task";
 import {FirebaseApi} from "../apis/FirebaseApi";
-import {IPokemon} from "../models/Pokemon";
-import {getRandomInt, makeid} from "../utils/utils";
-import {IPokemonVariety} from "../models/PokemonVariety";
-import {pokemonVarieties} from "../data/pokemon-varieties";
-import {pokemonSpecies} from "../data/pokemon-species";
 import {ITaskFilters, TaskFilters} from "../models/TaskFilters";
 import dayjs from "dayjs";
 import firebase from "firebase";
-import {repeat} from "ionicons/icons";
-import {addDelay, delay} from "../utils/delay";
+import {addDelay} from "../utils/delay";
 
 
 export interface ITaskStore {
@@ -182,10 +176,10 @@ export class TaskStore implements ITaskStore {
                 if (task.repeatFrequency === 'daily') {
                     for (let i = 0; i <= 6; i++) {
                         const nextDay = dayjs(task.date?.toDate()).add(i + 1, 'day');
-                        if (nextDay.day() === 0 && task.sun || nextDay.day() === 1 && task.mon ||
-                            nextDay.day() === 2 && task.tue || nextDay.day() === 3 && task.wed ||
-                            nextDay.day() === 4 && task.thu || nextDay.day() === 5 && task.fri ||
-                            nextDay.day() === 6 && task.sat) {
+                        if ((nextDay.day() === 0 && task.sun) || (nextDay.day() === 1 && task.mon) ||
+                            (nextDay.day() === 2 && task.tue) || (nextDay.day() === 3 && task.wed) ||
+                            (nextDay.day() === 4 && task.thu) || (nextDay.day() === 5 && task.fri) ||
+                            (nextDay.day() === 6 && task.sat)) {
                             task.date = firebase.firestore.Timestamp.fromDate(nextDay.toDate());
                             break;
                         }

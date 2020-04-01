@@ -1,17 +1,5 @@
-import {
-    IonContent,
-    IonHeader,
-    IonPage,
-    IonToolbar,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonSpinner,
-    IonButton,
-    IonModal,
-    IonIcon
-} from '@ionic/react';
-import React, {useEffect, useState} from 'react';
+import {IonButton, IonContent, IonIcon, IonItem, IonLabel, IonList, IonPage} from '@ionic/react';
+import React, {useState} from 'react';
 import './Settings.scss';
 import {RouteComponentProps, withRouter} from "react-router";
 import {useRootStore} from "../../stores/StoreContext";
@@ -19,9 +7,6 @@ import {observer} from "mobx-react-lite";
 import {UIMode} from "../../stores/UiStore";
 import {CirclePicker} from 'react-color';
 import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
-import {useForm} from "react-hook-form";
-import {auth} from "../../firebase";
-import {Routes} from "../../router/Router";
 import {create} from "ionicons/icons";
 import SerialModal from "./serial-modal/SerialModal";
 
@@ -29,7 +14,6 @@ import SerialModal from "./serial-modal/SerialModal";
 const SettingsPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     const {uiStore, userStore} = useRootStore();
-    const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
 
     const themesAvailable: UIMode[] = [UIMode.Dark, UIMode.Light, UIMode.Red, UIMode.Blue, UIMode.Green];
     const themesColors: string[] = themesAvailable.map(val => val.value);

@@ -1,5 +1,3 @@
-import {IPokemon, Pokemon} from "./Pokemon";
-import firebase from "firebase";
 import {ProjectThemes} from "./conditional-types-definitions";
 
 export interface IProject {

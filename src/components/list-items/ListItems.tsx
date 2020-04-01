@@ -61,19 +61,19 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
 
     function addTaskToTheCorrectGroupByDate(task: ITask, defaultGroups: Map<number, ListSubGroup>) {
         if (task.date) {
-            for (let [key, value] of defaultGroups) {
-                if (key == OVERDUE_SUBGROUP) {
+            for (let [key] of defaultGroups) {
+                if (key === OVERDUE_SUBGROUP) {
                     if (diffDaysFromToday(task.date?.toDate()) <= key) {
                         defaultGroups.get(key)?.list.push(task);
                         break;
                     }
-                } else if (key == LATER_SUBGROUP) {
+                } else if (key === LATER_SUBGROUP) {
                     if (diffDaysFromToday(task.date?.toDate()) >= key) {
                         defaultGroups.get(key)?.list.push(task);
                         break;
                     }
                 } else {
-                    if (diffDaysFromToday(task.date?.toDate()) == key) {
+                    if (diffDaysFromToday(task.date?.toDate()) === key) {
                         defaultGroups.get(key)?.list.push(task);
                         break;
                     }
@@ -85,7 +85,7 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
     }
 
     useEffect(() => {
-        if (groupType != "none") {
+        if (groupType !== "none") {
             groupListByDate();
         }
     }, [list]);
@@ -95,7 +95,7 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
     }
 
     return (<>
-        {groupType != 'none' ?
+        {groupType !== 'none' ?
             (<div className="pkmn-list-items">
                 {loading && (<Loading/>)}
                 {!loading && Array.from(listGroupByDate.values()).map(subGroup => (

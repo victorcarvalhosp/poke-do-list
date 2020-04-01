@@ -1,6 +1,6 @@
 import React from 'react';
 import './TrainerWithPartner.scss';
-import {IonButtons, IonIcon, IonToast} from "@ionic/react";
+import {IonIcon} from "@ionic/react";
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../stores/StoreContext";
 import {arrowUp} from "ionicons/icons";
@@ -8,7 +8,7 @@ import Overworld from "../overworld/Overworld";
 import useDirection from "../../hooks/useDirection";
 
 const TrainerWithPartner: React.FC = observer(() => {
-    const {uiStore, pokemonStore, userStore} = useRootStore();
+    const {pokemonStore, userStore} = useRootStore();
     const [actualDirection, changeDirection] = useDirection("down");
 
     return (

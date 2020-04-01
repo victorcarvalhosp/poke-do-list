@@ -1,10 +1,7 @@
 import React from 'react';
 import './PkmnList.scss';
 import {observer} from "mobx-react-lite";
-import {IonCol, IonGrid, IonIcon, IonRow} from "@ionic/react";
-import Overworld from "../overworld/Overworld";
-import {useRootStore} from "../../stores/StoreContext";
-import {star} from "ionicons/icons";
+import {IonGrid, IonRow} from "@ionic/react";
 import {IPokemon} from "../../models/Pokemon";
 import PkmnGridItem from "./pkmn-grid-item/PkmnGridItem";
 
@@ -14,8 +11,6 @@ interface IProps {
 }
 
 const PkmnList: React.FC<IProps> = observer(({list, handleItemClick}) => {
-
-    const {userStore} = useRootStore();
 
     const onClickAction = (pkmn: IPokemon) => {
         handleItemClick(pkmn);

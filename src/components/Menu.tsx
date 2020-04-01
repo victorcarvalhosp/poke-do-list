@@ -1,33 +1,10 @@
-import {
-    IonButton,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonMenu,
-    IonMenuToggle, IonRouterOutlet,
-    IonTitle,
-    IonToolbar
-} from '@ionic/react';
+import {IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonToolbar} from '@ionic/react';
 import React from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {
-    addOutline,
-    bookmarkOutline,
-    calendar,
-    calendarOutline,
-    calendarSharp,
-    folderOpenOutline, mapOutline, phonePortraitOutline,
-    power, settingsOutline
-} from "ionicons/icons";
 import './Menu.scss'
 import {Routes} from "../router/Router";
 import {useRootStore} from "../stores/StoreContext";
 import ProjectsAccordionMenu from "./projects-accordion-menu/ProjectsAccordionMenu";
-import ProjectModal from "./project-modal/ProjectModal";
-import {auth} from "../firebase";
 import TrainerWithPartner from "./trainer-with-partner/TrainerWithPartner";
 import {observer} from "mobx-react-lite";
 import pokedex_on from "../assets/images/menu_pokedex_on.png";
@@ -46,10 +23,6 @@ interface MenuProps extends RouteComponentProps {
 const Menu: React.FunctionComponent<MenuProps> = observer(({history}) => {
 
     const {userStore} = useRootStore();
-
-    const openModalNewProject = () => {
-        console.log('OPEN IT');
-    }
 
     const logOut = async () => {
         await userStore.logOut();
@@ -76,7 +49,7 @@ const Menu: React.FunctionComponent<MenuProps> = observer(({history}) => {
                             Lv.: {userStore.user.partnerPokemon?.level}
                         </p>
                         {!userStore.premium && (
-                            <a target="_blank" href="https://gum.co/hKOkO">Become premium! </a>
+                            <a target="_blank"  rel="noopener noreferrer"  href="https://gum.co/hKOkO">Become premium! </a>
                         )}
 
                     </div>
@@ -86,37 +59,37 @@ const Menu: React.FunctionComponent<MenuProps> = observer(({history}) => {
                 <IonList>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={Routes.POKEDEX} routerDirection="none">
-                            <img className="icon" slot="start" src={pokedex_on}/>
+                            <img alt="Pokédex" className="icon" slot="start" src={pokedex_on}/>
                             <IonLabel>Pokédex</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={Routes.POKEMON} routerDirection="none">
-                            <img className="icon" slot="start" src={pokemon_on}/>
+                            <img alt="Pokémon" className="icon" slot="start" src={pokemon_on}/>
                             <IonLabel>Pokémon</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.EXPLORE}`} routerDirection="none">
-                            <img className="icon" slot="start" src={explore_on}/>
+                            <img alt="Explore" className="icon" slot="start" src={explore_on}/>
                             <IonLabel>Explore</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.HOME}/today`} routerDirection="none">
-                            <img className="icon" slot="start" src={today_on}/>
+                            <img alt="Today" className="icon" slot="start" src={today_on}/>
                             <IonLabel>Today</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.HOME}/week`} routerDirection="none">
-                            <img className="icon" slot="start" src={week_on}/>
+                            <img alt="7 days" className="icon" slot="start" src={week_on}/>
                             <IonLabel>7 days</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.HOME}/inbox`} routerDirection="none">
-                            <img className="icon" slot="start" src={inbox_on}/>
+                            <img alt="Inbox" className="icon" slot="start" src={inbox_on}/>
                             <IonLabel>Inbox</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
@@ -131,13 +104,13 @@ const Menu: React.FunctionComponent<MenuProps> = observer(({history}) => {
 
                     <IonMenuToggle autoHide={false}>
                         <IonItem routerLink={`${Routes.SETTINGS}`} routerDirection="none">
-                            <img className="icon" slot="start" src={settings_on}/>
+                            <img alt="Settings" className="icon" slot="start" src={settings_on}/>
                             <IonLabel>Settings</IonLabel>
                         </IonItem>
                     </IonMenuToggle>
                     <IonMenuToggle autoHide={false}>
                         <IonItem onClick={logOut} routerDirection="none">
-                            <img className="icon" slot="start" src={logout_on}/>
+                            <img alt="Log out" className="icon" slot="start" src={logout_on}/>
                             <IonLabel>Log out</IonLabel>
                         </IonItem>
                     </IonMenuToggle>

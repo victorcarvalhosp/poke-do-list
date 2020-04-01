@@ -1,4 +1,4 @@
-import {observable, action, computed, reaction} from 'mobx'
+import {action, observable, reaction} from 'mobx'
 import {RootStore} from "./RootStore";
 import {IUser, User} from "../models/User";
 import {FirebaseApi} from "../apis/FirebaseApi";

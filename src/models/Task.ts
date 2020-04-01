@@ -1,4 +1,4 @@
-import {IPokemon, Pokemon} from "./Pokemon";
+import {IPokemon} from "./Pokemon";
 import firebase from "firebase";
 import {IProject} from "./Project";
 

@@ -4,8 +4,7 @@ import {observer} from "mobx-react-lite";
 import {useForm} from "react-hook-form";
 import DefaultModal from "../../../components/default-modal/DefaultModal";
 import {useRootStore} from "../../../stores/StoreContext";
-import PokemonBasicDetails from "../../../components/pokemon-basic-details/PokemonBasicDetails";
-import { IonNote } from '@ionic/react';
+import {IonNote} from '@ionic/react';
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -19,7 +18,7 @@ type FormData = {
 const SerialModal: React.FC<IComponentProps> = observer(({open, onClickClose, history}) => {
 
     const {userStore} = useRootStore();
-    const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
+    const {register, handleSubmit, errors, reset} = useForm<FormData>();
     const [message, setMessage] = useState<{ type: 'error' | 'success', text: string }>({type: "success", text: ''})
 
     const ionModalDidPresent = () => {

@@ -1,14 +1,13 @@
-import {IonContent, IonFab, IonFabButton, IonIcon, IonPage, useIonViewDidEnter, IonFabList, IonButton} from '@ionic/react';
-import {add, pencil, pencilOutline} from 'ionicons/icons';
-import React, {useEffect, useState} from 'react';
+import {IonButton, IonContent, IonFab, IonFabButton, IonIcon, IonPage} from '@ionic/react';
+import {add, pencilOutline} from 'ionicons/icons';
+import React, {useEffect} from 'react';
 import './ProjectDetails.scss'
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../stores/StoreContext";
 import PkmnHeader from '../../components/pkmn-header/PkmnHeader';
-import TaskModal from "../../components/task-modal/TaskModal";
 import {RouteComponentProps} from "react-router";
 import ListItems from "../../components/list-items/ListItems";
-import {ITask, Task} from "../../models/Task";
+import {Task} from "../../models/Task";
 
 interface RouteInfo {
     id: string;
@@ -20,7 +19,7 @@ interface ComponentProps extends RouteComponentProps<RouteInfo> {
 
 const ProjectDetailsPage: React.FC<ComponentProps> = observer(({match}) => {
 
-    const {projectStore, userStore, taskStore} = useRootStore();
+    const {projectStore, taskStore} = useRootStore();
     const projectId = match.params.id;
 
     useEffect(() => {

@@ -21,7 +21,7 @@ type FormData = {
 
 const ProjectModal: React.FC<IComponentProps> = observer(({history}) => {
 
-    const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
+    const {register, handleSubmit, errors, setValue, reset} = useForm<FormData>();
     const {projectStore, userStore} = useRootStore();
     const [showAlert, setShowAlert] = useState(false);
 

@@ -1,6 +1,5 @@
 import {action, observable, reaction} from 'mobx'
 import {RootStore} from "./RootStore";
-import {ITask, Task} from "../models/Task";
 import {IProject, Project} from "../models/Project";
 import {FirebaseApi} from "../apis/FirebaseApi";
 

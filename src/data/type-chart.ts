@@ -1,7 +1,3 @@
-import {IMove} from "../models/IMove";
-import {ITypeDamage} from "../models/TypeDamage";
-
-
 export const typeChart: Record<"normal" | "fighting" | "flying" | "poison" | "ground" | "rock" | "bug" | "ghost" | "steel" | "fire" | "water" | "grass" | "electric" | "psychic" | "ice" | "dragon" | "dark" | "fairy" | "unknown" | "shadow", Record<"normal" | "fighting" | "flying" | "poison" | "ground" | "rock" | "bug" | "ghost" | "steel" | "fire" | "water" | "grass" | "electric" | "psychic" | "ice" | "dragon" | "dark" | "fairy" | "unknown" | "shadow", number>> =
     {
         // "normal", "fire", "water", "electric", "grass", "ice", "fight", "poison", "ground", "fly", "psychic", "bug", "rock"

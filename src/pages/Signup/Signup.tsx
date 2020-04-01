@@ -1,4 +1,4 @@
-import {IonContent, IonHeader, IonPage, IonToolbar, IonButtons, IonBackButton} from '@ionic/react';
+import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonToolbar} from '@ionic/react';
 import React, {useEffect, useState} from 'react';
 import './Signup.scss';
 import {RouteComponentProps, withRouter} from "react-router";
@@ -9,7 +9,6 @@ import marill from "../../assets/images/marill.png";
 
 
 import TextContainer from "../../components/text-container/TextContainer";
-import useAudio from "../../hooks/useAudio";
 import SignupFormModal from "./SignupFormModal";
 import {useRootStore} from "../../stores/StoreContext";
 import {observer} from "mobx-react-lite";
@@ -47,9 +46,9 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
         if (step === FINAL_STEP) {
             // await stopAudio();
             history.push(Routes.SIGNUP_SELECT_POKEMON);
-        } else if (step == OPEN_SIGNUP_STEP) {
+        } else if (step === OPEN_SIGNUP_STEP) {
             setOpenModal(true);
-        } else if (step == POKEMON_APPEAR_STEP) {
+        } else if (step === POKEMON_APPEAR_STEP) {
             setAppearPokemon(true);
             let nextStep = step + 1;
             await setStep(nextStep);
@@ -163,11 +162,11 @@ const SignupPage: React.FC<RouteComponentProps> = observer(({history}) => {
             </IonHeader>
             <IonContent className="ion-padding">
                 <div className="centered">
-                    <img className="responsive-sprite professor" src={professorOak}/>
-                    {!appearPokemon && <img className="responsive-sprite pokeball" src={pokeball}/>
+                    <img alt="Professor" className="responsive-sprite professor" src={professorOak}/>
+                    {!appearPokemon && <img alt="Pokéball" className="responsive-sprite pokeball" src={pokeball}/>
                     }
 
-                    {appearPokemon && <img className="responsive-sprite marill" src={marill}/>
+                    {appearPokemon && <img alt="Marill" className="responsive-sprite marill" src={marill}/>
                     }
                 </div>
                 {getStep(step)}

@@ -10,28 +10,17 @@ import {
     IonIcon,
     IonItem,
     IonList,
-    IonModal, IonTitle,
+    IonModal,
     IonToolbar
 } from '@ionic/react';
-import {
-    addCircleOutline,
-    arrowUp,
-    close,
-    removeCircleOutline,
-    star,
-    starOutline,
-    swapHorizontalOutline
-} from "ionicons/icons";
+import {arrowUp, close, star, starOutline, swapHorizontalOutline} from "ionicons/icons";
 import {observer} from "mobx-react-lite";
 import {IPokemon} from "../../models/Pokemon";
 import Overworld from "../../components/overworld/Overworld";
 import {pokemonVarieties} from "../../data/pokemon-varieties";
 import {IPokemonVariety} from "../../models/PokemonVariety";
-import {IPokemonSpecie} from "../../models/PokemonSpecie";
-import {pokemonSpecies} from "../../data/pokemon-species";
 import {IEvolution} from "../../models/Evolution";
 import {useRootStore} from "../../stores/StoreContext";
-import useDirection from "../../hooks/useDirection";
 import PokemonBasicDetailsStats from "../pokemon-basic-details-stats/PokemonBasicDetailsStats";
 import PokemonBasicDetails from "../pokemon-basic-details/PokemonBasicDetails";
 import LevelUpModal from "./level-up-modal/LevelUpModal";
@@ -57,14 +46,11 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
     // console.log(watch('email')) // watch input value by passing the name of it
     const {pokemonStore, userStore} = useRootStore();
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
-    const [pokemonSpecie, setPokemonSpecie] = useState<IPokemonSpecie>(pokemonSpecies[pokemonVariety.specie]);
     const [showTransferAlert, setShowTransferAlert] = useState(false);
     const [showLevelUpModal, setShowLevelUpModal] = useState(false);
-    const [totalLevelsUp, setTotalLevelsUp] = useState(userStore.user.powerUps === 0 ? 0 : 1);
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);
-        setPokemonSpecie(pokemonSpecies[pokemonVariety.specie]);
     }, [pokemon])
 
     const closeModal = () => {
@@ -78,7 +64,6 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
     const evolvePokemon = async (evolution: IEvolution) => {
         await pokemonStore.evolvePokemon(pokemon, evolution);
         setPokemonVariety(pokemonVarieties[evolution.to]);
-        setPokemonSpecie(pokemonSpecies[pokemonVariety.specie]);
     }
 
     const handleTransfer = async () => {
@@ -88,18 +73,6 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
 
     const openModalLevelUp = () => {
         setShowLevelUpModal(true);
-    }
-
-    const addLevelUp = () => {
-        if (userStore.user.powerUps > totalLevelsUp) {
-            setTotalLevelsUp(totalLevelsUp + 1);
-        }
-    }
-
-    const removeLevelUp = () => {
-        if (totalLevelsUp > 1) {
-            setTotalLevelsUp(totalLevelsUp - 1);
-        }
     }
 
     return (

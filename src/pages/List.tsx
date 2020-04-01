@@ -3,7 +3,7 @@ import {add} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
 import './List.css'
 import {useRootStore} from "../stores/StoreContext";
-import {ITask, Task} from "../models/Task";
+import {Task} from "../models/Task";
 import {observer} from "mobx-react-lite";
 import PkmnHeader from "../components/pkmn-header/PkmnHeader";
 import ListItems from "../components/list-items/ListItems";
@@ -18,7 +18,7 @@ interface ComponentProps extends RouteComponentProps<RouteInfo> {
 
 const ListPage: React.FC<ComponentProps> = observer(({match}) => {
 
-    const {taskStore, userStore} = useRootStore();
+    const {taskStore} = useRootStore();
     const filter = match.params.filter;
     const [title, setTitle] = useState("");
 
@@ -39,13 +39,6 @@ const ListPage: React.FC<ComponentProps> = observer(({match}) => {
     const openModalNewTask = () => {
         taskStore.openModal(new Task());
     }
-
-    const openModal = (task: ITask) => {
-        //select here;
-        taskStore.openModal(task);
-    }
-
-    const [selectedDate, handleDateChange] = useState(new Date());
 
     return (
         <IonPage>

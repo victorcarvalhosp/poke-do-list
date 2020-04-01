@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './PokemonBasicDetailsStats.scss';
 import {observer} from "mobx-react-lite";
 import {IPokemon} from "../../models/Pokemon";
-import {IPokemonVariety} from "../../models/PokemonVariety";
-import {pokemonVarieties} from "../../data/pokemon-varieties";
-import useDirection from "../../hooks/useDirection";
-import PokemonBasicDetails from "../pokemon-basic-details/PokemonBasicDetails";
-import {IonGrid, IonRow, IonCol} from '@ionic/react';
+import {IonCol, IonGrid, IonRow} from '@ionic/react';
 import {moves} from "../../data/moves";
 import Type from "../type/Type";
 
@@ -16,13 +12,6 @@ interface IProps {
 }
 
 const PokemonBasicDetailsStats: React.FC<IProps> = observer(({pokemon, wild}) => {
-
-    const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
-    const [actualDirection, changeDirection] = useDirection("down");
-
-    useEffect(() => {
-        setPokemonVariety(pokemonVarieties[pokemon.variety]);
-    }, [pokemon])
 
     return (
         <>

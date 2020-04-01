@@ -19,7 +19,7 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
     const [blockButton, setBlockButton] = useState(false);
 
     useEffect(() => {
-        if (battleStore.battleResult != "") {
+        if (battleStore.battleResult !== "") {
             if (battleStore.battleResult === "win") {
                 setTimeout(() => {
                     history.push(Routes.BATTLE_AWARDS);
@@ -67,7 +67,7 @@ const BattlePage: React.FC<RouteComponentProps> = observer(({history}) => {
         battleStore.player1TurnAction[battleStore.activePos].move = move.id;
         let turnReady = true;
         for (let i = battleStore.activePos; i <= 2; i++) {
-            if (battleStore.player1SelectedPokemons[i].actualHp > 0 && i != battleStore.activePos) {
+            if (battleStore.player1SelectedPokemons[i].actualHp > 0 && i !== battleStore.activePos) {
                 setActivePos(i);
                 turnReady = false;
                 break;

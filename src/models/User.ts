@@ -1,6 +1,5 @@
 import {IPokemon} from "./Pokemon";
 import {IPokedexStatus} from "./PokedexStatus";
-import {IPokemonVariety} from "./PokemonVariety";
 
 export interface IUser {
   uid: string;

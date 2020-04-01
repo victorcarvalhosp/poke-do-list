@@ -3,9 +3,6 @@ import {
     IonButton,
     IonButtons,
     IonContent,
-    IonFab,
-    IonFabButton,
-    IonFabList,
     IonGrid,
     IonHeader,
     IonIcon,
@@ -14,7 +11,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/react';
-import {barChartOutline, filter} from 'ionicons/icons';
+import {barChartOutline} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
 import './BattleSelectPokemon.scss';
 import {RouteComponentProps, withRouter} from "react-router";
@@ -136,7 +133,7 @@ const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({histor
                         <FabOrderByPokemon />
 
                 </IonContent>
-                    <IonButton className="choose-button" color="success" size="large" expand="full" disabled={battleStore.player1SelectedPokemons.filter(pkmn => pkmn.id != '').length < 3}
+                    <IonButton className="choose-button" color="success" size="large" expand="full" disabled={battleStore.player1SelectedPokemons.filter(pkmn => pkmn.id !== '').length < 3}
                                onClick={goToBattle}>Go To Battle!</IonButton>
             </IonPage>
         );

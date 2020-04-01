@@ -11,8 +11,8 @@ const Type: React.FC<IProps> = observer(({type1, type2}) => {
 
     return (
         <div className="pkmn-types">
-            <img src={`assets/images/types/${type1}.png`}/>
-            {type2 && <img src={`assets/images/types/${type2}.png`}/>}
+            <img alt={type1} src={`assets/images/types/${type1}.png`}/>
+            {type2 && <img alt={type2} src={`assets/images/types/${type2}.png`}/>}
         </div>
     )
 });

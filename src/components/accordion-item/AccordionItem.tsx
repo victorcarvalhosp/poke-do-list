@@ -1,6 +1,5 @@
 import React, {useRef, useState} from 'react';
 import './AccordionItem.scss';
-import {IProject} from "../../models/Project";
 import {IonButton, IonIcon, IonItem, IonLabel, IonList, IonNote} from '@ionic/react';
 import Chevron from '../chevron/Chevron';
 import {addOutline} from "ionicons/icons";

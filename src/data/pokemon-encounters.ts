@@ -1,4 +1,3 @@
-import {IPokemonSpecie} from "../models/PokemonSpecie";
 import {IPokemonEncounter} from "../models/PokemonEncounter";
 
 export const pokemonEncounters: Record<string, IPokemonEncounter> = {

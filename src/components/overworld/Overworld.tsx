@@ -1,9 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Overworld.scss'
-import useAudio from "../../hooks/useAudio";
-import Typing from 'react-typing-animation';
-import {IonButtons, IonIcon} from "@ionic/react";
-import {arrowUp} from "ionicons/icons";
 import {CLOUDINARY_URL_HUMAN_OVERWORLD, CLOUDINARY_URL_POKEMON_OVERWORLD} from "../../utils/consts";
 
 interface IComponentProps {
@@ -25,11 +21,11 @@ const Overworld: React.FC<IComponentProps> = ({spriteUrl, direction,animationAct
     const path = type && type === "human" ? `${CLOUDINARY_URL_HUMAN_OVERWORLD}` : type && type === "pokemon" ? `${CLOUDINARY_URL_POKEMON_OVERWORLD}` : type && type === "item" ? '../../assets/overworlds/items/': '';
     return (
             <div className={`Character Character--walk-${direction ? direction: 'down'} ` + (className ? className : '')} onClick={handleClick}>
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/WalkingDemo-Shadow.png"
+                <img alt="pokemon-sprite" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/WalkingDemo-Shadow.png"
                      className="Character_shadow PixelArtImage"/>
-                <img src={`${path}${spriteUrl}`}
+                <img alt="pokemon-shadow" src={`${path}${spriteUrl}`}
                      className={(animationActive ? 'active' : '') + " PixelArtImage Character_sprite-sheet "} />
-                {wild && <img src={`../../assets/images/grass.png`}
+                {wild && <img alt="Grass" src={`../../assets/images/grass.png`}
                               className="PixelArtImage Grass_sprite-sheet grass-wild-pokemon" />}
             </div>
     );

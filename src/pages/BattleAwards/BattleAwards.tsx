@@ -1,11 +1,11 @@
 import {
-    IonBackButton,
     IonButton,
     IonButtons,
     IonContent,
     IonHeader,
     IonIcon,
-    IonPage, IonRow,
+    IonPage,
+    IonRow,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
@@ -14,18 +14,14 @@ import './BattleAwards.scss';
 import {Redirect, RouteComponentProps, withRouter} from "react-router";
 import {useRootStore} from "../../stores/StoreContext";
 import {observer} from "mobx-react-lite";
-import PkmnHeader from "../../components/pkmn-header/PkmnHeader";
 import {Routes} from "../../router/Router";
-import {CLOUDINARY_URL} from "../../utils/consts";
-import {exploreAwards} from "../../data/explore";
-import {addOutline, arrowBackSharp, backspace} from "ionicons/icons";
+import {arrowBackSharp} from "ionicons/icons";
 import BattleAwardItem from "./award-item/BattleAwardItem";
 
 
 const BattleAwardsPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     const {exploreStore, battleStore} = useRootStore();
-    const [blockButton, setBlockButton] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const collectAwards = async () => {
@@ -39,7 +35,7 @@ const BattleAwardsPage: React.FC<RouteComponentProps> = observer(({history}) => 
         history.push(Routes.EXPLORE);
     }
 
-    if(battleStore.battleResult != "win"){
+    if(battleStore.battleResult !==  "win"){
         return <Redirect to={Routes.EXPLORE} />
     }
     return (

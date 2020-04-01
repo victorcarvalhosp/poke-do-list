@@ -1,7 +1,3 @@
-import {IPokemon, Pokemon} from "./Pokemon";
-import firebase from "firebase";
-import {IProject} from "./Project";
-
 export interface ITaskFilters {
   title?: string;
   complete?: boolean;
@@ -14,8 +10,5 @@ export class TaskFilters implements  ITaskFilters{
   complete?: boolean;
   projectId?: string;
   periodFilter?: "today" | "week" | "month";
-
-  constructor() {
-  }
 
 }

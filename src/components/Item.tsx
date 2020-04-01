@@ -1,4 +1,4 @@
-import {IonItem, IonLabel, IonIcon} from '@ionic/react';
+import {IonIcon, IonItem, IonLabel} from '@ionic/react';
 import React, {useState} from 'react';
 import '../pages/List.css'
 import {ITask} from "../models/Task";
@@ -6,7 +6,6 @@ import './Item.scss';
 import Overworld from "./overworld/Overworld";
 import {useRootStore} from "../stores/StoreContext";
 import dayjs from "dayjs";
-import {IPokemon, Pokemon} from "../models/Pokemon";
 import {repeatOutline} from "ionicons/icons";
 
 interface IProps {

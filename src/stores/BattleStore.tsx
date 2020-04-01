@@ -1,7 +1,6 @@
 import {action, computed, observable} from 'mobx'
 import {RootStore} from "./RootStore";
 import {IPokemon, Pokemon} from "../models/Pokemon";
-import {Task} from "../models/Task";
 import {BattleAction, IBattleAction} from "../models/BattleAction";
 import {IMove} from "../models/IMove";
 import {pokemonVarieties} from "../data/pokemon-varieties";
@@ -160,7 +159,7 @@ export class BattleStore implements IBattleStore {
             console.log(allActionsOrderedBySpeed);
             for (let action of allActionsOrderedBySpeed) {
                 const result = await this.runAction(action);
-                if (result != "") {
+                if (result !== "") {
                     break;
                 }
             }
@@ -373,6 +372,6 @@ export class BattleStore implements IBattleStore {
 
     @computed
     get battleIsHappening() {
-        return (this.player1SelectedPokemons[0].id != '' && this.player1SelectedPokemons[1].id != '' && this.player1SelectedPokemons[2].id != '');
+        return (this.player1SelectedPokemons[0].id !== '' && this.player1SelectedPokemons[1].id !== '' && this.player1SelectedPokemons[2].id !== '');
     }
 }

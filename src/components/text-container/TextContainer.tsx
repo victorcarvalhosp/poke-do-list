@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './TextContainer.scss'
-import useAudio from "../../hooks/useAudio";
 import Typing from 'react-typing-animation';
 
 interface IComponentProps {

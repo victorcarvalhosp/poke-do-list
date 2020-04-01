@@ -1,6 +1,6 @@
 import {action, computed, observable} from 'mobx'
 import {RootStore} from "./RootStore";
-import {ITask, Task} from "../models/Task";
+import {ITask} from "../models/Task";
 import {FirebaseApi} from "../apis/FirebaseApi";
 import {IPokemon, Pokemon} from "../models/Pokemon";
 import {getRandomInt, makeid} from "../utils/utils";
@@ -9,11 +9,9 @@ import {pokemonVarieties} from "../data/pokemon-varieties";
 import {pokemonSpecies} from "../data/pokemon-species";
 import firebase from "firebase";
 import {IEvolution} from "../models/Evolution";
-import {Project} from "../models/Project";
 import {IPokedexStatus} from "../models/PokedexStatus";
 import {pokemonEncounters} from "../data/pokemon-encounters";
 import {IPokemonDetailsToRandomGeneration} from "../models/IExploreItem";
-import {IMove} from "../models/IMove";
 import {OrderPokemonBy} from "../models/conditional-types-definitions";
 
 export interface IPokemonStore {
@@ -340,7 +338,7 @@ export class PokemonStore implements IPokemonStore {
         let tiers = ["tier1", "tier2", "tier3", "tier4", "tier5"];
         const tiersweight = [5, 3.4, 1, 0.5, 0.1]; //weight of each element above
         const totalweight = eval(tiersweight.join("+")) //get total weight (in this case, 10)
-        const weighedTiers = new Array() //new array to hold "weighted" tiers
+        const weighedTiers = [];//new array to hold "weighted" tiers
         let currentTier = 0
 
         while (currentTier < tiers.length) { //step through each fruit[] element

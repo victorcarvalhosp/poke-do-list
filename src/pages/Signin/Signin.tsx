@@ -1,31 +1,10 @@
-import {
-    IonBackButton,
-    IonButtons,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonListHeader,
-    IonMenuButton,
-    IonPage, IonSpinner,
-    IonTitle,
-    IonToolbar
-} from '@ionic/react';
-import {book, build, colorFill, grid} from 'ionicons/icons';
+import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonSpinner, IonToolbar, IonButton} from '@ionic/react';
 import React, {useState} from 'react';
 import './Signin.scss';
-import {Redirect, RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
-import PageWithSideMenu from "../../components/page-with-side-menu/PageWithSideMenu";
 import {useForm} from "react-hook-form";
-import {auth, firestore} from "../../firebase";
+import {auth} from "../../firebase";
 import {useAuthState} from "react-firebase-hooks/auth";
 
 
@@ -35,10 +14,10 @@ type FormData = {
 }
 const SigninPage: React.FC<RouteComponentProps> = ({history}) => {
 
-    const {register, handleSubmit, errors, getValues, setValue, watch, reset, control} = useForm<FormData>();
+    const {register, handleSubmit, errors} = useForm<FormData>();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formSubmitErrorMessage, setFormSubmitErrorMessage] = useState("");
-    const [user, initialising, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
 
     const onSubmit = handleSubmit(async (data: any) => {
@@ -111,8 +90,8 @@ const SigninPage: React.FC<RouteComponentProps> = ({history}) => {
                         </form>
                     </div>
                     <div className="extra-links">
-                        <a onClick={goToSignup}>Forgot password?</a>
-                        <a onClick={goToSignup} >Create Account</a>
+                        <IonButton fill="clear" onClick={goToSignup}>Forgot password?</IonButton>
+                        <IonButton fill="clear" onClick={goToSignup} >Create Account</IonButton>
                     </div>
                 </div>
             </IonContent>

@@ -1,7 +1,5 @@
-import {ITask} from "./Task";
 import firebase from "firebase";
 import {observable} from "mobx";
-import {makeid} from "../utils/utils";
 
 export interface IPokemon {
   id: string;

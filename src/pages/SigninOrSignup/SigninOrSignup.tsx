@@ -1,7 +1,7 @@
 import {IonContent, IonHeader, IonPage} from '@ionic/react';
 import React from 'react';
 import './SigninOrSignup.scss';
-import {Redirect, RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps, withRouter} from "react-router";
 import {Routes} from "../../router/Router";
 import NesDialog from "../../components/nes-dialog/NesDialog";
 import {auth} from "../../firebase";
@@ -9,7 +9,7 @@ import {useAuthState} from "react-firebase-hooks/auth";
 
 const SigninOrSignupPage: React.FC<RouteComponentProps> = ({history}) => {
 
-    const [user, initialising, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     const goToSignin = () => {
         history.push(Routes.SIGNIN)
