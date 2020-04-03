@@ -1,4 +1,4 @@
-import {IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
+import {IonCol, IonContent, IonGrid, IonPage, IonRow, useIonViewDidEnter, useIonViewWillEnter} from '@ionic/react';
 import React, {useEffect, useState} from 'react';
 import './Pokedex.scss';
 import {RouteComponentProps, withRouter} from "react-router";
@@ -10,18 +10,27 @@ import {pokemonSpecies} from "../../data/pokemon-species";
 import {threeHousesNumberPipe} from "../../utils/utils";
 import PokedexDetailsModal from "../../components/pokedex-details-modal/PokedexDetailsModal";
 import {IPokedexStatus, PokedexStatus} from "../../models/PokedexStatus";
+import Loading from "../../components/loading/Loading";
 
 
 const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
 
     const {userStore} = useRootStore();
+    const [loading, setLoading] = useState<boolean>(true);
     const [modalDetailsOpen, setModalDetailsOpen] = useState<boolean>(false);
     const [selectedPokedexItem, setSelectedPokedexItem] = useState<IPokedexStatus>(new PokedexStatus());
+    const [allPokemonPokedex, setallPokemonPokedex] = useState<number[]>([]);
 
-    const allPokemonPokedex = [];
-    for (let i = 1; i <= (userStore.premium ? 721 : 251); i++) {
-        allPokemonPokedex.push(i);
-    }
+    useEffect(() => {
+        setLoading(true);
+        const allNumbers: number[] = [];
+        for (let i = 1; i <= (userStore.premium ? 721 : 251); i++) {
+            allNumbers.push(i);
+        }
+        setallPokemonPokedex(allNumbers);
+        setLoading(false);
+    }, [userStore.premium])
+
 
     const onCloseModal = () => {
         setModalDetailsOpen(false);
@@ -49,7 +58,8 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
         <IonPage id="pokedex-page">
             <PkmnHeader title="Pokédex"/>
             <IonContent className="ion-padding">
-                <IonGrid>
+                {loading && (<Loading/>)}
+                {!loading && (<IonGrid>
                     <IonRow className="pkmn-grid">
                         {/*<IonButton onClick={importAllData}>Import all data</IonButton>*/}
                         {allPokemonPokedex.map(i => (
@@ -68,7 +78,7 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({history}) => {
                             )
                         )}
                     </IonRow>
-                </IonGrid>
+                </IonGrid>)}
                 <PokedexDetailsModal open={modalDetailsOpen} onClickClose={onCloseModal}
                                      pokedexItem={selectedPokedexItem}/>
             </IonContent>
