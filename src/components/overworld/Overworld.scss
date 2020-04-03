@@ -109,3 +109,7 @@ EX: if an asset is designed as a 10px by 10px square, we can multiply by pixel s
   left: calc(var(--pixel-size) * 8px);
 }
 
+.just-seen-pokedex img{
+  filter: grayscale(200%) contrast(0%);
+}
+

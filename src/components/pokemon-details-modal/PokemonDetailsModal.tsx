@@ -97,7 +97,7 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
                         {pokemonVariety.evolutions.map((evolution, i) => (
                             <div className="evolution" key={evolution.to + i}>
                                 <Overworld spriteUrl={`${evolution.to}.png`} direction="down" animationActive={false}
-                                           type="pokemon"/>
+                                           type="pokemon" className={userStore.user.pokedex[evolution.to]?.caught ? '' : 'just-seen-pokedex'}/>
                                 <span>{`Lv.${evolution.minLevel}`}</span>
                                 <button type="button"
                                         className={`nes-btn ${pokemon.level < evolution.minLevel ? 'is-disabled' : 'is-primary'} `}
