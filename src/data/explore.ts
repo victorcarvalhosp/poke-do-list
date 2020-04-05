@@ -23,6 +23,22 @@ export const exploreAwards: Record<number, IExploreAward|IExploreAwardBadge|IExp
         10: new ExploreAwardPokemon(10, "Remoraid", 223, 1),
         11: new ExploreAwardPokemon(11, "Makuhita", 296, 1),
         12: new ExploreAwardPokemon(12, "Gastly", 92, 5),
+        13: new ExploreAwardPokemon(13, "Venipede", 543, 5),
+        14: new ExploreAwardPokemon(14, "Pikachu", 25, 5),
+        15: new ExploreAwardPokemon(15, "Miltank", 241, 5),
+        16: new ExploreAwardPokemon(16, "Mudkip", 258, 1),
+        17: new ExploreAwardPokemon(17, "Torchic", 255, 1),
+        18: new ExploreAwardPokemon(18, "Wingull", 278, 1),
+        19: new ExploreAwardPokemon(19, "Riolu", 447, 1),
+        20: new ExploreAwardPokemon(20, "Combee", 415, 1),
+        21: new ExploreAwardPokemon(21, "Shellder", 90, 1),
+        22: new ExploreAwardPokemon(22, "Yanma", 193, 5),
+        23: new ExploreAwardPokemon(23, "Magby", 240, 1),
+        24: new ExploreAwardPokemon(24, "Gastly", 92, 5),
+        25: new ExploreAwardPokemon(25, "Treecko", 252, 1),
+        26: new ExploreAwardPokemon(26, "Vulpix", 37, 1),
+        27: new ExploreAwardPokemon(27, "Solrock", 338, 10),
+
 
         1000: new ExploreAwardBadge(1000,"Boulder Badge", "Gym Badge from Pewter City in Kanto","Boulder_Badge.png"),
         1001: new ExploreAwardBadge(1001,"Cascade Badge", "Gym Badge from Cerulean City in Kanto","Cascade_Badge.png"),
@@ -423,7 +439,7 @@ export const exploreItems: Record<number, IExploreItem> =
             id: 19,
             name: "Brawly",
             shortDescription: "Knuckle Badge",
-            description: "The youngest Gym Leader in Johto and a lover of bug Pokémon, he has great knowledge of Bug types and wants to become a Pokémon Professor.",
+            description: "This Gym Leader is skilled with Fighting-type Pokémon and also trains his body to surf. He moved from Kanto to Hoenn for the waves.",
             type: "league",
             image: {type: "human", animationActive: true, name: "brawly.png", direction: "down"},
             firstTimeAwards: [1017, 11, 0, 0],
@@ -457,25 +473,367 @@ export const exploreItems: Record<number, IExploreItem> =
             appearAfter: 13,
             enableAfter: 13
         },
-        // 3: {
-        //     id: 3,
-        //     name: "Surge",
-        //     shortDescription: "Thunder Badge",
-        //     description: "This cautious Electric-type Gym Leader sets a lot of traps in his Gym. He excels at paralyzing his opponents in battle. Beat Surge to win the Thunder Badge",
-        //     type: "league",
-        //     image: {type: "human", animationActive: true, name: "surge.png", direction: "down"},
-        //     firstTimeAwards: [1002],
-        //     awards: [0],
-        //     trainerInfo: {
-        //         sprite: "surge.png",
-        //         name: 'Surge',
-        //         type: "electric",
-        //         pokemon: [{variety: 100, level: 12}, {variety: 26, level: 12}, {variety: 25, level: 12}],
-        //         maxLevel: 12
-        //     },
-        //     appearAfter: 1,
-        //     enableAfter: 2
-        // },
+        21: {
+            id: 21,
+            name: "Roxie",
+            shortDescription: "Toxic Badge",
+            description: "Highly popular in the Unova region, this bassist balances her time between her band and being a Poison-type Gym Leader.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "roxie.png", direction: "down"},
+            firstTimeAwards: [1033, 13, 0, 0],
+            awards: [0],
+            trainerInfo: {
+                sprite: "roxie.png",
+                name: 'Roxie',
+                type: "poison",
+                pokemon: [{variety: 544, level: 20}, {variety: 545, level: 20}, {variety: 569, level: 20}],
+                maxLevel: 20
+            },
+            appearAfter: 20,
+            enableAfter: 20
+        },
+        22: {
+            id: 22,
+            name: "Lady",
+            shortDescription: "A Lady is depicted as girls dressed in elaborate and fancy clothing.",
+            description: "A Lady is a type of Pokémon Trainer that first debuted in the Generation III games. They are depicted as girls dressed in elaborate and fancy clothing.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer007c.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0],
+            awards: [0],
+            trainerInfo: {
+                sprite: "trainer007c.png",
+                name: 'Lady',
+                type: "unknown",
+                pokemon: [{variety: 179, level: 16}, {variety: 270, level: 18}, {variety: 263, level: 16}],
+                maxLevel: 20
+            },
+            appearAfter: null,
+            enableAfter: 18
+        },
+        23: {
+            id: 23,
+            name: "Cyclist",
+            shortDescription: "A Cyclist is a young men on bicycles who wear spandex.",
+            description: "A Cyclist is a type of Pokémon Trainer that first debuted in the Generation IV games. They are young men and women on bicycles who wear spandex.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer008c.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0],
+            awards: [0],
+            trainerInfo: {
+                sprite: "trainer008c.png",
+                name: 'Cyclist',
+                type: "unknown",
+                pokemon: [{variety: 396, level: 18}, {variety: 83, level: 18}, {variety: 84, level: 18}],
+                maxLevel: 20
+            },
+            appearAfter: null,
+            enableAfter: 18
+        },
+        24: {
+            id: 24,
+            name: "Surge",
+            shortDescription: "Thunder Badge",
+            description: "This cautious Electric-type Gym Leader sets a lot of traps in his Gym. He excels at paralyzing his opponents in battle. Beat Surge to win the Thunder Badge",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "surge.png", direction: "down"},
+            firstTimeAwards: [1002, 14, 0, 0],
+            awards: [0],
+            trainerInfo: {
+                sprite: "surge.png",
+                name: 'Surge',
+                type: "electric",
+                pokemon: [{variety: 100, level: 20}, {variety: 26, level: 20}, {variety: 25, level: 20}],
+                maxLevel: 12
+            },
+            appearAfter: 20,
+            enableAfter: 20
+        },
+        25: {
+            id: 25,
+            name: "Whitney",
+            shortDescription: "Plain Badge",
+            description: "A lively, talkative, trend-following Gym Leader who’s proud of her cute Pokémon, she cries in disappointment when she loses a battle.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "whitney.png", direction: "down"},
+            firstTimeAwards: [1010, 15, 0, 0],
+            awards: [0],
+            trainerInfo: {
+                sprite: "whitney.png",
+                name: 'Whitney',
+                type: "normal",
+                pokemon: [{variety: 36, level: 20}, {variety: 241, level: 20}, {variety: 203, level: 20}],
+                maxLevel: 12
+            },
+            appearAfter: 20,
+            enableAfter: 20
+        },
+        26: {
+            id: 26,
+            name: "Team Aqua",
+            shortDescription: "Team Aqua's ultimate goal is to expand the amount of water in the world.",
+            description: "Team Aqua is one of two villainous teams found in the Hoenn region, alongside their rivals, Team Magma. Team Aqua's ultimate goal is to expand the amount of water in the world.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "aqua.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 16],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "aqua.png",
+                name: 'Team Aqua',
+                type: "water",
+                pokemon: [{variety: 261, level: 24}, {variety: 260, level: 24}, {variety: 279, level: 24}],
+                maxLevel: 24
+            },
+            appearAfter: 20,
+            enableAfter: 25
+        },
+        27: {
+            id: 27,
+            name: "Team Magma",
+            shortDescription: "Team Magma's ultimate goal is to expand the amount of landmass in the world.",
+            description: "Team Magma is one of two villainous teams found in the Hoenn region, alongside their rivals, Team Aqua. Team Magma's ultimate goal is to expand the amount of landmass in the world.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "magma.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 17],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "magma.png",
+                name: 'Team Magma',
+                type: "fire",
+                pokemon: [{variety: 264, level: 24}, {variety: 256, level: 24}, {variety: 322, level: 24}],
+                maxLevel: 24
+            },
+            appearAfter: 20,
+            enableAfter: 25
+        },
+        28: {
+            id: 28,
+            name: "Winona",
+            shortDescription: "Feather Badge.",
+            description: "This Gym Leader loves bird Pokémon more than anything. She has passionate fans in the Fortree City Gym thanks to her graceful appearance.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "winona.png", direction: "down"},
+            firstTimeAwards: [1021, 18, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "winona.png",
+                name: 'Winona',
+                type: "flying",
+                pokemon: [{variety: 277, level: 24}, {variety: 279, level: 24}, {variety: 334, level: 24}],
+                maxLevel: 24
+            },
+            appearAfter: 25,
+            enableAfter: 25
+        },
+        29: {
+            id: 29,
+            name: "Maylene",
+            shortDescription: "Cobble Badge.",
+            description: "This young fighting genius is a Gym Leader who is always training with her Fighting-type Pokémon. She never forgets to express her gratitude to her opponents.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "maylene.png", direction: "down"},
+            firstTimeAwards: [1026, 19, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "maylene.png",
+                name: 'Maylene',
+                type: "bug",
+                pokemon: [{variety: 237, level: 24}, {variety: 448, level: 24}, {variety: 334, level: 24}],
+                maxLevel: 24
+            },
+            appearAfter: 25,
+            enableAfter: 25
+        },
+        30: {
+            id: 30,
+            name: "Burgh",
+            shortDescription: "Insect Badge.",
+            description: "Burgh is an artist who is the Gym Leader of Castelia City's Gym, known officially as the Castelia Gym. He specializes in Bug-type Pokémon. He gives the Insect Badge to Trainers who defeat him.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "burgh.png", direction: "down"},
+            firstTimeAwards: [1034, 20, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "burgh.png",
+                name: 'Burgh',
+                type: "bug",
+                pokemon: [{variety: 617, level: 24}, {variety: 416, level: 24}, {variety: 632, level: 24}],
+                maxLevel: 24
+            },
+            appearAfter: 25,
+            enableAfter: 25
+        },
+        31: {
+            id: 31,
+            name: "Sailor",
+            shortDescription: "A Sailor is often depicted as burly men in sailor suits flexing their muscles.",
+            description: "A Sailor is a type of Pokémon Trainer that debuted in the Generation I games. Originally they were often depicted as burly men in sailor suits flexing their muscles, though their actual physical shape varies between games. ",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer046cA.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer046cA.png",
+                name: 'Sailor',
+                type: "water",
+                pokemon: [{variety: 61, level: 21}, {variety: 99, level: 24}, {variety: 66, level: 21}],
+                maxLevel: 24
+            },
+            appearAfter: null,
+            enableAfter: 25
+        },
+        32: {
+            id: 32,
+            name: "Boarder",
+            shortDescription: "A Boarder is generally depicted as young men in winter clothing, riding a snowboard",
+            description: "A Boarder is a type of Pokémon Trainer that debuted in the Generation II games. They are generally depicted as young men in winter clothing, riding a snowboard.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "HGSS_177.png", direction: "down"},
+            firstTimeAwards: [21, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "HGSS_177.png",
+                name: 'Boarder',
+                type: "ice",
+                pokemon: [{variety: 86, level: 24}, {variety: 87, level: 24}, {variety: 220, level: 24}],
+                maxLevel: 28
+            },
+            appearAfter: null,
+            enableAfter: 31
+        },
+        33: {
+            id: 33,
+            name: "Bug Catcher",
+            shortDescription: "A Bug Catcher is generally depicted as little boys in hats, carrying nets and what appears to be their lunchboxes, or containers to keep caught bugs in.",
+            description: "A Bug Catcher is a type of Pokémon Trainer that debuted in the Generation I games. They are generally depicted as little boys in hats, carrying nets and what appears to be their lunchboxes, or containers to keep caught bugs in, held by a strap after Generation II. Most Bug Catchers have been considered just hobbyists.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer012c.png", direction: "down"},
+            firstTimeAwards: [22, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer012c.png",
+                name: 'Bug Catcher',
+                type: "bug",
+                pokemon: [{variety: 46, level: 24}, {variety: 49, level: 28}, {variety: 48, level: 24}],
+                maxLevel: 28
+            },
+            appearAfter: null,
+            enableAfter: 31
+        },
+        34: {
+            id: 34,
+            name: "Blaine",
+            shortDescription: "Volcano Badge",
+            description: "This old man with a passion for trivia is known as the hotheaded quiz master. He’s a Fire-type Gym Leader with a veteran Trainer’s skill and a researcher’s knowledge. Beat Blaine to win the Volcano Badge",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "blaine.png", direction: "down"},
+            firstTimeAwards: [1006, 23, 0 , 0, 0],
+            awards: [0],
+            trainerInfo: {
+                sprite: "blaine.png",
+                name: 'Blaine',
+                type: "fire",
+                pokemon: [{variety: 77, level: 28}, {variety: 78, level: 28}, {variety: 58, level: 28}],
+                maxLevel: 28
+            },
+            appearAfter: 5,
+            enableAfter: 6
+        },
+        35: {
+            id: 35,
+            name: "Morty",
+            shortDescription: "Fog Badge.",
+            description: "Morty (Japanese: マツバ Matsuba) is the Gym Leader of Ecruteak City's Gym, known officially as the Ecruteak Gym. He hands out the Fog Badge to Trainers who defeat him.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "morty.png", direction: "down"},
+            firstTimeAwards: [1011, 24, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "morty.png",
+                name: 'Morty',
+                type: "ghost",
+                pokemon: [{variety: 92, level: 28}, {variety: 95, level: 28}, {variety: 93, level: 28}],
+                maxLevel: 28
+            },
+            appearAfter: 30,
+            enableAfter: 30
+        },
+        36: {
+            id: 36,
+            name: "Prof. Birch",
+            shortDescription: "Professor Birch is the resident Pokémon Professor of Littleroot Town and the Hoenn region.",
+            description: "Professor Birch is the resident Pokémon Professor of Littleroot Town and the Hoenn region. He specializes in Pokémon habitats and distribution.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "prof_birch.png", direction: "down"},
+            firstTimeAwards: [25,0, 0, 0, 0, 0 ],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "prof_birch.png",
+                name: 'Prof. Birch',
+                type: "unknown",
+                pokemon: [{variety: 256, level: 28}, {variety: 254, level: 28}, {variety: 262, level: 28}],
+                maxLevel: 28
+            },
+            appearAfter: 30,
+            enableAfter: 35
+        },
+        37: {
+            id: 37,
+            name: "Picnicker",
+            shortDescription: "A Picnicker is a younger girl in uniform.",
+            description: "A Picnicker is a type of Pokémon Trainer that first debuted in the Generation I games. They are generally depicted as younger girls in uniforms. Their male counterpart is Camper.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer060c.png", direction: "down"},
+            firstTimeAwards: [26, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer060c.png",
+                name: 'Picnicker',
+                type: "unknown",
+                pokemon: [{variety: 70, level: 28}, {variety: 37, level: 28}, {variety: 35, level: 28}],
+                maxLevel: 32
+            },
+            appearAfter: null,
+            enableAfter: 33
+        },
+        38: {
+            id: 38,
+            name: "Camper",
+            shortDescription: "A Camper is a little boy in uniform.",
+            description: "A Camper is a type of Pokémon Trainer that debuted in the Generation I games. They are generally depicted as little boys in uniforms. Their female counterpart is Picnicker.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer059c.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer059c.png",
+                name: 'Camper',
+                type: "unknown",
+                pokemon: [{variety: 27, level: 28}, {variety: 56, level: 28}, {variety: 352, level: 32}],
+                maxLevel: 32
+            },
+            appearAfter: null,
+            enableAfter: 33
+        },
+        39: {
+            id: 39,
+            name: "Liza",
+            shortDescription: "Mind Badge.",
+            description: "One of a rare pair of twin Gym Leaders, she helps at the Mossdeep Space Center and excels at cooperation in battle—much like her twin, Tate.",
+            type: "league",
+            image: {type: "human", animationActive: false, name: "liza.png", direction: "down"},
+            firstTimeAwards: [1022, 27, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "liza.png",
+                name: 'Liza',
+                type: "psychic",
+                pokemon: [{variety: 337, level: 32}, {variety: 338, level: 32}, {variety: 178, level: 32}],
+                maxLevel: 32
+            },
+            appearAfter: 35,
+            enableAfter: 35
+        },
         // 4: {
         //     id: 4,
         //     name: "Erika",
@@ -533,25 +891,7 @@ export const exploreItems: Record<number, IExploreItem> =
         //     appearAfter: 4,
         //     enableAfter: 5
         // },
-        // 7: {
-        //     id: 7,
-        //     name: "Blaine",
-        //     shortDescription: "Volcano Badge",
-        //     description: "This old man with a passion for trivia is known as the hotheaded quiz master. He’s a Fire-type Gym Leader with a veteran Trainer’s skill and a researcher’s knowledge. Beat Blaine to win the Volcano Badge",
-        //     type: "league",
-        //     image: {type: "human", animationActive: true, name: "blaine.png", direction: "down"},
-        //     firstTimeAwards: [1006],
-        //     awards: [0],
-        //     trainerInfo: {
-        //         sprite: "blaine.png",
-        //         name: 'Blaine',
-        //         type: "fire",
-        //         pokemon: [{variety: 77, level: 28}, {variety: 78, level: 28}, {variety: 58, level: 28}],
-        //         maxLevel: 28
-        //     },
-        //     appearAfter: 5,
-        //     enableAfter: 6
-        // },
+
         // 8: {
         //     id: 8,
         //     name: "Blue",
