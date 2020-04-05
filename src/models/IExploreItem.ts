@@ -1,3 +1,5 @@
+import {ExploreBattleType} from "./conditional-types-definitions";
+
 export interface IPokemonDetailsToRandomGeneration{
     variety: number;
     level: number;
@@ -17,7 +19,7 @@ export interface IExploreItem {
     shortDescription: string;
     description: string;
     image: { type?: "human" | "pokemon" | "item", name: string, animationActive?: boolean, direction?: "up" | "down" | "left" | "right" };
-    type: "battle" | "mission" | "event";
+    type: ExploreBattleType;
     firstTimeAwards: number[]; //Change to item
     awards: number[]; //Change to item
     trainerInfo?: ITrainerInfo;
@@ -31,7 +33,7 @@ export class ExploreItem implements IExploreItem {
     shortDescription: string;
     description: string;
     image: { type?: "human" | "pokemon" | "item", name: string, animationActive?: boolean, direction?: "up" | "down" | "left" | "right" };
-    type: "battle" | "mission" | "event";
+    type: ExploreBattleType;
     awards: number[];
     firstTimeAwards: number[];
     appearAfter: number|null;
@@ -43,7 +45,7 @@ export class ExploreItem implements IExploreItem {
         this.shortDescription = "";
         this.description = "";
         this.image = {name: ""};
-        this.type = "battle";
+        this.type = "league";
         this.awards = [];
         this.firstTimeAwards = [];
         this.appearAfter = null;

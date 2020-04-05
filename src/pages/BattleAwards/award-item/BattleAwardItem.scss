@@ -4,6 +4,10 @@
 
   .img-area{
     height: 64px;
+    img{
+      max-height: 62px;
+      max-width: 62px;
+    }
   }
   .Character, img, ion-icon{
     margin: auto;

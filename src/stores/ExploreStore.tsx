@@ -14,7 +14,7 @@ export interface IExploreStore {
     filteredList: IExploreItem[];
     firstTimeCompleted: boolean;
 
-    setFilter(value: "battle" | "mission" | "event"): void;
+    setFilter(value: FilterExploreTypes): void;
 
     setSelected(exploreItem: IExploreItem): void;
 
@@ -32,7 +32,7 @@ export class ExploreStore implements IExploreStore {
     allExploreItems: Record<number, IExploreItem> = exploreItems;
 
     @observable
-    filter: FilterExploreTypes = "battle";
+    filter: FilterExploreTypes = "all";
 
     constructor(public root: RootStore) {
     }
@@ -46,7 +46,7 @@ export class ExploreStore implements IExploreStore {
     @computed
     get list(): IExploreItem[] {
         const allExploreItemsAsList: IExploreItem[] = [];
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 125; i++) {
             if (this.allExploreItems[i]) {
                 allExploreItemsAsList.push(this.allExploreItems[i]);
             }
@@ -56,7 +56,7 @@ export class ExploreStore implements IExploreStore {
 
     @computed
     get filteredList(): IExploreItem[] {
-        return this.list.filter(item => item.type === this.filter);
+        return this.filter === "all" ? this.list : this.list.filter(item => item.type === this.filter);
     }
 
     @computed
