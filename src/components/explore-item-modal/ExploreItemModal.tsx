@@ -65,16 +65,9 @@ const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, on
                     </h2>
                     <p>{exploreItem.description}</p>
                     <span style={{display: 'block'}}>Max Lv.: {exploreItem.trainerInfo?.maxLevel}</span>
-                    {exploreItem.type === "league" && (
-                        <button onClick={goToBattle} type="button" className="nes-btn is-primary">
-                            Go to battle!
-                        </button>
-                    )}
-                    {exploreItem.type === "event" && (
-                        <button onClick={goToBattle} type="button" className="nes-btn is-primary">
-                            Go to battle Gigantamax!
-                        </button>
-                    )}
+                    <button onClick={goToBattle} type="button" className="nes-btn is-primary">
+                        Go to battle!
+                    </button>
                 </div>
 
             </IonContent>

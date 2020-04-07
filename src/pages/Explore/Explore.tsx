@@ -53,9 +53,9 @@ const ExplorePage: React.FC<RouteComponentProps> = observer(({history}) => {
             <PkmnHeader title="Explore(beta)"/>
             <IonContent className="ion-padding">
                 <IonSegment value={exploreStore.filter} mode="ios" onIonChange={e => changeSegment(e)}>
-                    <IonSegmentButton value="all">
-                        <IonLabel>All</IonLabel>
-                    </IonSegmentButton>
+                    {/*<IonSegmentButton value="all">*/}
+                    {/*    <IonLabel>All</IonLabel>*/}
+                    {/*</IonSegmentButton>*/}
                     <IonSegmentButton value="league">
                         <IonLabel>League</IonLabel>
                     </IonSegmentButton>

@@ -32,7 +32,7 @@ export class ExploreStore implements IExploreStore {
     allExploreItems: Record<number, IExploreItem> = exploreItems;
 
     @observable
-    filter: FilterExploreTypes = "all";
+    filter: FilterExploreTypes = "league";
 
     constructor(public root: RootStore) {
     }

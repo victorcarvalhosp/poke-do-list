@@ -38,6 +38,17 @@ export const exploreAwards: Record<number, IExploreAward|IExploreAwardBadge|IExp
         25: new ExploreAwardPokemon(25, "Treecko", 252, 1),
         26: new ExploreAwardPokemon(26, "Vulpix", 37, 1),
         27: new ExploreAwardPokemon(27, "Solrock", 338, 10),
+        28: new ExploreAwardPokemon(28, "Magikarp", 129, 1),
+        29: new ExploreAwardPokemon(29, "Emolga", 587, 1),
+        30: new ExploreAwardPokemon(30, "Hitmonlee", 106, 10),
+        31: new ExploreAwardPokemon(31, "Eevee", 133, 1),
+        32: new ExploreAwardPokemon(32, "Bulbasaur", 1, 1),
+        33: new ExploreAwardPokemon(33, "Seel", 86, 10),
+        34: new ExploreAwardPokemon(34, "Glameow", 431, 1),
+        35: new ExploreAwardPokemon(35, "Stunky", 434, 1),
+        36: new ExploreAwardPokemon(36, "Vigoroth", 288, 5),
+        37: new ExploreAwardPokemon(37, "Cranidos", 408, 5),
+        38: new ExploreAwardPokemon(38, "Tympole", 535, 1),
 
 
         1000: new ExploreAwardBadge(1000,"Boulder Badge", "Gym Badge from Pewter City in Kanto","Boulder_Badge.png"),
@@ -96,8 +107,8 @@ export const exploreItems: Record<number, IExploreItem> =
         1: {
             id: 1,
             name: "Lass",
-            shortDescription: "An unexperienced Pokémon trainer",
-            description: "An unexperienced Pokémon trainer",
+            shortDescription: "A Lass is an average young girls in clothing resembling school uniforms. ",
+            description: "A Lass is a type of Pokémon Trainer that first debuted in the Generation I games. They are depicted as average young girls in clothing resembling school uniforms. Lasses appear to be the female counterparts of Youngsters and they grow up to be Beauties.",
             type: "trainer",
             image: {type: "human", animationActive: true, name: "trainer002c.png", direction: "down"},
             firstTimeAwards: [0],
@@ -115,8 +126,8 @@ export const exploreItems: Record<number, IExploreItem> =
         2: {
             id: 2,
             name: "Youngster",
-            shortDescription: "An unexperienced Pokémon trainer",
-            description: "An unexperienced Pokémon trainer",
+            shortDescription: "A Youngster is an average young boy wearing cap and short pants.",
+            description: "A Youngster is a type of Pokémon Trainer that debuted in the Generation I games. They are depicted as average young boys wearing caps and short pants.",
             type: "trainer",
             image: {type: "human", animationActive: true, name: "trainer003cA.png", direction: "down"},
             firstTimeAwards: [0],
@@ -267,7 +278,7 @@ export const exploreItems: Record<number, IExploreItem> =
         10: {
             id: 10,
             name: "School Kid Male",
-            shortDescription: "An unexperienced Pokémon trainer",
+            shortDescription: "A School Kid is a young children carrying school bags,",
             description: "A School Kid, is a type of Pokémon Trainer that debuted in the Generation II games as School boys. They are presented as young children carrying school bags, with the boys then growing up to become Super Nerds.",
             type: "trainer",
             image: {type: "human", animationActive: true, name: "trainer013c.png", direction: "down"},
@@ -286,7 +297,7 @@ export const exploreItems: Record<number, IExploreItem> =
         11: {
             id: 11,
             name: "School Kid Female",
-            shortDescription: "An unexperienced Pokémon trainer",
+            shortDescription: "A School Kid is a young children carrying school bags.",
             description: "A School Kid, is a type of Pokémon Trainer that debuted in the Generation II games as School boys. In Generation III, female variations were introduced and the class gained a gender-neutral name. They are presented as young children carrying school bags.",
             type: "trainer",
             image: {type: "human", animationActive: true, name: "HGSS_117.png", direction: "down"},
@@ -544,7 +555,7 @@ export const exploreItems: Record<number, IExploreItem> =
                 name: 'Surge',
                 type: "electric",
                 pokemon: [{variety: 100, level: 20}, {variety: 26, level: 20}, {variety: 25, level: 20}],
-                maxLevel: 12
+                maxLevel: 20
             },
             appearAfter: 20,
             enableAfter: 20
@@ -563,7 +574,7 @@ export const exploreItems: Record<number, IExploreItem> =
                 name: 'Whitney',
                 type: "normal",
                 pokemon: [{variety: 36, level: 20}, {variety: 241, level: 20}, {variety: 203, level: 20}],
-                maxLevel: 12
+                maxLevel: 20
             },
             appearAfter: 20,
             enableAfter: 20
@@ -821,11 +832,11 @@ export const exploreItems: Record<number, IExploreItem> =
             shortDescription: "Mind Badge.",
             description: "One of a rare pair of twin Gym Leaders, she helps at the Mossdeep Space Center and excels at cooperation in battle—much like her twin, Tate.",
             type: "league",
-            image: {type: "human", animationActive: false, name: "liza.png", direction: "down"},
+            image: {type: "human", animationActive: false, name: "liza_gym.png", direction: "down"},
             firstTimeAwards: [1022, 27, 0, 0, 0],
             awards: [0,0],
             trainerInfo: {
-                sprite: "liza.png",
+                sprite: "liza_gym.png",
                 name: 'Liza',
                 type: "psychic",
                 pokemon: [{variety: 337, level: 32}, {variety: 338, level: 32}, {variety: 178, level: 32}],
@@ -834,25 +845,215 @@ export const exploreItems: Record<number, IExploreItem> =
             appearAfter: 35,
             enableAfter: 35
         },
-        // 4: {
-        //     id: 4,
-        //     name: "Erika",
-        //     shortDescription: "Rainbow Badge",
-        //     description: "A cute Gym Leader who loves Grass-type Pokémon, this well-mannered Trainer teaches flower arrangement in Kanto. Beat Erika to win the Rainbow Badge",
-        //     type: "league",
-        //     image: {type: "human", animationActive: true, name: "erika.png", direction: "down"},
-        //     firstTimeAwards: [1003],
-        //     awards: [0],
-        //     trainerInfo: {
-        //         sprite: "erika.png",
-        //         name: 'Erika',
-        //         type: "grass",
-        //         pokemon: [{variety: 71, level: 16}, {variety: 45, level: 16}, {variety: 114, level: 16}],
-        //         maxLevel: 16
-        //     },
-        //     appearAfter: 2,
-        //     enableAfter: 3
-        // },
+        40: {
+            id: 40,
+            name: "Crasher Wake",
+            shortDescription: "Fen Badge.",
+            description: "One of a rare pair of twin Gym Leaders, she helps at the Mossdeep Space Center and excels at cooperation in battle—much like her twin, Tate.",
+            type: "league",
+            image: {type: "human", animationActive: false, name: "wake.png", direction: "down"},
+            firstTimeAwards: [1027, 28, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "wake.png",
+                name: 'Crasher Wake',
+                type: "water",
+                pokemon: [{variety: 130, level: 32}, {variety: 195, level: 32}, {variety: 419, level: 32}],
+                maxLevel: 32
+            },
+            appearAfter: 35,
+            enableAfter: 35
+        },
+        41: {
+            id: 41,
+            name: "Elesa",
+            shortDescription: "Bolt Badge.",
+            description: "This Electric-type Gym Leader also works as a model. Watching her battle in the beautiful, bright lights of her Gym can be mesmerizing.",
+            type: "league",
+            image: {type: "human", animationActive: false, name: "elesa.png", direction: "down"},
+            firstTimeAwards: [1035, 29, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "elesa.png",
+                name: 'Elesa',
+                type: "electric",
+                pokemon: [{variety: 587, level: 32}, {variety: 596, level: 32}, {variety: 523, level: 32}],
+                maxLevel: 32
+            },
+            appearAfter: 35,
+            enableAfter: 35
+        },
+        42: {
+            id: 72,
+            name: "Black Belt",
+            shortDescription: "A Black Belt is a generic martial artist, in headband and gi striking a fighting pose.",
+            description: "A Black Belt is a Trainer class that debuted in the Generation I games. They are generally depicted as generic martial artists, in headband and gi striking a fighting pose.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer016c.png", direction: "down"},
+            firstTimeAwards: [30, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer016c.png",
+                name: 'Black Belt',
+                type: "fighting",
+                pokemon: [{variety: 106, level: 32}, {variety: 56, level: 32}, {variety: 107, level: 32}],
+                maxLevel: 36
+            },
+            appearAfter: null,
+            enableAfter: 38
+        },
+        43: {
+            id: 43,
+            name: "Kimono Girl",
+            shortDescription: "A Kimono Girl is a young women dressed in kimono.",
+            description: "A Kimono Girl is a type of Pokémon Trainer that first debuted in the Generation II games. They appear as young women dressed in kimonos.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "kimono_girl.png", direction: "down"},
+            firstTimeAwards: [31, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "kimono_girl.png",
+                name: 'Black Belt',
+                type: "unknown",
+                pokemon: [{variety: 134, level: 34}, {variety: 135, level: 34}, {variety: 136, level: 34}],
+                maxLevel: 36
+            },
+            appearAfter: null,
+            enableAfter: 42
+        },
+        44: {
+            id: 44,
+            name: "Erika",
+            shortDescription: "Rainbow Badge",
+            description: "A cute Gym Leader who loves Grass-type Pokémon, this well-mannered Trainer teaches flower arrangement in Kanto. Beat Erika to win the Rainbow Badge",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "erika.png", direction: "down"},
+            firstTimeAwards: [1003, 32, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "erika.png",
+                name: 'Erika',
+                type: "grass",
+                pokemon: [{variety: 71, level: 36}, {variety: 45, level: 36}, {variety: 114, level: 36}],
+                maxLevel: 36
+            },
+            appearAfter: 40,
+            enableAfter: 40
+        },
+        45: {
+            id: 45,
+            name: "Pryce",
+            shortDescription: "Glacier Badge",
+            description: "This veteran Gym Leader with over 50 years experience is known as the Winter Trainer. He stays healthy with his daily routine of early morning Pokémon battling.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "pryce.png", direction: "down"},
+            firstTimeAwards: [1014, 33, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "pryce.png",
+                name: 'Pryce',
+                type: "ice",
+                pokemon: [{variety: 91, level: 36}, {variety: 87, level: 36}, {variety: 221, level: 36}],
+                maxLevel: 36
+            },
+            appearAfter: 40,
+            enableAfter: 40
+        },
+        46: {
+            id: 46,
+            name: "Galactic Grunt Female",
+            shortDescription: "A Galactic Grunt Female is a grunt of Team Galactic.",
+            description: "They are the grunts of Team Galactic. There are male and female versions, and they all dress in the spacesuit-looking outfits that are the Team Galactic uniforms and have turquoise hair that is cut quite short and rounded.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "galactic2.png", direction: "down"},
+            firstTimeAwards: [34,0, 0, 0, 0, 0 ],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "galactic2.png",
+                name: 'Galactic Grunt Female',
+                type: "unknown",
+                pokemon: [{variety: 431, level: 36}, {variety: 434, level: 36}, {variety: 453, level: 36}],
+                maxLevel: 36
+            },
+            appearAfter: 45,
+            enableAfter: 45
+        },
+        47: {
+            id: 47,
+            name: "Galactic Grunt Female",
+            shortDescription: "A Galactic Grunt Male is a grunt of Team Galactic.",
+            description: "They are the grunts of Team Galactic. There are male and female versions, and they all dress in the spacesuit-looking outfits that are the Team Galactic uniforms and have turquoise hair that is cut quite short and rounded.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "galactic1.png", direction: "down"},
+            firstTimeAwards: [35,0, 0, 0, 0, 0 ],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "galactic1.png",
+                name: 'Galactic Grunt Female',
+                type: "unknown",
+                pokemon: [{variety: 42, level: 40}, {variety: 466, level: 40}, {variety: 198, level: 40}],
+                maxLevel: 40
+            },
+            appearAfter: 45,
+            enableAfter: 45
+        },
+        48: {
+            id: 48,
+            name: "Norman",
+            shortDescription: "Balance Badge",
+            description: "This Gym Leader is a serious, stoic family man who never neglects his training to become stronger—nor caring for his family—in his pursuit of victory.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "norman.png", direction: "down"},
+            firstTimeAwards: [1020, 36, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "norman.png",
+                name: 'Norman',
+                type: "normal",
+                pokemon: [{variety: 289, level: 40}, {variety: 288, level: 40}, {variety: 289, level: 40}],
+                maxLevel: 40
+            },
+            appearAfter: 44,
+            enableAfter: 44
+        },
+        49: {
+            id: 49,
+            name: "Roark",
+            shortDescription: "Coal Badge",
+            description: "A Gym Leader who uses Rock types and works in a mine, he’s good at digging holes and likes to collect fossils. He respects his father, Byron, who is also a Gym Leader.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "roark.png", direction: "down"},
+            firstTimeAwards: [1024, 37, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "roark.png",
+                name: 'Roark',
+                type: "rock",
+                pokemon: [{variety: 409, level: 40}, {variety: 76, level: 40}, {variety: 369, level: 40}],
+                maxLevel: 40
+            },
+            appearAfter: 45,
+            enableAfter: 45
+        },
+        50: {
+            id: 50,
+            name: "Clay",
+            shortDescription: "Quake Badge",
+            description: "This Ground-type Gym Leader runs a mining company in Unova. He is a bit pushy but is admired by his employees and the community for his strong sense of justice.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "clay.png", direction: "down"},
+            firstTimeAwards: [1036, 38, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "clay.png",
+                name: 'Clay',
+                type: "ground",
+                pokemon: [{variety: 552, level: 40}, {variety: 537, level: 40}, {variety: 530, level: 40}],
+                maxLevel: 40
+            },
+            appearAfter: 45,
+            enableAfter: 45
+        },
         // 5: {
         //     id: 5,
         //     name: "Koga",
