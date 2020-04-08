@@ -24,6 +24,8 @@ import {useRootStore} from "../../stores/StoreContext";
 import PokemonBasicDetailsStats from "../pokemon-basic-details-stats/PokemonBasicDetailsStats";
 import PokemonBasicDetails from "../pokemon-basic-details/PokemonBasicDetails";
 import LevelUpModal from "./level-up-modal/LevelUpModal";
+import {IPokemonSpecie} from "../../models/PokemonSpecie";
+import {pokemonSpecies} from "../../data/pokemon-species";
 
 interface IComponentProps extends RouteComponentProps {
     open: boolean;
@@ -46,12 +48,13 @@ const PokemonDetailsModal: React.FC<IComponentProps> = observer(({history, open,
     // console.log(watch('email')) // watch input value by passing the name of it
     const {pokemonStore, userStore} = useRootStore();
     const [pokemonVariety, setPokemonVariety] = useState<IPokemonVariety>(pokemonVarieties[pokemon.variety]);
+
     const [showTransferAlert, setShowTransferAlert] = useState(false);
     const [showLevelUpModal, setShowLevelUpModal] = useState(false);
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);
-    }, [pokemon])
+    }, [pokemon, pokemon.variety])
 
     const closeModal = () => {
         onClickClose();

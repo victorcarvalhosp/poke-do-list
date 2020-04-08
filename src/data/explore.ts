@@ -37,10 +37,10 @@ export const exploreAwards: Record<number, IExploreAward|IExploreAwardBadge|IExp
         24: new ExploreAwardPokemon(24, "Gastly", 92, 5),
         25: new ExploreAwardPokemon(25, "Treecko", 252, 1),
         26: new ExploreAwardPokemon(26, "Vulpix", 37, 1),
-        27: new ExploreAwardPokemon(27, "Solrock", 338, 10),
+        27: new ExploreAwardPokemon(27, "Solrock", 338, 8),
         28: new ExploreAwardPokemon(28, "Magikarp", 129, 1),
         29: new ExploreAwardPokemon(29, "Emolga", 587, 1),
-        30: new ExploreAwardPokemon(30, "Hitmonlee", 106, 10),
+        30: new ExploreAwardPokemon(30, "Hitmonlee", 106, 12),
         31: new ExploreAwardPokemon(31, "Eevee", 133, 1),
         32: new ExploreAwardPokemon(32, "Bulbasaur", 1, 1),
         33: new ExploreAwardPokemon(33, "Seel", 86, 10),
@@ -49,6 +49,30 @@ export const exploreAwards: Record<number, IExploreAward|IExploreAwardBadge|IExp
         36: new ExploreAwardPokemon(36, "Vigoroth", 288, 5),
         37: new ExploreAwardPokemon(37, "Cranidos", 408, 5),
         38: new ExploreAwardPokemon(38, "Tympole", 535, 1),
+        39: new ExploreAwardPokemon(39, "Magnemite", 81, 1),
+        40: new ExploreAwardPokemon(40, "Mime Jr.", 439, 1),
+        41: new ExploreAwardPokemon(41, "Skarmory", 227, 10),
+        42: new ExploreAwardPokemon(42, "Miltank", 241, 5),
+        43: new ExploreAwardPokemon(43, "Tauros", 128, 8),
+        44: new ExploreAwardPokemon(44, "Electrike", 309, 8),
+        45: new ExploreAwardPokemon(45, "Sneasel", 215, 16),
+        46: new ExploreAwardPokemon(46, "Ducklett", 580, 8),
+        47: new ExploreAwardPokemon(47, "Cubone", 104, 8),
+        48: new ExploreAwardPokemon(48, "Koffing", 109, 24),
+        49: new ExploreAwardPokemon(49, "Hitmonchan", 107, 12),
+        50: new ExploreAwardPokemon(50, "Trubbish", 568, 12),
+        51: new ExploreAwardPokemon(51, "Purrloin", 509, 8),
+        52: new ExploreAwardPokemon(52, "Numel", 322, 12),
+        53: new ExploreAwardPokemon(53, "Bronzor", 436, 12),
+        54: new ExploreAwardPokemon(54, "Swablu", 333, 12),
+        55: new ExploreAwardPokemon(55, "Minccino", 572, 12),
+        56: new ExploreAwardPokemon(56, "Growlithe", 58, 12),
+        57: new ExploreAwardPokemon(57, "Dratini", 147, 8),
+        58: new ExploreAwardPokemon(58, "Piplup", 393, 1),
+        59: new ExploreAwardPokemon(59, "Chimchar", 390, 1),
+        60: new ExploreAwardPokemon(60, "Spheal", 363, 1),
+        61: new ExploreAwardPokemon(61, "Elekid", 239, 1),
+        62: new ExploreAwardPokemon(62, "Vanillite", 582, 1),
 
 
         1000: new ExploreAwardBadge(1000,"Boulder Badge", "Gym Badge from Pewter City in Kanto","Boulder_Badge.png"),
@@ -90,7 +114,7 @@ export const exploreAwards: Record<number, IExploreAward|IExploreAwardBadge|IExp
         1036: new ExploreAwardBadge(1036,"Quake Badge", "Gym Badge from Driftveil City in Unova","Quake_Badge.png"),
         1037: new ExploreAwardBadge(1037,"Jet Badge", "Gym Badge from Mistralton City in Unova","Jet_Badge.png"),
         1038: new ExploreAwardBadge(1038,"Legend Badge", "Gym Badge from Opelucid City in Unova","Legend_Badge.png"),
-        1039: new ExploreAwardBadge(1039,"Wave Badge", "Gym Badge from Humilau City in Unova","Wave_Badge.png"),
+        1039: new ExploreAwardBadge(1039,"Freeze Badge", "Gym Badge from Icirrus City in Unova","Freeze_Badge.png"),
     }
 
 export const exploreItems: Record<number, IExploreItem> =
@@ -315,8 +339,8 @@ export const exploreItems: Record<number, IExploreItem> =
         },
         12: {
             id: 12,
-            name: "Tuber",
-            shortDescription: "An unexperienced Pokémon trainer",
+            name: "Tuber Male",
+            shortDescription: "A Tuber is young children in inner tubes that are learning to swim.",
             description: "A Tuber is young children in inner tubes that are learning to swim. They appear to be younger versions of Swimmers.",
             type: "trainer",
             image: {type: "human", animationActive: true, name: "tuber.png", direction: "down"},
@@ -849,7 +873,7 @@ export const exploreItems: Record<number, IExploreItem> =
             id: 40,
             name: "Crasher Wake",
             shortDescription: "Fen Badge.",
-            description: "One of a rare pair of twin Gym Leaders, she helps at the Mossdeep Space Center and excels at cooperation in battle—much like her twin, Tate.",
+            description: "A Gym Leader who uses Water-type Pokémon, Crasher Wake is beloved by his many fans for his passionate performances.",
             type: "league",
             image: {type: "human", animationActive: false, name: "wake.png", direction: "down"},
             firstTimeAwards: [1027, 28, 0, 0, 0, 0],
@@ -1032,7 +1056,7 @@ export const exploreItems: Record<number, IExploreItem> =
                 pokemon: [{variety: 409, level: 40}, {variety: 76, level: 40}, {variety: 369, level: 40}],
                 maxLevel: 40
             },
-            appearAfter: 45,
+            appearAfter: 45,    
             enableAfter: 45
         },
         50: {
@@ -1054,66 +1078,616 @@ export const exploreItems: Record<number, IExploreItem> =
             appearAfter: 45,
             enableAfter: 45
         },
-        // 5: {
-        //     id: 5,
-        //     name: "Koga",
-        //     shortDescription: "Soul Badge",
-        //     description: "This modern-day ninja and member of the Elite Four wears down his opponents with his versatility and has also trained his daughter, Janine, in the ways of the ninja. Beat Koga to win the Soul Badge",
-        //     type: "league",
-        //     image: {type: "human", animationActive: true, name: "koga.png", direction: "down"},
-        //     firstTimeAwards: [1004],
-        //     awards: [0],
-        //     trainerInfo: {
-        //         sprite: "koga.png",
-        //         name: 'Koga',
-        //         type: "poison",
-        //         pokemon: [{variety: 109, level: 20}, {variety: 89, level: 20}, {variety: 110, level: 20}],
-        //         maxLevel: 20
-        //     },
-        //     appearAfter: 3,
-        //     enableAfter: 4
-        // },
-        // 6: {
-        //     id: 6,
-        //     name: "Sabrina",
-        //     shortDescription: "Marsh Badge",
-        //     description: "A powerful psychic herself, this Gym Leader who uses Psychic types can see the future with her precognitive powers. She allegedly does not like conflict. Beat Sabrina to win the Marsh Badge",
-        //     type: "league",
-        //     image: {type: "human", animationActive: true, name: "sabrina.png", direction: "down"},
-        //     firstTimeAwards: [1005],
-        //     awards: [0],
-        //     trainerInfo: {
-        //         sprite: "sabrina.png",
-        //         name: 'Sabrina',
-        //         type: "psychic",
-        //         pokemon: [{variety: 122, level: 24}, {variety: 65, level: 24}, {variety: 49, level: 24}],
-        //         maxLevel: 24
-        //     },
-        //     appearAfter: 4,
-        //     enableAfter: 5
-        // },
-
-        // 8: {
-        //     id: 8,
-        //     name: "Blue",
-        //     shortDescription: "Earth Badge",
-        //     description: "This highly skilled, powerhouse Trainer prominent in Kanto is the grandson of the famous Professor Oak. Red is both his lifelong rival and his best friend. Beat Blue to win the Earth Badge",
-        //     type: "league",
-        //     image: {type: "human", animationActive: true, name: "blue.png", direction: "down"},
-        //     firstTimeAwards: [1007],
-        //     awards: [0],
-        //     trainerInfo: {
-        //         sprite: "blue.png",
-        //         name: 'Blue',
-        //         type: "unknown",
-        //         pokemon: [{variety: 111, level: 32}, {variety: 59, level: 32}, {variety: 18, level: 32}],
-        //         maxLevel: 32
-        //     },
-        //     appearAfter: 6,
-        //     enableAfter: 7
-        // },
+        51: {
+            id: 51,
+            name: "Cameraman",
+            shortDescription: "A Cameraman is young men working as television cameramen.",
+            description: "A Cameraman is a type of Pokémon Trainer that first debuted in the Generation IV games. They are young men working as television cameramen. Cameramen are the male counterparts of Reporters. When paired with Reporters in Double Battles, they are called Interviewers.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer024cM.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer024cM.png",
+                name: 'Cameraman',
+                type: "unknown",
+                pokemon: [{variety: 81, level: 36}, {variety: 122, level: 38}, {variety: 417, level: 36}],
+                maxLevel: 40
+            },
+            appearAfter: null,
+            enableAfter: 43
+        },
+        52: {
+            id: 52,
+            name: "Tuber Female",
+            shortDescription: "A Tuber is young children in inner tubes that are learning to swim.",
+            description: "A Tuber is young children in inner tubes that are learning to swim. They appear to be younger versions of Swimmers.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer025cA.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer025cA.png",
+                name: 'Tuber Female',
+                type: "water",
+                pokemon: [{variety: 120, level: 36}, {variety: 61, level: 38}, {variety: 118, level: 36}],
+                maxLevel: 40
+            },
+            appearAfter: null,
+            enableAfter: 43
+        },
+        53: {
+            id: 53,
+            name: "Tuber Female",
+            shortDescription: "A Tuber is young children in inner tubes that are learning to swim.",
+            description: "A Tuber is young children in inner tubes that are learning to swim. They appear to be younger versions of Swimmers.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer025cA.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer025cA.png",
+                name: 'Tuber Female',
+                type: "water",
+                pokemon: [{variety: 120, level: 40}, {variety: 61, level: 40}, {variety: 118, level: 40}],
+                maxLevel: 44
+            },
+            appearAfter: null,
+            enableAfter: 43
+        },
+        54: {
+            id: 54,
+            name: "Guitarist",
+            shortDescription: "A Guitarist is a young, blond men playing guitars.",
+            description: "A Guitarist a type of Pokémon Trainer that debuted in Generation II games. They appear as young, blond men playing guitars.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer027c.png", direction: "down"},
+            firstTimeAwards: [39, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer027c.png",
+                name: 'Guitarist',
+                type: "electric",
+                pokemon: [{variety: 82, level: 40}, {variety: 100, level: 40}, {variety: 309, level: 40}],
+                maxLevel: 44
+            },
+            appearAfter: null,
+            enableAfter: 43
+        },
+        55: {
+            id: 55,
+            name: "Gentleman",
+            shortDescription: "A Gentleman is an older men in dapper suits.",
+            description: "A Gentleman (Japanese: ジェントルマン Gentleman) is a type of Pokémon Trainer that debuted in the Generation I games. They are older men in dapper suits.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer028c.png", direction: "down"},
+            firstTimeAwards: [39, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer028c.png",
+                name: 'Gentleman',
+                type: "unknown",
+                pokemon: [{variety: 164, level: 42}, {variety: 53, level: 44}, {variety: 58, level: 42}],
+                maxLevel: 44
+            },
+            appearAfter: null,
+            enableAfter: 43
+        },
+        56: {
+            id: 56,
+            name: "Sabrina",
+            shortDescription: "Marsh Badge",
+            description: "A powerful psychic herself, this Gym Leader who uses Psychic types can see the future with her precognitive powers. She allegedly does not like conflict. Beat Sabrina to win the Marsh Badge",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "sabrina.png", direction: "down"},
+            firstTimeAwards: [1005, 40, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "sabrina.png",
+                name: 'Sabrina',
+                type: "psychic",
+                pokemon: [{variety: 122, level: 44}, {variety: 65, level: 44}, {variety: 49, level: 44}],
+                maxLevel: 44
+            },
+            appearAfter: 50,
+            enableAfter: 50
+        },
+        57: {
+            id: 57,
+            name: "Jasmine",
+            shortDescription: "Mineral Badge",
+            description: "Jasmine is the Gym Leader of Olivine City's Gym, known officially as the Olivine Gym. She specializes in Steel-type Pokémon, and she gives the Mineral Badge to Trainers who defeat her in battle.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "jasmine.png", direction: "down"},
+            firstTimeAwards: [1013, 41, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "jasmine.png",
+                name: 'Jasmine',
+                type: "steel",
+                pokemon: [{variety: 208, level: 44}, {variety: 227, level: 44}, {variety: 462, level: 44}],
+                maxLevel: 44
+            },
+            appearAfter: 50,
+            enableAfter: 50
+        },
+        58: {
+            id: 58,
+            name: "Cowgirl",
+            shortDescription: "A Cowgirl is a young women in cowgirl outfits.",
+            description: "A Cowgirl is a type of Pokémon Trainer that debuted in the Generation IV games. They are depicted as young women in cowgirl outfits. Cowgirls are the female counterparts of Ranchers.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "HGSS_043.png", direction: "down"},
+            firstTimeAwards: [42, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "HGSS_043.png",
+                name: 'Cowgirl',
+                type: "unknown",
+                pokemon: [{variety: 241, level: 44}, {variety: 77, level: 44}, {variety: 399, level: 44}],
+                maxLevel: 48
+            },
+            appearAfter: null,
+            enableAfter: 55
+        },
+        59: {
+            id: 59,
+            name: "Rancher",
+            shortDescription: "A Rancher is a middle-aged man, wearing cowboy hat and overalls, and carrying a pitchfork",
+            description: "A Rancher is a type of Pokémon Trainer that first debuted in the Generation IV games. They are depicted as middle-aged men, wearing cowboy hats and overalls, and carry pitchforks. Ranchers are the male counterparts of Cowgirls. ",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "HGSS_042.png", direction: "down"},
+            firstTimeAwards: [43, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "HGSS_042.png",
+                name: 'Rancher',
+                type: "normal",
+                pokemon: [{variety: 128, level: 44}, {variety: 203, level: 44}, {variety: 424, level: 44}],
+                maxLevel: 48
+            },
+            appearAfter: null,
+            enableAfter: 55
+        },
+        60: {
+            id: 60,
+            name: "Wattson",
+            shortDescription: "Dynamo Badge",
+            description: "Wattson is the Gym Leader of Mauville City's Gym, known officially as the Mauville Gym. Trainers who defeat him receive the Dynamo Badge. He is a jolly old man who specializes in Electric-type Pokémon.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "wattson.png", direction: "down"},
+            firstTimeAwards: [1018, 44, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "wattson.png",
+                name: 'Wattson',
+                type: "electric",
+                pokemon: [{variety: 82, level: 48}, {variety: 310, level: 48}, {variety: 181, level: 48}],
+                maxLevel: 48
+            },
+            appearAfter: 57,
+            enableAfter: 57
+        },
+        61: {
+            id: 61,
+            name: "Candice",
+            shortDescription: "Icicle Badge",
+            description: "This passionate Gym Leader has a fixation on focus. However, she sometimes wonders if she should play it cooler as an Ice-type Pokémon user.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "candice.png", direction: "down"},
+            firstTimeAwards: [1030, 45, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "candice.png",
+                name: 'Candice',
+                type: "ice",
+                pokemon: [{variety: 215, level: 48}, {variety: 460, level: 48}, {variety: 478, level: 48}],
+                maxLevel: 48
+            },
+            appearAfter: 57,
+            enableAfter: 57
+        },
+        62: {
+            id: 62,
+            name: "Skyla",
+            shortDescription: "Jet Badge",
+            description: "Normally a cargo plane pilot, this Gym Leader flies through the sky with her Pokémon. Her cheery personality has earned her many fans.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "skyla.png", direction: "down"},
+            firstTimeAwards: [1037, 46, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "skyla.png",
+                name: 'Skyla',
+                type: "flying",
+                pokemon: [{variety: 528, level: 48}, {variety: 561, level: 48}, {variety: 581, level: 48}],
+                maxLevel: 48
+            },
+            appearAfter: 57,
+            enableAfter: 57
+        },
+        63: {
+            id: 63,
+            name: "Battle Girl",
+            shortDescription: "A Battle is a young girl dressed in midriff-baring crop tops and shorts and striking a fighting pose.",
+            description: "A Battle Girl is a type of Pokémon Trainer that debuted in the Generation III games. They are generally depicted as young girls or young women, dressed in midriff-baring crop tops and shorts and striking a fighting pose.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer033c.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer033c.png",
+                name: 'Battle Girl',
+                type: "fighting",
+                pokemon: [{variety: 286, level: 48}, {variety: 297, level: 48}, {variety: 308, level: 48}],
+                maxLevel: 52
+            },
+            appearAfter: null,
+            enableAfter: 55
+        },
+        64: {
+            id: 64,
+            name: "Battle Girl",
+            shortDescription: "A Battle is a young girl dressed in midriff-baring crop tops and shorts and striking a fighting pose.",
+            description: "A Battle Girl is a type of Pokémon Trainer that debuted in the Generation III games. They are generally depicted as young girls or young women, dressed in midriff-baring crop tops and shorts and striking a fighting pose.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer033c.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer033c.png",
+                name: 'Battle Girl',
+                type: "fighting",
+                pokemon: [{variety: 286, level: 48}, {variety: 297, level: 48}, {variety: 308, level: 48}],
+                maxLevel: 52
+            },
+            appearAfter: null,
+            enableAfter: 55
+        },
+        65: {
+            id: 65,
+            name: "Ace Trainer Man",
+            shortDescription: "An Ace Trainer is an young adult who frequently travel around the world to take part in Pokémon League competitions.",
+            description: "An Ace Trainer is a type of Pokémon Trainer that debuted in the Generation I games. They are depicted as teens or young adults and can be male or female. They are Trainers who frequently travel around the world to meet new Trainers and take part in Pokémon League competitions. ",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "HGSS_011.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "HGSS_011.png",
+                name: 'Ace Trainer Man',
+                type: "unknown",
+                pokemon: [{variety: 452, level: 50}, {variety: 455, level: 50}, {variety: 428, level: 50}],
+                maxLevel: 52
+            },
+            appearAfter: null,
+            enableAfter: 55
+        },
+        66: {
+            id: 66,
+            name: "Ace Trainer Woman",
+            shortDescription: "An Ace Trainer is an young adult who frequently travel around the world to take part in Pokémon League competitions.",
+            description: "An Ace Trainer is a type of Pokémon Trainer that debuted in the Generation I games. They are depicted as teens or young adults and can be male or female. They are Trainers who frequently travel around the world to meet new Trainers and take part in Pokémon League competitions. ",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "HGSS_015.png", direction: "down"},
+            firstTimeAwards: [47, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "HGSS_015.png",
+                name: 'Ace Trainer Woman',
+                type: "unknown",
+                pokemon: [{variety: 421, level: 50}, {variety: 36, level: 50}, {variety: 267, level: 50}],
+                maxLevel: 52
+            },
+            appearAfter: null,
+            enableAfter: 55
+        },
+        67: {
+            id: 67,
+            name: "Koga",
+            shortDescription: "Soul Badge",
+            description: "This modern-day ninja and member of the Elite Four wears down his opponents with his versatility and has also trained his daughter, Janine, in the ways of the ninja. Beat Koga to win the Soul Badge",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "koga.png", direction: "down"},
+            firstTimeAwards: [1004, 48, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "koga.png",
+                name: 'Koga',
+                type: "poison",
+                pokemon: [{variety: 109, level: 52}, {variety: 89, level: 52}, {variety: 110, level: 52}],
+                maxLevel: 52
+            },
+            appearAfter: 62,
+            enableAfter: 62
+        },
+        68: {
+            id: 68,
+            name: "Chuck",
+            shortDescription: "Storm Badge",
+            description: "Chuck is the Gym Leader of Cianwood City's Gym, officially known as the Cianwood Gym. He specializes in Fighting-type Pokémon. Chuck gives out the Storm Badge to Trainers who defeat him.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "chuck.png", direction: "down"},
+            firstTimeAwards: [1012, 49, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "chuck.png",
+                name: 'Chuck',
+                type: "fighting",
+                pokemon: [{variety: 62, level: 52}, {variety: 68, level: 52}, {variety: 107, level: 52}],
+                maxLevel: 52
+            },
+            appearAfter: 62,
+            enableAfter: 62
+        },
+        69: {
+            id: 69,
+            name: "Team Plasma Grunt Female",
+            shortDescription: "Team Plasma is the villainous team in Unova.",
+            description: "Team Plasma is the villainous team in Unova. Team Plasma's original goal was to \"liberate\" all Pokémon from their Trainers, by either convincing the Trainer to release their Pokémon, or by theft. Ghetsis, one of Team Plasma's leaders, exploited the group in an attempt to rule Unova as the only one with Pokémon.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "BW092.png", direction: "down"},
+            firstTimeAwards: [50 ,0, 0, 0, 0, 0 ],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "BW092.png",
+                name: 'Galactic Grunt Female',
+                type: "unknown",
+                pokemon: [{variety: 552, level: 54}, {variety: 510, level: 54}, {variety: 569, level: 54}],
+                maxLevel: 56
+            },
+            appearAfter: 68,
+            enableAfter: 68
+        },
+        70: {
+            id: 70,
+            name: "Team Plasma Grunt Male",
+            shortDescription: "Team Plasma is the villainous team in Unova.",
+            description: "Team Plasma is the villainous team in Unova. Team Plasma's original goal was to \"liberate\" all Pokémon from their Trainers, by either convincing the Trainer to release their Pokémon, or by theft. Ghetsis, one of Team Plasma's leaders, exploited the group in an attempt to rule Unova as the only one with Pokémon.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "BW091.png", direction: "down"},
+            firstTimeAwards: [50 ,0, 0, 0, 0, 0 ],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "BW091.png",
+                name: 'Team Plasma Grunt Male',
+                type: "unknown",
+                pokemon: [{variety: 505, level: 56}, {variety: 452, level: 56}, {variety: 624, level: 56}],
+                maxLevel: 56
+            },
+            appearAfter: 68,
+            enableAfter: 68
+        },
+        71: {
+            id: 71,
+            name: "Flannery",
+            shortDescription: "Heat Badge",
+            description: "A Gym Leader with a fiery, brave personality, she can be a bit too serious and sometimes tries too hard to conduct herself properly.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "flannery.png", direction: "down"},
+            firstTimeAwards: [1019, 52, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "flannery.png",
+                name: 'Flannery',
+                type: "fire",
+                pokemon: [{variety: 324, level: 56}, {variety: 323, level: 56}, {variety: 219, level: 56}],
+                maxLevel: 56
+            },
+            appearAfter: 68,
+            enableAfter: 68
+        },
+        72: {
+            id: 72,
+            name: "Byron",
+            shortDescription: "Mine Badge",
+            description: "Byron is the Gym Leader of Canalave City's Gym, known officially as the Canalave Gym. He hands out the Mine Badge to Trainers who defeat him. He specializes in Steel-type Pokémon. He is Roark's father.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "byron.png", direction: "down"},
+            firstTimeAwards: [1029, 53, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "byron.png",
+                name: 'Byron',
+                type: "steel",
+                pokemon: [{variety: 306, level: 56}, {variety: 437, level: 56}, {variety: 462, level: 56}],
+                maxLevel: 56
+            },
+            appearAfter: 68,
+            enableAfter: 68
+        },
+        73: {
+            id: 73,
+            name: "Drayden",
+            shortDescription: "Legend Badge",
+            description: "Byron is the Gym Leader of Canalave City's Gym, known officially as the Canalave Gym. He hands out the Mine Badge to Trainers who defeat him. He specializes in Steel-type Pokémon. He is Roark's father.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "byron.png", direction: "down"},
+            firstTimeAwards: [1038, 54, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "byron.png",
+                name: 'Byron',
+                type: "dragon",
+                pokemon: [{variety: 621, level: 56}, {variety: 330, level: 56}, {variety: 612, level: 56}],
+                maxLevel: 56
+            },
+            appearAfter: 68,
+            enableAfter: 68
+        },
+        74: {
+            id: 74,
+            name: "Waitress",
+            shortDescription: "A Waitress is a young women in typical waitress clothing.",
+            description: "A Waitress is a type of Pokémon Trainer that debuted in the Generation IV games. They are generally depicted as young girls or young women in typical waitress clothing. They are the female counterpart of the Waiter and Garçon classes.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "HGSS_030.png", direction: "down"},
+            firstTimeAwards: [55, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "HGSS_030.png",
+                name: 'Waitress',
+                type: "unknown",
+                pokemon: [{variety: 573, level: 58}, {variety: 609, level: 58}, {variety: 509, level: 58}],
+                maxLevel: 60
+            },
+            appearAfter: null,
+            enableAfter: 70
+        },
+        75: {
+            id: 75,
+            name: "Expert",
+            shortDescription: "An Expert is an old men in keikogi and hakama.",
+            description: "An Expert is a type of Pokémon Trainer that first debuted in the Generation III games. They are generally depicted as old men or old women in keikogi and hakama.",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "HGSS_018.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "HGSS_018.png",
+                name: 'Expert',
+                type: "fighting",
+                pokemon: [{variety: 295, level: 58}, {variety: 297, level: 58}, {variety: 67, level: 58}],
+                maxLevel: 60
+            },
+            appearAfter: null,
+            enableAfter: 70
+        },
+        76: {
+            id: 76,
+            name: "Medium",
+            shortDescription: "Medium is an old women with a large, lit candle in each hand.",
+            description: "Medium is a type of Pokémon Trainer that first debuted in Generation II games. They are depicted as old women with little ghosts floating around them in Generation II, and as old women with a large, lit candle in each hand in Generation IV. As their Japanese name suggests, they're based on blind female shamans from northern Japan who dress in a white kimono during their training for initiation",
+            type: "trainer",
+            image: {type: "human", animationActive: true, name: "trainer038c.png", direction: "down"},
+            firstTimeAwards: [0, 0, 0, 0, 0, 0],
+            awards: [0,0],
+            trainerInfo: {
+                sprite: "trainer038c.png",
+                name: 'Medium',
+                type: "ghost",
+                pokemon: [{variety: 92, level: 58}, {variety: 93, level: 58}, {variety: 94, level: 58}],
+                maxLevel: 60
+            },
+            appearAfter: null,
+            enableAfter: 70
+        },
+        77: {
+            id: 77,
+            name: "Blue",
+            shortDescription: "Earth Badge",
+            description: "This highly skilled, powerhouse Trainer prominent in Kanto is the grandson of the famous Professor Oak. Red is both his lifelong rival and his best friend. Beat Blue to win the Earth Badge",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "blue.png", direction: "down"},
+            firstTimeAwards: [1007, 56, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "blue.png",
+                name: 'Blue',
+                type: "unknown",
+                pokemon: [{variety: 111, level: 60}, {variety: 59, level: 60}, {variety: 18, level: 60}],
+                maxLevel: 60
+            },
+            appearAfter: 73,
+            enableAfter: 73
+        },
+        78: {
+            id: 78,
+            name: "Clair",
+            shortDescription: "Rising Badge",
+            description: "She is a proud, confident Gym Leader who uses Dragon-type Pokémon. Her cousin Lance is also a Dragon-type Pokémon user.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "clair.png", direction: "down"},
+            firstTimeAwards: [1015, 57, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "clair.png",
+                name: 'Clair',
+                type: "dragon",
+                pokemon: [{variety: 230, level: 60}, {variety: 6, level: 60}, {variety: 149, level: 60}],
+                maxLevel: 60
+            },
+            appearAfter: 73,
+            enableAfter: 73
+        },
+        79: {
+            id: 79,
+            name: "Prof. Rowan",
+            shortDescription: "Professor Rowan is the resident Pokémon Professor of Sandgem Town in the Sinnoh region.",
+            description: "Professor Rowan is the resident Pokémon Professor of Sandgem Town in the Sinnoh region. He specializes in Pokémon evolution.",
+            type: "event",
+            image: {type: "human", animationActive: true, name: "prof_rowan.png", direction: "down"},
+            firstTimeAwards: [58 , 59, 0 , 0, 0, 0 ],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "prof_rowan.png",
+                name: 'Prof. Rowan',
+                type: "unknown",
+                pokemon: [{variety: 392, level: 64}, {variety: 395, level: 64}, {variety: 389, level: 64}],
+                maxLevel: 64
+            },
+            appearAfter: 78,
+            enableAfter: 78
+        },
+        80: {
+            id: 80,
+            name: "Wallace",
+            shortDescription: "Rain Badge",
+            description: "Wallace is a highly accomplished Trainer and Coordinator who specializes in Water-type Pokémon. He is the Gym Leader of Sootopolis City's Gym, known officially as the Sootopolis Gym, awarding the Rain Badge to those who defeat him.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "wallace.png", direction: "down"},
+            firstTimeAwards: [1023, 60, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "wallace.png",
+                name: 'Wallace',
+                type: "water",
+                pokemon: [{variety: 350, level: 64}, {variety: 340, level: 64}, {variety: 365, level: 64}],
+                maxLevel: 64
+            },
+            appearAfter: 77,
+            enableAfter: 77
+        },
         81: {
             id: 81,
+            name: "Volkner",
+            shortDescription: "Beacon Badge",
+            description: "Volkner (Japanese: デンジ Denzi) is the Gym Leader of Sunyshore City's Gym, known officially as the Sunyshore Gym. He hands out the Beacon Badge to Trainers who defeat him. He specializes in Electric-type Pokémon.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "volkner.png", direction: "down"},
+            firstTimeAwards: [1031, 61, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "volkner.png",
+                name: 'Volkner',
+                type: "electric",
+                pokemon: [{variety: 405, level: 64}, {variety: 466, level: 64}, {variety: 479, level: 64}],
+                maxLevel: 64
+            },
+            appearAfter: 77,
+            enableAfter: 77
+        },
+        82: {
+            id: 82,
+            name: "Brycen",
+            shortDescription: "Freeze Badge",
+            description: "Volkner (Japanese: デンジ Denzi) is the Gym Leader of Sunyshore City's Gym, known officially as the Sunyshore Gym. He hands out the Beacon Badge to Trainers who defeat him. He specializes in Electric-type Pokémon.",
+            type: "league",
+            image: {type: "human", animationActive: true, name: "brycen.png", direction: "down"},
+            firstTimeAwards: [1039, 62, 0, 0, 0, 0, 0],
+            awards: [0, 0],
+            trainerInfo: {
+                sprite: "brycen.png",
+                name: 'Brycen',
+                type: "ice",
+                pokemon: [{variety: 615, level: 64}, {variety: 614, level: 64}, {variety: 584, level: 64}],
+                maxLevel: 64
+            },
+            appearAfter: 77,
+            enableAfter: 77
+        },
+        181: {
+            id: 181,
             name: "Gigantamax Pikachu",
             shortDescription: "Fight Gigantamax Pikachu",
             description: "Fight Gigantamax Pikachu",

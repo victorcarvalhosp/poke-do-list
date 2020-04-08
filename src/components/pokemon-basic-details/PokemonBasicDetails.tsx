@@ -24,8 +24,11 @@ const PokemonBasicDetails: React.FC<IProps> = observer(({pokemon, wild}) => {
 
     useEffect(() => {
         setPokemonVariety(pokemonVarieties[pokemon.variety]);
+    }, [pokemon, pokemon.variety])
+
+    useEffect(() => {
         setPokemonSpecie(pokemonSpecies[pokemonVariety.specie]);
-    }, [pokemon])
+    }, [pokemonVariety])
 
     return (
         <div onClick={changeDirection} className="pokemon-basic-details">
