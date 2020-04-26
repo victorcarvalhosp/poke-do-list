@@ -38,7 +38,7 @@ export interface ITaskStore {
 
     loadListWeek(): void;
 
-
+    postPone(task: ITask): void;
 }
 
 export class TaskStore implements ITaskStore {
@@ -67,10 +67,26 @@ export class TaskStore implements ITaskStore {
     }
 
     @action
+    async postPone(task: ITask){
+        if(task.date && (dayjs(task.date.toDate()).isBefore(dayjs(new Date()), 'day'))){
+            //If overdue adjust to yesterday
+            task.date = firebase.firestore.Timestamp.fromDate(dayjs(new Date()).add(-1, 'day').toDate());
+        }
+        if (task.repeat) {
+            this.calculateNextOcurrence(task);
+        } else if(task.date){
+            task.date = firebase.firestore.Timestamp.fromDate(dayjs(task.date?.toDate()).add(1, 'day').toDate());
+        } else {
+            task.date = firebase.firestore.Timestamp.fromDate(dayjs(new Date()).add(1, 'day').toDate());
+        }
+        await FirebaseApi.saveTask(this.root.userStore.user.uid, task);
+    }
+
+    @action
     async loadListToday() {
         this.filters = new TaskFilters();
         this.filters.periodFilter = "today";
-        this.loadList();
+        await this.loadList();
     }
 
     @action
@@ -164,7 +180,7 @@ export class TaskStore implements ITaskStore {
 
     @action
     async completeTask(task: ITask) {
-        await addDelay(1500);
+        await addDelay(1000);
         if (task.pokemon) {
             await this.root.pokemonStore.caughtPokemon(task.pokemon);
             const pkmnName = task.pokemon.name
@@ -173,24 +189,28 @@ export class TaskStore implements ITaskStore {
         if (task.id) {
             if (task.repeat) {
                 task.pokemon = this.root.pokemonStore.generateRandomPokemon(task);
-                if (task.repeatFrequency === 'daily') {
-                    for (let i = 0; i <= 6; i++) {
-                        const nextDay = dayjs(task.date?.toDate()).add(i + 1, 'day');
-                        if ((nextDay.day() === 0 && task.sun) || (nextDay.day() === 1 && task.mon) ||
-                            (nextDay.day() === 2 && task.tue) || (nextDay.day() === 3 && task.wed) ||
-                            (nextDay.day() === 4 && task.thu) || (nextDay.day() === 5 && task.fri) ||
-                            (nextDay.day() === 6 && task.sat)) {
-                            task.date = firebase.firestore.Timestamp.fromDate(nextDay.toDate());
-                            break;
-                        }
-                    }
-                } else if (task.repeatFrequency === 'monthly') {
-                    task.date = firebase.firestore.Timestamp.fromDate(dayjs(task.date?.toDate()).add(1, 'month').toDate());
-                }
+                this.calculateNextOcurrence(task);
                 await FirebaseApi.saveTask(this.root.userStore.user.uid, task);
             } else {
                 await FirebaseApi.completeTask(this.root.userStore.user.uid, task.id);
             }
+        }
+    }
+
+    private calculateNextOcurrence(task: ITask) {
+        if (task.repeatFrequency === 'daily') {
+            for (let i = 0; i <= 6; i++) {
+                const nextDay = dayjs(task.date?.toDate()).add(i + 1, 'day');
+                if ((nextDay.day() === 0 && task.sun) || (nextDay.day() === 1 && task.mon) ||
+                    (nextDay.day() === 2 && task.tue) || (nextDay.day() === 3 && task.wed) ||
+                    (nextDay.day() === 4 && task.thu) || (nextDay.day() === 5 && task.fri) ||
+                    (nextDay.day() === 6 && task.sat)) {
+                    task.date = firebase.firestore.Timestamp.fromDate(nextDay.toDate());
+                    break;
+                }
+            }
+        } else if (task.repeatFrequency === 'monthly') {
+            task.date = firebase.firestore.Timestamp.fromDate(dayjs(task.date?.toDate()).add(1, 'month').toDate());
         }
     }
 

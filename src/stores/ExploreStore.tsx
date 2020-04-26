@@ -66,7 +66,6 @@ export class ExploreStore implements IExploreStore {
 
     @action
     exploreItemAlreadyCompleted(exploreItemId: number): boolean{
-        console.log('EXPLORE ITEM ID ' + exploreItemId);
        return this.root.userStore.user.exploreItemsCompleted.filter(id => id === exploreItemId).length > 0;
     }
 

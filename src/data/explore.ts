@@ -19,7 +19,7 @@ export const exploreAwards: Record<number, IExploreAward|IExploreAwardBadge|IExp
         6: new ExploreAwardPokemon(6, "Pokémon", 519, 1),
         7: new ExploreAwardPokemon(7, "Pokémon", 120, 4),
         8: new ExploreAwardPokemon(8, "Pokémon", 13, 1),
-        9: new ExploreAwardPokemon(9, "Prof Elm Pokémon", 155, 1),
+        9: new ExploreAwardPokemon(9, "Cyndaquil", 155, 1),
         10: new ExploreAwardPokemon(10, "Remoraid", 223, 1),
         11: new ExploreAwardPokemon(11, "Makuhita", 296, 1),
         12: new ExploreAwardPokemon(12, "Gastly", 92, 5),
@@ -771,8 +771,8 @@ export const exploreItems: Record<number, IExploreItem> =
                 pokemon: [{variety: 77, level: 28}, {variety: 78, level: 28}, {variety: 58, level: 28}],
                 maxLevel: 28
             },
-            appearAfter: 5,
-            enableAfter: 6
+            appearAfter: 30,
+            enableAfter: 30
         },
         35: {
             id: 35,
