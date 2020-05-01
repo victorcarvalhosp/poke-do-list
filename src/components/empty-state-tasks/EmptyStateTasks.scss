@@ -1,0 +1,45 @@
+.empty-state-tasks{
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+
+    .image-area{
+        padding: 48px;
+    }
+    .monster-1{
+        background: url('../../assets/images/empty-state-bulbasaur.png') left center;
+    }
+    .monster-2{
+        background: url('../../assets/images/empty-state-charmander.png') left center;
+    }
+    .monster-3{
+        background: url('../../assets/images/empty-state-squirtle.png') left center;
+    }
+    .monster-4{
+        background: url('../../assets/images/empty-state-4.png') left center;
+    }
+    .monster-5{
+        background: url('../../assets/images/empty-state-5.png') left center;
+    }
+    .monster {
+        margin: auto;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-crisp-edges;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+        zoom: 4;
+        width: 34px;
+        height: 34px;
+        animation: play 1s steps(3) infinite;
+    }
+}
+
+@keyframes play {
+    from{background-position-x:0px;}
+    to{background-position-x:-102px;}
+}
+
+.empty-state-tasks ion-img{
+    max-width: 100px;
+    margin: auto;
+}

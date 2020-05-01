@@ -36,7 +36,7 @@ const Item: React.FC<IProps> = ({item, onClickItem, onPostpone}) => {
     } else {
         return (
             <IonItemSliding key={item.id}>
-                <IonItemOptions side="start" onIonSwipe={e => onPostpone(item)}>
+                <IonItemOptions side="end" onIonSwipe={e => onPostpone(item)}>
                     <IonItemOption color="warning" expandable onClick={e => onPostpone(item)}>
                         <IonIcon slot="icon-only" icon={timeOutline}></IonIcon>
                     </IonItemOption>

@@ -1,16 +1,7 @@
 import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../stores/StoreContext";
 import React, {useEffect, useState} from "react";
-import {
-    IonLabel,
-    IonList,
-    IonListHeader,
-    IonItemOptions,
-    IonItem,
-    IonItemOption,
-    IonItemSliding,
-    IonIcon
-} from "@ionic/react";
+import {IonLabel, IonList, IonListHeader} from "@ionic/react";
 import Item from "../Item";
 import {ITask} from "../../models/Task";
 import Loading from "../loading/Loading";
@@ -18,7 +9,7 @@ import BlankState from "../blank-state/BlankState";
 import dayjs from "dayjs";
 import {diffDaysFromToday} from "../../utils/utils";
 import "./ListItems.scss";
-import {timeOutline} from "ionicons/icons";
+import EmptyStateTasks from "../empty-state-tasks/EmptyStateTasks";
 
 
 interface IComponentProps {
@@ -114,7 +105,8 @@ const ListItems: React.FC<IComponentProps> = observer(({list, loading, groupType
         {groupType !== 'none' ?
             (<div className="pkmn-list-items">
                 {loading && (<Loading/>)}
-                {!loading && Array.from(listGroupByDate.values()).map(subGroup => (
+                {!loading && list.length === 0 && (<EmptyStateTasks groupType={groupType} />)}
+                {!loading && list.length > 0 && Array.from(listGroupByDate.values()).map(subGroup => (
                     <span key={subGroup.groupName} className={subGroup.list.length === 0 ? 'empty-sub-list' : ''}>
                         <IonListHeader lines="inset">
                             <IonLabel>{subGroup.groupName}</IonLabel>
