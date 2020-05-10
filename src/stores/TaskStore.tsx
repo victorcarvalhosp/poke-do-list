@@ -70,7 +70,8 @@ export class TaskStore implements ITaskStore {
     async postPone(task: ITask){
         if(task.date && (dayjs(task.date.toDate()).isBefore(dayjs(new Date()), 'day'))){
             //If overdue adjust to yesterday
-            task.date = firebase.firestore.Timestamp.fromDate(dayjs(new Date()).add(-1, 'day').toDate());
+            const yesterday = dayjs(new Date()).add(-1, 'day').set('hour', task.date.toDate().getDay()).set('minute',task.date.toDate().getMinutes());
+            task.date = firebase.firestore.Timestamp.fromDate(yesterday.toDate());
         }
         if (task.repeat) {
             this.calculateNextOcurrence(task);
