@@ -90,7 +90,7 @@ const BattleSelectPokemonPage: React.FC<RouteComponentProps> = observer(({histor
                         </IonButtons>
                     </IonToolbar>
                 </IonHeader>
-                <IonContent
+                <IonContent scrollEvents={true}
                     className="ion-padding">
                     <span className="sub-title">Opponent:</span>
                     <IonGrid>

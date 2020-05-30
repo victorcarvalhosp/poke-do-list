@@ -33,9 +33,9 @@ const PokemonPage: React.FC<RouteComponentProps> = observer(({history}) => {
     }, [])
 
     return (
-        <IonPage id="pokemon-page">
+        <IonPage id="pokemon-page" onScroll={() => console.log('onScroll')}>
             <PkmnHeader title="My Pokémon" />
-            <IonContent className="ion-padding">
+            <IonContent className="ion-padding" scrollEvents={true} >
                 <PkmnList list={pokemonStore.listOrdered} handleItemClick={openModalDetails}/>
                 <PokemonDetailsModal open={modalDetailsOpen} onClickClose={onCloseModal} pokemon={selectedPokemon} />
                 <FabOrderByPokemon />
