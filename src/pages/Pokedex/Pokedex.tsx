@@ -9,7 +9,7 @@ import {
   useIonViewWillEnter,
 } from "@ionic/react";
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import Loading from "../../components/loading/Loading";
 import Overworld from "../../components/overworld/Overworld";
@@ -18,9 +18,11 @@ import PokedexDetailsModal from "../../components/pokedex-details-modal/PokedexD
 import { pokemonSpecies } from "../../data/pokemon-species";
 import { IPokedexStatus, PokedexStatus } from "../../models/PokedexStatus";
 import { useRootStore } from "../../stores/StoreContext";
-import { threeHousesNumberPipe } from "../../utils/utils";
+import {
+  threeHousesNumberPipe,
+  getTotalItemsToShowOnViewport,
+} from "../../utils/utils";
 import "./Pokedex.scss";
-import { IUserStore } from "../../stores/UserStore";
 
 const PokedexPage: React.FC<RouteComponentProps> = observer(({ history }) => {
   const { userStore } = useRootStore();
@@ -35,20 +37,20 @@ const PokedexPage: React.FC<RouteComponentProps> = observer(({ history }) => {
   );
   const [allPokemonPokedex, setallPokemonPokedex] = useState<number[]>([]);
 
+  const totalOnInitialLoading = getTotalItemsToShowOnViewport();
+
   function fetchList() {
     const maxPokemonVisible = userStore.premium ? 721 : 251;
     const allNumbers: number[] = [];
-    for (
-      let i = totalLoaded;
-      i < totalLoaded + 50 && i <= maxPokemonVisible;
-      i++
-    ) {
+    let i = totalLoaded;
+    while (i < totalLoaded + totalOnInitialLoading && i < maxPokemonVisible) {
       allNumbers.push(i + 1);
-      setTotalLoaded(i + 1);
+      i++;
       if (i >= maxPokemonVisible) {
         setDisableInfiniteScroll(true);
       }
     }
+    setTotalLoaded(i);
     setallPokemonPokedex([...allPokemonPokedex, ...allNumbers]);
   }
 
