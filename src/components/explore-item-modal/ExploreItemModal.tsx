@@ -18,7 +18,7 @@ interface IComponentProps extends RouteComponentProps {
 
 const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, exploreItem}) => {
 
-    // console.log(watch('email')) // watch input value by passing the name of it
+    // watch input value by passing the name of it
     const {exploreStore, battleStore} = useRootStore();
 
     // const [pokemonSpecieVarieties, setPokemonSpecieVarieties] = useState<IPokemonSpecie>(pokemonSpecies[pokedexItem.id]);

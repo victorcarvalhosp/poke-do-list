@@ -37,7 +37,6 @@ const SerialModal: React.FC<IComponentProps> = observer(({open, onClickClose, hi
                 method: 'GET',
                 headers: {'user': userStore.user.uid}
             }).then((res:any) => res.json()).then(value => {
-                console.log(value);
                 if(value.success === true) {
                     userStore.updateSerialKey(serial);
                     setMessage({type: "success", text: "This serial is valid! Enjoy!"});

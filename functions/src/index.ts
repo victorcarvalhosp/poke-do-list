@@ -29,7 +29,7 @@ export const getSerialKeyValid = functions.https.onRequest(async (req, response)
                     response.status(200).json({success: body.success});
                 })
             } else {
-                console.log('OTHER ERROR');
+                console.log('Not allowed');
                 response.status(500).json({message: 'Not allowed'});
             }
         });

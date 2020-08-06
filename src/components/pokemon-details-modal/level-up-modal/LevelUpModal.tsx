@@ -30,7 +30,7 @@ interface IComponentProps extends RouteComponentProps {
 
 const LevelUpModal: React.FC<IComponentProps> = observer(({history, open, onClickClose, pokemon}) => {
 
-    // console.log(watch('email')) // watch input value by passing the name of it
+    // watch input value by passing the name of it
     const {pokemonStore, userStore, uiStore} = useRootStore();
     const [totalLevelsUp, setTotalLevelsUp] = useState(userStore.user.powerUps === 0 ? 0 : 1);
     const [loading, setLoading] = useState(false);
