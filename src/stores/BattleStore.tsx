@@ -204,7 +204,6 @@ export class BattleStore implements IBattleStore {
 
   @action
   async runTurn() {
-    console.log("attack");
     if (
       this.player1StillHaveLivePokemon() &&
       this.player2StillHaveLivePokemon()
