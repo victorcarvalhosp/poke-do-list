@@ -30,6 +30,7 @@ const ExploreItemModal: React.FC<IComponentProps> = observer(({history, open, on
     const closeModal = () => {
         onClickClose();
     }
+    
 
     const goToBattle = () => {
         exploreStore.setSelected(exploreItem);
